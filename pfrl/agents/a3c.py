@@ -11,6 +11,8 @@ from pfrl.utils.batch_states import batch_states
 from pfrl.utils.mode_of_distribution import mode_of_distribution
 from pfrl.utils.recurrent import one_step_forward, pack_and_forward
 
+from numpy import random
+
 logger = getLogger(__name__)
 
 
@@ -63,13 +65,26 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
         average_entropy_decay=0.999,
         average_value_decay=0.999,
         batch_states=batch_states,
+        # Byzantine parameters
+        malicious=0.0,
+        mal_type='sign',
+        byz_classifier=None,
+        local_models=None
     ):
+        # Byzantine initialization
+        self.malicious_rt = malicious
+        self.malicious = False
+        self.mal_type = mal_type
+        self.byz_classifier = byz_classifier
+        self.total_loss = None
+        self.agent_rewards = None
 
         # Globally shared model
         self.shared_model = model
 
         # Thread specific model
-        self.model = copy.deepcopy(self.shared_model)
+        self.local_models = local_models
+        self.model = None
 
         self.optimizer = optimizer
 
@@ -106,27 +121,30 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
         self.average_value = 0
         self.average_entropy = 0
 
+        self.updated = False
+
     def sync_parameters(self):
         copy_param.copy_param(target_link=self.model, source_link=self.shared_model)
 
     def assert_shared_memory(self):
-        # Shared model must have tensors in shared memory
-        for k, v in self.shared_model.state_dict().items():
-            assert v.is_shared(), "{} is not in shared memory".format(k)
-
-        # Local model must not have tensors in shared memory
-        for k, v in self.model.state_dict().items():
-            assert not v.is_shared(), "{} is in shared memory".format(k)
-
-        # Optimizer must have tensors in shared memory
-        for param_state in self.optimizer.state_dict()["state"].values():
-            for k, v in param_state.items():
-                if isinstance(v, torch.Tensor):
-                    assert v.is_shared(), "{} is not in shared memory".format(k)
+        pass
+        # # Shared model must have tensors in shared memory
+        # for k, v in self.shared_model.state_dict().items():
+        #     assert v.is_shared(), "{} is not in shared memory".format(k)
+        #
+        # # Local model must not have tensors in shared memory
+        # for k, v in self.model.state_dict().items():
+        #     assert not v.is_shared(), "{} is in shared memory".format(k)
+        #
+        # # Optimizer must have tensors in shared memory
+        # for param_state in self.optimizer.state_dict()["state"].values():
+        #     for k, v in param_state.items():
+        #         if isinstance(v, torch.Tensor):
+        #             assert v.is_shared(), "{} is not in shared memory".format(k)
 
     @property
     def shared_attributes(self):
-        return ("shared_model", "optimizer")
+        return ("shared_model", "optimizer", "local_models")
 
     def update(self, statevar):
         assert self.t_start < self.t
@@ -205,20 +223,39 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
         if self.process_idx == 0:
             logger.debug("pi_loss:%s v_loss:%s", pi_loss, v_loss)
 
-        total_loss = torch.squeeze(pi_loss) + torch.squeeze(v_loss)
+        self.total_loss = torch.squeeze(pi_loss) + torch.squeeze(v_loss)
 
-        # Compute gradients using thread-specific model
         self.model.zero_grad()
-        total_loss.backward()
+        self.total_loss.backward()
         if self.max_grad_norm is not None:
             clip_l2_grad_norm_(self.model.parameters(), self.max_grad_norm)
-        # Copy the gradients to the globally shared model
-        copy_param.copy_grad(target_link=self.shared_model, source_link=self.model)
-        # Update the globally shared model
-        self.optimizer.step()
-        if self.process_idx == 0:
-            logger.debug("update")
 
+        if self.malicious and self.mal_type == 'sign':
+            for param in self.model.parameters():
+                param.grad = param.grad.clone() * -2.5
+
+        self.updated = True
+        total_rew = 0
+        for i in reversed(range(self.t_start, self.t)):
+            total_rew += self.past_rewards[i]
+        self.agent_rewards[self.process_idx] += total_rew
+
+    def add_update(self):
+        # Copy the gradients to the globally shared model
+        copy_param.add_grad(target_link=self.shared_model, source_link=self.model)
+
+        # Stepped in async
+        # Update the globally shared model
+        # self.optimizer.step()
+        # if self.process_idx == 0:
+        #     logger.debug("update")
+
+    def average_updates(self, processes):
+        for param in self.shared_model.parameters():
+            if param.grad is not None:
+                param.grad = param.grad / processes
+
+    def after_update(self):
         self.sync_parameters()
 
         self.past_obs = {}
@@ -229,6 +266,9 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
         self.t_start = self.t
 
     def act(self, obs):
+        if self.model is None:
+            self.model = self.local_models[self.process_idx]
+        self.updated = False
         if self.training:
             return self._act_train(obs)
         else:
@@ -254,9 +294,10 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
             else:
                 pout, vout = self.model(statevar)
             # Do not backprop through sampled actions
-            action = pout.sample()
-            self.past_action[self.t] = action[0].detach()
-            action = action.cpu().numpy()[0]
+            if self.malicious and self.mal_type == 'act':
+                action = self.get_byz_act(pout)
+            else:
+                action = self.get_a3c_act(pout)
 
         # Update stats
         self.average_value += (1 - self.average_value_decay) * (
@@ -266,6 +307,18 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
             float(pout.entropy()) - self.average_entropy
         )
 
+        return action
+
+    def get_a3c_act(self, pout):
+        action = pout.sample()
+        self.past_action[self.t] = action[0].detach()
+        action = action.cpu().numpy()[0]
+        return action
+
+    def get_byz_act(self, pout):
+        action = random.randint(0, int(pout.probs.size(dim=1)))
+        retens = torch.Tensor([action])[0]
+        self.past_action[self.t] = retens
         return action
 
     def _observe_train(self, obs, reward, done, reset):
@@ -283,6 +336,15 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
             self.update(statevar)
         if done or reset:
             self.train_recurrent_states = None
+            self.set_malicious()
+
+    def set_malicious(self):
+        if self.malicious_rt >= 1.0 and self.process_idx in range(int(self.malicious_rt)):
+            self.malicious = True
+        elif self.malicious_rt < 1.0 and random.rand() < self.malicious_rt:
+            self.malicious = True
+        else:
+            self.malicious = False
 
     def _act_eval(self, obs):
         # Use the process-local model for acting

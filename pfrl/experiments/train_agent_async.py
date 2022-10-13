@@ -40,6 +40,11 @@ def train_loop(
     successful_score=None,
     logger=None,
     global_step_hooks=[],
+    barrier=None,
+    update_barrier=None,
+    filter_act=None,
+    filtered_agents=None,
+    byzantine_agent_number=0
 ):
 
     logger = logger or logging.getLogger(__name__)
@@ -76,24 +81,29 @@ def train_loop(
             reset = episode_len == max_episode_len or info.get("needs_reset", False)
             agent.observe(obs, r, done, reset)
 
-            # Get and increment the global counter
-            with counter.get_lock():
-                counter.value += 1
-                global_t = counter.value
+            if agent.updated:
+                barrier.wait()  # Wait for all agents to complete rollout, then run filter()
+                if byzantine_agent_number > 0:
+                    # If not current UCB action and not permanently filtered, include agent's gradient in global model
+                    if filter_act.value != process_idx and filtered_agents[process_idx] == 0: agent.add_update()
+                else:
+                    agent.add_update()
+                update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+                agent.after_update()    # Each agent will download the global model after the optimizer steps
 
-            for hook in global_step_hooks:
-                hook(env, agent, global_t)
+            if done or reset:# Get and increment the global counter
+                with counter.get_lock():
+                    counter.value += 1
+                    global_t = counter.value
+                for hook in global_step_hooks:
+                    hook(env, agent, global_t)
 
-            if done or reset or global_t >= steps or stop_event.is_set():
-                if process_idx == 0:
-                    logger.info(
-                        "outdir:%s global_step:%s local_step:%s R:%s",
-                        outdir,
-                        global_t,
-                        local_t,
-                        episode_r,
-                    )
-                    logger.info("statistics:%s", agent.get_statistics())
+                metric_line = str(global_t)+'; '+str(process_idx)+'; '+str(episode_r)+'; '
+                stats = agent.get_statistics()
+                for item in stats:
+                    metric_line += str(item) + '; '
+                if stats[0] != -1:
+                    logger.info(metric_line[:-2])
 
                 # Evaluate the current agent
                 if evaluator is not None:
@@ -128,6 +138,9 @@ def train_loop(
                 logger.exception("An exception detected, exiting")
                 save_model()
                 kill_all()
+
+        update_barrier.abort()
+        barrier.abort()
 
     except (Exception, KeyboardInterrupt):
         save_model()
@@ -170,6 +183,8 @@ def train_agent_async(
     stop_event=None,
     exception_event=None,
     use_shared_memory=True,
+    num_agents_byz=0,
+    step_before_disable=1
 ):
     """Train agent asynchronously using multiprocessing.
 
@@ -228,6 +243,100 @@ def train_agent_async(
     counter = mp.Value("l", 0)
     episodes_counter = mp.Value("l", 0)
 
+    act_val = mp.Array("d", 10)     # Q-values
+    visits = mp.Array("d", 10)      # number of visits
+    agent_rewards = mp.Array("d", 10)   # Used for UCB with rewards
+    filtered_agents = mp.Array("l", 10)     # Permanently filtered agent memory
+    for i in range(len(act_val)): act_val[i] = 0
+    for i in range(len(visits)): visits[i] = 0
+    for i in range(len(agent_rewards)): agent_rewards[i] = 0
+    for i in range(len(filtered_agents)): filtered_agents[i] = 0
+
+    time = mp.Value("l", 0)     # Number of total rollouts completed
+    filter_act = mp.Value("i", 0)   # UCB action 'broadcast'
+    filtered_count = mp.Value("l", 0)   # Number of permanently filtered agents
+
+    def filter():
+        if filtered_count.value == num_agents_byz: return
+
+        # Update values
+        if time.value != 0:
+            # Compute gradient mean
+            all_grads = []
+            for i in range(len(agent.local_models)):
+                my_grad = []
+                # If filtered, don't include in gradient mean
+                if filter_act.value == i or filtered_agents[i] == 1: continue
+                for param in agent.local_models[i].parameters():
+                    if param.grad is not None:
+                        grad_np = param.grad.detach().clone().numpy().flatten()
+                    else:
+                        grad_np = np.zeros(param.size(), dtype=np.float).flatten()
+                    for j in range(len(grad_np)):
+                        my_grad.append(grad_np[j])
+                all_grads.append(np.asarray(my_grad))
+            all_grads = np.vstack(all_grads)
+            r = (1-np.mean(np.var(all_grads, axis=-1)))*100
+
+            # Update Q-values
+            act_val[filter_act.value] += (r-act_val[filter_act.value]) / visits[filter_act.value]
+
+            # Permanently disable an agent
+            end_index = -1
+            for i in range(len(visits)):
+                if visits[i] == step_before_disable: end_index = i
+            if end_index >= 0:
+                filtered_count.value += 1
+                visits[end_index] = step_before_disable+1
+                filtered_agents[end_index] = 1
+                # Reset non-disabled visits/Q-values
+                for i in range(len(visits)):
+                    if visits[i] < step_before_disable:
+                        visits[i] = 0
+                        act_val[i] = 0
+
+        # Debug output
+        print('Step', time.value, filter_act.value)
+        # Select next action
+        np_visits = mp_to_numpy(visits)
+        np_act_vals = mp_to_numpy(act_val)
+
+        print(list(np.round(np_visits, 2)))
+        print(list(np.round(np_act_vals, 3)))
+
+        # Get the true UCB t value
+        ucb_timesteps = np.sum(np_visits) - (step_before_disable+1) * filtered_count.value
+        # Compute UCB policy values (Q-value + uncertainty)
+        values = np_act_vals + np.sqrt((np.log(ucb_timesteps)) / np_visits)
+
+        # Mask permanently filtered agents
+        for i in range(len(filtered_agents)):
+            if filtered_agents[i] == 1: act_val[i] = 0
+
+        # Initial selection (visits 0) #TODO properly select at random
+        if np.min(np_visits) < 1:
+            act = np.argmin(np_visits)
+        else:   # UCB argmax policy
+            act = np.argmax(values)
+
+        # Increment visit for selected action
+        visits[act] += 1
+        # Tell the multi processing barriers about the action
+        filter_act.value = act
+
+        time.value += 1
+    barrier = mp.Barrier(processes, filter)
+
+    def sync_updates():
+        if filtered_count.value != num_agents_byz:
+            num_updates = processes - (filtered_count.value + 1)
+        else:
+            num_updates = processes - filtered_count.value
+        #print('Sync updates', num_updates)
+        agent.average_updates(num_updates)
+        agent.optimizer.step()
+    update_barrier = mp.Barrier(processes, sync_updates)
+
     if stop_event is None:
         stop_event = mp.Event()
 
@@ -250,6 +359,11 @@ def train_agent_async(
                     assert isinstance(state, dict)
                     for k, v in state.items():
                         if isinstance(v, torch.Tensor):
+                            v.share_memory_()
+            elif isinstance(attr_value, list):  # Local models
+                for item in attr_value:
+                    if isinstance(item, nn.Module):
+                        for k, v in item.state_dict().items():
                             v.share_memory_()
 
     if eval_interval is None:
@@ -306,6 +420,11 @@ def train_agent_async(
                 eval_env=eval_env,
                 global_step_hooks=global_step_hooks,
                 logger=logger,
+                barrier=barrier,
+                update_barrier=update_barrier,
+                filter_act=filter_act,
+                filtered_agents=filtered_agents,
+                byzantine_agent_number=num_agents_byz
             )
 
         if profile:
@@ -329,3 +448,9 @@ def train_agent_async(
         evaluator.join_tensorboard_writer()
 
     return agent
+
+def mp_to_numpy(mp_arr):
+    buff = []
+    for i in range(len(mp_arr)):
+        buff.append(mp_arr[i])
+    return np.asarray(buff)

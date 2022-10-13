@@ -14,9 +14,12 @@ from pfrl.optimizers import SharedRMSpropEpsInsideSqrt  # NOQA:E402
 from pfrl.policies import SoftmaxCategoricalHead  # NOQA:E402
 from pfrl.wrappers import atari_wrappers  # NOQA:E402
 
+import logging
+import torch
+import gym
 
-def main():
 
+def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--processes", type=int, default=16)
     parser.add_argument("--env", type=str, default="BreakoutNoFrameskip-v4")
@@ -69,11 +72,17 @@ def main():
             "Monitor env. Videos and additional information are saved as output files."
         ),
     )
+    parser.add_argument("--ucb_disable", type=int, default=1)
+    parser.add_argument("--malicious", type=float, default=0)
+    parser.add_argument("--mal_type", type=str, default='sign')
+    parser.add_argument("--rew_scale", type=float, default=1.0)
+    parser.add_argument("--hidden_size", type=int, default=64)
+    parser.add_argument("--activation", type=int, default=1)
     args = parser.parse_args()
+    return args
 
-    import logging
 
-    logging.basicConfig(level=args.log_level)
+def train_a3c(args):
 
     # Set a random seed used in PFRL.
     # If you use more than one processes, the results will be no longer
@@ -87,18 +96,21 @@ def main():
     assert process_seeds.max() < 2**31
 
     args.outdir = experiments.prepare_output_dir(args, args.outdir)
-    print("Output files are saved in {}".format(args.outdir))
+    # print("Output files are saved in {}".format(args.outdir))
+    logging.basicConfig(level=args.log_level, filename=os.path.join(args.outdir, str(args.seed) + '.log'), force=True)
 
     def make_env(process_idx, test):
         # Use different random seeds for train and test envs
         process_seed = process_seeds[process_idx]
         env_seed = 2**31 - 1 - process_seed if test else process_seed
-        env = atari_wrappers.wrap_deepmind(
-            atari_wrappers.make_atari(args.env, max_frames=args.max_frames),
-            episode_life=not test,
-            clip_rewards=not test,
-        )
+        # env = atari_wrappers.wrap_deepmind(
+        #     atari_wrappers.make_atari(args.env, max_frames=args.max_frames),
+        #     episode_life=not test,
+        #     clip_rewards=not test,
+        # )
+        env = gym.make(args.env)
         env.seed(int(env_seed))
+        env = pfrl.wrappers.ScaleReward(env, args.rew_scale)
         if args.monitor:
             env = pfrl.wrappers.Monitor(
                 env, args.outdir, mode="evaluation" if test else "training"
@@ -106,39 +118,34 @@ def main():
         if args.render:
             env = pfrl.wrappers.Render(env)
         return env
-
     sample_env = make_env(0, False)
     obs_size = sample_env.observation_space.low.shape[0]
-    n_actions = sample_env.action_space.n
 
-    model = nn.Sequential(
-        nn.Conv2d(obs_size, 16, 8, stride=4),
-        nn.ReLU(),
-        nn.Conv2d(16, 32, 4, stride=2),
-        nn.ReLU(),
-        nn.Flatten(),
-        nn.Linear(2592, 256),
-        nn.ReLU(),
-        pfrl.nn.Branched(
-            nn.Sequential(
-                nn.Linear(256, n_actions),
-                SoftmaxCategoricalHead(),
-            ),
-            nn.Linear(256, 1),
-        ),
-    )
+    if isinstance(sample_env.action_space, gym.spaces.Discrete):
+        n_actions = sample_env.action_space.n
+        def make_model(): return make_discrete_model(obs_size, n_actions, args.hidden_size, args.activation)
+    elif isinstance(sample_env.action_space, gym.spaces.Box):
+        n_actions = sample_env.action_space.low.size
+        def make_model(): return make_continous_model(obs_size, n_actions, args.hidden_size, args.activation)
+    else:
+        raise NotImplementedError
 
+    def phi(x):
+        # Feature extractor
+        return np.asarray(x, dtype=np.float32)
+
+    model = make_model()
     # SharedRMSprop is same as torch.optim.RMSprop except that it initializes
     # its state in __init__, allowing it to be moved to shared memory.
-    opt = SharedRMSpropEpsInsideSqrt(model.parameters(), lr=7e-4, eps=1e-1, alpha=0.99)
+    opt = SharedRMSpropEpsInsideSqrt(model.parameters(), lr=args.lr, eps=1e-1, alpha=0.99)
     assert opt.state_dict()["state"], (
         "To share optimizer state across processes, the state must be"
         " initialized before training."
     )
 
-    def phi(x):
-        # Feature extractor
-        return np.asarray(x, dtype=np.float32) / 255
+    local_models = []
+    for i in range(args.processes):
+        local_models.append(make_model())
 
     agent = a3c.A3C(
         model,
@@ -148,6 +155,9 @@ def main():
         beta=args.beta,
         phi=phi,
         max_grad_norm=40.0,
+        malicious=args.malicious,
+        mal_type=args.mal_type,
+        local_models=local_models
     )
 
     if args.load or args.load_pretrained:
@@ -176,17 +186,6 @@ def main():
             )
         )
     else:
-
-        # Linearly decay the learning rate to zero
-        def lr_setter(env, agent, value):
-            for pg in agent.optimizer.param_groups:
-                assert "lr" in pg
-                pg["lr"] = value
-
-        lr_decay_hook = experiments.LinearInterpolationHook(
-            args.steps, args.lr, 0, lr_setter
-        )
-
         experiments.train_agent_async(
             agent=agent,
             outdir=args.outdir,
@@ -196,11 +195,76 @@ def main():
             steps=args.steps,
             eval_n_steps=args.eval_n_steps,
             eval_n_episodes=None,
-            eval_interval=args.eval_interval,
-            global_step_hooks=[lr_decay_hook],
+            eval_interval=None,
+            global_step_hooks=[],
             save_best_so_far_agent=True,
+            num_agents_byz=args.malicious,
+            step_before_disable=args.ucb_disable
         )
+    mean_reward = get_results(os.path.join(args.outdir, str(args.seed) + '.log'), gym.spec(args.env).reward_threshold)
+    return mean_reward
+
+
+def get_results(log_file, thresh):
+    rewards = []
+    with open(log_file) as fp:
+        for line in fp:
+            if 'Saved' in line: continue
+            rewards.append(float(line[22:].split(';')[2].strip()))
+    last_eps = np.mean(rewards[-50:])
+    if last_eps >= thresh: return last_eps + np.mean(rewards)
+    return last_eps
+
+
+def get_activation(activation):
+    if(activation == 0): return nn.ReLU
+    if(activation == 1): return nn.Tanh
+    if(activation == 2): return nn.GELU
+
+
+def make_discrete_model(obs_size, n_actions, hidden_size, activation):
+    activation = get_activation(activation)
+    return nn.Sequential(
+        nn.Linear(obs_size, hidden_size),
+        activation(),
+        nn.Linear(hidden_size, hidden_size),
+        activation(),
+        nn.Linear(hidden_size, hidden_size),
+        activation(),
+        pfrl.nn.Branched(
+            nn.Sequential(
+                nn.Linear(hidden_size, n_actions),
+                SoftmaxCategoricalHead(),
+            ),
+            nn.Linear(hidden_size, 1),
+        ),
+    )
+
+
+def make_continous_model(obs_size, action_size, hidden_size, activation):
+    activation = get_activation(activation)
+    return torch.nn.Sequential(
+        nn.Linear(obs_size, hidden_size),
+        activation(),
+        nn.Linear(hidden_size, hidden_size),
+        activation(),
+        nn.Linear(hidden_size, hidden_size),
+        activation(),
+        pfrl.nn.Branched(
+            nn.Sequential(
+                nn.Linear(hidden_size, action_size),
+                pfrl.policies.GaussianHeadWithStateIndependentCovariance(
+                    action_size=action_size,
+                    var_type="diagonal",
+                    var_func=lambda x: torch.exp(2 * x),  # Parameterize log std
+                    var_param_init=0,  # log std = 0 => std = 1
+                )
+            ),
+            nn.Linear(hidden_size, 1)
+        ),
+    )
 
 
 if __name__ == "__main__":
-    main()
+    args = parse_args()
+    train_a3c(args)
