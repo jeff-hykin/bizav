@@ -1,0 +1,3112 @@
+[
+    {
+        "bestTrial": {
+            "trialIndex": 54,
+            "score": 232.56,
+            "parameters": 232.56
+        },
+        "scores": {
+            "stats": {
+                "count": 305,
+                "min": -1323.78,
+                "max": 232.56,
+                "range": 1556.34,
+                "average": -309.6211147540986,
+                "median": -819.86,
+                "sum": -94434.44000000006
+            },
+            "scoreRange": {
+                "linearScores": {
+                    "[ 97-100%]:    206.6": 3,
+                    "[ 93- 97%]:    154.7": 10,
+                    "[ 90- 93%]:    102.8": 17,
+                    "[ 87- 90%]:     50.9": 18,
+                    "[ 83- 87%]:      0.8": 4,
+                    "[ 80- 83%]:    -52.7": 4,
+                    "[ 77- 80%]:   -104.6": 21,
+                    "[ 73- 77%]:   -156.5": 31,
+                    "[ 70- 73%]:   -208.4": 62,
+                    "[ 67- 70%]:   -260.2": 33,
+                    "[ 63- 67%]:   -312.1": 7,
+                    "[ 60- 63%]:   -364.0": 2,
+                    "[ 57- 60%]:   -415.9": 3,
+                    "[ 53- 57%]:   -467.7": 1,
+                    "[ 50- 53%]:   -519.6": 2,
+                    "[ 47- 50%]:   -571.5": 25,
+                    "[ 43- 47%]:   -623.4": 20,
+                    "[ 40- 43%]:   -675.3": 6,
+                    "[ 37- 40%]:   -727.1": 2,
+                    "[ 33- 37%]:   -779.0": 2,
+                    "[ 30- 33%]:   -830.9": 6,
+                    "[ 27- 30%]:   -882.8": 5,
+                    "[ 23- 27%]:   -934.6": 5,
+                    "[ 20- 23%]:   -986.5": 5,
+                    "[ 17- 20%]: -1,038.4": 4,
+                    "[ 13- 17%]: -1,090.3": 2,
+                    "[ 10- 13%]: -1,142.2": 1,
+                    "[  7- 10%]: -1,194.0": 1,
+                    "[  3-  7%]: -1,245.9": 1,
+                    "[  0-  3%]: -1,297.8": 2
+                },
+                "dualLogScores": {
+                    "[ 97-100%]:    192.4": 8,
+                    "[ 93- 97%]:    125.8": 14,
+                    "[ 90- 93%]:     82.2": 12,
+                    "[ 87- 90%]:     53.6": 7,
+                    "[ 83- 87%]:     34.8": 7,
+                    "[ 80- 83%]:     22.5": 1,
+                    "[ 77- 80%]:     14.4": 1,
+                    "[ 73- 77%]:      9.1": 0,
+                    "[ 70- 73%]:      5.6": 1,
+                    "[ 67- 70%]:      3.3": 0,
+                    "[ 63- 67%]:      1.8": 0,
+                    "[ 60- 63%]:      0.8": 0,
+                    "[ 57- 60%]:      0.2": 0,
+                    "[ 53- 57%]:      0.2": 0,
+                    "[ 50- 53%]:      0.9": 0,
+                    "[ 47- 50%]:     -2.0": 0,
+                    "[ 43- 47%]:     -3.5": 1,
+                    "[ 40- 43%]:     -5.9": 0,
+                    "[ 37- 40%]:     -9.6": 0,
+                    "[ 33- 37%]:    -15.2": 0,
+                    "[ 30- 33%]:    -23.7": 0,
+                    "[ 27- 30%]:    -36.6": 1,
+                    "[ 23- 27%]:    -56.4": 3,
+                    "[ 20- 23%]:    -86.5": 0,
+                    "[ 17- 20%]:   -132.3": 48,
+                    "[ 13- 17%]:   -202.2": 79,
+                    "[ 10- 13%]:   -308.8": 29,
+                    "[  7- 10%]:   -471.2": 18,
+                    "[  3-  7%]:   -718.7": 50,
+                    "[  0-  3%]: -1,095.9": 25
+                },
+                "forwardLogScores": {
+                    "[ 97-100%]:     63.3": 56,
+                    "[ 93- 97%]:   -238.3": 156,
+                    "[ 90- 93%]:   -474.4": 21,
+                    "[ 87- 90%]:   -659.2": 38,
+                    "[ 83- 87%]:   -803.8": 8,
+                    "[ 80- 83%]:   -917.0": 12,
+                    "[ 77- 80%]: -1,005.6": 6,
+                    "[ 73- 77%]: -1,075.0": 3,
+                    "[ 70- 73%]: -1,129.2": 1,
+                    "[ 67- 70%]: -1,171.7": 1,
+                    "[ 63- 67%]: -1,205.0": 0,
+                    "[ 60- 63%]: -1,231.0": 1,
+                    "[ 57- 60%]: -1,251.4": 0,
+                    "[ 53- 57%]: -1,267.3": 0,
+                    "[ 50- 53%]: -1,279.8": 0,
+                    "[ 47- 50%]: -1,289.6": 0,
+                    "[ 43- 47%]: -1,297.2": 0,
+                    "[ 40- 43%]: -1,303.2": 0,
+                    "[ 37- 40%]: -1,307.9": 0,
+                    "[ 33- 37%]: -1,311.5": 1,
+                    "[ 30- 33%]: -1,314.4": 0,
+                    "[ 27- 30%]: -1,316.6": 0,
+                    "[ 23- 27%]: -1,318.4": 0,
+                    "[ 20- 23%]: -1,319.8": 0,
+                    "[ 17- 20%]: -1,320.9": 0,
+                    "[ 13- 17%]: -1,321.7": 0,
+                    "[ 10- 13%]: -1,322.4": 0,
+                    "[  7- 10%]: -1,322.9": 0,
+                    "[  3-  7%]: -1,323.3": 0,
+                    "[  0-  3%]: -1,323.6": 1
+                },
+                "backwardLogScores": {
+                    "[ 97-100%]: 234.4": 1,
+                    "[ 93- 97%]: 234.2": 0,
+                    "[ 90- 93%]: 234.1": 0,
+                    "[ 87- 90%]: 233.9": 0,
+                    "[ 83- 87%]: 233.8": 0,
+                    "[ 80- 83%]: 233.8": 0,
+                    "[ 77- 80%]: 233.7": 0,
+                    "[ 73- 77%]: 233.7": 0,
+                    "[ 70- 73%]: 233.6": 0,
+                    "[ 67- 70%]: 233.6": 0,
+                    "[ 63- 67%]: 233.6": 0,
+                    "[ 60- 63%]: 233.6": 0,
+                    "[ 57- 60%]: 233.6": 0,
+                    "[ 53- 57%]: 233.5": 0,
+                    "[ 50- 53%]: 233.5": 0,
+                    "[ 47- 50%]: 233.5": 2,
+                    "[ 43- 47%]: 233.5": 2,
+                    "[ 40- 43%]: 233.5": 3,
+                    "[ 37- 40%]: 233.5": 6,
+                    "[ 33- 37%]: 233.5": 8,
+                    "[ 30- 33%]: 233.5": 12,
+                    "[ 27- 30%]: 233.5": 15,
+                    "[ 23- 27%]: 233.5": 4,
+                    "[ 20- 23%]: 233.5": 15,
+                    "[ 17- 20%]: 233.5": 93,
+                    "[ 13- 17%]: 233.5": 49,
+                    "[ 10- 13%]: 233.5": 6,
+                    "[  7- 10%]: 233.5": 55,
+                    "[  3-  7%]: 233.5": 20,
+                    "[  0-  3%]: 233.5": 14
+                }
+            }
+        },
+        "trials": [
+            {
+                "trialIndex": 0,
+                "score": -991.72,
+                "parameters": -991.72
+            },
+            {
+                "trialIndex": 1,
+                "score": -601.19,
+                "parameters": -601.19
+            },
+            {
+                "trialIndex": 2,
+                "score": -956.89,
+                "parameters": -956.89
+            },
+            {
+                "trialIndex": 3,
+                "score": -603.6,
+                "parameters": -603.6
+            },
+            {
+                "trialIndex": 4,
+                "score": -131.52,
+                "parameters": -131.52
+            },
+            {
+                "trialIndex": 5,
+                "score": -277.73,
+                "parameters": -277.73
+            },
+            {
+                "trialIndex": 6,
+                "score": -274.02,
+                "parameters": -274.02
+            },
+            {
+                "trialIndex": 7,
+                "score": -1030.11,
+                "parameters": -1030.11
+            },
+            {
+                "trialIndex": 8,
+                "score": -209.88,
+                "parameters": -209.88
+            },
+            {
+                "trialIndex": 9,
+                "score": -929.61,
+                "parameters": -929.61
+            },
+            {
+                "trialIndex": 10,
+                "score": -892.15,
+                "parameters": -892.15
+            },
+            {
+                "trialIndex": 11,
+                "score": -234.39,
+                "parameters": -234.39
+            },
+            {
+                "trialIndex": 12,
+                "score": -830.91,
+                "parameters": -830.91
+            },
+            {
+                "trialIndex": 13,
+                "score": -391.14,
+                "parameters": -391.14
+            },
+            {
+                "trialIndex": 14,
+                "score": -36.71,
+                "parameters": -36.71
+            },
+            {
+                "trialIndex": 15,
+                "score": -195.34,
+                "parameters": -195.34
+            },
+            {
+                "trialIndex": 16,
+                "score": -656.02,
+                "parameters": -656.02
+            },
+            {
+                "trialIndex": 17,
+                "score": 49.98,
+                "parameters": 49.98
+            },
+            {
+                "trialIndex": 18,
+                "score": -253.96,
+                "parameters": -253.96
+            },
+            {
+                "trialIndex": 19,
+                "score": -1323.78,
+                "parameters": -1323.78
+            },
+            {
+                "trialIndex": 20,
+                "score": -833.47,
+                "parameters": -833.47
+            },
+            {
+                "trialIndex": 21,
+                "score": -136.33,
+                "parameters": -136.33
+            },
+            {
+                "trialIndex": 22,
+                "score": -321.22,
+                "parameters": -321.22
+            },
+            {
+                "trialIndex": 23,
+                "score": -183.31,
+                "parameters": -183.31
+            },
+            {
+                "trialIndex": 24,
+                "score": -130.63,
+                "parameters": -130.63
+            },
+            {
+                "trialIndex": 25,
+                "score": -133.89,
+                "parameters": -133.89
+            },
+            {
+                "trialIndex": 26,
+                "score": -235.49,
+                "parameters": -235.49
+            },
+            {
+                "trialIndex": 27,
+                "score": -600.03,
+                "parameters": -600.03
+            },
+            {
+                "trialIndex": 28,
+                "score": -234.83,
+                "parameters": -234.83
+            },
+            {
+                "trialIndex": 29,
+                "score": -583.79,
+                "parameters": -583.79
+            },
+            {
+                "trialIndex": 30,
+                "score": -181.43,
+                "parameters": -181.43
+            },
+            {
+                "trialIndex": 31,
+                "score": -877.48,
+                "parameters": -877.48
+            },
+            {
+                "trialIndex": 32,
+                "score": -123.71,
+                "parameters": -123.71
+            },
+            {
+                "trialIndex": 33,
+                "score": -663.18,
+                "parameters": -663.18
+            },
+            {
+                "trialIndex": 34,
+                "score": -678.7,
+                "parameters": -678.7
+            },
+            {
+                "trialIndex": 35,
+                "score": -556.25,
+                "parameters": -556.25
+            },
+            {
+                "trialIndex": 36,
+                "score": -845.14,
+                "parameters": -845.14
+            },
+            {
+                "trialIndex": 37,
+                "score": -592.5,
+                "parameters": -592.5
+            },
+            {
+                "trialIndex": 38,
+                "score": -867.89,
+                "parameters": -867.89
+            },
+            {
+                "trialIndex": 39,
+                "score": -136,
+                "parameters": -136
+            },
+            {
+                "trialIndex": 40,
+                "score": -1117.92,
+                "parameters": -1117.92
+            },
+            {
+                "trialIndex": 41,
+                "score": 128.8,
+                "parameters": 128.8
+            },
+            {
+                "trialIndex": 42,
+                "score": -259.82,
+                "parameters": -259.82
+            },
+            {
+                "trialIndex": 43,
+                "score": -1186.14,
+                "parameters": -1186.14
+            },
+            {
+                "trialIndex": 44,
+                "score": -276.3,
+                "parameters": -276.3
+            },
+            {
+                "trialIndex": 45,
+                "score": -235.09,
+                "parameters": -235.09
+            },
+            {
+                "trialIndex": 46,
+                "score": -570.86,
+                "parameters": -570.86
+            },
+            {
+                "trialIndex": 47,
+                "score": -182.43,
+                "parameters": -182.43
+            },
+            {
+                "trialIndex": 48,
+                "score": -226.47,
+                "parameters": -226.47
+            },
+            {
+                "trialIndex": 49,
+                "score": -888.41,
+                "parameters": -888.41
+            },
+            {
+                "trialIndex": 50,
+                "score": -814.47,
+                "parameters": -814.47
+            },
+            {
+                "trialIndex": 51,
+                "score": -560.51,
+                "parameters": -560.51
+            },
+            {
+                "trialIndex": 52,
+                "score": -665.11,
+                "parameters": -665.11
+            },
+            {
+                "trialIndex": 53,
+                "score": -1012.64,
+                "parameters": -1012.64
+            },
+            {
+                "trialIndex": 54,
+                "score": 232.56,
+                "parameters": 232.56
+            },
+            {
+                "trialIndex": 55,
+                "score": -234.69,
+                "parameters": -234.69
+            },
+            {
+                "trialIndex": 56,
+                "score": -770.85,
+                "parameters": -770.85
+            },
+            {
+                "trialIndex": 57,
+                "score": -282.35,
+                "parameters": -282.35
+            },
+            {
+                "trialIndex": 58,
+                "score": -546.01,
+                "parameters": -546.01
+            },
+            {
+                "trialIndex": 59,
+                "score": -266.1,
+                "parameters": -266.1
+            },
+            {
+                "trialIndex": 60,
+                "score": 152.59,
+                "parameters": 152.59
+            },
+            {
+                "trialIndex": 61,
+                "score": -164,
+                "parameters": -164
+            },
+            {
+                "trialIndex": 62,
+                "score": -131.74,
+                "parameters": -131.74
+            },
+            {
+                "trialIndex": 63,
+                "score": -595.1,
+                "parameters": -595.1
+            },
+            {
+                "trialIndex": 64,
+                "score": -576.51,
+                "parameters": -576.51
+            },
+            {
+                "trialIndex": 65,
+                "score": -213.59,
+                "parameters": -213.59
+            },
+            {
+                "trialIndex": 66,
+                "score": -300.59,
+                "parameters": -300.59
+            },
+            {
+                "trialIndex": 67,
+                "score": -63.3,
+                "parameters": -63.3
+            },
+            {
+                "trialIndex": 68,
+                "score": -1105.2,
+                "parameters": -1105.2
+            },
+            {
+                "trialIndex": 69,
+                "score": -212.51,
+                "parameters": -212.51
+            },
+            {
+                "trialIndex": 70,
+                "score": -638.25,
+                "parameters": -638.25
+            },
+            {
+                "trialIndex": 71,
+                "score": -587.04,
+                "parameters": -587.04
+            },
+            {
+                "trialIndex": 72,
+                "score": -668.98,
+                "parameters": -668.98
+            },
+            {
+                "trialIndex": 73,
+                "score": -201.68,
+                "parameters": -201.68
+            },
+            {
+                "trialIndex": 74,
+                "score": -207.08,
+                "parameters": -207.08
+            },
+            {
+                "trialIndex": 75,
+                "score": -219.12,
+                "parameters": -219.12
+            },
+            {
+                "trialIndex": 76,
+                "score": -221.07,
+                "parameters": -221.07
+            },
+            {
+                "trialIndex": 77,
+                "score": -558.45,
+                "parameters": -558.45
+            },
+            {
+                "trialIndex": 78,
+                "score": -207.34,
+                "parameters": -207.34
+            },
+            {
+                "trialIndex": 79,
+                "score": -585.39,
+                "parameters": -585.39
+            },
+            {
+                "trialIndex": 80,
+                "score": -578.17,
+                "parameters": -578.17
+            },
+            {
+                "trialIndex": 81,
+                "score": -931.19,
+                "parameters": -931.19
+            },
+            {
+                "trialIndex": 82,
+                "score": -241.83,
+                "parameters": -241.83
+            },
+            {
+                "trialIndex": 83,
+                "score": -191.54,
+                "parameters": -191.54
+            },
+            {
+                "trialIndex": 84,
+                "score": -138.12,
+                "parameters": -138.12
+            },
+            {
+                "trialIndex": 85,
+                "score": -129.82,
+                "parameters": -129.82
+            },
+            {
+                "trialIndex": 86,
+                "score": -119.59,
+                "parameters": -119.59
+            },
+            {
+                "trialIndex": 87,
+                "score": -123.33,
+                "parameters": -123.33
+            },
+            {
+                "trialIndex": 88,
+                "score": -564.36,
+                "parameters": -564.36
+            },
+            {
+                "trialIndex": 89,
+                "score": -566.98,
+                "parameters": -566.98
+            },
+            {
+                "trialIndex": 90,
+                "score": -1000.12,
+                "parameters": -1000.12
+            },
+            {
+                "trialIndex": 91,
+                "score": -211.21,
+                "parameters": -211.21
+            },
+            {
+                "trialIndex": 92,
+                "score": -620.66,
+                "parameters": -620.66
+            },
+            {
+                "trialIndex": 93,
+                "score": 91.21,
+                "parameters": 91.21
+            },
+            {
+                "trialIndex": 94,
+                "score": -208.03,
+                "parameters": -208.03
+            },
+            {
+                "trialIndex": 95,
+                "score": -572.77,
+                "parameters": -572.77
+            },
+            {
+                "trialIndex": 96,
+                "score": -138.11,
+                "parameters": -138.11
+            },
+            {
+                "trialIndex": 97,
+                "score": -593.2,
+                "parameters": -593.2
+            },
+            {
+                "trialIndex": 98,
+                "score": 47.19,
+                "parameters": 47.19
+            },
+            {
+                "trialIndex": 99,
+                "score": -65.34,
+                "parameters": -65.34
+            },
+            {
+                "trialIndex": 100,
+                "score": -646.82,
+                "parameters": -646.82
+            },
+            {
+                "trialIndex": 101,
+                "score": -242.94,
+                "parameters": -242.94
+            },
+            {
+                "trialIndex": 102,
+                "score": -564.2,
+                "parameters": -564.2
+            },
+            {
+                "trialIndex": 103,
+                "score": -1226.57,
+                "parameters": -1226.57
+            },
+            {
+                "trialIndex": 104,
+                "score": -225.94,
+                "parameters": -225.94
+            },
+            {
+                "trialIndex": 105,
+                "score": -1063.29,
+                "parameters": -1063.29
+            },
+            {
+                "trialIndex": 106,
+                "score": -220.93,
+                "parameters": -220.93
+            },
+            {
+                "trialIndex": 107,
+                "score": -627.89,
+                "parameters": -627.89
+            },
+            {
+                "trialIndex": 108,
+                "score": -272.14,
+                "parameters": -272.14
+            },
+            {
+                "trialIndex": 109,
+                "score": 142.09,
+                "parameters": 142.09
+            },
+            {
+                "trialIndex": 110,
+                "score": 169.78,
+                "parameters": 169.78
+            },
+            {
+                "trialIndex": 111,
+                "score": -297.53,
+                "parameters": -297.53
+            },
+            {
+                "trialIndex": 112,
+                "score": -225.78,
+                "parameters": -225.78
+            },
+            {
+                "trialIndex": 113,
+                "score": -222.46,
+                "parameters": -222.46
+            },
+            {
+                "trialIndex": 114,
+                "score": -448.47,
+                "parameters": -448.47
+            },
+            {
+                "trialIndex": 115,
+                "score": -310.64,
+                "parameters": -310.64
+            },
+            {
+                "trialIndex": 116,
+                "score": -306.72,
+                "parameters": -306.72
+            },
+            {
+                "trialIndex": 117,
+                "score": -612.42,
+                "parameters": -612.42
+            },
+            {
+                "trialIndex": 118,
+                "score": -961.53,
+                "parameters": -961.53
+            },
+            {
+                "trialIndex": 119,
+                "score": 41.02,
+                "parameters": 41.02
+            },
+            {
+                "trialIndex": 120,
+                "score": -535.15,
+                "parameters": -535.15
+            },
+            {
+                "trialIndex": 121,
+                "score": -601.26,
+                "parameters": -601.26
+            },
+            {
+                "trialIndex": 122,
+                "score": -619.15,
+                "parameters": -619.15
+            },
+            {
+                "trialIndex": 123,
+                "score": 35.32,
+                "parameters": 35.32
+            },
+            {
+                "trialIndex": 124,
+                "score": 95.15,
+                "parameters": 95.15
+            },
+            {
+                "trialIndex": 125,
+                "score": -3.61,
+                "parameters": -3.61
+            },
+            {
+                "trialIndex": 126,
+                "score": -588.48,
+                "parameters": -588.48
+            },
+            {
+                "trialIndex": 127,
+                "score": -280.76,
+                "parameters": -280.76
+            },
+            {
+                "trialIndex": 128,
+                "score": -212.28,
+                "parameters": -212.28
+            },
+            {
+                "trialIndex": 129,
+                "score": -197.17,
+                "parameters": -197.17
+            },
+            {
+                "trialIndex": 130,
+                "score": -370.18,
+                "parameters": -370.18
+            },
+            {
+                "trialIndex": 131,
+                "score": -119.44,
+                "parameters": -119.44
+            },
+            {
+                "trialIndex": 132,
+                "score": -1016.41,
+                "parameters": -1016.41
+            },
+            {
+                "trialIndex": 133,
+                "score": -1105.12,
+                "parameters": -1105.12
+            },
+            {
+                "trialIndex": 134,
+                "score": -239.07,
+                "parameters": -239.07
+            },
+            {
+                "trialIndex": 135,
+                "score": 5.53,
+                "parameters": 5.53
+            },
+            {
+                "trialIndex": 136,
+                "score": -370.08,
+                "parameters": -370.08
+            },
+            {
+                "trialIndex": 137,
+                "score": 36.51,
+                "parameters": 36.51
+            },
+            {
+                "trialIndex": 138,
+                "score": -598.11,
+                "parameters": -598.11
+            },
+            {
+                "trialIndex": 139,
+                "score": -251.21,
+                "parameters": -251.21
+            },
+            {
+                "trialIndex": 140,
+                "score": -206.97,
+                "parameters": -206.97
+            },
+            {
+                "trialIndex": 141,
+                "score": 82.66,
+                "parameters": 82.66
+            },
+            {
+                "trialIndex": 142,
+                "score": -567.87,
+                "parameters": -567.87
+            },
+            {
+                "trialIndex": 143,
+                "score": 12.24,
+                "parameters": 12.24
+            },
+            {
+                "trialIndex": 144,
+                "score": -966.12,
+                "parameters": -966.12
+            },
+            {
+                "trialIndex": 145,
+                "score": 27.85,
+                "parameters": 27.85
+            },
+            {
+                "trialIndex": 146,
+                "score": -564.55,
+                "parameters": -564.55
+            },
+            {
+                "trialIndex": 147,
+                "score": 39.63,
+                "parameters": 39.63
+            },
+            {
+                "trialIndex": 148,
+                "score": -604.42,
+                "parameters": -604.42
+            },
+            {
+                "trialIndex": 149,
+                "score": -1313.04,
+                "parameters": -1313.04
+            },
+            {
+                "trialIndex": 150,
+                "score": -610.93,
+                "parameters": -610.93
+            },
+            {
+                "trialIndex": 151,
+                "score": 46.71,
+                "parameters": 46.71
+            },
+            {
+                "trialIndex": 152,
+                "score": -819.86,
+                "parameters": -819.86
+            },
+            {
+                "trialIndex": 153,
+                "score": 37.46,
+                "parameters": 37.46
+            },
+            {
+                "trialIndex": 154,
+                "score": -126.3,
+                "parameters": -126.3
+            },
+            {
+                "trialIndex": 155,
+                "score": -544.39,
+                "parameters": -544.39
+            },
+            {
+                "trialIndex": 156,
+                "score": 76.97,
+                "parameters": 76.97
+            },
+            {
+                "trialIndex": 157,
+                "score": -197.39,
+                "parameters": -197.39
+            },
+            {
+                "trialIndex": 158,
+                "score": 109.82,
+                "parameters": 109.82
+            },
+            {
+                "trialIndex": 159,
+                "score": 95.44,
+                "parameters": 95.44
+            },
+            {
+                "trialIndex": 160,
+                "score": -261.03,
+                "parameters": -261.03
+            },
+            {
+                "trialIndex": 161,
+                "score": 18.83,
+                "parameters": 18.83
+            },
+            {
+                "trialIndex": 162,
+                "score": -702.8,
+                "parameters": -702.8
+            },
+            {
+                "trialIndex": 163,
+                "score": -55.19,
+                "parameters": -55.19
+            },
+            {
+                "trialIndex": 164,
+                "score": -285.69,
+                "parameters": -285.69
+            },
+            {
+                "trialIndex": 165,
+                "score": -599.71,
+                "parameters": -599.71
+            },
+            {
+                "trialIndex": 166,
+                "score": -131.2,
+                "parameters": -131.2
+            },
+            {
+                "trialIndex": 167,
+                "score": -566.52,
+                "parameters": -566.52
+            },
+            {
+                "trialIndex": 168,
+                "score": -231.21,
+                "parameters": -231.21
+            },
+            {
+                "trialIndex": 169,
+                "score": -237.38,
+                "parameters": -237.38
+            },
+            {
+                "trialIndex": 170,
+                "score": -280.8,
+                "parameters": -280.8
+            },
+            {
+                "trialIndex": 171,
+                "score": -139.09,
+                "parameters": -139.09
+            },
+            {
+                "trialIndex": 172,
+                "score": -604.26,
+                "parameters": -604.26
+            },
+            {
+                "trialIndex": 173,
+                "score": 102.38,
+                "parameters": 102.38
+            },
+            {
+                "trialIndex": 174,
+                "score": -131.05,
+                "parameters": -131.05
+            },
+            {
+                "trialIndex": 175,
+                "score": -189.97,
+                "parameters": -189.97
+            },
+            {
+                "trialIndex": 176,
+                "score": -591.24,
+                "parameters": -591.24
+            },
+            {
+                "trialIndex": 177,
+                "score": -126.95,
+                "parameters": -126.95
+            },
+            {
+                "trialIndex": 178,
+                "score": -186.28,
+                "parameters": -186.28
+            },
+            {
+                "trialIndex": 179,
+                "score": -200.66,
+                "parameters": -200.66
+            },
+            {
+                "trialIndex": 180,
+                "score": -668.3,
+                "parameters": -668.3
+            },
+            {
+                "trialIndex": 181,
+                "score": 178.99,
+                "parameters": 178.99
+            },
+            {
+                "trialIndex": 182,
+                "score": -212.78,
+                "parameters": -212.78
+            },
+            {
+                "trialIndex": 183,
+                "score": 36.34,
+                "parameters": 36.34
+            },
+            {
+                "trialIndex": 184,
+                "score": 94.4,
+                "parameters": 94.4
+            },
+            {
+                "trialIndex": 185,
+                "score": 61.21,
+                "parameters": 61.21
+            },
+            {
+                "trialIndex": 186,
+                "score": 158.23,
+                "parameters": 158.23
+            },
+            {
+                "trialIndex": 187,
+                "score": 69.72,
+                "parameters": 69.72
+            },
+            {
+                "trialIndex": 188,
+                "score": 191.15,
+                "parameters": 191.15
+            },
+            {
+                "trialIndex": 189,
+                "score": 142.35,
+                "parameters": 142.35
+            },
+            {
+                "trialIndex": 190,
+                "score": -208.05,
+                "parameters": -208.05
+            },
+            {
+                "trialIndex": 191,
+                "score": -137.59,
+                "parameters": -137.59
+            },
+            {
+                "trialIndex": 192,
+                "score": 104.37,
+                "parameters": 104.37
+            },
+            {
+                "trialIndex": 193,
+                "score": -245.14,
+                "parameters": -245.14
+            },
+            {
+                "trialIndex": 194,
+                "score": -275.79,
+                "parameters": -275.79
+            },
+            {
+                "trialIndex": 195,
+                "score": -131.54,
+                "parameters": -131.54
+            },
+            {
+                "trialIndex": 196,
+                "score": -131.97,
+                "parameters": -131.97
+            },
+            {
+                "trialIndex": 197,
+                "score": -552.65,
+                "parameters": -552.65
+            },
+            {
+                "trialIndex": 198,
+                "score": -233.6,
+                "parameters": -233.6
+            },
+            {
+                "trialIndex": 199,
+                "score": -244.38,
+                "parameters": -244.38
+            },
+            {
+                "trialIndex": 200,
+                "score": -220.72,
+                "parameters": -220.72
+            },
+            {
+                "trialIndex": 201,
+                "score": -137.65,
+                "parameters": -137.65
+            },
+            {
+                "trialIndex": 202,
+                "score": -131.73,
+                "parameters": -131.73
+            },
+            {
+                "trialIndex": 203,
+                "score": -227.49,
+                "parameters": -227.49
+            },
+            {
+                "trialIndex": 204,
+                "score": -114.49,
+                "parameters": -114.49
+            },
+            {
+                "trialIndex": 205,
+                "score": -184.22,
+                "parameters": -184.22
+            },
+            {
+                "trialIndex": 206,
+                "score": 66.97,
+                "parameters": 66.97
+            },
+            {
+                "trialIndex": 207,
+                "score": 57.23,
+                "parameters": 57.23
+            },
+            {
+                "trialIndex": 208,
+                "score": 54.39,
+                "parameters": 54.39
+            },
+            {
+                "trialIndex": 209,
+                "score": -931.32,
+                "parameters": -931.32
+            },
+            {
+                "trialIndex": 210,
+                "score": -952.15,
+                "parameters": -952.15
+            },
+            {
+                "trialIndex": 211,
+                "score": -122.35,
+                "parameters": -122.35
+            },
+            {
+                "trialIndex": 212,
+                "score": -194.9,
+                "parameters": -194.9
+            },
+            {
+                "trialIndex": 213,
+                "score": -290.66,
+                "parameters": -290.66
+            },
+            {
+                "trialIndex": 214,
+                "score": -244.67,
+                "parameters": -244.67
+            },
+            {
+                "trialIndex": 215,
+                "score": 111.14,
+                "parameters": 111.14
+            },
+            {
+                "trialIndex": 216,
+                "score": -130.15,
+                "parameters": -130.15
+            },
+            {
+                "trialIndex": 217,
+                "score": -131.42,
+                "parameters": -131.42
+            },
+            {
+                "trialIndex": 218,
+                "score": -599.03,
+                "parameters": -599.03
+            },
+            {
+                "trialIndex": 219,
+                "score": -286.43,
+                "parameters": -286.43
+            },
+            {
+                "trialIndex": 220,
+                "score": 72.61,
+                "parameters": 72.61
+            },
+            {
+                "trialIndex": 221,
+                "score": -215.64,
+                "parameters": -215.64
+            },
+            {
+                "trialIndex": 222,
+                "score": -140.4,
+                "parameters": -140.4
+            },
+            {
+                "trialIndex": 223,
+                "score": -204.34,
+                "parameters": -204.34
+            },
+            {
+                "trialIndex": 224,
+                "score": -212.24,
+                "parameters": -212.24
+            },
+            {
+                "trialIndex": 225,
+                "score": -231.79,
+                "parameters": -231.79
+            },
+            {
+                "trialIndex": 226,
+                "score": -255.63,
+                "parameters": -255.63
+            },
+            {
+                "trialIndex": 227,
+                "score": -1002.36,
+                "parameters": -1002.36
+            },
+            {
+                "trialIndex": 228,
+                "score": -219.86,
+                "parameters": -219.86
+            },
+            {
+                "trialIndex": 229,
+                "score": -180.86,
+                "parameters": -180.86
+            },
+            {
+                "trialIndex": 230,
+                "score": 108.32,
+                "parameters": 108.32
+            },
+            {
+                "trialIndex": 231,
+                "score": -219.48,
+                "parameters": -219.48
+            },
+            {
+                "trialIndex": 232,
+                "score": 150.64,
+                "parameters": 150.64
+            },
+            {
+                "trialIndex": 233,
+                "score": -182.59,
+                "parameters": -182.59
+            },
+            {
+                "trialIndex": 234,
+                "score": -122.18,
+                "parameters": -122.18
+            },
+            {
+                "trialIndex": 235,
+                "score": -199.57,
+                "parameters": -199.57
+            },
+            {
+                "trialIndex": 236,
+                "score": -115.55,
+                "parameters": -115.55
+            },
+            {
+                "trialIndex": 237,
+                "score": 68.69,
+                "parameters": 68.69
+            },
+            {
+                "trialIndex": 238,
+                "score": -190.76,
+                "parameters": -190.76
+            },
+            {
+                "trialIndex": 239,
+                "score": -597.86,
+                "parameters": -597.86
+            },
+            {
+                "trialIndex": 240,
+                "score": -272.47,
+                "parameters": -272.47
+            },
+            {
+                "trialIndex": 241,
+                "score": -210.1,
+                "parameters": -210.1
+            },
+            {
+                "trialIndex": 242,
+                "score": -238.88,
+                "parameters": -238.88
+            },
+            {
+                "trialIndex": 243,
+                "score": -192.08,
+                "parameters": -192.08
+            },
+            {
+                "trialIndex": 244,
+                "score": -239.13,
+                "parameters": -239.13
+            },
+            {
+                "trialIndex": 245,
+                "score": -429.12,
+                "parameters": -429.12
+            },
+            {
+                "trialIndex": 246,
+                "score": -207.31,
+                "parameters": -207.31
+            },
+            {
+                "trialIndex": 247,
+                "score": -708.71,
+                "parameters": -708.71
+            },
+            {
+                "trialIndex": 248,
+                "score": -129.1,
+                "parameters": -129.1
+            },
+            {
+                "trialIndex": 249,
+                "score": -231.75,
+                "parameters": -231.75
+            },
+            {
+                "trialIndex": 250,
+                "score": -130.79,
+                "parameters": -130.79
+            },
+            {
+                "trialIndex": 251,
+                "score": -204.29,
+                "parameters": -204.29
+            },
+            {
+                "trialIndex": 252,
+                "score": -902.2,
+                "parameters": -902.2
+            },
+            {
+                "trialIndex": 253,
+                "score": -118.21,
+                "parameters": -118.21
+            },
+            {
+                "trialIndex": 254,
+                "score": -260.99,
+                "parameters": -260.99
+            },
+            {
+                "trialIndex": 255,
+                "score": -590.12,
+                "parameters": -590.12
+            },
+            {
+                "trialIndex": 256,
+                "score": -559.69,
+                "parameters": -559.69
+            },
+            {
+                "trialIndex": 257,
+                "score": -125.38,
+                "parameters": -125.38
+            },
+            {
+                "trialIndex": 258,
+                "score": -629.06,
+                "parameters": -629.06
+            },
+            {
+                "trialIndex": 259,
+                "score": -615.15,
+                "parameters": -615.15
+            },
+            {
+                "trialIndex": 260,
+                "score": 49.12,
+                "parameters": 49.12
+            },
+            {
+                "trialIndex": 261,
+                "score": 159.54,
+                "parameters": 159.54
+            },
+            {
+                "trialIndex": 262,
+                "score": -223.41,
+                "parameters": -223.41
+            },
+            {
+                "trialIndex": 263,
+                "score": -134.04,
+                "parameters": -134.04
+            },
+            {
+                "trialIndex": 264,
+                "score": 191.11,
+                "parameters": 191.11
+            },
+            {
+                "trialIndex": 265,
+                "score": -211.09,
+                "parameters": -211.09
+            },
+            {
+                "trialIndex": 266,
+                "score": 89.78,
+                "parameters": 89.78
+            },
+            {
+                "trialIndex": 267,
+                "score": -116.02,
+                "parameters": -116.02
+            },
+            {
+                "trialIndex": 268,
+                "score": -233.55,
+                "parameters": -233.55
+            },
+            {
+                "trialIndex": 269,
+                "score": -205.34,
+                "parameters": -205.34
+            },
+            {
+                "trialIndex": 270,
+                "score": -776.08,
+                "parameters": -776.08
+            },
+            {
+                "trialIndex": 271,
+                "score": -218.63,
+                "parameters": -218.63
+            },
+            {
+                "trialIndex": 272,
+                "score": -183.44,
+                "parameters": -183.44
+            },
+            {
+                "trialIndex": 273,
+                "score": -129.01,
+                "parameters": -129.01
+            },
+            {
+                "trialIndex": 274,
+                "score": -132.39,
+                "parameters": -132.39
+            },
+            {
+                "trialIndex": 275,
+                "score": -121.25,
+                "parameters": -121.25
+            },
+            {
+                "trialIndex": 276,
+                "score": -844.52,
+                "parameters": -844.52
+            },
+            {
+                "trialIndex": 277,
+                "score": -141.23,
+                "parameters": -141.23
+            },
+            {
+                "trialIndex": 278,
+                "score": 144.59,
+                "parameters": 144.59
+            },
+            {
+                "trialIndex": 279,
+                "score": -416.32,
+                "parameters": -416.32
+            },
+            {
+                "trialIndex": 280,
+                "score": -129.55,
+                "parameters": -129.55
+            },
+            {
+                "trialIndex": 281,
+                "score": -219.02,
+                "parameters": -219.02
+            },
+            {
+                "trialIndex": 282,
+                "score": -212.46,
+                "parameters": -212.46
+            },
+            {
+                "trialIndex": 283,
+                "score": -196.14,
+                "parameters": -196.14
+            },
+            {
+                "trialIndex": 284,
+                "score": -196.83,
+                "parameters": -196.83
+            },
+            {
+                "trialIndex": 285,
+                "score": -202.13,
+                "parameters": -202.13
+            },
+            {
+                "trialIndex": 286,
+                "score": -238.35,
+                "parameters": -238.35
+            },
+            {
+                "trialIndex": 287,
+                "score": 121.78,
+                "parameters": 121.78
+            },
+            {
+                "trialIndex": 288,
+                "score": -203.91,
+                "parameters": -203.91
+            },
+            {
+                "trialIndex": 289,
+                "score": 120.85,
+                "parameters": 120.85
+            },
+            {
+                "trialIndex": 290,
+                "score": -137.4,
+                "parameters": -137.4
+            },
+            {
+                "trialIndex": 291,
+                "score": 102.55,
+                "parameters": 102.55
+            },
+            {
+                "trialIndex": 292,
+                "score": -131.75,
+                "parameters": -131.75
+            },
+            {
+                "trialIndex": 293,
+                "score": 149.83,
+                "parameters": 149.83
+            },
+            {
+                "trialIndex": 294,
+                "score": -197.83,
+                "parameters": -197.83
+            },
+            {
+                "trialIndex": 295,
+                "score": -222.4,
+                "parameters": -222.4
+            },
+            {
+                "trialIndex": 296,
+                "score": -157.02,
+                "parameters": -157.02
+            },
+            {
+                "trialIndex": 297,
+                "score": 94.98,
+                "parameters": 94.98
+            },
+            {
+                "trialIndex": 298,
+                "score": -125.32,
+                "parameters": -125.32
+            },
+            {
+                "trialIndex": 299,
+                "score": -123.12,
+                "parameters": -123.12
+            },
+            {
+                "trialIndex": 300,
+                "score": -205,
+                "parameters": -205
+            },
+            {
+                "trialIndex": 301,
+                "score": -139.25,
+                "parameters": -139.25
+            },
+            {
+                "trialIndex": 302,
+                "score": -602.03,
+                "parameters": -602.03
+            },
+            {
+                "trialIndex": 303,
+                "score": -258.97,
+                "parameters": -258.97
+            },
+            {
+                "trialIndex": 304,
+                "score": -141.39,
+                "parameters": -141.39
+            }
+        ]
+    },
+    {
+        "bestTrial": {
+            "trialIndex": 180,
+            "score": 3295.64,
+            "parameters": 3295.64
+        },
+        "scores": {
+            "stats": {
+                "count": 257,
+                "min": -2357227514636659700,
+                "max": 3295.64,
+                "range": 2357227514636663000,
+                "average": -9638778655106050,
+                "median": 2745.97,
+                "sum": -2477166114362255000
+            },
+            "scoreRange": {
+                "linearScores": {
+                    "[ 97-100%]:    -39,287,125,243,941,376.": 256,
+                    "[ 93- 97%]:   -117,861,375,731,830,272.": 0,
+                    "[ 90- 93%]:   -196,435,626,219,719,040.": 0,
+                    "[ 87- 90%]:   -275,009,876,707,607,808.": 0,
+                    "[ 83- 87%]:   -353,584,127,195,496,576.": 0,
+                    "[ 80- 83%]:   -432,158,377,683,385,344.": 0,
+                    "[ 77- 80%]:   -510,732,628,171,274,112.": 0,
+                    "[ 73- 77%]:   -589,306,878,659,162,752.": 0,
+                    "[ 70- 73%]:   -667,881,129,147,051,520.": 0,
+                    "[ 67- 70%]:   -746,455,379,634,940,288.": 0,
+                    "[ 63- 67%]:   -825,029,630,122,829,056.": 0,
+                    "[ 60- 63%]:   -903,603,880,610,717,824.": 0,
+                    "[ 57- 60%]:   -982,178,131,098,606,592.": 0,
+                    "[ 53- 57%]: -1,060,752,381,586,495,360.": 0,
+                    "[ 50- 53%]: -1,139,326,632,074,384,000.": 0,
+                    "[ 47- 50%]: -1,217,900,882,562,272,768.": 0,
+                    "[ 43- 47%]: -1,296,475,133,050,161,664.": 0,
+                    "[ 40- 43%]: -1,375,049,383,538,050,560.": 0,
+                    "[ 37- 40%]: -1,453,623,634,025,938,944.": 0,
+                    "[ 33- 37%]: -1,532,197,884,513,827,840.": 0,
+                    "[ 30- 33%]: -1,610,772,135,001,716,736.": 0,
+                    "[ 27- 30%]: -1,689,346,385,489,605,120.": 0,
+                    "[ 23- 27%]: -1,767,920,635,977,494,016.": 0,
+                    "[ 20- 23%]: -1,846,494,886,465,382,912.": 0,
+                    "[ 17- 20%]: -1,925,069,136,953,271,808.": 0,
+                    "[ 13- 17%]: -2,003,643,387,441,160,192.": 0,
+                    "[ 10- 13%]: -2,082,217,637,929,049,088.": 0,
+                    "[  7- 10%]: -2,160,791,888,416,937,984.": 0,
+                    "[  3-  7%]: -2,239,366,138,904,826,624.": 0,
+                    "[  0-  3%]: -2,317,940,389,392,715,264.": 1
+                },
+                "dualLogScores": {
+                    "[ 97-100%]:                      1,954.4": 108,
+                    "[ 93- 97%]:                        363.3": 27,
+                    "[ 90- 93%]:                         66.9": 4,
+                    "[ 87- 90%]:                         11.6": 0,
+                    "[ 83- 87%]:                          1.3": 0,
+                    "[ 80- 83%]:                         -3.2": 1,
+                    "[ 77- 80%]:                        -22.0": 2,
+                    "[ 73- 77%]:                       -122.7": 15,
+                    "[ 70- 73%]:                       -663.1": 24,
+                    "[ 67- 70%]:                     -3,562.9": 11,
+                    "[ 63- 67%]:                    -19,124.6": 2,
+                    "[ 60- 63%]:                   -102,634.7": 2,
+                    "[ 57- 60%]:                   -550,782.7": 1,
+                    "[ 53- 57%]:                 -2,955,720.6": 3,
+                    "[ 50- 53%]:                -15,861,561.5": 0,
+                    "[ 47- 50%]:                -85,119,369.5": 2,
+                    "[ 43- 47%]:               -456,783,951.2": 0,
+                    "[ 40- 43%]:             -2,451,281,975.5": 1,
+                    "[ 37- 40%]:            -13,154,541,220.2": 1,
+                    "[ 33- 37%]:            -70,592,431,385.9": 0,
+                    "[ 30- 33%]:           -378,826,694,546.8": 0,
+                    "[ 27- 30%]:         -2,032,932,733,471.5": 1,
+                    "[ 23- 27%]:        -10,909,514,979,551.5": 0,
+                    "[ 20- 23%]:        -58,544,739,395,180.1": 6,
+                    "[ 17- 20%]:       -314,174,050,567,208.8": 24,
+                    "[ 13- 17%]:     -1,685,981,269,530,284.0": 13,
+                    "[ 10- 13%]:     -9,047,637,244,626,206.0": 7,
+                    "[  7- 10%]:    -48,553,172,677,388,968.0": 1,
+                    "[  3-  7%]:   -260,555,381,841,874,880.0": 0,
+                    "[  0-  3%]: -1,398,242,447,673,886,976.0": 1
+                },
+                "forwardLogScores": {
+                    "[ 97-100%]:   -890,901,660,134,993,280.": 256,
+                    "[ 93- 97%]: -1,999,281,848,269,490,688.": 0,
+                    "[ 90- 93%]: -2,269,849,187,590,397,440.": 0,
+                    "[ 87- 90%]: -2,335,897,539,853,359,104.": 0,
+                    "[ 83- 87%]: -2,352,020,641,952,826,368.": 0,
+                    "[ 80- 83%]: -2,355,956,461,884,788,736.": 0,
+                    "[ 77- 80%]: -2,356,917,237,202,172,928.": 0,
+                    "[ 73- 77%]: -2,357,151,772,629,721,088.": 0,
+                    "[ 70- 73%]: -2,357,209,025,210,818,560.": 0,
+                    "[ 67- 70%]: -2,357,223,001,172,047,872.": 0,
+                    "[ 63- 67%]: -2,357,226,412,852,160,000.": 0,
+                    "[ 60- 63%]: -2,357,227,245,679,397,888.": 0,
+                    "[ 57- 60%]: -2,357,227,448,981,344,256.": 0,
+                    "[ 53- 57%]: -2,357,227,498,609,502,208.": 0,
+                    "[ 50- 53%]: -2,357,227,510,724,260,864.": 0,
+                    "[ 47- 50%]: -2,357,227,513,681,601,536.": 0,
+                    "[ 43- 47%]: -2,357,227,514,403,519,488.": 0,
+                    "[ 40- 43%]: -2,357,227,514,579,747,840.": 0,
+                    "[ 37- 40%]: -2,357,227,514,622,767,104.": 0,
+                    "[ 33- 37%]: -2,357,227,514,633,268,224.": 0,
+                    "[ 30- 33%]: -2,357,227,514,635,831,808.": 0,
+                    "[ 27- 30%]: -2,357,227,514,636,457,472.": 0,
+                    "[ 23- 27%]: -2,357,227,514,636,610,560.": 0,
+                    "[ 20- 23%]: -2,357,227,514,636,647,424.": 0,
+                    "[ 17- 20%]: -2,357,227,514,636,656,640.": 0,
+                    "[ 13- 17%]: -2,357,227,514,636,658,688.": 0,
+                    "[ 10- 13%]: -2,357,227,514,636,659,712.": 0,
+                    "[  7- 10%]: -2,357,227,514,636,659,712.": 0,
+                    "[  3-  7%]: -2,357,227,514,636,659,712.": 0,
+                    "[  0-  3%]: -2,357,227,514,636,659,712.": 1
+                },
+                "backwardLogScores": {
+                    "[ 97-100%]: 3,297.2": 1,
+                    "[ 93- 97%]: 3,296.7": 0,
+                    "[ 90- 93%]: 3,296.6": 0,
+                    "[ 87- 90%]: 3,296.6": 3,
+                    "[ 83- 87%]: 3,296.6": 28,
+                    "[ 80- 83%]: 3,296.6": 150,
+                    "[ 77- 80%]: 3,296.6": 10,
+                    "[ 73- 77%]: 3,296.6": 3,
+                    "[ 70- 73%]: 3,296.6": 1,
+                    "[ 67- 70%]: 3,296.6": 1,
+                    "[ 63- 67%]: 3,296.6": 3,
+                    "[ 60- 63%]: 3,296.6": 0,
+                    "[ 57- 60%]: 3,296.6": 2,
+                    "[ 53- 57%]: 3,296.6": 0,
+                    "[ 50- 53%]: 3,296.6": 0,
+                    "[ 47- 50%]: 3,296.6": 1,
+                    "[ 43- 47%]: 3,296.6": 1,
+                    "[ 40- 43%]: 3,296.6": 0,
+                    "[ 37- 40%]: 3,296.6": 0,
+                    "[ 33- 37%]: 3,296.6": 0,
+                    "[ 30- 33%]: 3,296.6": 1,
+                    "[ 27- 30%]: 3,296.6": 1,
+                    "[ 23- 27%]: 3,296.6": 9,
+                    "[ 20- 23%]: 3,296.6": 19,
+                    "[ 17- 20%]: 3,296.6": 11,
+                    "[ 13- 17%]: 3,296.6": 8,
+                    "[ 10- 13%]: 3,296.6": 2,
+                    "[  7- 10%]: 3,296.6": 1,
+                    "[  3-  7%]: 3,296.6": 0,
+                    "[  0-  3%]: 3,296.6": 1
+                }
+            }
+        },
+        "trials": [
+            {
+                "trialIndex": 0,
+                "score": -561123759889975.25,
+                "parameters": -561123759889975.25
+            },
+            {
+                "trialIndex": 1,
+                "score": -19218784677.26,
+                "parameters": -19218784677.26
+            },
+            {
+                "trialIndex": 3,
+                "score": -1439331083017513.8,
+                "parameters": -1439331083017513.8
+            },
+            {
+                "trialIndex": 4,
+                "score": -381853645552484.6,
+                "parameters": -381853645552484.6
+            },
+            {
+                "trialIndex": 5,
+                "score": -2239.66,
+                "parameters": -2239.66
+            },
+            {
+                "trialIndex": 6,
+                "score": -508703449421578.4,
+                "parameters": -508703449421578.4
+            },
+            {
+                "trialIndex": 7,
+                "score": -73496659945054.7,
+                "parameters": -73496659945054.7
+            },
+            {
+                "trialIndex": 8,
+                "score": -2028859061696.23,
+                "parameters": -2028859061696.23
+            },
+            {
+                "trialIndex": 9,
+                "score": 208.46,
+                "parameters": 208.46
+            },
+            {
+                "trialIndex": 11,
+                "score": -5641973387966406,
+                "parameters": -5641973387966406
+            },
+            {
+                "trialIndex": 12,
+                "score": 378.77,
+                "parameters": 378.77
+            },
+            {
+                "trialIndex": 13,
+                "score": 1101.9,
+                "parameters": 1101.9
+            },
+            {
+                "trialIndex": 14,
+                "score": -197.02,
+                "parameters": -197.02
+            },
+            {
+                "trialIndex": 15,
+                "score": -399476205390530,
+                "parameters": -399476205390530
+            },
+            {
+                "trialIndex": 16,
+                "score": 719.76,
+                "parameters": 719.76
+            },
+            {
+                "trialIndex": 17,
+                "score": -29.16,
+                "parameters": -29.16
+            },
+            {
+                "trialIndex": 18,
+                "score": -67.73,
+                "parameters": -67.73
+            },
+            {
+                "trialIndex": 19,
+                "score": 505.82,
+                "parameters": 505.82
+            },
+            {
+                "trialIndex": 20,
+                "score": -4964257363330591,
+                "parameters": -4964257363330591
+            },
+            {
+                "trialIndex": 21,
+                "score": -165103,
+                "parameters": -165103
+            },
+            {
+                "trialIndex": 22,
+                "score": -170891178710532.6,
+                "parameters": -170891178710532.6
+            },
+            {
+                "trialIndex": 23,
+                "score": -760936600787214.8,
+                "parameters": -760936600787214.8
+            },
+            {
+                "trialIndex": 24,
+                "score": -319.52,
+                "parameters": -319.52
+            },
+            {
+                "trialIndex": 25,
+                "score": -58.2,
+                "parameters": -58.2
+            },
+            {
+                "trialIndex": 26,
+                "score": 858.48,
+                "parameters": 858.48
+            },
+            {
+                "trialIndex": 27,
+                "score": 397.48,
+                "parameters": 397.48
+            },
+            {
+                "trialIndex": 28,
+                "score": -2278043235756015.5,
+                "parameters": -2278043235756015.5
+            },
+            {
+                "trialIndex": 29,
+                "score": 313.77,
+                "parameters": 313.77
+            },
+            {
+                "trialIndex": 30,
+                "score": -125330522779608.36,
+                "parameters": -125330522779608.36
+            },
+            {
+                "trialIndex": 31,
+                "score": 468.77,
+                "parameters": 468.77
+            },
+            {
+                "trialIndex": 32,
+                "score": 294.43,
+                "parameters": 294.43
+            },
+            {
+                "trialIndex": 33,
+                "score": 2393.58,
+                "parameters": 2393.58
+            },
+            {
+                "trialIndex": 34,
+                "score": 112.59,
+                "parameters": 112.59
+            },
+            {
+                "trialIndex": 35,
+                "score": 2725.08,
+                "parameters": 2725.08
+            },
+            {
+                "trialIndex": 36,
+                "score": 2424.24,
+                "parameters": 2424.24
+            },
+            {
+                "trialIndex": 37,
+                "score": 2891.88,
+                "parameters": 2891.88
+            },
+            {
+                "trialIndex": 38,
+                "score": -2659.08,
+                "parameters": -2659.08
+            },
+            {
+                "trialIndex": 39,
+                "score": 1565.66,
+                "parameters": 1565.66
+            },
+            {
+                "trialIndex": 40,
+                "score": -120398646759130,
+                "parameters": -120398646759130
+            },
+            {
+                "trialIndex": 41,
+                "score": -441.04,
+                "parameters": -441.04
+            },
+            {
+                "trialIndex": 42,
+                "score": -294145648487433.06,
+                "parameters": -294145648487433.06
+            },
+            {
+                "trialIndex": 43,
+                "score": 1707.02,
+                "parameters": 1707.02
+            },
+            {
+                "trialIndex": 44,
+                "score": -411.46,
+                "parameters": -411.46
+            },
+            {
+                "trialIndex": 45,
+                "score": 1637.66,
+                "parameters": 1637.66
+            },
+            {
+                "trialIndex": 46,
+                "score": 1274.86,
+                "parameters": 1274.86
+            },
+            {
+                "trialIndex": 47,
+                "score": -116191802524713.05,
+                "parameters": -116191802524713.05
+            },
+            {
+                "trialIndex": 48,
+                "score": -479.01,
+                "parameters": -479.01
+            },
+            {
+                "trialIndex": 49,
+                "score": 2242.3,
+                "parameters": 2242.3
+            },
+            {
+                "trialIndex": 50,
+                "score": 1247.51,
+                "parameters": 1247.51
+            },
+            {
+                "trialIndex": 51,
+                "score": 1918.4,
+                "parameters": 1918.4
+            },
+            {
+                "trialIndex": 52,
+                "score": 1179.54,
+                "parameters": 1179.54
+            },
+            {
+                "trialIndex": 53,
+                "score": 1201.13,
+                "parameters": 1201.13
+            },
+            {
+                "trialIndex": 54,
+                "score": 3121.17,
+                "parameters": 3121.17
+            },
+            {
+                "trialIndex": 55,
+                "score": -1893.11,
+                "parameters": -1893.11
+            },
+            {
+                "trialIndex": 56,
+                "score": -369.5,
+                "parameters": -369.5
+            },
+            {
+                "trialIndex": 57,
+                "score": 149.91,
+                "parameters": 149.91
+            },
+            {
+                "trialIndex": 58,
+                "score": 117.75,
+                "parameters": 117.75
+            },
+            {
+                "trialIndex": 59,
+                "score": -170.16,
+                "parameters": -170.16
+            },
+            {
+                "trialIndex": 60,
+                "score": -39351729319190.66,
+                "parameters": -39351729319190.66
+            },
+            {
+                "trialIndex": 61,
+                "score": -21120085086405.2,
+                "parameters": -21120085086405.2
+            },
+            {
+                "trialIndex": 62,
+                "score": -38214.64,
+                "parameters": -38214.64
+            },
+            {
+                "trialIndex": 63,
+                "score": -1850.51,
+                "parameters": -1850.51
+            },
+            {
+                "trialIndex": 64,
+                "score": -145.33,
+                "parameters": -145.33
+            },
+            {
+                "trialIndex": 65,
+                "score": -340.86,
+                "parameters": -340.86
+            },
+            {
+                "trialIndex": 66,
+                "score": -34.71,
+                "parameters": -34.71
+            },
+            {
+                "trialIndex": 68,
+                "score": 1618.65,
+                "parameters": 1618.65
+            },
+            {
+                "trialIndex": 69,
+                "score": -177703826331028,
+                "parameters": -177703826331028
+            },
+            {
+                "trialIndex": 70,
+                "score": -195.53,
+                "parameters": -195.53
+            },
+            {
+                "trialIndex": 71,
+                "score": -2286945.24,
+                "parameters": -2286945.24
+            },
+            {
+                "trialIndex": 72,
+                "score": -2868.87,
+                "parameters": -2868.87
+            },
+            {
+                "trialIndex": 74,
+                "score": -2920221866561896.5,
+                "parameters": -2920221866561896.5
+            },
+            {
+                "trialIndex": 75,
+                "score": -134570554175539.34,
+                "parameters": -134570554175539.34
+            },
+            {
+                "trialIndex": 76,
+                "score": 2026.78,
+                "parameters": 2026.78
+            },
+            {
+                "trialIndex": 77,
+                "score": -166.04,
+                "parameters": -166.04
+            },
+            {
+                "trialIndex": 78,
+                "score": 1354.29,
+                "parameters": 1354.29
+            },
+            {
+                "trialIndex": 79,
+                "score": 1396.82,
+                "parameters": 1396.82
+            },
+            {
+                "trialIndex": 80,
+                "score": 1354.06,
+                "parameters": 1354.06
+            },
+            {
+                "trialIndex": 81,
+                "score": 3068.93,
+                "parameters": 3068.93
+            },
+            {
+                "trialIndex": 82,
+                "score": -1158.85,
+                "parameters": -1158.85
+            },
+            {
+                "trialIndex": 83,
+                "score": 2947.19,
+                "parameters": 2947.19
+            },
+            {
+                "trialIndex": 84,
+                "score": 1762.41,
+                "parameters": 1762.41
+            },
+            {
+                "trialIndex": 85,
+                "score": -50372831450790620,
+                "parameters": -50372831450790620
+            },
+            {
+                "trialIndex": 86,
+                "score": 148.18,
+                "parameters": 148.18
+            },
+            {
+                "trialIndex": 87,
+                "score": -3311068.61,
+                "parameters": -3311068.61
+            },
+            {
+                "trialIndex": 88,
+                "score": 970.23,
+                "parameters": 970.23
+            },
+            {
+                "trialIndex": 89,
+                "score": -645.01,
+                "parameters": -645.01
+            },
+            {
+                "trialIndex": 90,
+                "score": 620.94,
+                "parameters": 620.94
+            },
+            {
+                "trialIndex": 91,
+                "score": -107438277665161.88,
+                "parameters": -107438277665161.88
+            },
+            {
+                "trialIndex": 92,
+                "score": 1581.19,
+                "parameters": 1581.19
+            },
+            {
+                "trialIndex": 93,
+                "score": 1228.25,
+                "parameters": 1228.25
+            },
+            {
+                "trialIndex": 94,
+                "score": -332644567746543.8,
+                "parameters": -332644567746543.8
+            },
+            {
+                "trialIndex": 95,
+                "score": 1472.87,
+                "parameters": 1472.87
+            },
+            {
+                "trialIndex": 96,
+                "score": -2089111778072989.8,
+                "parameters": -2089111778072989.8
+            },
+            {
+                "trialIndex": 98,
+                "score": -575785481560193,
+                "parameters": -575785481560193
+            },
+            {
+                "trialIndex": 99,
+                "score": 2021.91,
+                "parameters": 2021.91
+            },
+            {
+                "trialIndex": 100,
+                "score": 1444.3,
+                "parameters": 1444.3
+            },
+            {
+                "trialIndex": 101,
+                "score": -4573.68,
+                "parameters": -4573.68
+            },
+            {
+                "trialIndex": 102,
+                "score": -10515852968007308,
+                "parameters": -10515852968007308
+            },
+            {
+                "trialIndex": 103,
+                "score": -2170.67,
+                "parameters": -2170.67
+            },
+            {
+                "trialIndex": 104,
+                "score": 1357.46,
+                "parameters": 1357.46
+            },
+            {
+                "trialIndex": 105,
+                "score": 1723.41,
+                "parameters": 1723.41
+            },
+            {
+                "trialIndex": 106,
+                "score": 1450.86,
+                "parameters": 1450.86
+            },
+            {
+                "trialIndex": 107,
+                "score": 2807.19,
+                "parameters": 2807.19
+            },
+            {
+                "trialIndex": 108,
+                "score": -262.5,
+                "parameters": -262.5
+            },
+            {
+                "trialIndex": 109,
+                "score": -95.25,
+                "parameters": -95.25
+            },
+            {
+                "trialIndex": 110,
+                "score": -312693999430862.06,
+                "parameters": -312693999430862.06
+            },
+            {
+                "trialIndex": 111,
+                "score": 133.58,
+                "parameters": 133.58
+            },
+            {
+                "trialIndex": 112,
+                "score": -2494.68,
+                "parameters": -2494.68
+            },
+            {
+                "trialIndex": 113,
+                "score": 1046.7,
+                "parameters": 1046.7
+            },
+            {
+                "trialIndex": 114,
+                "score": -124.52,
+                "parameters": -124.52
+            },
+            {
+                "trialIndex": 115,
+                "score": 2551.22,
+                "parameters": 2551.22
+            },
+            {
+                "trialIndex": 117,
+                "score": -270.59,
+                "parameters": -270.59
+            },
+            {
+                "trialIndex": 118,
+                "score": 516.21,
+                "parameters": 516.21
+            },
+            {
+                "trialIndex": 119,
+                "score": 2984.42,
+                "parameters": 2984.42
+            },
+            {
+                "trialIndex": 120,
+                "score": 1660.15,
+                "parameters": 1660.15
+            },
+            {
+                "trialIndex": 121,
+                "score": -48284549799525.37,
+                "parameters": -48284549799525.37
+            },
+            {
+                "trialIndex": 122,
+                "score": -31371.1,
+                "parameters": -31371.1
+            },
+            {
+                "trialIndex": 123,
+                "score": -138.52,
+                "parameters": -138.52
+            },
+            {
+                "trialIndex": 124,
+                "score": 32.97,
+                "parameters": 32.97
+            },
+            {
+                "trialIndex": 125,
+                "score": -356.88,
+                "parameters": -356.88
+            },
+            {
+                "trialIndex": 126,
+                "score": 2169.95,
+                "parameters": 2169.95
+            },
+            {
+                "trialIndex": 127,
+                "score": 2501.3,
+                "parameters": 2501.3
+            },
+            {
+                "trialIndex": 128,
+                "score": -459.13,
+                "parameters": -459.13
+            },
+            {
+                "trialIndex": 129,
+                "score": -574.61,
+                "parameters": -574.61
+            },
+            {
+                "trialIndex": 130,
+                "score": 638.67,
+                "parameters": 638.67
+            },
+            {
+                "trialIndex": 131,
+                "score": 1915.89,
+                "parameters": 1915.89
+            },
+            {
+                "trialIndex": 132,
+                "score": 1935.36,
+                "parameters": 1935.36
+            },
+            {
+                "trialIndex": 133,
+                "score": 517.6,
+                "parameters": 517.6
+            },
+            {
+                "trialIndex": 134,
+                "score": 2745.97,
+                "parameters": 2745.97
+            },
+            {
+                "trialIndex": 135,
+                "score": 151.42,
+                "parameters": 151.42
+            },
+            {
+                "trialIndex": 136,
+                "score": 578.57,
+                "parameters": 578.57
+            },
+            {
+                "trialIndex": 137,
+                "score": 663.93,
+                "parameters": 663.93
+            },
+            {
+                "trialIndex": 138,
+                "score": 1325.43,
+                "parameters": 1325.43
+            },
+            {
+                "trialIndex": 139,
+                "score": 544.73,
+                "parameters": 544.73
+            },
+            {
+                "trialIndex": 140,
+                "score": 1276.19,
+                "parameters": 1276.19
+            },
+            {
+                "trialIndex": 141,
+                "score": 1510.11,
+                "parameters": 1510.11
+            },
+            {
+                "trialIndex": 142,
+                "score": -393215336123040.06,
+                "parameters": -393215336123040.06
+            },
+            {
+                "trialIndex": 144,
+                "score": -192043336283980.3,
+                "parameters": -192043336283980.3
+            },
+            {
+                "trialIndex": 145,
+                "score": -826.8,
+                "parameters": -826.8
+            },
+            {
+                "trialIndex": 146,
+                "score": 381.74,
+                "parameters": 381.74
+            },
+            {
+                "trialIndex": 147,
+                "score": -228.6,
+                "parameters": -228.6
+            },
+            {
+                "trialIndex": 148,
+                "score": -762.44,
+                "parameters": -762.44
+            },
+            {
+                "trialIndex": 149,
+                "score": 849.81,
+                "parameters": 849.81
+            },
+            {
+                "trialIndex": 150,
+                "score": -193103779772039.25,
+                "parameters": -193103779772039.25
+            },
+            {
+                "trialIndex": 151,
+                "score": 1388.11,
+                "parameters": 1388.11
+            },
+            {
+                "trialIndex": 152,
+                "score": 1680.55,
+                "parameters": 1680.55
+            },
+            {
+                "trialIndex": 154,
+                "score": 1455.15,
+                "parameters": 1455.15
+            },
+            {
+                "trialIndex": 155,
+                "score": 1573.25,
+                "parameters": 1573.25
+            },
+            {
+                "trialIndex": 156,
+                "score": -329.78,
+                "parameters": -329.78
+            },
+            {
+                "trialIndex": 157,
+                "score": -174739394716761.62,
+                "parameters": -174739394716761.62
+            },
+            {
+                "trialIndex": 158,
+                "score": 3121.79,
+                "parameters": 3121.79
+            },
+            {
+                "trialIndex": 159,
+                "score": 2770.2,
+                "parameters": 2770.2
+            },
+            {
+                "trialIndex": 160,
+                "score": 2488.36,
+                "parameters": 2488.36
+            },
+            {
+                "trialIndex": 161,
+                "score": 1121.15,
+                "parameters": 1121.15
+            },
+            {
+                "trialIndex": 162,
+                "score": 2476.75,
+                "parameters": 2476.75
+            },
+            {
+                "trialIndex": 163,
+                "score": 926.81,
+                "parameters": 926.81
+            },
+            {
+                "trialIndex": 164,
+                "score": -1.42,
+                "parameters": -1.42
+            },
+            {
+                "trialIndex": 165,
+                "score": -32376794.96,
+                "parameters": -32376794.96
+            },
+            {
+                "trialIndex": 166,
+                "score": 165.76,
+                "parameters": 165.76
+            },
+            {
+                "trialIndex": 167,
+                "score": 1254.58,
+                "parameters": 1254.58
+            },
+            {
+                "trialIndex": 168,
+                "score": -972649616830361.9,
+                "parameters": -972649616830361.9
+            },
+            {
+                "trialIndex": 169,
+                "score": 1832.74,
+                "parameters": 1832.74
+            },
+            {
+                "trialIndex": 170,
+                "score": -480.71,
+                "parameters": -480.71
+            },
+            {
+                "trialIndex": 171,
+                "score": -2305181009263462,
+                "parameters": -2305181009263462
+            },
+            {
+                "trialIndex": 172,
+                "score": -332420325458838.56,
+                "parameters": -332420325458838.56
+            },
+            {
+                "trialIndex": 174,
+                "score": -543508336498316.2,
+                "parameters": -543508336498316.2
+            },
+            {
+                "trialIndex": 175,
+                "score": 545.94,
+                "parameters": 545.94
+            },
+            {
+                "trialIndex": 176,
+                "score": 1621.14,
+                "parameters": 1621.14
+            },
+            {
+                "trialIndex": 177,
+                "score": 2100.84,
+                "parameters": 2100.84
+            },
+            {
+                "trialIndex": 178,
+                "score": 1643.62,
+                "parameters": 1643.62
+            },
+            {
+                "trialIndex": 179,
+                "score": -1030.91,
+                "parameters": -1030.91
+            },
+            {
+                "trialIndex": 180,
+                "score": 3295.64,
+                "parameters": 3295.64
+            },
+            {
+                "trialIndex": 181,
+                "score": 1524.09,
+                "parameters": 1524.09
+            },
+            {
+                "trialIndex": 182,
+                "score": 358.64,
+                "parameters": 358.64
+            },
+            {
+                "trialIndex": 183,
+                "score": -638.71,
+                "parameters": -638.71
+            },
+            {
+                "trialIndex": 184,
+                "score": 2538.69,
+                "parameters": 2538.69
+            },
+            {
+                "trialIndex": 185,
+                "score": -184.2,
+                "parameters": -184.2
+            },
+            {
+                "trialIndex": 186,
+                "score": 2228.22,
+                "parameters": 2228.22
+            },
+            {
+                "trialIndex": 187,
+                "score": 2056.16,
+                "parameters": 2056.16
+            },
+            {
+                "trialIndex": 188,
+                "score": 656.39,
+                "parameters": 656.39
+            },
+            {
+                "trialIndex": 189,
+                "score": -967301352547411.5,
+                "parameters": -967301352547411.5
+            },
+            {
+                "trialIndex": 190,
+                "score": 2016.96,
+                "parameters": 2016.96
+            },
+            {
+                "trialIndex": 191,
+                "score": 1454.35,
+                "parameters": 1454.35
+            },
+            {
+                "trialIndex": 192,
+                "score": 385.15,
+                "parameters": 385.15
+            },
+            {
+                "trialIndex": 193,
+                "score": -570310613683728.4,
+                "parameters": -570310613683728.4
+            },
+            {
+                "trialIndex": 194,
+                "score": -117844433819139.05,
+                "parameters": -117844433819139.05
+            },
+            {
+                "trialIndex": 195,
+                "score": -187758305633529.2,
+                "parameters": -187758305633529.2
+            },
+            {
+                "trialIndex": 196,
+                "score": 1643.47,
+                "parameters": 1643.47
+            },
+            {
+                "trialIndex": 197,
+                "score": -561604489511173.94,
+                "parameters": -561604489511173.94
+            },
+            {
+                "trialIndex": 199,
+                "score": 1644.88,
+                "parameters": 1644.88
+            },
+            {
+                "trialIndex": 200,
+                "score": 1320.81,
+                "parameters": 1320.81
+            },
+            {
+                "trialIndex": 201,
+                "score": -2798.62,
+                "parameters": -2798.62
+            },
+            {
+                "trialIndex": 202,
+                "score": 2283.6,
+                "parameters": 2283.6
+            },
+            {
+                "trialIndex": 203,
+                "score": -2357227514636659700,
+                "parameters": -2357227514636659700
+            },
+            {
+                "trialIndex": 204,
+                "score": -481.41,
+                "parameters": -481.41
+            },
+            {
+                "trialIndex": 205,
+                "score": 2845.83,
+                "parameters": 2845.83
+            },
+            {
+                "trialIndex": 206,
+                "score": -126807928717720.94,
+                "parameters": -126807928717720.94
+            },
+            {
+                "trialIndex": 207,
+                "score": 1721.82,
+                "parameters": 1721.82
+            },
+            {
+                "trialIndex": 208,
+                "score": -7579071903147487,
+                "parameters": -7579071903147487
+            },
+            {
+                "trialIndex": 209,
+                "score": -278100640993052.62,
+                "parameters": -278100640993052.62
+            },
+            {
+                "trialIndex": 210,
+                "score": -34894279776354.72,
+                "parameters": -34894279776354.72
+            },
+            {
+                "trialIndex": 211,
+                "score": 1605.78,
+                "parameters": 1605.78
+            },
+            {
+                "trialIndex": 212,
+                "score": -108.54,
+                "parameters": -108.54
+            },
+            {
+                "trialIndex": 213,
+                "score": -598.56,
+                "parameters": -598.56
+            },
+            {
+                "trialIndex": 214,
+                "score": 1070.49,
+                "parameters": 1070.49
+            },
+            {
+                "trialIndex": 215,
+                "score": 415.83,
+                "parameters": 415.83
+            },
+            {
+                "trialIndex": 216,
+                "score": 1815.06,
+                "parameters": 1815.06
+            },
+            {
+                "trialIndex": 217,
+                "score": 1562.6,
+                "parameters": 1562.6
+            },
+            {
+                "trialIndex": 218,
+                "score": 1460.55,
+                "parameters": 1460.55
+            },
+            {
+                "trialIndex": 219,
+                "score": 2724.57,
+                "parameters": 2724.57
+            },
+            {
+                "trialIndex": 220,
+                "score": 1473.19,
+                "parameters": 1473.19
+            },
+            {
+                "trialIndex": 221,
+                "score": -8230947909917468,
+                "parameters": -8230947909917468
+            },
+            {
+                "trialIndex": 222,
+                "score": 69.67,
+                "parameters": 69.67
+            },
+            {
+                "trialIndex": 223,
+                "score": -159.05,
+                "parameters": -159.05
+            },
+            {
+                "trialIndex": 224,
+                "score": 2358.4,
+                "parameters": 2358.4
+            },
+            {
+                "trialIndex": 225,
+                "score": 1277.37,
+                "parameters": 1277.37
+            },
+            {
+                "trialIndex": 226,
+                "score": -208.22,
+                "parameters": -208.22
+            },
+            {
+                "trialIndex": 227,
+                "score": 1683.73,
+                "parameters": 1683.73
+            },
+            {
+                "trialIndex": 228,
+                "score": -2330.62,
+                "parameters": -2330.62
+            },
+            {
+                "trialIndex": 229,
+                "score": -98307135605193.72,
+                "parameters": -98307135605193.72
+            },
+            {
+                "trialIndex": 230,
+                "score": 2521.59,
+                "parameters": 2521.59
+            },
+            {
+                "trialIndex": 231,
+                "score": 2737.49,
+                "parameters": 2737.49
+            },
+            {
+                "trialIndex": 233,
+                "score": 1063.73,
+                "parameters": 1063.73
+            },
+            {
+                "trialIndex": 234,
+                "score": 2538.12,
+                "parameters": 2538.12
+            },
+            {
+                "trialIndex": 235,
+                "score": 375.22,
+                "parameters": 375.22
+            },
+            {
+                "trialIndex": 236,
+                "score": 1779.39,
+                "parameters": 1779.39
+            },
+            {
+                "trialIndex": 237,
+                "score": 1281.73,
+                "parameters": 1281.73
+            },
+            {
+                "trialIndex": 238,
+                "score": 41.36,
+                "parameters": 41.36
+            },
+            {
+                "trialIndex": 239,
+                "score": 2465.83,
+                "parameters": 2465.83
+            },
+            {
+                "trialIndex": 240,
+                "score": 164.71,
+                "parameters": 164.71
+            },
+            {
+                "trialIndex": 241,
+                "score": -58.37,
+                "parameters": -58.37
+            },
+            {
+                "trialIndex": 242,
+                "score": 956.6,
+                "parameters": 956.6
+            },
+            {
+                "trialIndex": 243,
+                "score": 1617.78,
+                "parameters": 1617.78
+            },
+            {
+                "trialIndex": 244,
+                "score": 389.74,
+                "parameters": 389.74
+            },
+            {
+                "trialIndex": 245,
+                "score": -737977.47,
+                "parameters": -737977.47
+            },
+            {
+                "trialIndex": 246,
+                "score": 1988.87,
+                "parameters": 1988.87
+            },
+            {
+                "trialIndex": 247,
+                "score": 1681.11,
+                "parameters": 1681.11
+            },
+            {
+                "trialIndex": 248,
+                "score": 1840.73,
+                "parameters": 1840.73
+            },
+            {
+                "trialIndex": 249,
+                "score": 1668.2,
+                "parameters": 1668.2
+            },
+            {
+                "trialIndex": 250,
+                "score": -407.27,
+                "parameters": -407.27
+            },
+            {
+                "trialIndex": 251,
+                "score": 2292.98,
+                "parameters": 2292.98
+            },
+            {
+                "trialIndex": 252,
+                "score": -163047216035070.2,
+                "parameters": -163047216035070.2
+            },
+            {
+                "trialIndex": 253,
+                "score": 1492.65,
+                "parameters": 1492.65
+            },
+            {
+                "trialIndex": 254,
+                "score": -33415201.38,
+                "parameters": -33415201.38
+            },
+            {
+                "trialIndex": 255,
+                "score": 1873.77,
+                "parameters": 1873.77
+            },
+            {
+                "trialIndex": 256,
+                "score": -9012398718485264,
+                "parameters": -9012398718485264
+            },
+            {
+                "trialIndex": 257,
+                "score": 2484.47,
+                "parameters": 2484.47
+            },
+            {
+                "trialIndex": 258,
+                "score": -140.65,
+                "parameters": -140.65
+            },
+            {
+                "trialIndex": 259,
+                "score": -1545060920.86,
+                "parameters": -1545060920.86
+            },
+            {
+                "trialIndex": 260,
+                "score": -19145.11,
+                "parameters": -19145.11
+            },
+            {
+                "trialIndex": 261,
+                "score": -184029193748742.25,
+                "parameters": -184029193748742.25
+            },
+            {
+                "trialIndex": 262,
+                "score": 2595.21,
+                "parameters": 2595.21
+            },
+            {
+                "trialIndex": 263,
+                "score": -526.4,
+                "parameters": -526.4
+            },
+            {
+                "trialIndex": 264,
+                "score": 493.01,
+                "parameters": 493.01
+            },
+            {
+                "trialIndex": 265,
+                "score": -3858244.03,
+                "parameters": -3858244.03
+            },
+            {
+                "trialIndex": 266,
+                "score": 571.4,
+                "parameters": 571.4
+            },
+            {
+                "trialIndex": 267,
+                "score": -1233500445177569.2,
+                "parameters": -1233500445177569.2
+            }
+        ]
+    }
+]
