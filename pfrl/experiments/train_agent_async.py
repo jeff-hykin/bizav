@@ -159,6 +159,7 @@ def train_loop(
         logger.info("Saved the successful agent to %s", dirname)
 
 
+run_func = None
 def train_agent_async(
     outdir,
     processes,
@@ -386,6 +387,7 @@ def train_agent_async(
     if random_seeds is None:
         random_seeds = np.arange(processes)
 
+    global run_func
     def run_func(process_idx):
         random_seed.set_random_seed(random_seeds[process_idx])
 
