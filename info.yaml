@@ -27,5 +27,5 @@
                 t_max: 5
                 activation: 1
                 hidden_size: 64
-                ucb_disable: 500
+                permaban_threshold: 500
                 variance_scaling_factor: 100

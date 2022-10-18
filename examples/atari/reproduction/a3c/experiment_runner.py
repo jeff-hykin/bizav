@@ -16,7 +16,7 @@ env_args =f'''
     --t-max {env_config.t_max}
     --activation {env_config.activation}
     --hidden_size {env_config.hidden_size}
-    --ucb_disable {env_config.ucb_disable}
+    --permaban_threshold {env_config.permaban_threshold}
 '''
 
 for seed in config.random_seeds:

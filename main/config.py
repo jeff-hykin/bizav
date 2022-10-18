@@ -7,4 +7,4 @@ info = find_and_load(
     defaults_for_local_data=["CARTPOLE"], # defaults to CARTPOLE profile
 )
 config = info.config
-absolute_path_to = info.absolute_path_to
+env_config = config.env_config

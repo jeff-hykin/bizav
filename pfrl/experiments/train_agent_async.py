@@ -12,7 +12,7 @@ from torch import nn
 from pfrl.experiments.evaluator import AsyncEvaluator
 from pfrl.utils import async_, random_seed
 
-from main.config import config, info
+from main.config import config, env_config, info
 
 def kill_all():
     if os.name == "nt":
@@ -23,7 +23,6 @@ def kill_all():
         pgid = os.getpgrp()
         os.killpg(pgid, signal.SIGTERM)
         sys.exit(1)
-
 
 def train_loop(
     process_idx,
@@ -41,9 +40,9 @@ def train_loop(
     successful_score=None,
     logger=None,
     global_step_hooks=[],
-    barrier=None,
+    all_updated_barrier=None,
     update_barrier=None,
-    filter_act=None,
+    temp_filter_process_index=None,
     filtered_agents=None,
     byzantine_agent_number=0
 ):
@@ -83,10 +82,10 @@ def train_loop(
             agent.observe(obs, r, done, reset)
 
             if agent.updated:
-                barrier.wait()  # Wait for all agents to complete rollout, then run filter()
+                all_updated_barrier.wait()  # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
                 if byzantine_agent_number > 0:
                     # If not current UCB action and not permanently filtered, include agent's gradient in global model
-                    if filter_act.value != process_idx and filtered_agents[process_idx] == 0: agent.add_update()
+                    if temp_filter_process_index.value != process_idx and filtered_agents[process_idx] == 0: agent.add_update()
                 else:
                     agent.add_update()
                 update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
@@ -141,7 +140,7 @@ def train_loop(
                 kill_all()
 
         update_barrier.abort()
-        barrier.abort()
+        all_updated_barrier.abort()
 
     except (Exception, KeyboardInterrupt):
         save_model()
@@ -186,7 +185,7 @@ def train_agent_async(
     exception_event=None,
     use_shared_memory=True,
     num_agents_byz=0,
-    step_before_disable=1
+    permaban_threshold=1
 ):
     """Train agent asynchronously using multiprocessing.
 
@@ -242,35 +241,51 @@ def train_agent_async(
     
     # Prevent numpy from using multiple threads
     os.environ["OMP_NUM_THREADS"] = "1"
+    
+    # 
+    # init shared values
+    # 
+    counter                   = mp.Value("l", 0)
+    episodes_counter          = mp.Value("l", 0)
+    time                      = mp.Value("l", 0) # Number of total rollouts completed
+    temp_filter_process_index = mp.Value("i", 0) # UCB action 'broadcast'
+    filtered_count            = mp.Value("l", 0) # Number of permanently filtered agents
 
-    counter          = mp.Value("l", 0)
-    episodes_counter = mp.Value("l", 0)
-    time             = mp.Value("l", 0) # Number of total rollouts completed
-    filter_act       = mp.Value("i", 0) # UCB action 'broadcast'
-    filtered_count   = mp.Value("l", 0) # Number of permanently filtered agents
-
-    act_val         = mp.Array("d", config.number_of_processes) # Q-values
-    visits          = mp.Array("d", config.number_of_processes) # number of visits
-    agent_rewards   = mp.Array("d", config.number_of_processes) # Used for UCB with rewards
-    filtered_agents = mp.Array("l", config.number_of_processes) # Permanently filtered agent memory
+    act_val = mp.Array("d", config.number_of_processes) # Q-values
+    visits            = mp.Array("d", config.number_of_processes) # number of visits
+    agent_rewards     = mp.Array("d", config.number_of_processes) # Used for UCB with rewards
+    filtered_agents   = mp.Array("l", config.number_of_processes) # Permanently filtered agent memory
     for process_index in range(config.number_of_processes):
-        act_val[process_index]         = 0
-        visits[process_index]          = 0
-        agent_rewards[process_index]   = 0
-        filtered_agents[process_index] = 0
-
-    def filter():
-        if filtered_count.value == num_agents_byz: return
-
-        # Update values
-        if time.value != 0:
-            # Compute gradient mean
+        act_val[process_index] = 0
+        visits[process_index]            = 0
+        agent_rewards[process_index]     = 0
+        filtered_agents[process_index]   = 0
+    
+    # 
+    # create UCB manager
+    # 
+    @singleton
+    class ucb:
+        value_per_process = act_val
+        
+        def reward_func(self, agent_gradients):
+            agent_variance = np.var(agent_gradients, axis=-1)
+            average_variance = np.mean(agent_variance)
+            flipped_value = 1 - average_variance
+            ucb_reward = config.env_config.variance_scaling_factor * flipped_value
+            return ucb_reward
+        
+        @property
+        def smart_gradient_of_agents(self):
             all_grads = []
-            for i in range(len(agent.local_models)):
+            for process_index in range(config.number_of_processes):
                 my_grad = []
+                agent_is_temp_filtered      = temp_filter_process_index.value == process_index
+                agent_is_permantly_filtered = filtered_agents[process_index] == 1
                 # If filtered, don't include in gradient mean
-                if filter_act.value == i or filtered_agents[i] == 1: continue
-                for param in agent.local_models[i].parameters():
+                if agent_is_temp_filtered or agent_is_permantly_filtered:
+                    continue
+                for param in agent.local_models[process_index].parameters():
                     if param.grad is not None:
                         grad_np = param.grad.detach().clone().numpy().flatten()
                     else:
@@ -278,43 +293,63 @@ def train_agent_async(
                     for j in range(len(grad_np)):
                         my_grad.append(grad_np[j])
                 all_grads.append(np.asarray(my_grad))
-            all_grads = np.vstack(all_grads)
-            r = (1-np.mean(np.var(all_grads, axis=-1)))*config.env_config.variance_scaling_factor
+            return np.vstack(all_grads)
+        
+        def update_step(self, ucb_reward):
+            process_index    = temp_filter_process_index.value
+            old_q_value      = ubc.value_per_process[process_index]
+            number_of_visits = visits[process_index]
+            change_in_value  = (ucb_reward - old_q_value) / number_of_visits
+            # apply the new value
+            ubc.value_per_process[process_index] += change_in_value
+        
+    def when_all_processes_are_updated():
+        print("[starting when_all_processes_are_updated()]")
+        all_malicious_actors_found = filtered_count.value == num_agents_byz
+        if all_malicious_actors_found:
+            return
 
+        # Update values
+        if time.value != 0:
+            # Compute gradient mean
+            ucb_reward = ucb.reward_func(ucb.smart_gradient_of_agents)
+            
             # Update Q-values
-            act_val[filter_act.value] += (r-act_val[filter_act.value]) / visits[filter_act.value]
+            ucb.update_step(ucb_reward)
 
             # Permanently disable an agent
             end_index = -1
-            for i in range(len(visits)):
-                if visits[i] == step_before_disable: end_index = i
+            for process_index, visit_count in enumerate(visits):
+                if visit_count >= env_config.permaban_threshold:
+                    end_index = process_index
+            
             if end_index >= 0:
                 filtered_count.value += 1
-                visits[end_index] = step_before_disable+1
+                visits[end_index] = env_config.permaban_threshold+1
                 filtered_agents[end_index] = 1
                 # Reset non-disabled visits/Q-values
                 for i in range(len(visits)):
-                    if visits[i] < step_before_disable:
+                    if visits[i] < env_config.permaban_threshold:
                         visits[i] = 0
-                        act_val[i] = 0
+                        ubc.value_per_process[i] = 0
 
         # Debug output
-        print('Step', time.value, filter_act.value)
+        print('Step', time.value, temp_filter_process_index.value)
         # Select next action
         np_visits = mp_to_numpy(visits)
-        np_act_vals = mp_to_numpy(act_val)
+        np_value_per_processs = mp_to_numpy(ubc.value_per_process)
 
         print(list(np.round(np_visits, 2)))
-        print(list(np.round(np_act_vals, 3)))
+        print(list(np.round(np_value_per_processs, 3)))
 
         # Get the true UCB t value
-        ucb_timesteps = np.sum(np_visits) - (step_before_disable+1) * filtered_count.value
+        ucb_timesteps = np.sum(np_visits) - (env_config.permaban_threshold+1) * filtered_count.value
         # Compute UCB policy values (Q-value + uncertainty)
-        values = np_act_vals + np.sqrt((np.log(ucb_timesteps)) / np_visits)
+        values = np_value_per_processs + np.sqrt((np.log(ucb_timesteps)) / np_visits)
 
         # Mask permanently filtered agents
         for i in range(len(filtered_agents)):
-            if filtered_agents[i] == 1: act_val[i] = 0
+            if filtered_agents[i] == 1: ubc.value_per_process[i] = 0
 
         # Initial selection (visits 0) #TODO properly select at random
         if np.min(np_visits) < 1:
@@ -325,10 +360,11 @@ def train_agent_async(
         # Increment visit for selected action
         visits[act] += 1
         # Tell the multi processing barriers about the action
-        filter_act.value = act
+        temp_filter_process_index.value = act
 
         time.value += 1
-    barrier = mp.Barrier(processes, filter)
+    
+    all_updated_barrier = mp.Barrier(processes, when_all_processes_are_updated)
 
     def sync_updates():
         if filtered_count.value != num_agents_byz:
@@ -424,9 +460,9 @@ def train_agent_async(
                 eval_env=eval_env,
                 global_step_hooks=global_step_hooks,
                 logger=logger,
-                barrier=barrier,
+                all_updated_barrier=all_updated_barrier,
                 update_barrier=update_barrier,
-                filter_act=filter_act,
+                temp_filter_process_index=temp_filter_process_index,
                 filtered_agents=filtered_agents,
                 byzantine_agent_number=num_agents_byz
             )
@@ -454,7 +490,7 @@ def train_agent_async(
     return agent
 
 def mp_to_numpy(mp_arr):
-    buff = []
-    for i in range(len(mp_arr)):
-        buff.append(mp_arr[i])
-    return np.asarray(buff)
+    return np.asarray(list(mp_arr))
+
+def singleton(a_class):
+    return a_class()

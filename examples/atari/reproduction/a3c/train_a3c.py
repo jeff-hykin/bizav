@@ -84,7 +84,7 @@ def parse_args():
             "Monitor env. Videos and additional information are saved as output files."
         ),
     )
-    parser.add_argument("--ucb_disable", type=int, default=1)
+    parser.add_argument("--permaban_threshold", type=int, default=1)
     parser.add_argument("--malicious", type=float, default=0)
     parser.add_argument("--mal_type", type=str, default='sign')
     parser.add_argument("--rew_scale", type=float, default=1.0)
@@ -210,7 +210,7 @@ def train_a3c(args):
             global_step_hooks=[],
             save_best_so_far_agent=True,
             num_agents_byz=args.malicious,
-            step_before_disable=args.ucb_disable
+            permaban_threshold=args.permaban_threshold,
         )
     mean_reward = get_results(os.path.join(args.outdir, str(args.seed) + '.log'), gym.spec(args.env).reward_threshold)
     return mean_reward
