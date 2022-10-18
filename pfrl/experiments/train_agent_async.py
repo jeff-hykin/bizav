@@ -304,7 +304,8 @@ def train_agent_async(
             # Mask permanently filtered agents
             for process_index, process_is_filtered in enumerate(filtered_agents):
                 if process_is_filtered:
-                    ucb.value_per_process[process_index] = 0
+                    import math
+                    ucb.value_per_process[process_index] = math.inf
             
             np_visits = mp_to_numpy(visits)
             np_value_per_processs = mp_to_numpy(ucb.value_per_process)
