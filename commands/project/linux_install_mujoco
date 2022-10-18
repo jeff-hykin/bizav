@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+url="https://mujoco.org/download/mujoco210-linux-x86_64.tar.gz"
+download_target="$HOME/.mujoco/mujoco.zip"
+extraction_target="$(dirname "$download_target")/extraction"
+final_target="$(dirname "$download_target")/mujoco210"
+mkdir -p "$(dirname "$download_target")"
+rm -rf "$download_target" 2>/dev/null
+rm -f "$download_target" 2>/dev/null
+curl "$url" > "$download_target"
+rm -rf "$extraction_target" 2>/dev/null
+rm -f "$extraction_target" 2>/dev/null
+ls -l "$download_target"
+tar -xvf "$download_target" --directory="$(dirname "$download_target")"

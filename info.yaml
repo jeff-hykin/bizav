@@ -33,6 +33,7 @@
             env_config:
                 env_name: "HalfCheetah-v2"
                 number_of_timesteps: 100_000
+                learning_rate: 0.001       #FIXME: copied from lunar lander
                 beta: 0.00002              #FIXME: copied from lunar lander
                 t_max: 5                   #FIXME: copied from lunar lander
                 activation: 1              #FIXME: copied from lunar lander
