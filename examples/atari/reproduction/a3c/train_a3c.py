@@ -18,6 +18,18 @@ import logging
 import torch
 import gym
 
+# 
+# make warnings print a full stack trace
+# 
+import traceback
+import warnings
+import sys
+def warn_with_traceback(message, category, filename, lineno, file=None, line=None):
+    log = file if hasattr(file,'write') else sys.stderr
+    traceback.print_stack(file=log)
+    log.write(warnings.formatwarning(message, category, filename, lineno, line))
+warnings.showwarning = warn_with_traceback
+warnings.simplefilter("always")
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -109,7 +121,7 @@ def train_a3c(args):
         #     clip_rewards=not test,
         # )
         env = gym.make(args.env)
-        env.seed(int(env_seed))
+        # env.seed(int(env_seed)) # env.seed() deprecated
         env = pfrl.wrappers.ScaleReward(env, args.rew_scale)
         if args.monitor:
             env = pfrl.wrappers.Monitor(
@@ -204,14 +216,18 @@ def train_a3c(args):
     mean_reward = get_results(os.path.join(args.outdir, str(args.seed) + '.log'), gym.spec(args.env).reward_threshold)
     return mean_reward
 
-
+result_lookback_size = 50
 def get_results(log_file, thresh):
     rewards = []
     with open(log_file) as fp:
         for line in fp:
             if 'Saved' in line: continue
             rewards.append(float(line[22:].split(';')[2].strip()))
-    last_eps = np.mean(rewards[-50:])
+    
+    last_x_results = rewards[-result_lookback_size:]
+    if not last_x_results:
+        return 0
+    last_eps = np.mean(last_x_results)
     if last_eps >= thresh: return last_eps + np.mean(rewards)
     return last_eps
 
