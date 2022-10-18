@@ -480,7 +480,7 @@ def train_agent_async(
             import cProfile
 
             cProfile.runctx(
-                "f()", globals(), locals(), "profile-{}.out".format(os.getpid())
+                "f()", globals(), locals(), f"profile-{os.getpid()}.out"
             )
         else:
             f()
