@@ -1,0 +1,28 @@
+(project):
+    # a central place for filepaths
+    (path_to):
+        this_file: "./info.yaml"
+        hyperparams_folder: "./hyp_opt"
+
+    # git-ignored path (chooses profile)
+    (local_data): ./local_data.ignore.yaml
+
+    (profiles):
+        (default):
+            number_of_processes: 10
+            number_of_malicious_processes: 3
+            attack_method: 'sign' # 'sign', 'act', or 'noise'
+                                  # 'sign' being the reverse of a good agent (* 2.5)
+                                  # 'act' being from a random policy (very dumb agent, but gradient in correct direction)
+                                  # 'noise' being simply return noise instead of a gradient
+            random_seeds: [ 0 ]
+            
+        CARTPOLE:
+            env_name: CartPole-v1
+            number_of_timesteps: 100_000
+            learning_rate: 0.001
+            beta: 0.00002
+            t_max: 5
+            activation: 1
+            hidden_size: 64
+            ucb_disable: 500

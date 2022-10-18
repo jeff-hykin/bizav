@@ -1,6 +1,29 @@
 import os
+from quik_config import find_and_load
 
-mal_args = ' --processes 10 --malicious 3 --mal_type sign' #TODO check act impl and impl 3rd attack
-env_args = ' --env CartPole-v1 --steps 100000 --lr 1e-3 --beta 2e-5 --t-max 5 --activation 1 --hidden_size 64 --ucb_disable 500'
-for seed in range(0, 1):
-    os.system('python train_a3c.py --seed ' + str(seed) + mal_args + env_args)
+config = find_and_load(
+    "info.yaml",
+    cd_to_filepath=False,
+    parse_args=True,
+    defaults_for_local_data=["CARTPOLE"], # defaults to CARTPOLE profile
+).config
+
+
+mal_args = f''' 
+    --processes {config.number_of_processes}
+    --malicious {config.number_of_malicious_processes}
+    --mal_type {config.attack_method}
+''' #TODO check act impl and impl 3rd attack
+env_args =f'''
+    --env {config.env_name}
+    --steps {config.number_of_timesteps}
+    --lr {config.learning_rate}
+    --beta {config.beta}
+    --t-max {config.t_max}
+    --activation {config.activation}
+    --hidden_size {config.hidden_size}
+    --ucb_disable {config.ucb_disable}
+'''
+
+for seed in config.random_seeds:
+    os.system(('python ./main/train_a3c.py --seed ' + str(seed) + mal_args + env_args).replace("\n", " "))
