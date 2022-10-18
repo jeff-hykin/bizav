@@ -8,8 +8,7 @@ class AbnormalExitWarning(Warning):
 
     pass
 
-
-def run_async(n_process, run_func):
+def run_async(n_process, run_func, *args):
     """Run experiments asynchronously.
 
     Args:
@@ -20,24 +19,24 @@ def run_async(n_process, run_func):
     processes = []
 
     for process_idx in range(n_process):
-        processes.append(mp.Process(target=run_func, args=(process_idx,)))
+        processes.append(mp.Process(target=run_func, args=(process_idx, *args)))
 
-    for p in processes:
-        p.start()
+    for each_process in processes:
+        each_process.start()
 
-    for process_idx, p in enumerate(processes):
-        p.join()
-        if p.exitcode > 0:
+    for process_idx, each_process in enumerate(processes):
+        each_process.join()
+        if each_process.exitcode > 0:
             warnings.warn(
                 "Process #{} (pid={}) exited with nonzero status {}".format(
-                    process_idx, p.pid, p.exitcode
+                    process_idx, each_process.pid, each_process.exitcode
                 ),
                 category=AbnormalExitWarning,
             )
-        elif p.exitcode < 0:
+        elif each_process.exitcode < 0:
             warnings.warn(
                 "Process #{} (pid={}) was terminated by signal {}".format(
-                    process_idx, p.pid, -p.exitcode
+                    process_idx, each_process.pid, -each_process.exitcode
                 ),
                 category=AbnormalExitWarning,
             )
