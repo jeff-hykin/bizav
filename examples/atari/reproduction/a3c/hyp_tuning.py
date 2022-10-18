@@ -19,7 +19,8 @@ def objective(trial):
     
     fl_high = -1
     fl_low = -8
-
+    
+    # descretize the learning rate options
     lr_base = trial.suggest_int("lr_b", 1, 5)
     lr_base = lr_base + (lr_base-1)
     lr_exp = trial.suggest_int("lr_e", fl_low, fl_high)
