@@ -42,11 +42,11 @@ def train_loop(
     global_step_hooks=[],
     all_updated_barrier=None,
     update_barrier=None,
-    temp_filter_process_index=None,
+    process_index_to_temp_filter=None,
     filtered_agents=None,
     byzantine_agent_number=0
 ):
-
+    print("[starting train_loop()]")
     logger = logger or logging.getLogger(__name__)
 
     if eval_env is None:
@@ -85,7 +85,7 @@ def train_loop(
                 all_updated_barrier.wait()  # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
                 if byzantine_agent_number > 0:
                     # If not current UCB action and not permanently filtered, include agent's gradient in global model
-                    if temp_filter_process_index.value != process_idx and filtered_agents[process_idx] == 0: agent.add_update()
+                    if process_index_to_temp_filter.value != process_idx and filtered_agents[process_idx] == 0: agent.add_update()
                 else:
                     agent.add_update()
                 update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
@@ -248,10 +248,10 @@ def train_agent_async(
     counter                   = mp.Value("l", 0)
     episodes_counter          = mp.Value("l", 0)
     time                      = mp.Value("l", 0) # Number of total rollouts completed
-    temp_filter_process_index = mp.Value("i", 0) # UCB action 'broadcast'
+    process_index_to_temp_filter = mp.Value("i", 0) # UCB action 'broadcast'
     filtered_count            = mp.Value("l", 0) # Number of permanently filtered agents
 
-    act_val = mp.Array("d", config.number_of_processes) # Q-values
+    act_val           = mp.Array("d", config.number_of_processes) # Q-values
     visits            = mp.Array("d", config.number_of_processes) # number of visits
     agent_rewards     = mp.Array("d", config.number_of_processes) # Used for UCB with rewards
     filtered_agents   = mp.Array("l", config.number_of_processes) # Permanently filtered agent memory
@@ -275,12 +275,43 @@ def train_agent_async(
             ucb_reward = config.env_config.variance_scaling_factor * flipped_value
             return ucb_reward
         
+        def update_step(self, ucb_reward):
+            process_index    = process_index_to_temp_filter.value
+            old_q_value      = ubc.value_per_process[process_index]
+            number_of_visits = visits[process_index]
+            change_in_value  = (ucb_reward - old_q_value) / number_of_visits
+            # apply the new value
+            ubc.value_per_process[process_index] += change_in_value
+        
+        def choose_action(self):
+            # Mask permanently filtered agents
+            for process_index, process_is_filtered in enumerate(filtered_agents):
+                if process_is_filtered:
+                    ubc.value_per_process[process_index] = 0
+                
+            np_visits = mp_to_numpy(visits)
+            np_value_per_processs = mp_to_numpy(ubc.value_per_process)
+
+            print(list(np.round(np_visits, 2)))
+            print(list(np.round(np_value_per_processs, 3)))
+
+            # Get the true UCB t value
+            ucb_timesteps = np.sum(np_visits) - (env_config.permaban_threshold+1) * filtered_count.value
+            # Compute UCB policy values (Q-value + uncertainty)
+            values = np_value_per_processs + np.sqrt((np.log(ucb_timesteps)) / np_visits)
+
+            # Initial selection (visits 0) #TODO properly select at random
+            if np.min(np_visits) < 1:
+                return np.argmin(np_visits)
+            else:
+                return np.argmax(values)
+        
         @property
         def smart_gradient_of_agents(self):
             all_grads = []
             for process_index in range(config.number_of_processes):
                 my_grad = []
-                agent_is_temp_filtered      = temp_filter_process_index.value == process_index
+                agent_is_temp_filtered      = process_index_to_temp_filter.value == process_index
                 agent_is_permantly_filtered = filtered_agents[process_index] == 1
                 # If filtered, don't include in gradient mean
                 if agent_is_temp_filtered or agent_is_permantly_filtered:
@@ -295,13 +326,6 @@ def train_agent_async(
                 all_grads.append(np.asarray(my_grad))
             return np.vstack(all_grads)
         
-        def update_step(self, ucb_reward):
-            process_index    = temp_filter_process_index.value
-            old_q_value      = ubc.value_per_process[process_index]
-            number_of_visits = visits[process_index]
-            change_in_value  = (ucb_reward - old_q_value) / number_of_visits
-            # apply the new value
-            ubc.value_per_process[process_index] += change_in_value
         
     def when_all_processes_are_updated():
         print("[starting when_all_processes_are_updated()]")
@@ -316,51 +340,34 @@ def train_agent_async(
             
             # Update Q-values
             ucb.update_step(ucb_reward)
-
+            
+            # 
             # Permanently disable an agent
-            end_index = -1
+            # 
+            prev_amount_filtered = filtered_count.value
             for process_index, visit_count in enumerate(visits):
                 if visit_count >= env_config.permaban_threshold:
-                    end_index = process_index
+                    filtered_agents[process_index] = 1
+            filtered_count.value = sum(filtered_agents)
             
-            if end_index >= 0:
-                filtered_count.value += 1
-                visits[end_index] = env_config.permaban_threshold+1
-                filtered_agents[end_index] = 1
+            # 
+            # if someone was just recently permabaned
+            # 
+            if prev_amount_filtered < filtered_count.value:
                 # Reset non-disabled visits/Q-values
-                for i in range(len(visits)):
-                    if visits[i] < env_config.permaban_threshold:
-                        visits[i] = 0
-                        ubc.value_per_process[i] = 0
+                for process_index, visit_count in enumerate(visits):
+                    if visit_count < env_config.permaban_threshold:
+                        visits[process_index] = 0
+                        ubc.value_per_process[process_index] = 0
 
         # Debug output
-        print('Step', time.value, temp_filter_process_index.value)
+        print('Step', time.value, process_index_to_temp_filter.value)
         # Select next action
-        np_visits = mp_to_numpy(visits)
-        np_value_per_processs = mp_to_numpy(ubc.value_per_process)
+        process_index = ucb.choose_action()
 
-        print(list(np.round(np_visits, 2)))
-        print(list(np.round(np_value_per_processs, 3)))
-
-        # Get the true UCB t value
-        ucb_timesteps = np.sum(np_visits) - (env_config.permaban_threshold+1) * filtered_count.value
-        # Compute UCB policy values (Q-value + uncertainty)
-        values = np_value_per_processs + np.sqrt((np.log(ucb_timesteps)) / np_visits)
-
-        # Mask permanently filtered agents
-        for i in range(len(filtered_agents)):
-            if filtered_agents[i] == 1: ubc.value_per_process[i] = 0
-
-        # Initial selection (visits 0) #TODO properly select at random
-        if np.min(np_visits) < 1:
-            act = np.argmin(np_visits)
-        else:   # UCB argmax policy
-            act = np.argmax(values)
-
-        # Increment visit for selected action
-        visits[act] += 1
+        visits[process_index] += 1
         # Tell the multi processing barriers about the action
-        temp_filter_process_index.value = act
+        process_index_to_temp_filter.value = process_index
 
         time.value += 1
     
@@ -462,7 +469,7 @@ def train_agent_async(
                 logger=logger,
                 all_updated_barrier=all_updated_barrier,
                 update_barrier=update_barrier,
-                temp_filter_process_index=temp_filter_process_index,
+                process_index_to_temp_filter=process_index_to_temp_filter,
                 filtered_agents=filtered_agents,
                 byzantine_agent_number=num_agents_byz
             )
