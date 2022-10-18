@@ -24,6 +24,24 @@ def kill_all():
         os.killpg(pgid, signal.SIGTERM)
         sys.exit(1)
 
+def euclidean_dist(x, y):
+    """
+    Args:
+      x: pytorch Variable, with shape [m, d]
+      y: pytorch Variable, with shape [n, d]
+    Returns:
+      dist: pytorch Variable, with shape [m, n]
+    """
+    import torch
+    m, n = x.size(0), y.size(0)
+    xx = torch.pow(x, 2).sum(1, keepdim=True).expand(m, n)
+    yy = torch.pow(y, 2).sum(1, keepdim=True).expand(n, m).T
+    dist = xx + yy
+    dist.addmm_(1, -2, x, y.T)
+    dist[dist < 0] = 0
+    dist = dist.sqrt()
+    return dist
+
 def train_loop(
     process_idx,
     env,
@@ -253,12 +271,10 @@ def train_agent_async(
 
     act_val           = mp.Array("d", config.number_of_processes) # Q-values
     visits            = mp.Array("d", config.number_of_processes) # number of visits
-    agent_rewards     = mp.Array("d", config.number_of_processes) # Used for UCB with rewards
     filtered_agents   = mp.Array("l", config.number_of_processes) # Permanently filtered agent memory
     for process_index in range(config.number_of_processes):
         act_val[process_index] = 0
         visits[process_index]            = 0
-        agent_rewards[process_index]     = 0
         filtered_agents[process_index]   = 0
     
     # 
@@ -273,27 +289,27 @@ def train_agent_async(
             average_variance = np.mean(agent_variance)
             flipped_value = 1 - average_variance
             ucb_reward = config.env_config.variance_scaling_factor * flipped_value
+ 
             return ucb_reward
         
         def update_step(self, ucb_reward):
             process_index    = process_index_to_temp_filter.value
-            old_q_value      = ubc.value_per_process[process_index]
+            old_q_value      = ucb.value_per_process[process_index]
             number_of_visits = visits[process_index]
             change_in_value  = (ucb_reward - old_q_value) / number_of_visits
             # apply the new value
-            ubc.value_per_process[process_index] += change_in_value
+            ucb.value_per_process[process_index] += change_in_value
         
         def choose_action(self):
             # Mask permanently filtered agents
             for process_index, process_is_filtered in enumerate(filtered_agents):
                 if process_is_filtered:
-                    ubc.value_per_process[process_index] = 0
+                    ucb.value_per_process[process_index] = 0
                 
             np_visits = mp_to_numpy(visits)
-            np_value_per_processs = mp_to_numpy(ubc.value_per_process)
+            np_value_per_processs = mp_to_numpy(ucb.value_per_process)
 
-            print(list(np.round(np_visits, 2)))
-            print(list(np.round(np_value_per_processs, 3)))
+            print("visits", list(np.round(np_visits, 2)), "q_vals:", list(np.round(np_value_per_processs, 3)))
 
             # Get the true UCB t value
             ucb_timesteps = np.sum(np_visits) - (env_config.permaban_threshold+1) * filtered_count.value
@@ -358,7 +374,7 @@ def train_agent_async(
                 for process_index, visit_count in enumerate(visits):
                     if visit_count < env_config.permaban_threshold:
                         visits[process_index] = 0
-                        ubc.value_per_process[process_index] = 0
+                        ucb.value_per_process[process_index] = 0
 
         # Debug output
         print('Step', time.value, process_index_to_temp_filter.value)

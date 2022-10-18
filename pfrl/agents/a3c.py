@@ -238,7 +238,6 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
         total_rew = 0
         for i in reversed(range(self.t_start, self.t)):
             total_rew += self.past_rewards[i]
-        self.agent_rewards[self.process_idx] += total_rew
 
     def add_update(self):
         # Copy the gradients to the globally shared model
