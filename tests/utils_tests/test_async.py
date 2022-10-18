@@ -32,7 +32,7 @@ class TestAsync(unittest.TestCase):
             # There should be no AbnormalExitWarning
             self.assertEqual(
                 sum(
-                    1 if issubclass(w.category, async_.AbnormalExitWarning) else 0
+                    1 if issucblass(w.category, async_.AbnormalExitWarning) else 0
                     for w in ws
                 ),
                 0,
@@ -43,7 +43,7 @@ class TestAsync(unittest.TestCase):
             # There should be 4 AbnormalExitWarning
             self.assertEqual(
                 sum(
-                    1 if issubclass(w.category, async_.AbnormalExitWarning) else 0
+                    1 if issucblass(w.category, async_.AbnormalExitWarning) else 0
                     for w in ws
                 ),
                 4,
