@@ -43,10 +43,14 @@ def objective(trial):
     return np.round(train_a3c.train_a3c(args), 2)
 
 
-optuna.logging.disable_default_handler()
-sh = logging.StreamHandler(sys.stdout)
-sh.setFormatter(optuna.logging.create_default_formatter())
-optuna.logging.get_logger("optuna").addHandler(sh)
+if __name__ == "__main__":
+    import torch
+    torch.multiprocessing.freeze_support()
+    
+    optuna.logging.disable_default_handler()
+    sh = logging.StreamHandler(sys.stdout)
+    sh.setFormatter(optuna.logging.create_default_formatter())
+    optuna.logging.get_logger("optuna").addHandler(sh)
 
-study = optuna.create_study(direction="maximize", sampler=optuna.samplers.TPESampler(multivariate=True))
-study.optimize(objective, gc_after_trial=True)
+    study = optuna.create_study(direction="maximize", sampler=optuna.samplers.TPESampler(multivariate=True))
+    study.optimize(objective, gc_after_trial=True)

@@ -93,7 +93,7 @@ def parse_args():
     args = parser.parse_args()
     return args
 
-
+one_above_max_seed = 2**31
 def train_a3c(args):
 
     # Set a random seed used in PFRL.
@@ -105,7 +105,7 @@ def train_a3c(args):
     # If seed=0 and processes=4, subprocess seeds are [0, 1, 2, 3].
     # If seed=1 and processes=4, subprocess seeds are [4, 5, 6, 7].
     process_seeds = np.arange(args.processes) + args.seed * args.processes
-    assert process_seeds.max() < 2**31
+    assert process_seeds.max() < one_above_max_seed
 
     args.outdir = experiments.prepare_output_dir(args, args.outdir)
     # print("Output files are saved in {}".format(args.outdir))
@@ -114,14 +114,13 @@ def train_a3c(args):
     def make_env(process_idx, test):
         # Use different random seeds for train and test envs
         process_seed = process_seeds[process_idx]
-        env_seed = 2**31 - 1 - process_seed if test else process_seed
+        env_seed = one_above_max_seed - 1 - process_seed if test else process_seed
         # env = atari_wrappers.wrap_deepmind(
         #     atari_wrappers.make_atari(args.env, max_frames=args.max_frames),
         #     episode_life=not test,
         #     clip_rewards=not test,
         # )
         env = gym.make(args.env)
-        # env.seed(int(env_seed)) # env.seed() deprecated
         env = pfrl.wrappers.ScaleReward(env, args.rew_scale)
         if args.monitor:
             env = pfrl.wrappers.Monitor(
