@@ -434,6 +434,7 @@ def train_agent_async(
 
     global run_func
     def run_func(process_idx):
+        print("[starting run_func()]")
         random_seed.set_random_seed(random_seeds[process_idx])
 
         env = make_env(process_idx, test=False)
@@ -473,7 +474,8 @@ def train_agent_async(
                 filtered_agents=filtered_agents,
                 byzantine_agent_number=num_agents_byz
             )
-
+        
+        print(f'''profile = {profile}''')
         if profile:
             import cProfile
 
@@ -486,8 +488,10 @@ def train_agent_async(
         env.close()
         if eval_env is not env:
             eval_env.close()
-
+    
+    print("[about to call async_.run_async()]")
     async_.run_async(processes, run_func)
+    print("[done calling async_.run_async()]")
 
     stop_event.set()
 
