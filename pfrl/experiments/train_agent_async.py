@@ -285,11 +285,11 @@ def train_agent_async(
         value_per_process = act_val
         
         def reward_func(self, agent_gradients):
-            agent_variance = np.var(agent_gradients, axis=-1)
-            average_variance = np.mean(agent_variance)
-            flipped_value = 1 - average_variance
+            agent_gradients = torch.tensor(agent_gradients)
+            # agent_variance = np.var(agent_gradients, axis=-1)
+            average_variance = euclidean_dist(agent_gradients, agent_gradients).mean()
+            flipped_value = -average_variance
             ucb_reward = config.env_config.variance_scaling_factor * flipped_value
- 
             return ucb_reward
         
         def update_step(self, ucb_reward):
