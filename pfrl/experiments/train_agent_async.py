@@ -305,17 +305,18 @@ def train_agent_async(
             for process_index, process_is_filtered in enumerate(filtered_agents):
                 if process_is_filtered:
                     ucb.value_per_process[process_index] = 0
-                
+            
             np_visits = mp_to_numpy(visits)
             np_value_per_processs = mp_to_numpy(ucb.value_per_process)
-
+            
+            print(f'''np_value_per_processs = {np_value_per_processs}''')
             print("visits", list(np.round(np_visits, 2)), "q_vals:", list(np.round(np_value_per_processs, 3)))
-
+            
             # Get the true UCB t value
             ucb_timesteps = np.sum(np_visits) - (env_config.permaban_threshold+1) * filtered_count.value
             # Compute UCB policy values (Q-value + uncertainty)
             values = np_value_per_processs + np.sqrt((np.log(ucb_timesteps)) / np_visits)
-
+            
             # Initial selection (visits 0) #TODO properly select at random
             if np.min(np_visits) < 1:
                 return np.argmin(np_visits)
