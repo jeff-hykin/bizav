@@ -6,7 +6,7 @@ import numpy as np
 import optuna
 
 import train_a3c
-
+from main.config import config, env_config
 
 f = open(os.devnull, 'w')
 sys.stderr = f
@@ -14,9 +14,9 @@ sys.stderr = f
 
 def objective(trial):
     args = train_a3c.parse_args()
-    args.env = "LunarLander-v2"
-    args.steps = 100000
-
+    args.env = env_config.env_name
+    args.steps = env_config.number_of_timesteps
+    
     fl_high = -1
     fl_low = -8
 
