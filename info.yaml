@@ -28,7 +28,7 @@
                 activation: 1
                 hidden_size: 64
                 permaban_threshold: 500
-                variance_scaling_factor: 100
+                variance_scaling_factor: 1
         LUNAR_LANDER:
             env_config:
                 env_name: "LunarLander-v2"
