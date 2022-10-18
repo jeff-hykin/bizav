@@ -3,6 +3,7 @@
     (path_to):
         this_file: "./info.yaml"
         hyperparams_folder: "./hyp_opt"
+        ac3_start: ./examples/atari/reproduction/a3c/train_a3c.py
 
     # git-ignored path (chooses profile)
     (local_data): ./local_data.ignore.yaml

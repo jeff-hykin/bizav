@@ -1,12 +1,13 @@
 import os
 from quik_config import find_and_load
 
-config = find_and_load(
+info = find_and_load(
     "info.yaml",
-    cd_to_filepath=False,
+    cd_to_filepath=True,
     parse_args=True,
     defaults_for_local_data=["CARTPOLE"], # defaults to CARTPOLE profile
-).config
+)
+config = info.config
 
 
 mal_args = f''' 
@@ -26,4 +27,4 @@ env_args =f'''
 '''
 
 for seed in config.random_seeds:
-    os.system(('python ./main/train_a3c.py --seed ' + str(seed) + mal_args + env_args).replace("\n", " "))
+    os.system((f'python {info.absolute_path_to.ac3_start} --seed ' + str(seed) + mal_args + env_args).replace("\n", " "))
