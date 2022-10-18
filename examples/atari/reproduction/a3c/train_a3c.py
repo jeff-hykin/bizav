@@ -95,7 +95,7 @@ def parse_args():
 
 one_above_max_seed = 2**31
 def train_a3c(args):
-
+    print("[starting train_a3c()]")
     # Set a random seed used in PFRL.
     # If you use more than one processes, the results will be no longer
     # deterministic even with the same random seed.

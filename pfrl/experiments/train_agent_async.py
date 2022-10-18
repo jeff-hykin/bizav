@@ -12,6 +12,7 @@ from torch import nn
 from pfrl.experiments.evaluator import AsyncEvaluator
 from pfrl.utils import async_, random_seed
 
+from main.config import config, info
 
 def kill_all():
     if os.name == "nt":
@@ -232,30 +233,31 @@ def train_agent_async(
     Returns:
         Trained agent.
     """
+    print("[starting train_agent_async()]")
     logger = logger or logging.getLogger(__name__)
 
     for hook in evaluation_hooks:
         if not hook.support_train_agent_async:
             raise ValueError("{} does not support train_agent_async().".format(hook))
-
+    
     # Prevent numpy from using multiple threads
     os.environ["OMP_NUM_THREADS"] = "1"
 
-    counter = mp.Value("l", 0)
+    counter          = mp.Value("l", 0)
     episodes_counter = mp.Value("l", 0)
+    time             = mp.Value("l", 0) # Number of total rollouts completed
+    filter_act       = mp.Value("i", 0) # UCB action 'broadcast'
+    filtered_count   = mp.Value("l", 0) # Number of permanently filtered agents
 
-    act_val = mp.Array("d", 10)     # Q-values
-    visits = mp.Array("d", 10)      # number of visits
-    agent_rewards = mp.Array("d", 10)   # Used for UCB with rewards
-    filtered_agents = mp.Array("l", 10)     # Permanently filtered agent memory
-    for i in range(len(act_val)): act_val[i] = 0
-    for i in range(len(visits)): visits[i] = 0
-    for i in range(len(agent_rewards)): agent_rewards[i] = 0
-    for i in range(len(filtered_agents)): filtered_agents[i] = 0
-
-    time = mp.Value("l", 0)     # Number of total rollouts completed
-    filter_act = mp.Value("i", 0)   # UCB action 'broadcast'
-    filtered_count = mp.Value("l", 0)   # Number of permanently filtered agents
+    act_val         = mp.Array("d", config.number_of_processes) # Q-values
+    visits          = mp.Array("d", config.number_of_processes) # number of visits
+    agent_rewards   = mp.Array("d", config.number_of_processes) # Used for UCB with rewards
+    filtered_agents = mp.Array("l", config.number_of_processes) # Permanently filtered agent memory
+    for process_index in range(config.number_of_processes):
+        act_val[process_index]         = 0
+        visits[process_index]          = 0
+        agent_rewards[process_index]   = 0
+        filtered_agents[process_index] = 0
 
     def filter():
         if filtered_count.value == num_agents_byz: return
@@ -277,7 +279,7 @@ def train_agent_async(
                         my_grad.append(grad_np[j])
                 all_grads.append(np.asarray(my_grad))
             all_grads = np.vstack(all_grads)
-            r = (1-np.mean(np.var(all_grads, axis=-1)))*100
+            r = (1-np.mean(np.var(all_grads, axis=-1)))*config.env_config.variance_scaling_factor
 
             # Update Q-values
             act_val[filter_act.value] += (r-act_val[filter_act.value]) / visits[filter_act.value]

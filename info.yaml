@@ -19,11 +19,13 @@
             random_seeds: [ 0 ]
             
         CARTPOLE:
-            env_name: CartPole-v1
-            number_of_timesteps: 100_000
-            learning_rate: 0.001
-            beta: 0.00002
-            t_max: 5
-            activation: 1
-            hidden_size: 64
-            ucb_disable: 500
+            env_config:
+                env_name: CartPole-v1
+                number_of_timesteps: 100_000
+                learning_rate: 0.001
+                beta: 0.00002
+                t_max: 5
+                activation: 1
+                hidden_size: 64
+                ucb_disable: 500
+                variance_scaling_factor: 100
