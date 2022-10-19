@@ -18,18 +18,30 @@ import logging
 import torch
 import gym
 
+from main.config import config
+
 # 
 # make warnings print a full stack trace
 # 
-# import traceback
-# import warnings
-# import sys
-# def warn_with_traceback(message, category, filename, lineno, file=None, line=None):
-#     log = file if hasattr(file,'write') else sys.stderr
-#     traceback.print_stack(file=log)
-#     log.write(warnings.formatwarning(message, category, filename, lineno, line))
-# warnings.showwarning = warn_with_traceback
-# warnings.simplefilter("always")
+
+disable_warinings = True
+if disable_warinings:
+    # dont show warnings at all
+    import sys
+    if not sys.warnoptions:
+        import warnings
+        warnings.simplefilter("ignore")
+else:
+    # show traceback of each warning
+    import traceback
+    import warnings
+    import sys
+    def warn_with_traceback(message, category, filename, lineno, file=None, line=None):
+        log = file if hasattr(file,'write') else sys.stderr
+        traceback.print_stack(file=log)
+        log.write(warnings.formatwarning(message, category, filename, lineno, line))
+    warnings.showwarning = warn_with_traceback
+    warnings.simplefilter("always")
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -95,7 +107,7 @@ def parse_args():
 
 one_above_max_seed = 2**31
 def train_a3c(args):
-    print("[starting train_a3c()]")
+    config.verbose and print("[starting train_a3c()]")
     # Set a random seed used in PFRL.
     # If you use more than one processes, the results will be no longer
     # deterministic even with the same random seed.

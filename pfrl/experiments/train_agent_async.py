@@ -64,7 +64,7 @@ def train_loop(
     filtered_agents=None,
     byzantine_agent_number=0
 ):
-    print("[starting train_loop()]")
+    config.verbose and print("[starting train_loop()]")
     logger = logger or logging.getLogger(__name__)
 
     if eval_env is None:
@@ -250,7 +250,7 @@ def train_agent_async(
     Returns:
         Trained agent.
     """
-    print("[starting train_agent_async()]")
+    config.verbose and print("[starting train_agent_async()]")
     logger = logger or logging.getLogger(__name__)
 
     for hook in evaluation_hooks:
@@ -310,7 +310,7 @@ def train_agent_async(
             np_visits = mp_to_numpy(visits)
             np_value_per_processs = mp_to_numpy(ucb.value_per_process)
             
-            print('Step', time.value, process_index_to_temp_filter.value, "visits", list(np.round(np_visits, 2)), "q_vals:", list(np.round(np_value_per_processs, 3)), end="\r")
+            config.verbose and print('Step', time.value, process_index_to_temp_filter.value, "visits", list(np.round(np_visits, 2)), "q_vals:", list(np.round(np_value_per_processs, 3)), end="\r")
             
             # Get the true UCB t value
             ucb_timesteps = np.sum(np_visits) - (env_config.permaban_threshold+1) * filtered_count.value
@@ -377,8 +377,6 @@ def train_agent_async(
                         visits[process_index] = 0
                         ucb.value_per_process[process_index] = 0
 
-        # Debug output
-        # print('Step', time.value, process_index_to_temp_filter.value)
         # Select next action
         process_index = ucb.choose_action()
 
@@ -395,7 +393,6 @@ def train_agent_async(
             num_updates = processes - (filtered_count.value + 1)
         else:
             num_updates = processes - filtered_count.value
-        #print('Sync updates', num_updates)
         agent.average_updates(num_updates)
         agent.optimizer.step()
     update_barrier = mp.Barrier(processes, sync_updates)
@@ -451,7 +448,7 @@ def train_agent_async(
 
     global run_func
     def run_func(process_idx):
-        print("[starting run_func()]")
+        config.verbose and print("[starting run_func()]")
         random_seed.set_random_seed(random_seeds[process_idx])
 
         env = make_env(process_idx, test=False)
@@ -505,9 +502,9 @@ def train_agent_async(
         if eval_env is not env:
             eval_env.close()
     
-    print("[about to call async_.run_async()]")
+    config.verbose and print("[about to call async_.run_async()]")
     async_.run_async(processes, run_func)
-    print("[done calling async_.run_async()]")
+    config.verbose and print("[done calling async_.run_async()]")
 
     stop_event.set()
 
