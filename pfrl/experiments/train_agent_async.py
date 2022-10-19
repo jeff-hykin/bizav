@@ -307,11 +307,14 @@ def train_agent_async(
                 return ucb_reward
             
             if use_softmax_ban:
-                previously_chosen_indicies = list(set(temp_ban_indicies))
+                previously_temp_banned_indicies = list(set(temp_ban_indicies))
                 reward_for_each_temp_banned_index = []
-                for process_index_being_reviewed in previously_chosen_indicies:
+                for process_index_being_reviewed in previously_temp_banned_indicies:
                     all_other_gradients = []
                     for process_index, each_gradient in enumerate(all_grads):
+                        # TODO: consider this alternative (could eliminate one for loop)
+                        # if process_index in previously_temp_banned_indicies:
+                        #     continue
                         if process_index != process_index_being_reviewed:
                             all_other_gradients.append(each_gradient)
                     
