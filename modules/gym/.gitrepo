@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/openai/gym.git
+	branch = 0.22.0
+	commit = 95063a08943e1f587c58be7435d94f81ccac8fd9
+	parent = 109327897bb275ba39e32693023dd85f235030f5
+	method = merge
+	cmdver = 0.4.1
