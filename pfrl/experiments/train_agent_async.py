@@ -310,8 +310,7 @@ def train_agent_async(
             np_visits = mp_to_numpy(visits)
             np_value_per_processs = mp_to_numpy(ucb.value_per_process)
             
-            print(f'''np_value_per_processs = {np_value_per_processs}''')
-            print("visits", list(np.round(np_visits, 2)), "q_vals:", list(np.round(np_value_per_processs, 3)))
+            print("visits", list(np.round(np_visits, 2)), "q_vals:", list(np.round(np_value_per_processs, 3)), end="\r")
             
             # Get the true UCB t value
             ucb_timesteps = np.sum(np_visits) - (env_config.permaban_threshold+1) * filtered_count.value

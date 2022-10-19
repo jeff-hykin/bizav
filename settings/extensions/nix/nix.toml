@@ -44,21 +44,6 @@
 # 
 
 [[packages]]
-load = [ "python38",]
-
-[[packages]]
-load = [ "python38Packages", "setuptools",]
-
-[[packages]]
-load = [ "python38Packages", "pip",]
-
-[[packages]]
-load = [ "python38Packages", "virtualenv",]
-
-[[packages]]
-load = [ "python38Packages", "wheel",]
-
-[[packages]]
 load = [ "swig",] # lunar lander
 
 [[packages]]
@@ -73,6 +58,104 @@ load = [ "libffi",] # lunar lander
 [[packages]]
 load = [ "mesa",] # mujoco
 
+[[packages]]
+load = [ "SDL2",]
+
+ # for carla
+[[packages]]
+load = [ "xdg-user-dirs",]
+onlyIf = [ [ "stdenv", "isLinux",],]
+
+# for carla
+[[packages]]
+load = [ "xdg-utils",]
+onlyIf = [ [ "stdenv", "isLinux",],]
+
+# for carla
+[[packages]]
+load = [ "xorg", "xhost",]
+onlyIf = [ [ "stdenv", "isLinux",],]
+
+[[packages]]
+load = [ "freetype",]
+
+[[packages]]
+load = [ "swig",]
+
+[[packages]]
+load = [ "mpi",] # for the spinningup AI repo 
+
+[[packages]]
+load = [ "curl",]
+
+[[packages]]
+load = [ "cmake",]
+
+[[packages]]
+load = [ "python38",]
+from = "c82b46413401efa740a0b994f52e9903a4f6dcd5"
+
+[[packages]]
+load = [ "python38Packages", "black",]
+from = "c82b46413401efa740a0b994f52e9903a4f6dcd5"
+
+[[packages]]
+load = [ "python38Packages", "mesa",]
+from = "c82b46413401efa740a0b994f52e9903a4f6dcd5"
+
+[[packages]]
+load = [ "python38Packages", "setuptools",]
+from = "c82b46413401efa740a0b994f52e9903a4f6dcd5"
+
+[[packages]]
+load = [ "python38Packages", "pybullet",]
+from = "c82b46413401efa740a0b994f52e9903a4f6dcd5"
+onlyIf = [ [ "stdenv", "isLinux",],]
+
+# [[packages]]
+# load = [ "python38Packages", "pytorchWithCuda",]
+# from = "c82b46413401efa740a0b994f52e9903a4f6dcd5"
+# onlyIf = [ [ "stdenv", "isLinux",],]
+
+[[packages]]
+load = [ "python38Packages", "pyopengl",]
+from = "c82b46413401efa740a0b994f52e9903a4f6dcd5"
+
+# 
+# Nvidia
+# 
+# [[packages]]
+# load = [ "nixGLNvidia",]
+# onlyIf = [ [ "stdenv", "isLinux",],]
+# # see https://discourse.nixos.org/t/opencv-with-cuda-in-nix-shell/7358/5
+# from = { fetchGit = { url = "https://github.com/guibou/nixGL", rev = "7d6bc1b21316bab6cf4a6520c2639a11c25a220e" }, }
+
+# 
+# opencv
+# 
+
+# [[packages]]
+# onlyIf = [ [ "stdenv", "isLinux",],]
+# load = [ "python38Packages", "opencv4",]
+# override = { enableGtk3 = true, enableFfmpeg = true, enableCuda = true, enableUnfree = true, }
+# see https://discourse.nixos.org/t/opencv-with-cuda-in-nix-shell/7358/5
+# from = { fetchGit = { url = "https://github.com/NixOS/nixpkgs/", rev = "c82b46413401efa740a0b994f52e9903a4f6dcd5" }, options = { config = { allowUnfree = true } }, }
+
+[[packages]]
+load = [ "python38Packages", "pip",]
+from = "c82b46413401efa740a0b994f52e9903a4f6dcd5"
+
+[[packages]]
+load = [ "python38Packages", "virtualenv",]
+from = "c82b46413401efa740a0b994f52e9903a4f6dcd5"
+
+[[packages]]
+load = [ "python38Packages", "wheel",]
+from = "c82b46413401efa740a0b994f52e9903a4f6dcd5"
+
+[[packages]]
+load = [ "python38Packages", "shap",]
+from = "3f50332bc4913a56ad216ca01f5d0bd24277a6b2"
 
 # 
 # for .so errors on linux with opencv+ffmpeg
@@ -82,7 +165,7 @@ load = [ "mesa",] # mujoco
 onlyIf = [ [ "stdenv", "isLinux",],]
 load = [ "glib",]
 asNativeBuildInput = true
-from = "528d35bec0cb976a06cc0e8487c6e5136400b16b"
+from = "c82b46413401efa740a0b994f52e9903a4f6dcd5"
 
 [[packages]]
 onlyIf = [ [ "stdenv", "isLinux",],]
@@ -111,11 +194,6 @@ onlyIf = [ [ "stdenv", "isLinux",],]
 
 [[packages]]
 load = [ "libconfig",]
-asNativeBuildInput = true
-onlyIf = [ [ "stdenv", "isLinux",],]
-
-[[packages]]
-load = [ "cmake",]
 asNativeBuildInput = true
 onlyIf = [ [ "stdenv", "isLinux",],]
 

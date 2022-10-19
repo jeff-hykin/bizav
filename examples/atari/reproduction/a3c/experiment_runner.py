@@ -1,6 +1,8 @@
 import os
 from main.config import config, info
-import pybullet  # register PyBullet enviroments with open ai gym
+import gym
+import pybulletgym  # register PyBullet enviroments with open ai gym
+import pybulletgym.envs  # register PyBullet enviroments with open ai gym
 
 mal_args = f''' 
     --processes {config.number_of_processes}
