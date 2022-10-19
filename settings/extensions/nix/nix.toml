@@ -59,16 +59,19 @@ load = [ "python38Packages", "virtualenv",]
 load = [ "python38Packages", "wheel",]
 
 [[packages]]
-load = [ "swig",]
+load = [ "swig",] # lunar lander
 
 [[packages]]
-load = [ "box2d",]
+load = [ "box2d",] # lunar lander
 
 [[packages]]
-load = [ "pkg-config",]
+load = [ "pkg-config",] # lunar lander
 
 [[packages]]
-load = [ "libffi",]
+load = [ "libffi",] # lunar lander
+
+[[packages]]
+load = [ "mesa",] # mujoco
 
 
 # 
