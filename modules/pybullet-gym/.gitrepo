@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/benelot/pybullet-gym.git
+	branch = master
+	commit = bc68201c8101c4e30dde95f425647a0709ee2f29
+	parent = 8c112d17194b6dd721c52b8445ca6c6c3354be5d
+	method = merge
+	cmdver = 0.4.1
