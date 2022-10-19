@@ -18,6 +18,9 @@
                                   # 'act' being from a random policy (very dumb agent, but gradient in correct direction)
                                   # 'noise' being simply return noise instead of a gradient
             random_seeds: [ 0 ]
+            early_stopping:
+                min_number_of_episodes: 30
+                thresholds: {}
             
         CARTPOLE:
             env_config:
@@ -42,6 +45,12 @@
                 hidden_size: 64            #FIXME: copied from lunar lander
                 permaban_threshold: 500    #FIXME: copied from lunar lander
                 variance_scaling_factor: 1 #FIXME: copied from lunar lander
+            early_stopping:
+                min_number_of_episodes: 30
+                thresholds:
+                    # timestep: min_average_episode_value
+                    100_000: 0
+                
         LUNAR_LANDER:
             env_config:
                 env_name: "LunarLander-v2"

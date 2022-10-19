@@ -48,10 +48,11 @@ def train_loop(
     agent,
     steps,
     outdir,
-    counter,
+    number_of_episodes,
     episodes_counter,
     stop_event,
     exception_event,
+    median_episode_rewards,
     max_episode_len=None,
     evaluator=None,
     eval_env=None,
@@ -62,7 +63,7 @@ def train_loop(
     update_barrier=None,
     process_index_to_temp_filter=None,
     filtered_agents=None,
-    byzantine_agent_number=0
+    byzantine_agent_number=0,
 ):
     config.verbose and print("[starting train_loop()]")
     logger = logger or logging.getLogger(__name__)
@@ -88,7 +89,7 @@ def train_loop(
         successful = False
 
         while True:
-
+            
             # a_t
             a = agent.act(obs)
             # o_{t+1}, r_{t+1}
@@ -109,10 +110,11 @@ def train_loop(
                 update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
                 agent.after_update()    # Each agent will download the global model after the optimizer steps
 
-            if done or reset:# Get and increment the global counter
-                with counter.get_lock():
-                    counter.value += 1
-                    global_t = counter.value
+            if done or reset:# Get and increment the global number_of_episodes
+                with number_of_episodes.get_lock():
+                    median_episode_rewards[process_idx] = agent.median_reward_per_episode
+                    number_of_episodes.value += 1
+                    global_t = number_of_episodes.value
                 for hook in global_step_hooks:
                     hook(env, agent, global_t)
 
@@ -156,7 +158,7 @@ def train_loop(
                 logger.exception("An exception detected, exiting")
                 save_model()
                 kill_all()
-
+        
         update_barrier.abort()
         all_updated_barrier.abort()
 
@@ -182,6 +184,7 @@ def train_agent_async(
     outdir,
     processes,
     make_env,
+    median_episode_rewards,
     profile=False,
     steps=8 * 10**7,
     eval_interval=10**6,
@@ -203,7 +206,7 @@ def train_agent_async(
     exception_event=None,
     use_shared_memory=True,
     num_agents_byz=0,
-    permaban_threshold=1
+    permaban_threshold=1,
 ):
     """Train agent asynchronously using multiprocessing.
 
@@ -263,15 +266,15 @@ def train_agent_async(
     # 
     # init shared values
     # 
-    counter                      = mp.Value("l", 0)
+    number_of_episodes           = mp.Value("l", 0)
     episodes_counter             = mp.Value("l", 0)
-    time                         = mp.Value("l", 0) # Number of total rollouts completed
+    number_of_updates            = mp.Value("l", 0) # Number of total rollouts completed
     process_index_to_temp_filter = mp.Value("i", 0) # UCB action 'broadcast'
     filtered_count               = mp.Value("l", 0) # Number of permanently filtered agents
 
-    act_val           = mp.Array("d", config.number_of_processes) # Q-values
-    visits            = mp.Array("d", config.number_of_processes) # number of visits
-    filtered_agents   = mp.Array("l", config.number_of_processes) # Permanently filtered agent memory
+    act_val                = mp.Array("d", config.number_of_processes) # Q-values
+    visits                 = mp.Array("d", config.number_of_processes) # number of visits
+    filtered_agents        = mp.Array("l", config.number_of_processes) # Permanently filtered agent memory
     for process_index in range(config.number_of_processes):
         act_val[process_index] = 0
         visits[process_index]            = 0
@@ -310,7 +313,7 @@ def train_agent_async(
             np_visits = mp_to_numpy(visits)
             np_value_per_processs = mp_to_numpy(ucb.value_per_process)
             
-            config.verbose and print('Step', time.value, process_index_to_temp_filter.value, "visits", list(np.round(np_visits, 2)), "q_vals:", list(np.round(np_value_per_processs, 3)), end="\r")
+            config.verbose and print('Step', number_of_updates.value, process_index_to_temp_filter.value, "visits", list(np.round(np_visits, 2)), "q_vals:", list(np.round(np_value_per_processs, 3)), end="\r")
             
             # Get the true UCB t value
             ucb_timesteps = np.sum(np_visits) - (env_config.permaban_threshold+1) * filtered_count.value
@@ -345,13 +348,29 @@ def train_agent_async(
         
         
     def when_all_processes_are_updated():
+        total_number_of_episodes = episodes_counter.value / config.number_of_processes
+        if total_number_of_episodes > config.early_stopping.min_number_of_episodes:
+            # reset the rewards of filtered-out agents
+            for process_index in range(config.number_of_processes):
+                if filtered_agents[process_index]:
+                    median_episode_rewards[process_index] = 0
+            per_episode_reward = sum(rewards_of_unfiltered_processes)/len(rewards_of_unfiltered_processes)
+            print(f'''total_number_of_episodes = {total_number_of_episodes}, per_episode_reward = {per_episode_reward} ''')
+            for each_step, each_min_value in config.early_stopping.thresholds:
+                # if meets the increment-based threshold
+                if total_number_of_episodes > each_step:
+                    # enforce that it return the minimum 
+                    if per_episode_reward < each_min_value:
+                        print(f"Hit early stopping because {per_episode_reward} < {each_min_value}")
+                        stop_event.set()
+        
         # print("[starting when_all_processes_are_updated()]")
         all_malicious_actors_found = filtered_count.value == num_agents_byz
         if all_malicious_actors_found:
             return
 
         # Update values
-        if time.value != 0:
+        if number_of_updates.value != 0:
             # Compute gradient mean
             ucb_reward = ucb.reward_func(ucb.smart_gradient_of_agents)
             
@@ -383,8 +402,8 @@ def train_agent_async(
         visits[process_index] += 1
         # Tell the multi processing barriers about the action
         process_index_to_temp_filter.value = process_index
-
-        time.value += 1
+        
+        number_of_updates.value += 1
     
     all_updated_barrier = mp.Barrier(processes, when_all_processes_are_updated)
 
@@ -468,7 +487,7 @@ def train_agent_async(
         def f():
             train_loop(
                 process_idx=process_idx,
-                counter=counter,
+                number_of_episodes=number_of_episodes,
                 episodes_counter=episodes_counter,
                 agent=local_agent,
                 env=env,
@@ -486,7 +505,8 @@ def train_agent_async(
                 update_barrier=update_barrier,
                 process_index_to_temp_filter=process_index_to_temp_filter,
                 filtered_agents=filtered_agents,
-                byzantine_agent_number=num_agents_byz
+                byzantine_agent_number=num_agents_byz,
+                median_episode_rewards=median_episode_rewards,
             )
         
         if profile:
@@ -505,7 +525,11 @@ def train_agent_async(
     config.verbose and print("[about to call async_.run_async()]")
     async_.run_async(processes, run_func)
     config.verbose and print("[done calling async_.run_async()]")
-
+    
+    # make sure the median_episode_rewards is valid before stopping
+    for process_index in range(config.number_of_processes):
+        if filtered_agents[process_index]:
+            median_episode_rewards[process_index] = 0
     stop_event.set()
 
     if evaluator is not None and use_tensorboard:

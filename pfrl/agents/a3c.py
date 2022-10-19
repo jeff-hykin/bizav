@@ -111,7 +111,9 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
         self.past_action = {}
         self.past_rewards = {}
         self.past_recurrent_state = {}
+        self.running_reward_for_active_episode = 0
         self.average_reward = 0
+        self.reward_per_episode = []
 
         # Recurrent states of the model
         self.train_recurrent_states = None
@@ -123,6 +125,15 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
 
         self.updated = False
 
+
+    @property
+    def median_reward_per_episode(self):
+        if self.reward_per_episode:
+            from statistics import median
+            return median(self.reward_per_episode)
+        else:
+            return 0
+    
     def sync_parameters(self):
         copy_param.copy_param(target_link=self.model, source_link=self.shared_model)
 
@@ -274,6 +285,11 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
             return self._act_eval(obs)
 
     def observe(self, obs, reward, done, reset):
+        self.running_reward_for_active_episode += reward
+        if done:
+            self.reward_per_episode.append(self.running_reward_for_active_episode)
+            self.running_reward_for_active_episode = 0
+            
         if self.training:
             self._observe_train(obs, reward, done, reset)
         else:

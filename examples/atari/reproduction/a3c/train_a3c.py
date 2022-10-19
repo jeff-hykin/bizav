@@ -194,7 +194,9 @@ def train_a3c(args):
                     0
                 ]
             )
-
+    
+    # shared reward data
+    median_episode_rewards = mp.Array("d", config.number_of_processes)
     if args.demo:
         env = make_env(0, True)
         eval_stats = experiments.eval_performance(
@@ -223,8 +225,10 @@ def train_a3c(args):
             save_best_so_far_agent=True,
             num_agents_byz=args.malicious,
             permaban_threshold=args.permaban_threshold,
+            median_episode_rewards=median_episode_rewards,
         )
-    mean_reward = get_results(os.path.join(args.outdir, str(args.seed) + '.log'), gym.spec(args.env).reward_threshold)
+    # mean_reward = get_results(os.path.join(args.outdir, str(args.seed) + '.log'), gym.spec(args.env).reward_threshold)
+    mean_reward = sum(median_episode_rewards)/len(median_episode_rewards)
     return mean_reward
 
 result_lookback_size = 50
