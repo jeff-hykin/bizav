@@ -13,6 +13,7 @@
             verbose: True
             number_of_processes: 10
             number_of_malicious_processes: 3
+            banning_method: 'softmax' # 'softmax' or 'permaban'
             attack_method: 'sign' # 'sign', 'act', or 'noise'
                                   # 'sign' being the reverse of a good agent (* 2.5)
                                   # 'act' being from a random policy (very dumb agent, but gradient in correct direction)
