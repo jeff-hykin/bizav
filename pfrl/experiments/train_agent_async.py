@@ -14,6 +14,9 @@ from pfrl.utils import async_, random_seed
 
 from main.config import config, env_config, info
 
+use_softmax_ban = config.banning_method == 'softmax'
+use_permaban = config.banning_method == 'permaban'
+
 def kill_all():
     if os.name == "nt":
         # windows
@@ -60,8 +63,8 @@ def train_loop(
     global_step_hooks=[],
     all_updated_barrier=None,
     update_barrier=None,
-    process_index_to_temp_filter=None,
-    filtered_agents=None,
+    temp_ban_index=None,
+    permabanned_agents=None,
     byzantine_agent_number=0
 ):
     config.verbose and print("[starting train_loop()]")
@@ -101,11 +104,16 @@ def train_loop(
 
             if agent.updated:
                 all_updated_barrier.wait()  # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
-                if byzantine_agent_number > 0:
-                    # If not current UCB action and not permanently filtered, include agent's gradient in global model
-                    if process_index_to_temp_filter.value != process_idx and filtered_agents[process_idx] == 0: agent.add_update()
-                else:
+                if byzantine_agent_number <= 0:
                     agent.add_update()
+                elif use_permaban:
+                    # If not current UCB action and not permanently filtered, include agent's gradient in global model
+                    if temp_ban_index.value != process_idx and permabanned_agents[process_idx] == 0:
+                        agent.add_update()
+                elif use_softmax_ban:
+                    # if not in temp-ban, then influence the global model
+                    if process_index not in temp_ban_indicies:
+                        agent.add_update()
                 update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
                 agent.after_update()    # Each agent will download the global model after the optimizer steps
 
@@ -263,19 +271,20 @@ def train_agent_async(
     # 
     # init shared values
     # 
-    counter                      = mp.Value("l", 0)
-    episodes_counter             = mp.Value("l", 0)
-    time                         = mp.Value("l", 0) # Number of total rollouts completed
-    process_index_to_temp_filter = mp.Value("i", 0) # UCB action 'broadcast'
-    filtered_count               = mp.Value("l", 0) # Number of permanently filtered agents
+    counter           = mp.Value("l", 0)
+    episodes_counter  = mp.Value("l", 0)
+    time              = mp.Value("l", 0) # Number of total rollouts completed
+    temp_ban_index    = mp.Value("i", 0) # UCB action 'broadcast'
+    filtered_count    = mp.Value("l", 0) # Number of permanently filtered agents
 
-    act_val           = mp.Array("d", config.number_of_processes) # Q-values
-    visits            = mp.Array("d", config.number_of_processes) # number of visits
-    filtered_agents   = mp.Array("l", config.number_of_processes) # Permanently filtered agent memory
+    act_val            = mp.Array("d", config.number_of_processes) # Q-values
+    temp_ban_indicies  = mp.Array("l", config.number_of_malicious_processes) # <- only if use_softmax_ban
+    temp_ban_counters  = mp.Array("d", config.number_of_processes) # number of temp_ban_counters
+    permabanned_agents = mp.Array("l", config.number_of_processes) # Permanently filtered agent memory
     for process_index in range(config.number_of_processes):
-        act_val[process_index] = 0
-        visits[process_index]            = 0
-        filtered_agents[process_index]   = 0
+        act_val[process_index]              = 0
+        temp_ban_counters[process_index]    = 0
+        permabanned_agents[process_index]   = 0
     
     # 
     # create UCB manager
@@ -284,55 +293,137 @@ def train_agent_async(
     class ucb:
         value_per_process = act_val
         
-        def reward_func(self, agent_gradients):
-            agent_gradients = torch.tensor(agent_gradients)
-            # agent_variance = np.var(agent_gradients, axis=-1)
-            average_variance = euclidean_dist(agent_gradients, agent_gradients).mean()
-            flipped_value = -average_variance
-            ucb_reward = config.env_config.variance_scaling_factor * flipped_value
-            return ucb_reward
-        
+        def reward_func(self, all_grads):
+            if use_permaban:
+                probably_good_gradients = []
+                for process_index, each_gradient in enumerate(all_grads):
+                    if process_index != temp_ban_index.value and not permabanned_agents[process_index]:
+                        probably_good_gradients.append(each_gradient)
+                
+                agent_gradients = torch.tensor(np.vstack(probably_good_gradients))
+                average_distance = euclidean_dist(agent_gradients, agent_gradients).mean()
+                flipped_value = -average_distance
+                ucb_reward = config.env_config.variance_scaling_factor * flipped_value
+                return ucb_reward
+            
+            if use_softmax_ban:
+                previously_chosen_indicies = list(set(temp_ban_indicies))
+                reward_for_each_temp_banned_index = []
+                for process_index_being_reviewed in previously_chosen_indicies:
+                    all_other_gradients = []
+                    for process_index, each_gradient in enumerate(all_grads):
+                        if process_index != process_index_being_reviewed:
+                            all_other_gradients.append(each_gradient)
+                    
+                    all_other_gradients = torch.tensor(np.vstack(all_other_gradients))
+                    average_distance = euclidean_dist(all_other_gradients, all_other_gradients).mean()
+                    flipped_value = -average_distance
+                    ucb_reward = config.env_config.variance_scaling_factor * flipped_value
+                    reward_for_each_temp_banned_index.append(ucb_reward)
+                return reward_for_each_temp_banned_index
+                
         def update_step(self, ucb_reward):
-            process_index    = process_index_to_temp_filter.value
-            old_q_value      = ucb.value_per_process[process_index]
-            number_of_visits = visits[process_index]
-            change_in_value  = (ucb_reward - old_q_value) / number_of_visits
-            # apply the new value
-            ucb.value_per_process[process_index] += change_in_value
+            if use_permaban:
+                process_index    = temp_ban_index.value
+                old_q_value      = ucb.value_per_process[process_index]
+                number_of_visits = temp_ban_counters[process_index]
+                change_in_value  = (ucb_reward - old_q_value) / number_of_visits
+                # apply the new value
+                ucb.value_per_process[process_index] += change_in_value
+                # Mask permanently filtered agents
+                for process_index, process_is_filtered in enumerate(permabanned_agents):
+                    if process_is_filtered:
+                        import math
+                        ucb.value_per_process[process_index] = -math.inf
+            
+            if use_softmax_ban:
+                previously_chosen_indicies = list(set(temp_ban_indicies))
+                # update the value of every process that has been banned
+                for process_index in previously_chosen_indicies:
+                    old_q_value      = ucb.value_per_process[process_index]
+                    number_of_visits = temp_ban_counters[process_index]
+                    change_in_value  = (ucb_reward - old_q_value) / number_of_visits
+                    # apply the new value
+                    ucb.value_per_process[process_index] += change_in_value
         
+        def value_of_each_process(self):
+            if use_permaban:
+                np_visits             = mp_to_numpy(temp_ban_counters)
+                np_value_per_processs = mp_to_numpy(ucb.value_per_process)
+                
+                config.verbose and print('Step', time.value, temp_ban_index.value, "temp_ban_counters", list(np.round(np_visits, 2)), "q_vals:", list(np.round(np_value_per_processs, 3)), end="\r")
+                
+                # Get the true UCB t value
+                ucb_timesteps = np.sum(np_visits) - (env_config.permaban_threshold+1) * filtered_count.value
+                # Compute UCB policy values (Q-value + uncertainty)
+                return np_value_per_processs + np.sqrt((np.log(ucb_timesteps)) / np_visits)
+            
+            if use_softmax_ban:
+                number_of_updates          = time.value
+                previously_chosen_indicies = list(temp_ban_indicies)
+                np_visits                  = mp_to_numpy(temp_ban_counters)
+                np_value_per_processs      = mp_to_numpy(ucb.value_per_process)
+                
+                config.verbose and print('Step', number_of_updates, previously_chosen_indicies, "temp_ban_counters", list(np.round(np_visits, 2)), "q_vals:", list(np.round(np_value_per_processs, 3)), end="\r")
+                
+                number_of_banned_items = (config.number_of_malicious_processes * number_of_updates)
+                ucb_timesteps = np.sum(np_visits) - number_of_banned_items
+                # Compute UCB policy values (Q-value + uncertainty)
+                return np_value_per_processs + np.sqrt((np.log(ucb_timesteps)) / np_visits)
+                
         def choose_action(self):
-            # Mask permanently filtered agents
-            for process_index, process_is_filtered in enumerate(filtered_agents):
-                if process_is_filtered:
-                    import math
-                    ucb.value_per_process[process_index] = -math.inf
+            if use_permaban:
+                values = ucb.value_of_each_process()
+                
+                # Initial selection (temp_ban_counters 0) #TODO properly select at random
+                np_visits = mp_to_numpy(temp_ban_counters)
+                if np.min(np_visits) < 1:
+                    return np.argmin(np_visits)
+                else:
+                    return np.argmax(values)
             
-            np_visits = mp_to_numpy(visits)
-            np_value_per_processs = mp_to_numpy(ucb.value_per_process)
-            
-            config.verbose and print('Step', time.value, process_index_to_temp_filter.value, "visits", list(np.round(np_visits, 2)), "q_vals:", list(np.round(np_value_per_processs, 3)), end="\r")
-            
-            # Get the true UCB t value
-            ucb_timesteps = np.sum(np_visits) - (env_config.permaban_threshold+1) * filtered_count.value
-            # Compute UCB policy values (Q-value + uncertainty)
-            values = np_value_per_processs + np.sqrt((np.log(ucb_timesteps)) / np_visits)
-            
-            # Initial selection (visits 0) #TODO properly select at random
-            if np.min(np_visits) < 1:
-                return np.argmin(np_visits)
-            else:
-                return np.argmax(values)
+            if use_softmax_ban:
+                values = torch.tensor(ucb.value_of_each_process())
+                weights = -values
+                positive_weights = list(weights - weights.min())
+                
+                process_indicies = list(range(config.number_of_processes))
+                
+                choices = set()
+                while len(choices) < config.number_of_malicious_processes:
+                    choices.add(
+                        random.choices(
+                            process_indicies,
+                            weights=positive_weights,
+                            k=1,
+                        )[0]
+                    )
+                # who to ban this round
+                return list(choices)
+                
         
         @property
-        def smart_gradient_of_agents(self):
+        def influence_vector(self):
+            temp_ban_counters_tensor = torch.tensor(temp_ban_counters)
+            banned_the_most  = temp_ban_counters_tensor.max()
+            banned_the_least = temp_ban_counters_tensor.min()
+            normalized_bans  = (temp_ban_counters - banned_the_least) / banned_the_most
+            influence_vector = 1 - normalized_bans 
+            # banned the least ~=> 1
+            # banned the most ~=> 0
+            return influence_vector
+        
+        @property
+        def indicies_of_most_suspricious_processes(self):
+            # NOTE: len(output) == number_of_malicious_processes (always)
+            influences = torch.tensor(usb.influence_vector)
+            return [ index for index in influences.argsort() if each < config.number_of_malicious_processes ]
+        
+        @property
+        def gradient_of_agents(self, process_index_to_leave_out):
             all_grads = []
             for process_index in range(config.number_of_processes):
                 my_grad = []
-                agent_is_temp_filtered      = process_index_to_temp_filter.value == process_index
-                agent_is_permantly_filtered = filtered_agents[process_index] == 1
-                # If filtered, don't include in gradient mean
-                if agent_is_temp_filtered or agent_is_permantly_filtered:
-                    continue
                 for param in agent.local_models[process_index].parameters():
                     if param.grad is not None:
                         grad_np = param.grad.detach().clone().numpy().flatten()
@@ -341,8 +432,7 @@ def train_agent_async(
                     for j in range(len(grad_np)):
                         my_grad.append(grad_np[j])
                 all_grads.append(np.asarray(my_grad))
-            return np.vstack(all_grads)
-        
+            return all_grads
         
     def when_all_processes_are_updated():
         # print("[starting when_all_processes_are_updated()]")
@@ -353,37 +443,49 @@ def train_agent_async(
         # Update values
         if time.value != 0:
             # Compute gradient mean
-            ucb_reward = ucb.reward_func(ucb.smart_gradient_of_agents)
+            ucb_reward = ucb.reward_func(ucb.gradient_of_agents)
             
             # Update Q-values
             ucb.update_step(ucb_reward)
             
-            # 
-            # Permanently disable an agent
-            # 
-            prev_amount_filtered = filtered_count.value
-            for process_index, visit_count in enumerate(visits):
-                if visit_count >= env_config.permaban_threshold:
-                    filtered_agents[process_index] = 1
-            filtered_count.value = sum(filtered_agents)
-            
-            # 
-            # if someone was just recently permabaned
-            # 
-            if prev_amount_filtered < filtered_count.value:
-                # Reset non-disabled visits/Q-values
-                for process_index, visit_count in enumerate(visits):
-                    if visit_count < env_config.permaban_threshold:
-                        visits[process_index] = 0
-                        ucb.value_per_process[process_index] = 0
+            if use_permaban:
+                # 
+                # Permanently disable an agent
+                # 
+                prev_amount_filtered = filtered_count.value
+                for process_index, ban_count in enumerate(temp_ban_counters):
+                    if ban_count >= env_config.permaban_threshold:
+                        permabanned_agents[process_index] = 1
+                filtered_count.value = sum(permabanned_agents)
+                
+                # 
+                # if someone was just recently permabaned
+                # 
+                if prev_amount_filtered < filtered_count.value:
+                    # Reset non-disabled temp_ban_counters/Q-values
+                    for process_index, ban_count in enumerate(temp_ban_counters):
+                        if ban_count < env_config.permaban_threshold:
+                            temp_ban_counters[process_index] = 0
+                            ucb.value_per_process[process_index] = 0
 
         # Select next action
-        process_index = ucb.choose_action()
-
-        visits[process_index] += 1
-        # Tell the multi processing barriers about the action
-        process_index_to_temp_filter.value = process_index
-
+        who_to_ban = ucb.choose_action()
+        
+        # 
+        # apply action
+        # 
+        if use_permaban:
+            process_index = who_to_ban
+            temp_ban_counters[process_index] += 1
+            # Tell the multi processing barriers about the action
+            temp_ban_index.value = process_index
+        
+        if use_softmax_ban:
+            # ban multiple
+            for element_index, each_process_index in enumerate(who_to_ban):
+                temp_ban_counters[each_process_index] += 1
+                temp_ban_indicies[element_index] = each_process_index
+        
         time.value += 1
     
     all_updated_barrier = mp.Barrier(processes, when_all_processes_are_updated)
@@ -484,8 +586,8 @@ def train_agent_async(
                 logger=logger,
                 all_updated_barrier=all_updated_barrier,
                 update_barrier=update_barrier,
-                process_index_to_temp_filter=process_index_to_temp_filter,
-                filtered_agents=filtered_agents,
+                temp_ban_index=temp_ban_index,
+                permabanned_agents=permabanned_agents,
                 byzantine_agent_number=num_agents_byz
             )
         
