@@ -313,7 +313,7 @@ def train_agent_async(
             np_visits = mp_to_numpy(visits)
             np_value_per_processs = mp_to_numpy(ucb.value_per_process)
             
-            config.verbose and print('Step', number_of_updates.value, process_index_to_temp_filter.value, "visits", list(np.round(np_visits, 2)), "q_vals:", list(np.round(np_value_per_processs, 3)), end="\r")
+            config.verbose and print('Step', number_of_updates.value, process_index_to_temp_filter.value, "visits", list(np.round(np_visits, 2)), " total_number_of_episodes:", episodes_counter.value / config.number_of_processes, "q_vals:", list(np.round(np_value_per_processs, 3)), end="\r")
             
             # Get the true UCB t value
             ucb_timesteps = np.sum(np_visits) - (env_config.permaban_threshold+1) * filtered_count.value
@@ -354,7 +354,7 @@ def train_agent_async(
             for process_index in range(config.number_of_processes):
                 if filtered_agents[process_index]:
                     median_episode_rewards[process_index] = 0
-            per_episode_reward = sum(rewards_of_unfiltered_processes)/len(rewards_of_unfiltered_processes)
+            per_episode_reward = sum(median_episode_rewards)/len(median_episode_rewards)
             print(f'''total_number_of_episodes = {total_number_of_episodes}, per_episode_reward = {per_episode_reward} ''')
             for each_step, each_min_value in config.early_stopping.thresholds:
                 # if meets the increment-based threshold
