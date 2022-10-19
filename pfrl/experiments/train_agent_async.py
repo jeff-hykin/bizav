@@ -263,11 +263,11 @@ def train_agent_async(
     # 
     # init shared values
     # 
-    counter                   = mp.Value("l", 0)
-    episodes_counter          = mp.Value("l", 0)
-    time                      = mp.Value("l", 0) # Number of total rollouts completed
+    counter                      = mp.Value("l", 0)
+    episodes_counter             = mp.Value("l", 0)
+    time                         = mp.Value("l", 0) # Number of total rollouts completed
     process_index_to_temp_filter = mp.Value("i", 0) # UCB action 'broadcast'
-    filtered_count            = mp.Value("l", 0) # Number of permanently filtered agents
+    filtered_count               = mp.Value("l", 0) # Number of permanently filtered agents
 
     act_val           = mp.Array("d", config.number_of_processes) # Q-values
     visits            = mp.Array("d", config.number_of_processes) # number of visits
@@ -310,7 +310,7 @@ def train_agent_async(
             np_visits = mp_to_numpy(visits)
             np_value_per_processs = mp_to_numpy(ucb.value_per_process)
             
-            print("visits", list(np.round(np_visits, 2)), "q_vals:", list(np.round(np_value_per_processs, 3)), end="\r")
+            print('Step', time.value, process_index_to_temp_filter.value, "visits", list(np.round(np_visits, 2)), "q_vals:", list(np.round(np_value_per_processs, 3)), end="\r")
             
             # Get the true UCB t value
             ucb_timesteps = np.sum(np_visits) - (env_config.permaban_threshold+1) * filtered_count.value
@@ -345,7 +345,7 @@ def train_agent_async(
         
         
     def when_all_processes_are_updated():
-        print("[starting when_all_processes_are_updated()]")
+        # print("[starting when_all_processes_are_updated()]")
         all_malicious_actors_found = filtered_count.value == num_agents_byz
         if all_malicious_actors_found:
             return
@@ -378,7 +378,7 @@ def train_agent_async(
                         ucb.value_per_process[process_index] = 0
 
         # Debug output
-        print('Step', time.value, process_index_to_temp_filter.value)
+        # print('Step', time.value, process_index_to_temp_filter.value)
         # Select next action
         process_index = ucb.choose_action()
 
@@ -492,7 +492,6 @@ def train_agent_async(
                 byzantine_agent_number=num_agents_byz
             )
         
-        print(f'''profile = {profile}''')
         if profile:
             import cProfile
 
