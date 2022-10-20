@@ -49,6 +49,7 @@
                 min_number_of_episodes: 10
                 thresholds: 
                     # epsiode_number: min_average_episode_value
+                    10:  -1000
                     120: -689.8145958603271
                     280: -517.1452953606303 #  by epsiode 28, get -517 or better
                     

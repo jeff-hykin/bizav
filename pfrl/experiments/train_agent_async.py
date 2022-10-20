@@ -16,26 +16,43 @@ from pfrl.utils import async_, random_seed
 from main.config import config, env_config, info
 
 
-central_agent_process_index = sample(list(range(config.number_of_processes)), k=1)[0]
+# 
+# globals
+# 
+central_agent_process_index    = None
 when_all_processes_are_updated = None
-prev_total_number_of_episodes = -1
+prev_total_number_of_episodes  = None
+number_of_timesteps            = None
+number_of_episodes             = None
+number_of_updates              = None
+process_index_to_temp_filter   = None
+filtered_count                 = None
+act_val                        = None
+visits                         = None
+filtered_agents                = None
 
-# 
-# init shared values
-# 
-number_of_timesteps          = mp.Value("l", 0)
-number_of_episodes           = mp.Value("l", 0)
-number_of_updates            = mp.Value("l", 0) # Number of total rollouts completed
-process_index_to_temp_filter = mp.Value("i", 0) # UCB action 'broadcast'
-filtered_count               = mp.Value("l", 0) # Number of permanently filtered agents
+def reset_globals():
+    global central_agent_process_index, when_all_processes_are_updated, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  process_index_to_temp_filter,  filtered_count,  act_val,  visits,  filtered_agents        
+    central_agent_process_index = sample(list(range(config.number_of_processes)), k=1)[0]
+    when_all_processes_are_updated = None
+    prev_total_number_of_episodes = -1
+    
+    # 
+    # init shared values
+    # 
+    number_of_timesteps          = mp.Value("l", 0)
+    number_of_episodes           = mp.Value("l", 0)
+    number_of_updates            = mp.Value("l", 0) # Number of total rollouts completed
+    process_index_to_temp_filter = mp.Value("i", 0) # UCB action 'broadcast'
+    filtered_count               = mp.Value("l", 0) # Number of permanently filtered agents
 
-act_val                = mp.Array("d", config.number_of_processes) # Q-values
-visits                 = mp.Array("d", config.number_of_processes) # number of visits
-filtered_agents        = mp.Array("l", config.number_of_processes) # Permanently filtered agent memory
-for process_index in range(config.number_of_processes):
-    act_val[process_index] = 0
-    visits[process_index]            = 0
-    filtered_agents[process_index]   = 0
+    act_val                = mp.Array("d", config.number_of_processes) # Q-values
+    visits                 = mp.Array("d", config.number_of_processes) # number of visits
+    filtered_agents        = mp.Array("l", config.number_of_processes) # Permanently filtered agent memory
+    for process_index in range(config.number_of_processes):
+        act_val[process_index] = 0
+        visits[process_index]            = 0
+        filtered_agents[process_index]   = 0
 
 
 def kill_all():
@@ -291,6 +308,8 @@ def train_agent_async(
     
     # Prevent numpy from using multiple threads
     os.environ["OMP_NUM_THREADS"] = "1"
+    
+    reset_globals()
     
     # 
     # create UCB manager
