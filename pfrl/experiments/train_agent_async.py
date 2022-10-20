@@ -5,6 +5,7 @@ import subprocess
 import sys
 from random import random, sample, choices
 from statistics import mean
+import math
 
 import numpy as np
 import torch
@@ -15,6 +16,7 @@ from super_map import LazyDict
 from pfrl.experiments.evaluator import AsyncEvaluator
 from pfrl.utils import async_, random_seed
 
+from main import utils
 from main.config import config, env_config, info
 from main.utils import trend_calculate
 
@@ -418,13 +420,20 @@ def train_agent_async(
                 episode_reward_trend.append(per_episode_reward)
                 episode_reward_trend = output.episode_reward_trend = episode_reward_trend[-config.value_trend_lookback_size:]
                 episode_reward_trend_value = trend_calculate(episode_reward_trend) / check_rate
-                print(f'''total_number_of_episodes = {total_number_of_episodes}, number_of_timesteps={number_of_timesteps.value}, per_episode_reward = {per_episode_reward:.2f}, episode_reward_trend_value={episode_reward_trend_value}''')
+                if len(episode_reward_trend) >= config.value_trend_lookback_size:
+                    absolute_changes = [ abs(each) for each in utils.sequential_value_changes(episode_reward_trend)  ]
+                    biggest_recent_change = max(absolute_changes)
+                    if biggest_recent_change < config.early_stopping.lowerbound_for_max_recent_change:
+                        print(f"Hit early stopping because biggest_recent_change: {biggest_recent_change} < {config.early_stopping.lowerbound_for_max_recent_change}")
+                        stop_event.set()
+                
+                print(f'''{{"total_number_of_episodes":{total_number_of_episodes}, "number_of_timesteps":{number_of_timesteps.value}, "per_episode_reward":{per_episode_reward:.2f}, "episode_reward_trend_value": {episode_reward_trend_value},}},''')
                 for each_step, each_min_value in config.early_stopping.thresholds.items():
                     # if meets the increment-based threshold
                     if total_number_of_episodes > each_step:
                         # enforce that it return the minimum 
                         if per_episode_reward < each_min_value:
-                            print(f"Hit early stopping because {per_episode_reward} < {each_min_value}")
+                            print(f"Hit early stopping because per_episode_reward: {per_episode_reward} < {each_min_value}")
                             stop_event.set()
         
         # print("[starting when_all_processes_are_updated()]")
@@ -579,8 +588,6 @@ def train_agent_async(
         else:
             try:
                 f()
-            except BrokenBarrierError as error:
-                print(error)
             except Exception as error:
                 print(error)
                 print()

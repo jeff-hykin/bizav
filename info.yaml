@@ -20,6 +20,7 @@
             random_seeds: [ 0 ]
             value_trend_lookback_size: 10
             early_stopping:
+                lowerbound_for_max_recent_change: 0 # any change is acceptable
                 min_number_of_episodes: 30
                 thresholds: {}
             
@@ -47,6 +48,7 @@
                 variance_scaling_factor: 1 #FIXME: not optimized at all
                 permaban_threshold: 500    #FIXME: not optimized at all
             early_stopping:
+                lowerbound_for_max_recent_change: 0.5 # if changes in average episode reward are this stable, it needs to just end
                 min_number_of_episodes: 10
                 thresholds: 
                     # epsiode_number: min_average_episode_value
