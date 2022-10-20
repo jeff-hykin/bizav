@@ -295,7 +295,7 @@ def train_a3c(args):
         number_of_remaining_episodes = output.number_of_episodes - args.eval_n_steps
         if number_of_remaining_episodes > 0:
             import math
-            end_result_estimate = math.log10(number_of_remaining_episodes) * episode_reward_trend_value
+            end_result_estimate = math.log2(number_of_remaining_episodes) * episode_reward_trend_value
             end_result_thresholds = list(config.early_stopping.thresholds.values())
             if end_result_thresholds:
                 best_threshold = max(end_result_thresholds)
