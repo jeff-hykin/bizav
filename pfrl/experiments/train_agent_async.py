@@ -3,6 +3,7 @@ import os
 import signal
 import subprocess
 import sys
+from random import random, sample, choices
 
 import numpy as np
 import torch
@@ -13,6 +14,29 @@ from pfrl.experiments.evaluator import AsyncEvaluator
 from pfrl.utils import async_, random_seed
 
 from main.config import config, env_config, info
+
+
+central_agent_process_index = sample(list(range(config.number_of_processes)), k=1)[0]
+when_all_processes_are_updated = None
+prev_total_number_of_episodes = -1
+
+# 
+# init shared values
+# 
+number_of_timesteps          = mp.Value("l", 0)
+number_of_episodes           = mp.Value("l", 0)
+number_of_updates            = mp.Value("l", 0) # Number of total rollouts completed
+process_index_to_temp_filter = mp.Value("i", 0) # UCB action 'broadcast'
+filtered_count               = mp.Value("l", 0) # Number of permanently filtered agents
+
+act_val                = mp.Array("d", config.number_of_processes) # Q-values
+visits                 = mp.Array("d", config.number_of_processes) # number of visits
+filtered_agents        = mp.Array("l", config.number_of_processes) # Permanently filtered agent memory
+for process_index in range(config.number_of_processes):
+    act_val[process_index] = 0
+    visits[process_index]            = 0
+    filtered_agents[process_index]   = 0
+
 
 def kill_all():
     if os.name == "nt":
@@ -46,10 +70,9 @@ def train_loop(
     process_idx,
     env,
     agent,
-    steps,
+    max_number_of_episodes,
     outdir,
     number_of_episodes,
-    episodes_counter,
     stop_event,
     exception_event,
     median_episode_rewards,
@@ -74,26 +97,27 @@ def train_loop(
     def save_model():
         if process_idx == 0:
             # Save the current model before being killed
-            dirname = os.path.join(outdir, "{}_except".format(global_t))
+            dirname = os.path.join(outdir, "{}_except".format(global_episode_count))
             agent.save(dirname)
             logger.info("Saved the current model to %s", dirname)
 
     try:
-
-        episode_r = 0
-        global_t = 0
-        local_t = 0
-        global_episodes = 0
-        obs = env.reset()
-        episode_len = 0
-        successful = False
+        config.verbose and print(f'''env = {env}''')
+        episode_r                   = 0
+        global_episode_count        = 0
+        local_t                     = 0
+        global_episodes             = 0
+        obs                         = env.reset()
+        episode_len                 = 0
+        successful                  = False
+        number_of_timesteps_for_this_episode = 0
 
         while True:
-            
             # a_t
             a = agent.act(obs)
             # o_{t+1}, r_{t+1}
             obs, r, done, info = env.step(a)
+            number_of_timesteps_for_this_episode += 1
             local_t += 1
             episode_r += r
             episode_len += 1
@@ -102,23 +126,33 @@ def train_loop(
 
             if agent.updated:
                 all_updated_barrier.wait()  # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
+                # only one process runs this
+                if process_idx == central_agent_process_index:
+                    when_all_processes_are_updated()
+                    
                 if byzantine_agent_number > 0:
                     # If not current UCB action and not permanently filtered, include agent's gradient in global model
                     if process_index_to_temp_filter.value != process_idx and filtered_agents[process_idx] == 0: agent.add_update()
                 else:
                     agent.add_update()
                 update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
-                agent.after_update()    # Each agent will download the global model after the optimizer steps
+                agent.after_update()    # Each agent will download the global model after the optimizer max_number_of_episodes
 
             if done or reset:# Get and increment the global number_of_episodes
                 with number_of_episodes.get_lock():
                     median_episode_rewards[process_idx] = agent.median_reward_per_episode
                     number_of_episodes.value += 1
-                    global_t = number_of_episodes.value
+                    number_of_timesteps.value += number_of_timesteps_for_this_episode
+                    global_episodes = number_of_episodes.value
+                    global_episode_count = number_of_episodes.value
+                
+                # reset
+                number_of_timesteps_for_this_episode = 0
+                
                 for hook in global_step_hooks:
-                    hook(env, agent, global_t)
+                    hook(env, agent, global_episode_count)
 
-                metric_line = str(global_t)+'; '+str(process_idx)+'; '+str(episode_r)+'; '
+                metric_line = str(global_episode_count)+'; '+str(process_idx)+'; '+str(episode_r)+'; '
                 stats = agent.get_statistics()
                 for item in stats:
                     metric_line += str(item) + '; '
@@ -128,7 +162,7 @@ def train_loop(
                 # Evaluate the current agent
                 if evaluator is not None:
                     eval_score = evaluator.evaluate_if_necessary(
-                        t=global_t, episodes=global_episodes, env=eval_env, agent=agent
+                        t=global_episode_count, episodes=global_episodes, env=eval_env, agent=agent
                     )
 
                     if (
@@ -141,12 +175,9 @@ def train_loop(
                         # Break immediately in order to avoid an additional
                         # call of agent.act_and_train
                         break
-
-                with episodes_counter.get_lock():
-                    episodes_counter.value += 1
-                    global_episodes = episodes_counter.value
-
-                if global_t >= steps or stop_event.is_set():
+                
+                proportional_number_of_timesteps = number_of_timesteps.value / config.number_of_processes
+                if global_episode_count >= max_number_of_episodes or stop_event.is_set():
                     break
 
                 # Start a new episode
@@ -166,9 +197,9 @@ def train_loop(
         save_model()
         raise
 
-    if global_t == steps:
+    if global_episode_count == max_number_of_episodes:
         # Save the final model
-        dirname = os.path.join(outdir, "{}_finish".format(steps))
+        dirname = os.path.join(outdir, "{}_finish".format(max_number_of_episodes))
         agent.save(dirname)
         logger.info("Saved the final agent to %s", dirname)
 
@@ -178,8 +209,6 @@ def train_loop(
         agent.save(dirname)
         logger.info("Saved the successful agent to %s", dirname)
 
-
-run_func = None
 def train_agent_async(
     outdir,
     processes,
@@ -264,23 +293,6 @@ def train_agent_async(
     os.environ["OMP_NUM_THREADS"] = "1"
     
     # 
-    # init shared values
-    # 
-    number_of_episodes           = mp.Value("l", 0)
-    episodes_counter             = mp.Value("l", 0)
-    number_of_updates            = mp.Value("l", 0) # Number of total rollouts completed
-    process_index_to_temp_filter = mp.Value("i", 0) # UCB action 'broadcast'
-    filtered_count               = mp.Value("l", 0) # Number of permanently filtered agents
-
-    act_val                = mp.Array("d", config.number_of_processes) # Q-values
-    visits                 = mp.Array("d", config.number_of_processes) # number of visits
-    filtered_agents        = mp.Array("l", config.number_of_processes) # Permanently filtered agent memory
-    for process_index in range(config.number_of_processes):
-        act_val[process_index] = 0
-        visits[process_index]            = 0
-        filtered_agents[process_index]   = 0
-    
-    # 
     # create UCB manager
     # 
     @singleton
@@ -313,7 +325,7 @@ def train_agent_async(
             np_visits = mp_to_numpy(visits)
             np_value_per_processs = mp_to_numpy(ucb.value_per_process)
             
-            config.verbose and print('Step', number_of_updates.value, process_index_to_temp_filter.value, "visits", list(np.round(np_visits, 2)), " total_number_of_episodes:", episodes_counter.value / config.number_of_processes, "q_vals:", list(np.round(np_value_per_processs, 3)), end="\r")
+            config.verbose and print('Step', number_of_updates.value, process_index_to_temp_filter.value, "visits", list(np.round(np_visits, 2)), " episode_count:", number_of_episodes.value, "q_vals:", list(np.round(np_value_per_processs, 3)), end="\r")
             
             # Get the true UCB t value
             ucb_timesteps = np.sum(np_visits) - (env_config.permaban_threshold+1) * filtered_count.value
@@ -346,23 +358,30 @@ def train_agent_async(
                 all_grads.append(np.asarray(my_grad))
             return np.vstack(all_grads)
         
-        
+    global when_all_processes_are_updated
     def when_all_processes_are_updated():
-        total_number_of_episodes = episodes_counter.value / config.number_of_processes
+        # 
+        # early stopping check
+        # 
+        global prev_total_number_of_episodes
+        total_number_of_episodes = number_of_episodes.value
         if total_number_of_episodes > config.early_stopping.min_number_of_episodes:
-            # reset the rewards of filtered-out agents
-            for process_index in range(config.number_of_processes):
-                if filtered_agents[process_index]:
-                    median_episode_rewards[process_index] = 0
-            per_episode_reward = sum(median_episode_rewards)/len(median_episode_rewards)
-            print(f'''total_number_of_episodes = {total_number_of_episodes}, per_episode_reward = {per_episode_reward} ''')
-            for each_step, each_min_value in config.early_stopping.thresholds:
-                # if meets the increment-based threshold
-                if total_number_of_episodes > each_step:
-                    # enforce that it return the minimum 
-                    if per_episode_reward < each_min_value:
-                        print(f"Hit early stopping because {per_episode_reward} < {each_min_value}")
-                        stop_event.set()
+            # limiter
+            if total_number_of_episodes - 1 > prev_total_number_of_episodes:
+                prev_total_number_of_episodes = total_number_of_episodes
+                # reset the rewards of filtered-out agents
+                for process_index in range(config.number_of_processes):
+                    if filtered_agents[process_index]:
+                        median_episode_rewards[process_index] = 0
+                per_episode_reward = sum(median_episode_rewards)/len(median_episode_rewards)
+                print(f'''total_number_of_episodes = {total_number_of_episodes}, number_of_timesteps={number_of_timesteps.value}, per_episode_reward = {per_episode_reward}''')
+                for each_step, each_min_value in config.early_stopping.thresholds.items():
+                    # if meets the increment-based threshold
+                    if total_number_of_episodes > each_step:
+                        # enforce that it return the minimum 
+                        if per_episode_reward < each_min_value:
+                            print(f"Hit early stopping because {per_episode_reward} < {each_min_value}")
+                            stop_event.set()
         
         # print("[starting when_all_processes_are_updated()]")
         all_malicious_actors_found = filtered_count.value == num_agents_byz
@@ -405,7 +424,7 @@ def train_agent_async(
         
         number_of_updates.value += 1
     
-    all_updated_barrier = mp.Barrier(processes, when_all_processes_are_updated)
+    all_updated_barrier = mp.Barrier(processes, lambda : None)
 
     def sync_updates():
         if filtered_count.value != num_agents_byz:
@@ -465,7 +484,6 @@ def train_agent_async(
     if random_seeds is None:
         random_seeds = np.arange(processes)
 
-    global run_func
     def run_func(process_idx):
         config.verbose and print("[starting run_func()]")
         random_seed.set_random_seed(random_seeds[process_idx])
@@ -488,10 +506,9 @@ def train_agent_async(
             train_loop(
                 process_idx=process_idx,
                 number_of_episodes=number_of_episodes,
-                episodes_counter=episodes_counter,
                 agent=local_agent,
                 env=env,
-                steps=steps,
+                max_number_of_episodes=steps,
                 outdir=outdir,
                 max_episode_len=max_episode_len,
                 evaluator=evaluator,
@@ -516,7 +533,10 @@ def train_agent_async(
                 "f()", globals(), locals(), f"profile-{os.getpid()}.out"
             )
         else:
-            f()
+            try:
+                f()
+            except Exception as error:
+                print(error)
 
         env.close()
         if eval_env is not env:

@@ -25,7 +25,7 @@
         CARTPOLE:
             env_config:
                 env_name: CartPole-v1
-                number_of_timesteps: 100_000
+                training_episode_count: 100_000
                 learning_rate: 0.001
                 beta: 0.00002
                 t_max: 5
@@ -37,21 +37,23 @@
             verbose: False
             env_config:
                 env_name: "HalfCheetah-v2"
-                number_of_timesteps: 100_000
-                learning_rate: 0.001       #FIXME: copied from lunar lander
-                beta: 0.00002              #FIXME: copied from lunar lander
-                t_max: 5                   #FIXME: copied from lunar lander
-                activation: 1              #FIXME: copied from lunar lander
-                hidden_size: 64            #FIXME: copied from lunar lander
-                permaban_threshold: 500    #FIXME: copied from lunar lander
-                variance_scaling_factor: 1 #FIXME: copied from lunar lander
+                training_episode_count: 4_000 # ~40,000,000 timesteps (as sum of all agents)
+                learning_rate: 0.00003
+                beta: 0.0000003
+                t_max: 3
+                activation: 1
+                hidden_size: 2
+                variance_scaling_factor: 1 #FIXME: not optimized at all
+                permaban_threshold: 500    #FIXME: not optimized at all
             early_stopping:
-                min_number_of_episodes: 30
-                thresholds:
-                    # timestep: min_average_episode_value
-                    100_000: 0
+                min_number_of_episodes: 10
+                thresholds: 
+                    # epsiode_number: min_average_episode_value
+                    120: -689.8145958603271
+                    280: -517.1452953606303 #  by epsiode 28, get -517 or better
+                    
                 
         LUNAR_LANDER:
             env_config:
                 env_name: "LunarLander-v2"
-                number_of_timesteps: 100_000
+                training_episode_count: 100_000

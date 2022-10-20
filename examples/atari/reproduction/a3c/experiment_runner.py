@@ -13,7 +13,7 @@ mal_args = f'''
 env_config = config.env_config
 env_args =f'''
     --env {env_config.env_name}
-    --steps {env_config.number_of_timesteps}
+    --steps {env_config.training_episode_count}
     --lr {env_config.learning_rate}
     --beta {env_config.beta}
     --t-max {env_config.t_max}
@@ -22,5 +22,6 @@ env_args =f'''
     --permaban_threshold {env_config.permaban_threshold}
 '''
 
+import sys
 for seed in config.random_seeds:
-    os.system((f'python {info.absolute_path_to.ac3_start} --seed ' + str(seed) + mal_args + env_args).replace("\n", " "))
+    os.system((f'python {info.absolute_path_to.ac3_start} --seed ' + str(seed) + mal_args + env_args + " ".join(sys.argv[2:])).replace("\n", " "))
