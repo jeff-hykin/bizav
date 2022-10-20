@@ -4,17 +4,24 @@ import signal
 import subprocess
 import sys
 from random import random, sample, choices
+from statistics import mean
 
 import numpy as np
 import torch
 import torch.multiprocessing as mp
 from torch import nn
+from super_map import LazyDict
 
 from pfrl.experiments.evaluator import AsyncEvaluator
 from pfrl.utils import async_, random_seed
 
 from main.config import config, env_config, info
+from main.utils import trend_calculate
 
+# 
+# constants
+# 
+check_rate = config.number_of_processes
 
 # 
 # globals
@@ -30,9 +37,12 @@ filtered_count                 = None
 act_val                        = None
 visits                         = None
 filtered_agents                = None
+episode_reward_trend           = None
+median_episode_rewards         = None
 
 def reset_globals():
-    global central_agent_process_index, when_all_processes_are_updated, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  process_index_to_temp_filter,  filtered_count,  act_val,  visits,  filtered_agents        
+    global central_agent_process_index, when_all_processes_are_updated, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  process_index_to_temp_filter,  filtered_count,  act_val,  visits,  filtered_agents, episode_reward_trend, median_episode_rewards
+    episode_reward_trend = []
     central_agent_process_index = sample(list(range(config.number_of_processes)), k=1)[0]
     when_all_processes_are_updated = None
     prev_total_number_of_episodes = -1
@@ -49,6 +59,7 @@ def reset_globals():
     act_val                = mp.Array("d", config.number_of_processes) # Q-values
     visits                 = mp.Array("d", config.number_of_processes) # number of visits
     filtered_agents        = mp.Array("l", config.number_of_processes) # Permanently filtered agent memory
+    median_episode_rewards = mp.Array("d", config.number_of_processes)
     for process_index in range(config.number_of_processes):
         act_val[process_index] = 0
         visits[process_index]            = 0
@@ -105,6 +116,7 @@ def train_loop(
     filtered_agents=None,
     byzantine_agent_number=0,
 ):
+    global episode_reward_trend
     config.verbose and print("[starting train_loop()]")
     logger = logger or logging.getLogger(__name__)
 
@@ -230,7 +242,6 @@ def train_agent_async(
     outdir,
     processes,
     make_env,
-    median_episode_rewards,
     profile=False,
     steps=8 * 10**7,
     eval_interval=10**6,
@@ -253,6 +264,7 @@ def train_agent_async(
     use_shared_memory=True,
     num_agents_byz=0,
     permaban_threshold=1,
+    output=LazyDict(),
 ):
     """Train agent asynchronously using multiprocessing.
 
@@ -299,6 +311,7 @@ def train_agent_async(
     Returns:
         Trained agent.
     """
+    global central_agent_process_index, when_all_processes_are_updated, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  process_index_to_temp_filter,  filtered_count,  act_val,  visits,  filtered_agents, episode_reward_trend, median_episode_rewards, episode_reward_trend
     config.verbose and print("[starting train_agent_async()]")
     logger = logger or logging.getLogger(__name__)
 
@@ -310,6 +323,13 @@ def train_agent_async(
     os.environ["OMP_NUM_THREADS"] = "1"
     
     reset_globals()
+    
+    output.update(dict(
+        median_episode_rewards=median_episode_rewards,
+        episode_reward_trend=episode_reward_trend,
+        check_rate=check_rate,
+        number_of_episodes=0,
+    ))
     
     # 
     # create UCB manager
@@ -382,18 +402,23 @@ def train_agent_async(
         # 
         # early stopping check
         # 
-        global prev_total_number_of_episodes
+        global central_agent_process_index, when_all_processes_are_updated, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  process_index_to_temp_filter,  filtered_count,  act_val,  visits,  filtered_agents, episode_reward_trend, median_episode_rewards, episode_reward_trend
         total_number_of_episodes = number_of_episodes.value
         if total_number_of_episodes > config.early_stopping.min_number_of_episodes:
+            output.number_of_episodes = total_number_of_episodes # keep the output value up to date
+            
             # limiter
-            if total_number_of_episodes - 1 > prev_total_number_of_episodes:
+            if total_number_of_episodes >= prev_total_number_of_episodes + check_rate:
                 prev_total_number_of_episodes = total_number_of_episodes
                 # reset the rewards of filtered-out agents
                 for process_index in range(config.number_of_processes):
                     if filtered_agents[process_index]:
                         median_episode_rewards[process_index] = 0
                 per_episode_reward = sum(median_episode_rewards)/len(median_episode_rewards)
-                print(f'''total_number_of_episodes = {total_number_of_episodes}, number_of_timesteps={number_of_timesteps.value}, per_episode_reward = {per_episode_reward}''')
+                episode_reward_trend.append(per_episode_reward)
+                episode_reward_trend = output.episode_reward_trend = episode_reward_trend[-config.value_trend_lookback_size:]
+                episode_reward_trend_value = trend_calculate(episode_reward_trend) / check_rate
+                print(f'''total_number_of_episodes = {total_number_of_episodes}, number_of_timesteps={number_of_timesteps.value}, per_episode_reward = {per_episode_reward:.2f}, episode_reward_trend_value={episode_reward_trend_value}''')
                 for each_step, each_min_value in config.early_stopping.thresholds.items():
                     # if meets the increment-based threshold
                     if total_number_of_episodes > each_step:
@@ -554,8 +579,14 @@ def train_agent_async(
         else:
             try:
                 f()
+            except BrokenBarrierError as error:
+                print(error)
             except Exception as error:
                 print(error)
+                print()
+                print()
+                print()
+                raise
 
         env.close()
         if eval_env is not env:

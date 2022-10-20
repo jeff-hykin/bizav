@@ -17,6 +17,7 @@ from pfrl.wrappers import atari_wrappers  # NOQA:E402
 import logging
 import torch
 import gym
+from super_map import LazyDict
 
 from main.config import config
 
@@ -244,7 +245,7 @@ def train_a3c(args):
     
     # shared reward data
     import torch.multiprocessing as mp
-    median_episode_rewards = mp.Array("d", config.number_of_processes)
+    output = LazyDict()
     if args.demo:
         env = make_env(0, True)
         eval_stats = experiments.eval_performance(
@@ -273,11 +274,42 @@ def train_a3c(args):
             save_best_so_far_agent=True,
             num_agents_byz=args.malicious,
             permaban_threshold=args.permaban_threshold,
-            median_episode_rewards=median_episode_rewards,
+            output=output,
         )
+    
+    
+    # output.median_episode_rewards
+    # output.episode_reward_trend
+    # output.check_rate
+    # output.number_of_episodes
+    
     # mean_reward = get_results(os.path.join(args.outdir, str(args.seed) + '.log'), gym.spec(args.env).reward_threshold)
-    mean_reward = sum(median_episode_rewards)/len(median_episode_rewards)
-    print(f'''mean_reward = {mean_reward}''')
+    mean_reward = sum(output.median_episode_rewards)/len(output.median_episode_rewards)
+    
+    # 
+    # estimate final value (only relevent with early early_stopping)
+    # 
+    try:
+        from main.utils import trend_calculate
+        episode_reward_trend_value   = trend_calculate(output.episode_reward_trend) / output.check_rate
+        number_of_remaining_episodes = output.number_of_episodes - args.eval_n_steps
+        if number_of_remaining_episodes > 0:
+            import math
+            end_result_estimate = math.log10(number_of_remaining_episodes) * episode_reward_trend_value
+            end_result_thresholds = list(config.early_stopping.thresholds.values())
+            if end_result_thresholds:
+                best_threshold = max(end_result_thresholds)
+                if end_result_estimate > best_threshold:
+                    print(f"{episode_reward_trend_value} for the remaining {number_of_remaining_episodes} would've still ended up being above: {best_threshold} (it would be {end_result_estimate})")
+                    return mean_reward
+                else:
+                    print(f'''end_result_estimate = {end_result_estimate}''')
+                    return end_result_estimate # use the estimate to try and help the optimizer
+            return mean_reward
+    except Exception as error:
+        print("From the 'estimate final value' code")
+        print(error)
+    
     return mean_reward
 
 result_lookback_size = 50
