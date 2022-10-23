@@ -18,6 +18,7 @@ def stage1_tuning(trial):
     # modify the config
     # 
     hyper_modify_config(
+        trial,
         hyper_options=config.tuning.phase_1,
         env_config=env_config,
     )
@@ -34,6 +35,7 @@ def stage2_tuning(trial):
     # modify the config
     # 
     hyper_modify_config(
+        trial,
         hyper_options=config.tuning.phase_1,
         env_config=env_config,
     )
@@ -45,7 +47,7 @@ def stage2_tuning(trial):
     fitness_value = float(train_a3c.train_a3c(args))
     return fitness_value
 
-def hyper_modify_config(hyper_options, env_config):
+def hyper_modify_config(trial, hyper_options, env_config):
     options = config.tuning.phase_1
     # categorical_options
     for each_key, each_set_of_possibilitites in hyper_options.get("categorical_options",{}).items():
@@ -75,4 +77,4 @@ if __name__ == "__main__":
     optuna.logging.get_logger("optuna").addHandler(stream_handler)
 
     study = optuna.create_study(direction="maximize", sampler=optuna.samplers.TPESampler(multivariate=True))
-    study.optimize(stage1_tuning, gc_after_trial=True)
+    study.optimize(stage2_tuning, gc_after_trial=True)

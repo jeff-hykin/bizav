@@ -72,13 +72,13 @@
                         permaban_threshold: [ 100, 500, 1000, 2000, 10_000 ]
             
             early_stopping:
-                lowerbound_for_max_recent_change: 0.3 # if changes in average episode reward are this stable, it needs to just end
+                lowerbound_for_max_recent_change: 0.1 # if changes in average episode reward are this stable, it needs to just end
                 min_number_of_episodes: 10
                 thresholds: 
                     # epsiode_number: min_average_episode_value
-                    10:  -800
-                    100: -700
-                    200: -600 #  by epsiode 200, get -600 or better
+                    10:  -1000
+                    100: -800
+                    200: -700 #  by epsiode 200, get -600 or better
                     # 1000: -500 # probably too agressive
         
         LUNAR_LANDER:
