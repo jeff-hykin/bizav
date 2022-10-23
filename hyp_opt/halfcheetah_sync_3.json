@@ -1,0 +1,1525 @@
+[
+    {
+        "bestTrial": {
+            "trialIndex": 67,
+            "score": 276.6,
+            "parameters": {
+                "lr_b": 3,
+                "lr_e": -4,
+                "beta_b": 3,
+                "beta_e": -7,
+                "tmax": 0,
+                "activ": 1,
+                "hid": 0
+            }
+        },
+        "scores": {
+            "stats": {
+                "count": 105,
+                "min": -318289019423947000,
+                "max": 276.6,
+                "range": 318289019423947260,
+                "average": -3031461138465344,
+                "median": 71.42,
+                "sum": -318303419538861100
+            },
+            "scoreRange": {
+                "linearScores": {
+                    "[ 97-100%]:   -5,304,816,990,398,880.": 104,
+                    "[ 93- 97%]:  -15,914,450,971,197,120.": 0,
+                    "[ 90- 93%]:  -26,524,084,951,995,344.": 0,
+                    "[ 87- 90%]:  -37,133,718,932,793,584.": 0,
+                    "[ 83- 87%]:  -47,743,352,913,591,824.": 0,
+                    "[ 80- 83%]:  -58,352,986,894,390,064.": 0,
+                    "[ 77- 80%]:  -68,962,620,875,188,320.": 0,
+                    "[ 73- 77%]:  -79,572,254,855,986,576.": 0,
+                    "[ 70- 73%]:  -90,181,888,836,784,816.": 0,
+                    "[ 67- 70%]: -100,791,522,817,583,056.": 0,
+                    "[ 63- 67%]: -111,401,156,798,381,296.": 0,
+                    "[ 60- 63%]: -122,010,790,779,179,536.": 0,
+                    "[ 57- 60%]: -132,620,424,759,977,776.": 0,
+                    "[ 53- 57%]: -143,230,058,740,776,016.": 0,
+                    "[ 50- 53%]: -153,839,692,721,574,272.": 0,
+                    "[ 47- 50%]: -164,449,326,702,372,480.": 0,
+                    "[ 43- 47%]: -175,058,960,683,170,752.": 0,
+                    "[ 40- 43%]: -185,668,594,663,968,960.": 0,
+                    "[ 37- 40%]: -196,278,228,644,767,232.": 0,
+                    "[ 33- 37%]: -206,887,862,625,565,472.": 0,
+                    "[ 30- 33%]: -217,497,496,606,363,712.": 0,
+                    "[ 27- 30%]: -228,107,130,587,161,952.": 0,
+                    "[ 23- 27%]: -238,716,764,567,960,192.": 0,
+                    "[ 20- 23%]: -249,326,398,548,758,432.": 0,
+                    "[ 17- 20%]: -259,936,032,529,556,672.": 0,
+                    "[ 13- 17%]: -270,545,666,510,354,944.": 0,
+                    "[ 10- 13%]: -281,155,300,491,153,152.": 0,
+                    "[  7- 10%]: -291,764,934,471,951,424.": 0,
+                    "[  3-  7%]: -302,374,568,452,749,632.": 0,
+                    "[  0-  3%]: -312,984,202,433,547,904.": 1
+                },
+                "dualLogScores": {
+                    "[ 97-100%]:                      167.8": 7,
+                    "[ 93- 97%]:                       35.5": 1,
+                    "[ 90- 93%]:                        6.9": 2,
+                    "[ 87- 90%]:                        0.5": 0,
+                    "[ 83- 87%]:                       -3.6": 0,
+                    "[ 80- 83%]:                      -20.3": 2,
+                    "[ 77- 80%]:                      -97.7": 8,
+                    "[ 73- 77%]:                     -455.6": 60,
+                    "[ 70- 73%]:                   -2,109.9": 11,
+                    "[ 67- 70%]:                   -9,756.7": 3,
+                    "[ 63- 67%]:                  -45,104.0": 6,
+                    "[ 60- 63%]:                 -208,496.0": 0,
+                    "[ 57- 60%]:                 -963,771.7": 1,
+                    "[ 53- 57%]:               -4,455,015.6": 2,
+                    "[ 50- 53%]:              -20,593,208.6": 0,
+                    "[ 47- 50%]:              -95,191,624.7": 0,
+                    "[ 43- 47%]:             -440,021,043.7": 0,
+                    "[ 40- 43%]:           -2,033,986,900.2": 0,
+                    "[ 37- 40%]:           -9,402,056,477.9": 0,
+                    "[ 33- 37%]:          -43,460,784,322.7": 0,
+                    "[ 30- 33%]:         -200,896,450,500.7": 0,
+                    "[ 27- 30%]:         -928,639,104,245.2": 0,
+                    "[ 23- 27%]:       -4,292,612,357,167.3": 0,
+                    "[ 20- 23%]:      -19,842,499,378,560.8": 1,
+                    "[ 17- 20%]:      -91,721,485,386,569.8": 0,
+                    "[ 13- 17%]:     -423,980,402,922,841.7": 0,
+                    "[ 10- 13%]:   -1,959,839,412,815,878.0": 0,
+                    "[  7- 10%]:   -9,059,311,462,387,242.0": 0,
+                    "[  3-  7%]:  -41,876,453,568,520,576.0": 0,
+                    "[  0-  3%]: -193,572,918,952,756,064.0": 1
+                },
+                "forwardLogScores": {
+                    "[ 97-100%]: -117,614,285,855,504,288.": 104,
+                    "[ 93- 97%]: -265,921,101,595,564,480.": 0,
+                    "[ 90- 93%]: -304,623,129,508,887,616.": 0,
+                    "[ 87- 90%]: -314,722,779,731,497,344.": 0,
+                    "[ 83- 87%]: -317,358,376,368,642,688.": 0,
+                    "[ 80- 83%]: -318,046,159,557,230,848.": 0,
+                    "[ 77- 80%]: -318,225,642,907,542,336.": 0,
+                    "[ 73- 77%]: -318,272,480,738,960,000.": 0,
+                    "[ 70- 73%]: -318,284,703,501,952,320.": 0,
+                    "[ 67- 70%]: -318,287,893,144,398,272.": 0,
+                    "[ 63- 67%]: -318,288,725,510,937,600.": 0,
+                    "[ 60- 63%]: -318,288,942,724,643,328.": 0,
+                    "[ 57- 60%]: -318,288,999,408,558,080.": 0,
+                    "[ 53- 57%]: -318,289,014,200,747,136.": 0,
+                    "[ 50- 53%]: -318,289,018,060,904,960.": 0,
+                    "[ 47- 50%]: -318,289,019,068,248,640.": 0,
+                    "[ 43- 47%]: -318,289,019,331,124,224.": 0,
+                    "[ 40- 43%]: -318,289,019,399,724,032.": 0,
+                    "[ 37- 40%]: -318,289,019,417,625,792.": 0,
+                    "[ 33- 37%]: -318,289,019,422,297,472.": 0,
+                    "[ 30- 33%]: -318,289,019,423,516,544.": 0,
+                    "[ 27- 30%]: -318,289,019,423,834,624.": 0,
+                    "[ 23- 27%]: -318,289,019,423,917,696.": 0,
+                    "[ 20- 23%]: -318,289,019,423,939,328.": 0,
+                    "[ 17- 20%]: -318,289,019,423,945,024.": 0,
+                    "[ 13- 17%]: -318,289,019,423,946,496.": 0,
+                    "[ 10- 13%]: -318,289,019,423,946,880.": 0,
+                    "[  7- 10%]: -318,289,019,423,947,008.": 0,
+                    "[  3-  7%]: -318,289,019,423,947,008.": 0,
+                    "[  0-  3%]: -318,289,019,423,947,008.": 1
+                },
+                "backwardLogScores": {
+                    "[ 97-100%]: 278.2": 1,
+                    "[ 93- 97%]: 277.7": 1,
+                    "[ 90- 93%]: 277.6": 0,
+                    "[ 87- 90%]: 277.6": 5,
+                    "[ 83- 87%]: 277.6": 51,
+                    "[ 80- 83%]: 277.6": 33,
+                    "[ 77- 80%]: 277.6": 3,
+                    "[ 73- 77%]: 277.6": 4,
+                    "[ 70- 73%]: 277.6": 2,
+                    "[ 67- 70%]: 277.6": 0,
+                    "[ 63- 67%]: 277.6": 1,
+                    "[ 60- 63%]: 277.6": 2,
+                    "[ 57- 60%]: 277.6": 0,
+                    "[ 53- 57%]: 277.6": 0,
+                    "[ 50- 53%]: 277.6": 0,
+                    "[ 47- 50%]: 277.6": 0,
+                    "[ 43- 47%]: 277.6": 0,
+                    "[ 40- 43%]: 277.6": 0,
+                    "[ 37- 40%]: 277.6": 0,
+                    "[ 33- 37%]: 277.6": 0,
+                    "[ 30- 33%]: 277.6": 0,
+                    "[ 27- 30%]: 277.6": 0,
+                    "[ 23- 27%]: 277.6": 1,
+                    "[ 20- 23%]: 277.6": 0,
+                    "[ 17- 20%]: 277.6": 0,
+                    "[ 13- 17%]: 277.6": 0,
+                    "[ 10- 13%]: 277.6": 0,
+                    "[  7- 10%]: 277.6": 0,
+                    "[  3-  7%]: 277.6": 0,
+                    "[  0-  3%]: 277.6": 1
+                }
+            }
+        },
+        "trials": [
+            {
+                "trialIndex": 0,
+                "score": -2833.64,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -3,
+                    "beta_b": 4,
+                    "beta_e": -7,
+                    "tmax": 2,
+                    "activ": 2,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 1,
+                "score": -454.12,
+                "parameters": {
+                    "lr_b": 1,
+                    "lr_e": -7,
+                    "beta_b": 1,
+                    "beta_e": -4,
+                    "tmax": 1,
+                    "activ": 0,
+                    "hid": 2
+                }
+            },
+            {
+                "trialIndex": 2,
+                "score": -318289019423947000,
+                "parameters": {
+                    "lr_b": 5,
+                    "lr_e": -1,
+                    "beta_b": 1,
+                    "beta_e": -4,
+                    "tmax": 0,
+                    "activ": 0,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 3,
+                "score": -11333.5,
+                "parameters": {
+                    "lr_b": 4,
+                    "lr_e": -2,
+                    "beta_b": 4,
+                    "beta_e": -4,
+                    "tmax": 2,
+                    "activ": 1,
+                    "hid": 3
+                }
+            },
+            {
+                "trialIndex": 4,
+                "score": -67247.74,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -1,
+                    "beta_b": 2,
+                    "beta_e": -3,
+                    "tmax": 4,
+                    "activ": 1,
+                    "hid": 3
+                }
+            },
+            {
+                "trialIndex": 5,
+                "score": -643.8,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -5,
+                    "beta_b": 4,
+                    "beta_e": -5,
+                    "tmax": 5,
+                    "activ": 0,
+                    "hid": 2
+                }
+            },
+            {
+                "trialIndex": 6,
+                "score": -600.16,
+                "parameters": {
+                    "lr_b": 5,
+                    "lr_e": -6,
+                    "beta_b": 3,
+                    "beta_e": -5,
+                    "tmax": 3,
+                    "activ": 2,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 7,
+                "score": -40216.78,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -2,
+                    "beta_b": 1,
+                    "beta_e": -7,
+                    "tmax": 5,
+                    "activ": 0,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 8,
+                "score": -832.7,
+                "parameters": {
+                    "lr_b": 4,
+                    "lr_e": -3,
+                    "beta_b": 2,
+                    "beta_e": -6,
+                    "tmax": 4,
+                    "activ": 1,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 9,
+                "score": -581.43,
+                "parameters": {
+                    "lr_b": 4,
+                    "lr_e": -7,
+                    "beta_b": 1,
+                    "beta_e": -2,
+                    "tmax": 3,
+                    "activ": 1,
+                    "hid": 3
+                }
+            },
+            {
+                "trialIndex": 10,
+                "score": -456.66,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -8,
+                    "beta_b": 1,
+                    "beta_e": -3,
+                    "tmax": 1,
+                    "activ": 0,
+                    "hid": 2
+                }
+            },
+            {
+                "trialIndex": 11,
+                "score": -458.52,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -8,
+                    "beta_b": 1,
+                    "beta_e": -2,
+                    "tmax": 1,
+                    "activ": 0,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 12,
+                "score": -456.99,
+                "parameters": {
+                    "lr_b": 1,
+                    "lr_e": -8,
+                    "beta_b": 2,
+                    "beta_e": -7,
+                    "tmax": 1,
+                    "activ": 0,
+                    "hid": 2
+                }
+            },
+            {
+                "trialIndex": 13,
+                "score": -586.49,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -8,
+                    "beta_b": 1,
+                    "beta_e": -4,
+                    "tmax": 4,
+                    "activ": 0,
+                    "hid": 2
+                }
+            },
+            {
+                "trialIndex": 14,
+                "score": -452.93,
+                "parameters": {
+                    "lr_b": 1,
+                    "lr_e": -8,
+                    "beta_b": 1,
+                    "beta_e": -4,
+                    "tmax": 0,
+                    "activ": 2,
+                    "hid": 3
+                }
+            },
+            {
+                "trialIndex": 15,
+                "score": -452.95,
+                "parameters": {
+                    "lr_b": 1,
+                    "lr_e": -6,
+                    "beta_b": 1,
+                    "beta_e": -4,
+                    "tmax": 0,
+                    "activ": 2,
+                    "hid": 3
+                }
+            },
+            {
+                "trialIndex": 16,
+                "score": -451.92,
+                "parameters": {
+                    "lr_b": 1,
+                    "lr_e": -5,
+                    "beta_b": 1,
+                    "beta_e": -2,
+                    "tmax": 1,
+                    "activ": 2,
+                    "hid": 3
+                }
+            },
+            {
+                "trialIndex": 17,
+                "score": -677.78,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -4,
+                    "beta_b": 1,
+                    "beta_e": -1,
+                    "tmax": 1,
+                    "activ": 0,
+                    "hid": 3
+                }
+            },
+            {
+                "trialIndex": 18,
+                "score": -454.92,
+                "parameters": {
+                    "lr_b": 1,
+                    "lr_e": -6,
+                    "beta_b": 1,
+                    "beta_e": -1,
+                    "tmax": 0,
+                    "activ": 2,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 19,
+                "score": -582.05,
+                "parameters": {
+                    "lr_b": 1,
+                    "lr_e": -6,
+                    "beta_b": 1,
+                    "beta_e": -1,
+                    "tmax": 4,
+                    "activ": 2,
+                    "hid": 2
+                }
+            },
+            {
+                "trialIndex": 20,
+                "score": -454.82,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -5,
+                    "beta_b": 4,
+                    "beta_e": -6,
+                    "tmax": 1,
+                    "activ": 2,
+                    "hid": 3
+                }
+            },
+            {
+                "trialIndex": 21,
+                "score": -454.13,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -6,
+                    "beta_b": 1,
+                    "beta_e": -4,
+                    "tmax": 0,
+                    "activ": 2,
+                    "hid": 3
+                }
+            },
+            {
+                "trialIndex": 22,
+                "score": -453.36,
+                "parameters": {
+                    "lr_b": 1,
+                    "lr_e": -7,
+                    "beta_b": 2,
+                    "beta_e": -3,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 3
+                }
+            },
+            {
+                "trialIndex": 23,
+                "score": -515.07,
+                "parameters": {
+                    "lr_b": 1,
+                    "lr_e": -3,
+                    "beta_b": 2,
+                    "beta_e": -5,
+                    "tmax": 2,
+                    "activ": 2,
+                    "hid": 3
+                }
+            },
+            {
+                "trialIndex": 24,
+                "score": -452.11,
+                "parameters": {
+                    "lr_b": 1,
+                    "lr_e": -8,
+                    "beta_b": 1,
+                    "beta_e": -7,
+                    "tmax": 0,
+                    "activ": 2,
+                    "hid": 3
+                }
+            },
+            {
+                "trialIndex": 25,
+                "score": -449.64,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -8,
+                    "beta_b": 3,
+                    "beta_e": -7,
+                    "tmax": 0,
+                    "activ": 2,
+                    "hid": 3
+                }
+            },
+            {
+                "trialIndex": 26,
+                "score": -450.97,
+                "parameters": {
+                    "lr_b": 1,
+                    "lr_e": -8,
+                    "beta_b": 1,
+                    "beta_e": -8,
+                    "tmax": 1,
+                    "activ": 2,
+                    "hid": 3
+                }
+            },
+            {
+                "trialIndex": 27,
+                "score": -520.35,
+                "parameters": {
+                    "lr_b": 1,
+                    "lr_e": -8,
+                    "beta_b": 1,
+                    "beta_e": -7,
+                    "tmax": 3,
+                    "activ": 2,
+                    "hid": 2
+                }
+            },
+            {
+                "trialIndex": 28,
+                "score": -451.06,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -7,
+                    "beta_b": 3,
+                    "beta_e": -8,
+                    "tmax": 1,
+                    "activ": 1,
+                    "hid": 3
+                }
+            },
+            {
+                "trialIndex": 29,
+                "score": -588.35,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -5,
+                    "beta_b": 2,
+                    "beta_e": -8,
+                    "tmax": 3,
+                    "activ": 1,
+                    "hid": 2
+                }
+            },
+            {
+                "trialIndex": 30,
+                "score": -447.03,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -8,
+                    "beta_b": 4,
+                    "beta_e": -7,
+                    "tmax": 0,
+                    "activ": 2,
+                    "hid": 2
+                }
+            },
+            {
+                "trialIndex": 31,
+                "score": -452.64,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -8,
+                    "beta_b": 4,
+                    "beta_e": -7,
+                    "tmax": 0,
+                    "activ": 2,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 32,
+                "score": -581.49,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -8,
+                    "beta_b": 4,
+                    "beta_e": -8,
+                    "tmax": 3,
+                    "activ": 1,
+                    "hid": 3
+                }
+            },
+            {
+                "trialIndex": 33,
+                "score": -449.29,
+                "parameters": {
+                    "lr_b": 1,
+                    "lr_e": -6,
+                    "beta_b": 3,
+                    "beta_e": -8,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 2
+                }
+            },
+            {
+                "trialIndex": 34,
+                "score": -454.38,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -8,
+                    "beta_b": 3,
+                    "beta_e": -8,
+                    "tmax": 0,
+                    "activ": 2,
+                    "hid": 3
+                }
+            },
+            {
+                "trialIndex": 35,
+                "score": -462.04,
+                "parameters": {
+                    "lr_b": 1,
+                    "lr_e": -7,
+                    "beta_b": 4,
+                    "beta_e": -8,
+                    "tmax": 1,
+                    "activ": 1,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 36,
+                "score": -448.69,
+                "parameters": {
+                    "lr_b": 1,
+                    "lr_e": -7,
+                    "beta_b": 4,
+                    "beta_e": -8,
+                    "tmax": 0,
+                    "activ": 2,
+                    "hid": 2
+                }
+            },
+            {
+                "trialIndex": 37,
+                "score": -454.25,
+                "parameters": {
+                    "lr_b": 1,
+                    "lr_e": -7,
+                    "beta_b": 4,
+                    "beta_e": -8,
+                    "tmax": 1,
+                    "activ": 2,
+                    "hid": 3
+                }
+            },
+            {
+                "trialIndex": 38,
+                "score": -453.85,
+                "parameters": {
+                    "lr_b": 1,
+                    "lr_e": -6,
+                    "beta_b": 4,
+                    "beta_e": -7,
+                    "tmax": 0,
+                    "activ": 2,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 39,
+                "score": -184.44,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -5,
+                    "beta_b": 2,
+                    "beta_e": -7,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 40,
+                "score": -153.27,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -5,
+                    "beta_b": 2,
+                    "beta_e": -6,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 41,
+                "score": 125.05,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -4,
+                    "beta_b": 2,
+                    "beta_e": -7,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 42,
+                "score": 71.28,
+                "parameters": {
+                    "lr_b": 4,
+                    "lr_e": -4,
+                    "beta_b": 2,
+                    "beta_e": -8,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 43,
+                "score": -146.02,
+                "parameters": {
+                    "lr_b": 4,
+                    "lr_e": -5,
+                    "beta_b": 1,
+                    "beta_e": -7,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 44,
+                "score": -757.33,
+                "parameters": {
+                    "lr_b": 4,
+                    "lr_e": -4,
+                    "beta_b": 1,
+                    "beta_e": -6,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 45,
+                "score": -155.22,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -5,
+                    "beta_b": 3,
+                    "beta_e": -6,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 46,
+                "score": -462.17,
+                "parameters": {
+                    "lr_b": 5,
+                    "lr_e": -6,
+                    "beta_b": 3,
+                    "beta_e": -8,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 47,
+                "score": -615.01,
+                "parameters": {
+                    "lr_b": 4,
+                    "lr_e": -5,
+                    "beta_b": 1,
+                    "beta_e": -7,
+                    "tmax": 1,
+                    "activ": 2,
+                    "hid": 2
+                }
+            },
+            {
+                "trialIndex": 48,
+                "score": -5583753.65,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -3,
+                    "beta_b": 2,
+                    "beta_e": -7,
+                    "tmax": 0,
+                    "activ": 0,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 49,
+                "score": -158.48,
+                "parameters": {
+                    "lr_b": 4,
+                    "lr_e": -5,
+                    "beta_b": 4,
+                    "beta_e": -6,
+                    "tmax": 1,
+                    "activ": 1,
+                    "hid": 2
+                }
+            },
+            {
+                "trialIndex": 50,
+                "score": -1262.14,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -3,
+                    "beta_b": 3,
+                    "beta_e": -8,
+                    "tmax": 1,
+                    "activ": 1,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 51,
+                "score": -655.58,
+                "parameters": {
+                    "lr_b": 5,
+                    "lr_e": -5,
+                    "beta_b": 4,
+                    "beta_e": -5,
+                    "tmax": 0,
+                    "activ": 0,
+                    "hid": 2
+                }
+            },
+            {
+                "trialIndex": 52,
+                "score": 71.42,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -4,
+                    "beta_b": 5,
+                    "beta_e": -5,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 53,
+                "score": -602.05,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -4,
+                    "beta_b": 5,
+                    "beta_e": -3,
+                    "tmax": 1,
+                    "activ": 1,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 54,
+                "score": -617.1,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -8,
+                    "beta_b": 1,
+                    "beta_e": -5,
+                    "tmax": 1,
+                    "activ": 1,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 55,
+                "score": -1545.93,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -3,
+                    "beta_b": 5,
+                    "beta_e": -6,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 56,
+                "score": -454.26,
+                "parameters": {
+                    "lr_b": 5,
+                    "lr_e": -7,
+                    "beta_b": 2,
+                    "beta_e": -5,
+                    "tmax": 1,
+                    "activ": 1,
+                    "hid": 2
+                }
+            },
+            {
+                "trialIndex": 57,
+                "score": -453.91,
+                "parameters": {
+                    "lr_b": 5,
+                    "lr_e": -7,
+                    "beta_b": 1,
+                    "beta_e": -8,
+                    "tmax": 0,
+                    "activ": 0,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 58,
+                "score": -161.15,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -5,
+                    "beta_b": 2,
+                    "beta_e": -4,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 59,
+                "score": -458.39,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -5,
+                    "beta_b": 3,
+                    "beta_e": -4,
+                    "tmax": 1,
+                    "activ": 0,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 60,
+                "score": -9763.72,
+                "parameters": {
+                    "lr_b": 5,
+                    "lr_e": -3,
+                    "beta_b": 3,
+                    "beta_e": -8,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 61,
+                "score": -453.34,
+                "parameters": {
+                    "lr_b": 4,
+                    "lr_e": -6,
+                    "beta_b": 1,
+                    "beta_e": -8,
+                    "tmax": 1,
+                    "activ": 1,
+                    "hid": 2
+                }
+            },
+            {
+                "trialIndex": 62,
+                "score": -450.54,
+                "parameters": {
+                    "lr_b": 5,
+                    "lr_e": -6,
+                    "beta_b": 4,
+                    "beta_e": -6,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 2
+                }
+            },
+            {
+                "trialIndex": 63,
+                "score": -183.31,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -5,
+                    "beta_b": 3,
+                    "beta_e": -5,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 2
+                }
+            },
+            {
+                "trialIndex": 64,
+                "score": 268.66,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -4,
+                    "beta_b": 1,
+                    "beta_e": -8,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 65,
+                "score": -632.38,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -4,
+                    "beta_b": 1,
+                    "beta_e": -8,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 66,
+                "score": -3019898.78,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -3,
+                    "beta_b": 3,
+                    "beta_e": -8,
+                    "tmax": 0,
+                    "activ": 2,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 67,
+                "score": 276.6,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -4,
+                    "beta_b": 3,
+                    "beta_e": -7,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 68,
+                "score": -20881,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -2,
+                    "beta_b": 2,
+                    "beta_e": -5,
+                    "tmax": 1,
+                    "activ": 1,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 69,
+                "score": -144.42,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -5,
+                    "beta_b": 4,
+                    "beta_e": -8,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 70,
+                "score": 132.62,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -4,
+                    "beta_b": 3,
+                    "beta_e": -8,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 71,
+                "score": -534.99,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -4,
+                    "beta_b": 5,
+                    "beta_e": -8,
+                    "tmax": 1,
+                    "activ": 1,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 72,
+                "score": -608.79,
+                "parameters": {
+                    "lr_b": 4,
+                    "lr_e": -5,
+                    "beta_b": 4,
+                    "beta_e": -8,
+                    "tmax": 0,
+                    "activ": 0,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 73,
+                "score": -149.62,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -5,
+                    "beta_b": 3,
+                    "beta_e": -8,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 74,
+                "score": -935.75,
+                "parameters": {
+                    "lr_b": 4,
+                    "lr_e": -3,
+                    "beta_b": 2,
+                    "beta_e": -8,
+                    "tmax": 2,
+                    "activ": 1,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 75,
+                "score": -170.27,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -5,
+                    "beta_b": 4,
+                    "beta_e": -7,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 76,
+                "score": -633.69,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -4,
+                    "beta_b": 5,
+                    "beta_e": -5,
+                    "tmax": 1,
+                    "activ": 0,
+                    "hid": 2
+                }
+            },
+            {
+                "trialIndex": 77,
+                "score": -1986.45,
+                "parameters": {
+                    "lr_b": 4,
+                    "lr_e": -3,
+                    "beta_b": 3,
+                    "beta_e": -7,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 78,
+                "score": -868.56,
+                "parameters": {
+                    "lr_b": 5,
+                    "lr_e": -4,
+                    "beta_b": 1,
+                    "beta_e": -8,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 79,
+                "score": -531.19,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -5,
+                    "beta_b": 2,
+                    "beta_e": -8,
+                    "tmax": 2,
+                    "activ": 2,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 80,
+                "score": -38761.87,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -2,
+                    "beta_b": 4,
+                    "beta_e": -8,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 81,
+                "score": -473.74,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -7,
+                    "beta_b": 3,
+                    "beta_e": -8,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 82,
+                "score": 3.62,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -4,
+                    "beta_b": 3,
+                    "beta_e": -7,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 83,
+                "score": -113.42,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -4,
+                    "beta_b": 2,
+                    "beta_e": -7,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 84,
+                "score": -604.68,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -4,
+                    "beta_b": 2,
+                    "beta_e": -8,
+                    "tmax": 1,
+                    "activ": 1,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 85,
+                "score": -840.43,
+                "parameters": {
+                    "lr_b": 1,
+                    "lr_e": -3,
+                    "beta_b": 5,
+                    "beta_e": -6,
+                    "tmax": 0,
+                    "activ": 2,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 86,
+                "score": 3.01,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -4,
+                    "beta_b": 2,
+                    "beta_e": -7,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 87,
+                "score": -708.58,
+                "parameters": {
+                    "lr_b": 4,
+                    "lr_e": -4,
+                    "beta_b": 3,
+                    "beta_e": -6,
+                    "tmax": 0,
+                    "activ": 2,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 88,
+                "score": -1461.04,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -2,
+                    "beta_b": 2,
+                    "beta_e": -7,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 2
+                }
+            },
+            {
+                "trialIndex": 89,
+                "score": -7.91,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -4,
+                    "beta_b": 2,
+                    "beta_e": -7,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 90,
+                "score": 12.96,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -4,
+                    "beta_b": 1,
+                    "beta_e": -7,
+                    "tmax": 0,
+                    "activ": 2,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 91,
+                "score": -724.33,
+                "parameters": {
+                    "lr_b": 4,
+                    "lr_e": -4,
+                    "beta_b": 1,
+                    "beta_e": -7,
+                    "tmax": 0,
+                    "activ": 2,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 92,
+                "score": -605.31,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -5,
+                    "beta_b": 1,
+                    "beta_e": -7,
+                    "tmax": 0,
+                    "activ": 0,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 93,
+                "score": -613.25,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -5,
+                    "beta_b": 1,
+                    "beta_e": -7,
+                    "tmax": 0,
+                    "activ": 2,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 94,
+                "score": -33311.58,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -2,
+                    "beta_b": 1,
+                    "beta_e": -7,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 95,
+                "score": -8.23,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -4,
+                    "beta_b": 2,
+                    "beta_e": -6,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 96,
+                "score": -1035.37,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -3,
+                    "beta_b": 3,
+                    "beta_e": -6,
+                    "tmax": 2,
+                    "activ": 1,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 97,
+                "score": -14400105140633.21,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -2,
+                    "beta_b": 1,
+                    "beta_e": -6,
+                    "tmax": 0,
+                    "activ": 2,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 98,
+                "score": -63612.89,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -2,
+                    "beta_b": 2,
+                    "beta_e": -8,
+                    "tmax": 1,
+                    "activ": 0,
+                    "hid": 2
+                }
+            },
+            {
+                "trialIndex": 99,
+                "score": -454.95,
+                "parameters": {
+                    "lr_b": 2,
+                    "lr_e": -7,
+                    "beta_b": 5,
+                    "beta_e": -3,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 100,
+                "score": -834766.59,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -2,
+                    "beta_b": 3,
+                    "beta_e": -8,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 101,
+                "score": 173.18,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -4,
+                    "beta_b": 3,
+                    "beta_e": -5,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 102,
+                "score": -5453.44,
+                "parameters": {
+                    "lr_b": 4,
+                    "lr_e": -3,
+                    "beta_b": 3,
+                    "beta_e": -4,
+                    "tmax": 0,
+                    "activ": 1,
+                    "hid": 1
+                }
+            },
+            {
+                "trialIndex": 103,
+                "score": -605.91,
+                "parameters": {
+                    "lr_b": 3,
+                    "lr_e": -4,
+                    "beta_b": 1,
+                    "beta_e": -4,
+                    "tmax": 1,
+                    "activ": 2,
+                    "hid": 0
+                }
+            },
+            {
+                "trialIndex": 104,
+                "score": -612.85,
+                "parameters": {
+                    "lr_b": 4,
+                    "lr_e": -5,
+                    "beta_b": 1,
+                    "beta_e": -1,
+                    "tmax": 3,
+                    "activ": 1,
+                    "hid": 0
+                }
+            }
+        ]
+    }
+]

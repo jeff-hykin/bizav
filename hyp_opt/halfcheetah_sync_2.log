@@ -1,0 +1,1836 @@
+[32m[I 2022-10-19 21:24:26,992][0m A new study created in memory with name: no-name-b979582a-6232-42e5-b71b-3a2464e7b091[0m
+
+total_number_of_episodes = 20, number_of_timesteps=20000, per_episode_reward = -569.05, episode_reward_trend_value=0.0
+total_number_of_episodes = 30, number_of_timesteps=30000, per_episode_reward = -575.55, episode_reward_trend_value=-0.6502499080054577
+total_number_of_episodes = 40, number_of_timesteps=40000, per_episode_reward = -584.45, episode_reward_trend_value=-0.7702843179687193
+total_number_of_episodes = 50, number_of_timesteps=50000, per_episode_reward = -589.32, episode_reward_trend_value=-0.6759040391278972
+total_number_of_episodes = 60, number_of_timesteps=60000, per_episode_reward = -588.18, episode_reward_trend_value=-0.47835641216004776
+total_number_of_episodes = 70, number_of_timesteps=70000, per_episode_reward = -587.04, episode_reward_trend_value=-0.3597700812447715
+total_number_of_episodes = 80, number_of_timesteps=80000, per_episode_reward = -588.74, episode_reward_trend_value=-0.328139133398912
+total_number_of_episodes = 90, number_of_timesteps=90000, per_episode_reward = -589.14, episode_reward_trend_value=-0.2870826920689069
+total_number_of_episodes = 100, number_of_timesteps=100000, per_episode_reward = -590.40, episode_reward_trend_value=-0.26688629903481453
+total_number_of_episodes = 110, number_of_timesteps=110000, per_episode_reward = -588.86, episode_reward_trend_value=-0.22018737805889135
+total_number_of_episodes = 120, number_of_timesteps=120000, per_episode_reward = -587.18, episode_reward_trend_value=-0.12925580072145268
+total_number_of_episodes = 130, number_of_timesteps=130000, per_episode_reward = -587.19, episode_reward_trend_value=-0.0303878667409688
+total_number_of_episodes = 140, number_of_timesteps=140000, per_episode_reward = -586.85, episode_reward_trend_value=0.02744119542191912
+total_number_of_episodes = 150, number_of_timesteps=150000, per_episode_reward = -518.61, episode_reward_trend_value=0.7730035445643832
+total_number_of_episodes = 160, number_of_timesteps=160000, per_episode_reward = -517.53, episode_reward_trend_value=0.7722564139379667
+total_number_of_episodes = 170, number_of_timesteps=170000, per_episode_reward = -518.86, episode_reward_trend_value=0.7764232927273762
+total_number_of_episodes = 180, number_of_timesteps=180000, per_episode_reward = -517.71, episode_reward_trend_value=0.7936690732963787
+total_number_of_episodes = 190, number_of_timesteps=190000, per_episode_reward = -518.08, episode_reward_trend_value=0.8035777673137419
+total_number_of_episodes = 200, number_of_timesteps=200000, per_episode_reward = -518.54, episode_reward_trend_value=0.7814093129854781
+total_number_of_episodes = 210, number_of_timesteps=210000, per_episode_reward = -517.68, episode_reward_trend_value=0.7722955891354811
+total_number_of_episodes = 220, number_of_timesteps=220000, per_episode_reward = -516.99, episode_reward_trend_value=0.779959491502911
+total_number_of_episodes = 230, number_of_timesteps=230000, per_episode_reward = -516.43, episode_reward_trend_value=0.782455291843213
+total_number_of_episodes = 240, number_of_timesteps=240000, per_episode_reward = -515.05, episode_reward_trend_value=0.039595678794466946
+total_number_of_episodes = 250, number_of_timesteps=250000, per_episode_reward = -515.72, episode_reward_trend_value=0.02013292193923538
+total_number_of_episodes = 260, number_of_timesteps=260000, per_episode_reward = -516.22, episode_reward_trend_value=0.02928225725018289
+total_number_of_episodes = 270, number_of_timesteps=270000, per_episode_reward = -449.95, episode_reward_trend_value=0.7529477913082315
+total_number_of_episodes = 280, number_of_timesteps=280000, per_episode_reward = -449.89, episode_reward_trend_value=0.757630447391948
+total_number_of_episodes = 290, number_of_timesteps=290000, per_episode_reward = -450.17, episode_reward_trend_value=0.7595847081639723
+total_number_of_episodes = 300, number_of_timesteps=300000, per_episode_reward = -448.41, episode_reward_trend_value=0.7695835465038625
+total_number_of_episodes = 310, number_of_timesteps=310000, per_episode_reward = -449.11, episode_reward_trend_value=0.7542145703074576
+total_number_of_episodes = 320, number_of_timesteps=320000, per_episode_reward = -448.98, episode_reward_trend_value=0.7494275695153785
+total_number_of_episodes = 330, number_of_timesteps=330000, per_episode_reward = -449.21, episode_reward_trend_value=0.731474888293701
+total_number_of_episodes = 340, number_of_timesteps=340000, per_episode_reward = -449.45, episode_reward_trend_value=0.7363235935328248
+total_number_of_episodes = 350, number_of_timesteps=350000, per_episode_reward = -449.75, episode_reward_trend_value=0.7385604008284771
+total_number_of_episodes = 360, number_of_timesteps=360000, per_episode_reward = -450.22, episode_reward_trend_value=-0.003004479403001091
+total_number_of_episodes = 370, number_of_timesteps=370000, per_episode_reward = -450.92, episode_reward_trend_value=-0.011468091391273878
+total_number_of_episodes = 380, number_of_timesteps=380000, per_episode_reward = -450.65, episode_reward_trend_value=-0.005283773087861871
+total_number_of_episodes = 390, number_of_timesteps=390000, per_episode_reward = -450.32, episode_reward_trend_value=-0.021206927865192585
+total_number_of_episodes = 400, number_of_timesteps=400000, per_episode_reward = -450.54, episode_reward_trend_value=-0.015894920258444422
+total_number_of_episodes = 410, number_of_timesteps=410000, per_episode_reward = -451.06, episode_reward_trend_value=-0.02310256579516729
+total_number_of_episodes = 420, number_of_timesteps=420000, per_episode_reward = -450.63, episode_reward_trend_value=-0.015756115706396182
+total_number_of_episodes = 430, number_of_timesteps=430000, per_episode_reward = -450.60, episode_reward_trend_value=-0.01280303776836023
+total_number_of_episodes = 440, number_of_timesteps=440000, per_episode_reward = -451.10, episode_reward_trend_value=-0.015023668906599775
+total_number_of_episodes = 450, number_of_timesteps=450000, per_episode_reward = -451.28, episode_reward_trend_value=-0.011782978707951013
+total_number_of_episodes = 460, number_of_timesteps=460000, per_episode_reward = -451.47, episode_reward_trend_value=-0.006120478380914089
+total_number_of_episodes = 470, number_of_timesteps=470000, per_episode_reward = -451.15, episode_reward_trend_value=-0.005506596725321818
+total_number_of_episodes = 480, number_of_timesteps=480000, per_episode_reward = -451.91, episode_reward_trend_value=-0.017670549249198884
+total_number_of_episodes = 490, number_of_timesteps=490000, per_episode_reward = -451.49, episode_reward_trend_value=-0.010581817685059985
+total_number_of_episodes = 500, number_of_timesteps=500000, per_episode_reward = -451.71, episode_reward_trend_value=-0.007146661114052853
+total_number_of_episodes = 510, number_of_timesteps=510000, per_episode_reward = -451.98, episode_reward_trend_value=-0.014952207191596598
+total_number_of_episodes = 520, number_of_timesteps=520000, per_episode_reward = -452.61, episode_reward_trend_value=-0.022314622894765535
+total_number_of_episodes = 530, number_of_timesteps=530000, per_episode_reward = -452.77, episode_reward_trend_value=-0.018511893496398417
+total_number_of_episodes = 540, number_of_timesteps=540000, per_episode_reward = -453.14, episode_reward_trend_value=-0.020660884324356883
+total_number_of_episodes = 550, number_of_timesteps=550000, per_episode_reward = -453.19, episode_reward_trend_value=-0.01905817495192979
+total_number_of_episodes = 560, number_of_timesteps=560000, per_episode_reward = -452.57, episode_reward_trend_value=-0.015817634670697266
+total_number_of_episodes = 570, number_of_timesteps=570000, per_episode_reward = -452.79, episode_reward_trend_value=-0.009772170050577718
+total_number_of_episodes = 580, number_of_timesteps=580000, per_episode_reward = -453.03, episode_reward_trend_value=-0.017036648852570124
+total_number_of_episodes = 590, number_of_timesteps=590000, per_episode_reward = -452.50, episode_reward_trend_value=-0.008839938754129485
+total_number_of_episodes = 600, number_of_timesteps=600000, per_episode_reward = -452.90, episode_reward_trend_value=-0.010211260452228999
+total_number_of_episodes = 610, number_of_timesteps=610000, per_episode_reward = -453.38, episode_reward_trend_value=-0.008553264271040462
+total_number_of_episodes = 620, number_of_timesteps=620000, per_episode_reward = -453.36, episode_reward_trend_value=-0.006521844998007964
+total_number_of_episodes = 630, number_of_timesteps=630000, per_episode_reward = -453.70, episode_reward_trend_value=-0.0062751765450431984
+total_number_of_episodes = 640, number_of_timesteps=640000, per_episode_reward = -453.87, episode_reward_trend_value=-0.0076275970354780995
+total_number_of_episodes = 650, number_of_timesteps=650000, per_episode_reward = -454.16, episode_reward_trend_value=-0.01765188093485285
+total_number_of_episodes = 660, number_of_timesteps=660000, per_episode_reward = -454.32, episode_reward_trend_value=-0.017008214406008117
+total_number_of_episodes = 670, number_of_timesteps=670000, per_episode_reward = -453.74, episode_reward_trend_value=-0.007894588361625664
+total_number_of_episodes = 680, number_of_timesteps=680000, per_episode_reward = -453.35, episode_reward_trend_value=-0.009429892783191462
+total_number_of_episodes = 690, number_of_timesteps=690000, per_episode_reward = -453.19, episode_reward_trend_value=-0.003208145567443429
+total_number_of_episodes = 700, number_of_timesteps=700000, per_episode_reward = -453.20, episode_reward_trend_value=0.0020090738150138855
+total_number_of_episodes = 710, number_of_timesteps=710000, per_episode_reward = -453.65, episode_reward_trend_value=-0.0032434524382438214
+total_number_of_episodes = 720, number_of_timesteps=720000, per_episode_reward = -453.70, episode_reward_trend_value=-1.0240612555713191e-05
+total_number_of_episodes = 730, number_of_timesteps=730000, per_episode_reward = -453.69, episode_reward_trend_value=0.0020913067298282484
+total_number_of_episodes = 740, number_of_timesteps=740000, per_episode_reward = -454.12, episode_reward_trend_value=0.0003913019617540512
+total_number_of_episodes = 750, number_of_timesteps=750000, per_episode_reward = -454.16, episode_reward_trend_value=0.0017895280333119798
+total_number_of_episodes = 760, number_of_timesteps=760000, per_episode_reward = -454.55, episode_reward_trend_value=-0.008961622193013833
+total_number_of_episodes = 770, number_of_timesteps=770000, per_episode_reward = -454.92, episode_reward_trend_value=-0.01740769941515623
+total_number_of_episodes = 780, number_of_timesteps=780000, per_episode_reward = -455.10, episode_reward_trend_value=-0.021307138215154155
+total_number_of_episodes = 790, number_of_timesteps=790000, per_episode_reward = -455.11, episode_reward_trend_value=-0.021161878276759832
+total_number_of_episodes = 800, number_of_timesteps=800000, per_episode_reward = -455.53, episode_reward_trend_value=-0.020900800119891805
+total_number_of_episodes = 810, number_of_timesteps=810000, per_episode_reward = -455.14, episode_reward_trend_value=-0.01597274206162385
+total_number_of_episodes = 820, number_of_timesteps=820000, per_episode_reward = -455.02, episode_reward_trend_value=-0.014874455243702617
+total_number_of_episodes = 830, number_of_timesteps=830000, per_episode_reward = -455.30, episode_reward_trend_value=-0.013035604991694705
+total_number_of_episodes = 840, number_of_timesteps=840000, per_episode_reward = -455.33, episode_reward_trend_value=-0.013013740331026234
+total_number_of_episodes = 850, number_of_timesteps=850000, per_episode_reward = -455.54, episode_reward_trend_value=-0.011021080308958948
+total_number_of_episodes = 860, number_of_timesteps=860000, per_episode_reward = -456.00, episode_reward_trend_value=-0.011987850701121436
+total_number_of_episodes = 870, number_of_timesteps=870000, per_episode_reward = -455.06, episode_reward_trend_value=0.0004649946122716149
+total_number_of_episodes = 880, number_of_timesteps=880000, per_episode_reward = -455.42, episode_reward_trend_value=-0.0035203557711939643
+total_number_of_episodes = 890, number_of_timesteps=890000, per_episode_reward = -455.61, episode_reward_trend_value=-0.0009124749658869606
+total_number_of_episodes = 900, number_of_timesteps=900000, per_episode_reward = -455.45, episode_reward_trend_value=-0.0034437810734510147
+total_number_of_episodes = 910, number_of_timesteps=910000, per_episode_reward = -455.53, episode_reward_trend_value=-0.005631995151036841
+total_number_of_episodes = 920, number_of_timesteps=920000, per_episode_reward = -455.16, episode_reward_trend_value=0.001522345023596472
+total_number_of_episodes = 930, number_of_timesteps=930000, per_episode_reward = -454.63, episode_reward_trend_value=0.007829659096595758
+total_number_of_episodes = 940, number_of_timesteps=940000, per_episode_reward = -454.64, episode_reward_trend_value=0.00999396065808848
+total_number_of_episodes = 950, number_of_timesteps=950000, per_episode_reward = -454.32, episode_reward_trend_value=0.01862502260236296
+total_number_of_episodes = 960, number_of_timesteps=960000, per_episode_reward = -454.37, episode_reward_trend_value=0.007688043239394598
+total_number_of_episodes = 970, number_of_timesteps=970000, per_episode_reward = -454.30, episode_reward_trend_value=0.012438099307400485
+total_number_of_episodes = 980, number_of_timesteps=980000, per_episode_reward = -454.27, episode_reward_trend_value=0.014868683260382593
+total_number_of_episodes = 990, number_of_timesteps=990000, per_episode_reward = -454.16, episode_reward_trend_value=0.014331075797017926
+total_number_of_episodes = 1000, number_of_timesteps=1000000, per_episode_reward = -454.41, episode_reward_trend_value=0.012464327927429825
+total_number_of_episodes = 1010, number_of_timesteps=1010000, per_episode_reward = -455.08, episode_reward_trend_value=0.0009103842556650458
+total_number_of_episodes = 1020, number_of_timesteps=1020000, per_episode_reward = -454.89, episode_reward_trend_value=-0.0028868564366834764
+total_number_of_episodes = 1030, number_of_timesteps=1030000, per_episode_reward = -454.56, episode_reward_trend_value=0.0008368628593163722
+total_number_of_episodes = 1040, number_of_timesteps=1040000, per_episode_reward = -454.11, episode_reward_trend_value=0.0023712381929707742
+total_number_of_episodes = 1050, number_of_timesteps=1050000, per_episode_reward = -454.72, episode_reward_trend_value=-0.003906714685906662
+total_number_of_episodes = 1060, number_of_timesteps=1060000, per_episode_reward = -454.57, episode_reward_trend_value=-0.0030158350959343097
+total_number_of_episodes = 1070, number_of_timesteps=1070000, per_episode_reward = -455.04, episode_reward_trend_value=-0.008543933261542078
+total_number_of_episodes = 1080, number_of_timesteps=1080000, per_episode_reward = -454.73, episode_reward_trend_value=-0.006357598664075997
+total_number_of_episodes = 1090, number_of_timesteps=1090000, per_episode_reward = -454.58, episode_reward_trend_value=-0.0019068135049628329
+total_number_of_episodes = 1100, number_of_timesteps=1100000, per_episode_reward = -454.47, episode_reward_trend_value=0.006794318256814019
+total_number_of_episodes = 1110, number_of_timesteps=1110000, per_episode_reward = -454.36, episode_reward_trend_value=0.005889871127290133
+total_number_of_episodes = 1120, number_of_timesteps=1120000, per_episode_reward = -454.81, episode_reward_trend_value=-0.0027024563513066368
+total_number_of_episodes = 1130, number_of_timesteps=1130000, per_episode_reward = -455.30, episode_reward_trend_value=-0.013222727210958535
+total_number_of_episodes = 1140, number_of_timesteps=1140000, per_episode_reward = -454.84, episode_reward_trend_value=-0.0013026196203403137
+total_number_of_episodes = 1150, number_of_timesteps=1150000, per_episode_reward = -454.71, episode_reward_trend_value=-0.0014803507488282876
+total_number_of_episodes = 1160, number_of_timesteps=1160000, per_episode_reward = -454.96, episode_reward_trend_value=0.0009054965963482826
+total_number_of_episodes = 1170, number_of_timesteps=1170000, per_episode_reward = -454.93, episode_reward_trend_value=-0.002160303508326125
+total_number_of_episodes = 1180, number_of_timesteps=1180000, per_episode_reward = -454.64, episode_reward_trend_value=-0.0006112498180685735
+total_number_of_episodes = 1190, number_of_timesteps=1190000, per_episode_reward = -454.92, episode_reward_trend_value=-0.005055093885246404
+total_number_of_episodes = 1200, number_of_timesteps=1200000, per_episode_reward = -455.10, episode_reward_trend_value=-0.00819804438155087
+total_number_of_episodes = 1210, number_of_timesteps=1210000, per_episode_reward = -455.21, episode_reward_trend_value=-0.004461610553444314
+total_number_of_episodes = 1220, number_of_timesteps=1220000, per_episode_reward = -455.17, episode_reward_trend_value=0.0013971810957469997
+total_number_of_episodes = 1230, number_of_timesteps=1230000, per_episode_reward = -455.13, episode_reward_trend_value=-0.0032725233459763733
+total_number_of_episodes = 1240, number_of_timesteps=1240000, per_episode_reward = -454.68, episode_reward_trend_value=0.0002663238793300277
+total_number_of_episodes = 1250, number_of_timesteps=1250000, per_episode_reward = -454.54, episode_reward_trend_value=0.004662148212001208
+total_number_of_episodes = 1260, number_of_timesteps=1260000, per_episode_reward = -454.99, episode_reward_trend_value=-0.0006541607435811632
+total_number_of_episodes = 1270, number_of_timesteps=1270000, per_episode_reward = -454.79, episode_reward_trend_value=-0.0016673365538211883
+total_number_of_episodes = 1280, number_of_timesteps=1280000, per_episode_reward = -454.50, episode_reward_trend_value=0.004711501850579225
+total_number_of_episodes = 1290, number_of_timesteps=1290000, per_episode_reward = -454.36, episode_reward_trend_value=0.008162084027065298
+total_number_of_episodes = 1300, number_of_timesteps=1300000, per_episode_reward = -454.32, episode_reward_trend_value=0.009890820895911803
+total_number_of_episodes = 1310, number_of_timesteps=1310000, per_episode_reward = -454.56, episode_reward_trend_value=0.006753001641585064
+total_number_of_episodes = 1320, number_of_timesteps=1320000, per_episode_reward = -454.31, episode_reward_trend_value=0.009163261365997263
+total_number_of_episodes = 1330, number_of_timesteps=1330000, per_episode_reward = -454.43, episode_reward_trend_value=0.0027662954306278053
+total_number_of_episodes = 1340, number_of_timesteps=1340000, per_episode_reward = -454.28, episode_reward_trend_value=0.0029318289715926467
+total_number_of_episodes = 1350, number_of_timesteps=1350000, per_episode_reward = -454.02, episode_reward_trend_value=0.010770020341058423
+total_number_of_episodes = 1360, number_of_timesteps=1360000, per_episode_reward = -453.79, episode_reward_trend_value=0.011105911658705735
+total_number_of_episodes = 1370, number_of_timesteps=1370000, per_episode_reward = -453.81, episode_reward_trend_value=0.00758470123559947
+total_number_of_episodes = 1380, number_of_timesteps=1380000, per_episode_reward = -453.79, episode_reward_trend_value=0.006302183818928597
+total_number_of_episodes = 1390, number_of_timesteps=1390000, per_episode_reward = -453.88, episode_reward_trend_value=0.004874434983289828
+total_number_of_episodes = 1400, number_of_timesteps=1400000, per_episode_reward = -453.80, episode_reward_trend_value=0.008532199148106025
+total_number_of_episodes = 1410, number_of_timesteps=1410000, per_episode_reward = -453.65, episode_reward_trend_value=0.0073386323091546675
+total_number_of_episodes = 1420, number_of_timesteps=1420000, per_episode_reward = -453.78, episode_reward_trend_value=0.007275715670147696
+total_number_of_episodes = 1430, number_of_timesteps=1430000, per_episode_reward = -453.77, episode_reward_trend_value=0.005604187180711051
+total_number_of_episodes = 1440, number_of_timesteps=1440000, per_episode_reward = -453.89, episode_reward_trend_value=0.001419333201994909
+total_number_of_episodes = 1450, number_of_timesteps=1450000, per_episode_reward = -453.91, episode_reward_trend_value=-0.0013604011108245434
+total_number_of_episodes = 1460, number_of_timesteps=1460000, per_episode_reward = -453.98, episode_reward_trend_value=-0.001881889084492943
+total_number_of_episodes = 1470, number_of_timesteps=1470000, per_episode_reward = -453.88, episode_reward_trend_value=-0.0009242740129764115
+total_number_of_episodes = 1480, number_of_timesteps=1480000, per_episode_reward = -453.99, episode_reward_trend_value=-0.0012390360019941858
+total_number_of_episodes = 1490, number_of_timesteps=1490000, per_episode_reward = -453.89, episode_reward_trend_value=-0.0010635575570132813
+total_number_of_episodes = 1500, number_of_timesteps=1500000, per_episode_reward = -453.95, episode_reward_trend_value=-0.0033846449280203056
+total_number_of_episodes = 1510, number_of_timesteps=1510000, per_episode_reward = -453.84, episode_reward_trend_value=-0.0006706161696822872
+total_number_of_episodes = 1520, number_of_timesteps=1520000, per_episode_reward = -454.03, episode_reward_trend_value=-0.0028553781879344974
+total_number_of_episodes = 1530, number_of_timesteps=1530000, per_episode_reward = -454.02, episode_reward_trend_value=-0.0014289526118179512
+total_number_of_episodes = 1540, number_of_timesteps=1540000, per_episode_reward = -454.52, episode_reward_trend_value=-0.006782884173595171
+total_number_of_episodes = 1550, number_of_timesteps=1550000, per_episode_reward = -454.90, episode_reward_trend_value=-0.01014479430277283
+total_number_of_episodes = 1560, number_of_timesteps=1560000, per_episode_reward = -454.92, episode_reward_trend_value=-0.011634688790506213
+total_number_of_episodes = 1570, number_of_timesteps=1570000, per_episode_reward = -454.67, episode_reward_trend_value=-0.007552680745519386
+total_number_of_episodes = 1580, number_of_timesteps=1580000, per_episode_reward = -454.97, episode_reward_trend_value=-0.012019067913718118
+total_number_of_episodes = 1590, number_of_timesteps=1590000, per_episode_reward = -454.91, episode_reward_trend_value=-0.010607492829142808
+total_number_of_episodes = 1600, number_of_timesteps=1600000, per_episode_reward = -454.95, episode_reward_trend_value=-0.012379498826728902
+total_number_of_episodes = 1610, number_of_timesteps=1610000, per_episode_reward = -454.71, episode_reward_trend_value=-0.00750436609855064
+total_number_of_episodes = 1620, number_of_timesteps=1620000, per_episode_reward = -454.79, episode_reward_trend_value=-0.008549086062446223
+total_number_of_episodes = 1630, number_of_timesteps=1630000, per_episode_reward = -454.65, episode_reward_trend_value=-0.0014950478158046584
+total_number_of_episodes = 1640, number_of_timesteps=1640000, per_episode_reward = -454.60, episode_reward_trend_value=0.0033424433801681314
+total_number_of_episodes = 1650, number_of_timesteps=1650000, per_episode_reward = -454.48, episode_reward_trend_value=0.004893414934253491
+total_number_of_episodes = 1660, number_of_timesteps=1660000, per_episode_reward = -454.44, episode_reward_trend_value=0.0025679274551060243
+total_number_of_episodes = 1670, number_of_timesteps=1670000, per_episode_reward = -454.36, episode_reward_trend_value=0.006864050523317171
+total_number_of_episodes = 1680, number_of_timesteps=1680000, per_episode_reward = -454.43, episode_reward_trend_value=0.005300345526728733
+total_number_of_episodes = 1690, number_of_timesteps=1690000, per_episode_reward = -454.45, episode_reward_trend_value=0.005568417820534124
+total_number_of_episodes = 1700, number_of_timesteps=1700000, per_episode_reward = -454.56, episode_reward_trend_value=0.0015946054254495975
+total_number_of_episodes = 1710, number_of_timesteps=1710000, per_episode_reward = -454.66, episode_reward_trend_value=0.0014236206890302582
+total_number_of_episodes = 1720, number_of_timesteps=1720000, per_episode_reward = -454.83, episode_reward_trend_value=-0.0019949621603574186
+total_number_of_episodes = 1730, number_of_timesteps=1730000, per_episode_reward = -454.75, episode_reward_trend_value=-0.0017095133425755193
+total_number_of_episodes = 1740, number_of_timesteps=1740000, per_episode_reward = -454.81, episode_reward_trend_value=-0.0036020711226879285
+total_number_of_episodes = 1750, number_of_timesteps=1750000, per_episode_reward = -454.93, episode_reward_trend_value=-0.005422402742052807
+total_number_of_episodes = 1760, number_of_timesteps=1760000, per_episode_reward = -454.74, episode_reward_trend_value=-0.004289970006762663
+total_number_of_episodes = 1770, number_of_timesteps=1770000, per_episode_reward = -454.86, episode_reward_trend_value=-0.004733170700833019
+total_number_of_episodes = 1780, number_of_timesteps=1780000, per_episode_reward = -454.67, episode_reward_trend_value=-0.0023772015224052564
+total_number_of_episodes = 1790, number_of_timesteps=1790000, per_episode_reward = -454.63, episode_reward_trend_value=-0.0008063404592481523
+total_number_of_episodes = 1800, number_of_timesteps=1800000, per_episode_reward = -454.63, episode_reward_trend_value=0.0003397693998699146
+total_number_of_episodes = 1810, number_of_timesteps=1810000, per_episode_reward = -454.81, episode_reward_trend_value=0.0003107931880928542
+total_number_of_episodes = 1820, number_of_timesteps=1820000, per_episode_reward = -454.96, episode_reward_trend_value=-0.0023172736672803593
+total_number_of_episodes = 1830, number_of_timesteps=1830000, per_episode_reward = -454.86, episode_reward_trend_value=-0.0005791075670970258
+total_number_of_episodes = 1840, number_of_timesteps=1840000, per_episode_reward = -455.18, episode_reward_trend_value=-0.0028309790931302812
+total_number_of_episodes = 1850, number_of_timesteps=1850000, per_episode_reward = -455.06, episode_reward_trend_value=-0.0034841767598379645
+total_number_of_episodes = 1860, number_of_timesteps=1860000, per_episode_reward = -454.89, episode_reward_trend_value=-0.000357258746860604
+total_number_of_episodes = 1870, number_of_timesteps=1870000, per_episode_reward = -454.82, episode_reward_trend_value=-0.0017365551960968634
+total_number_of_episodes = 1880, number_of_timesteps=1880000, per_episode_reward = -454.87, episode_reward_trend_value=-0.002574923867637027
+total_number_of_episodes = 1890, number_of_timesteps=1890000, per_episode_reward = -454.83, episode_reward_trend_value=-0.0021836688923915263
+total_number_of_episodes = 1900, number_of_timesteps=1900000, per_episode_reward = -454.67, episode_reward_trend_value=0.001485813773880788
+total_number_of_episodes = 1910, number_of_timesteps=1910000, per_episode_reward = -454.63, episode_reward_trend_value=0.0036880327127303443
+total_number_of_episodes = 1920, number_of_timesteps=1920000, per_episode_reward = -454.76, episode_reward_trend_value=0.0010644806384726103
+total_number_of_episodes = 1930, number_of_timesteps=1930000, per_episode_reward = -454.76, episode_reward_trend_value=0.004629562475304915
+total_number_of_episodes = 1940, number_of_timesteps=1940000, per_episode_reward = -454.78, episode_reward_trend_value=0.0030693551974372386
+total_number_of_episodes = 1950, number_of_timesteps=1950000, per_episode_reward = -454.94, episode_reward_trend_value=-0.0005462893757257664
+total_number_of_episodes = 1960, number_of_timesteps=1960000, per_episode_reward = -454.85, episode_reward_trend_value=-0.0003416637237547901
+total_number_of_episodes = 1970, number_of_timesteps=1970000, per_episode_reward = -455.13, episode_reward_trend_value=-0.0029366824597957474
+total_number_of_episodes = 1980, number_of_timesteps=1980000, per_episode_reward = -454.55, episode_reward_trend_value=0.0030923078506696635
+total_number_of_episodes = 1990, number_of_timesteps=1990000, per_episode_reward = -454.51, episode_reward_trend_value=0.0018417511329460012
+total_number_of_episodes = 2000, number_of_timesteps=2000000, per_episode_reward = -454.39, episode_reward_trend_value=0.0026310052275593738
+total_number_of_episodes = 2010, number_of_timesteps=2010000, per_episode_reward = -454.35, episode_reward_trend_value=0.0046418327024993124
+total_number_of_episodes = 2020, number_of_timesteps=2020000, per_episode_reward = -454.66, episode_reward_trend_value=0.0011618954185937328
+total_number_of_episodes = 2030, number_of_timesteps=2030000, per_episode_reward = -454.43, episode_reward_trend_value=0.003856635249402037
+total_number_of_episodes = 2040, number_of_timesteps=2040000, per_episode_reward = -454.38, episode_reward_trend_value=0.006159703255193941
+total_number_of_episodes = 2050, number_of_timesteps=2050000, per_episode_reward = -454.15, episode_reward_trend_value=0.007788001558385026
+total_number_of_episodes = 2060, number_of_timesteps=2060000, per_episode_reward = -454.04, episode_reward_trend_value=0.012070080721633127
+total_number_of_episodes = 2070, number_of_timesteps=2070000, per_episode_reward = -454.08, episode_reward_trend_value=0.005225370323777017
+total_number_of_episodes = 2080, number_of_timesteps=2080000, per_episode_reward = -454.04, episode_reward_trend_value=0.005167174718282771
+total_number_of_episodes = 2090, number_of_timesteps=2090000, per_episode_reward = -454.02, episode_reward_trend_value=0.004047896997599309
+total_number_of_episodes = 2100, number_of_timesteps=2100000, per_episode_reward = -453.93, episode_reward_trend_value=0.004606391182835523
+total_number_of_episodes = 2110, number_of_timesteps=2110000, per_episode_reward = -454.08, episode_reward_trend_value=0.006416865605265482
+total_number_of_episodes = 2120, number_of_timesteps=2120000, per_episode_reward = -454.26, episode_reward_trend_value=0.0018842078373362864
+total_number_of_episodes = 2130, number_of_timesteps=2130000, per_episode_reward = -454.33, episode_reward_trend_value=0.0005524724529594651
+total_number_of_episodes = 2140, number_of_timesteps=2140000, per_episode_reward = -454.40, episode_reward_trend_value=-0.0027294771609749405
+total_number_of_episodes = 2150, number_of_timesteps=2150000, per_episode_reward = -454.29, episode_reward_trend_value=-0.002734104454032149
+total_number_of_episodes = 2160, number_of_timesteps=2160000, per_episode_reward = -454.40, episode_reward_trend_value=-0.003579538614856245
+total_number_of_episodes = 2170, number_of_timesteps=2170000, per_episode_reward = -454.50, episode_reward_trend_value=-0.005110398278105145
+total_number_of_episodes = 2180, number_of_timesteps=2180000, per_episode_reward = -454.24, episode_reward_trend_value=-0.0023553362044114894
+total_number_of_episodes = 2190, number_of_timesteps=2190000, per_episode_reward = -454.05, episode_reward_trend_value=-0.001360204040296114
+total_number_of_episodes = 2200, number_of_timesteps=2200000, per_episode_reward = -453.92, episode_reward_trend_value=0.001854711459817003
+total_number_of_episodes = 2210, number_of_timesteps=2210000, per_episode_reward = -454.04, episode_reward_trend_value=0.0024695775525268955
+total_number_of_episodes = 2220, number_of_timesteps=2220000, per_episode_reward = -454.20, episode_reward_trend_value=0.0014602226666707136
+total_number_of_episodes = 2230, number_of_timesteps=2230000, per_episode_reward = -454.00, episode_reward_trend_value=0.004450582973698323
+total_number_of_episodes = 2240, number_of_timesteps=2240000, per_episode_reward = -453.77, episode_reward_trend_value=0.005773934113031171
+total_number_of_episodes = 2250, number_of_timesteps=2250000, per_episode_reward = -454.00, episode_reward_trend_value=0.004450582973698323
+total_number_of_episodes = 2260, number_of_timesteps=2260000, per_episode_reward = -453.76, episode_reward_trend_value=0.00818568366125621
+total_number_of_episodes = 2270, number_of_timesteps=2270000, per_episode_reward = -453.59, episode_reward_trend_value=0.0072051751235903795
+total_number_of_episodes = 2280, number_of_timesteps=2280000, per_episode_reward = -453.76, episode_reward_trend_value=0.0032775311672802823
+total_number_of_episodes = 2290, number_of_timesteps=2290000, per_episode_reward = -453.99, episode_reward_trend_value=-0.0008505501938575182
+total_number_of_episodes = 2300, number_of_timesteps=2300000, per_episode_reward = -453.88, episode_reward_trend_value=0.001728837377738854
+total_number_of_episodes = 2310, number_of_timesteps=2310000, per_episode_reward = -453.63, episode_reward_trend_value=0.006302852330176417
+total_number_of_episodes = 2320, number_of_timesteps=2320000, per_episode_reward = -453.89, episode_reward_trend_value=0.0011850538800962972
+total_number_of_episodes = 2330, number_of_timesteps=2330000, per_episode_reward = -453.85, episode_reward_trend_value=-0.0008567026709518663
+total_number_of_episodes = 2340, number_of_timesteps=2340000, per_episode_reward = -453.98, episode_reward_trend_value=0.0001795568363004602
+total_number_of_episodes = 2350, number_of_timesteps=2350000, per_episode_reward = -454.01, episode_reward_trend_value=-0.002729292713536324
+total_number_of_episodes = 2360, number_of_timesteps=2360000, per_episode_reward = -454.08, episode_reward_trend_value=-0.005438463365383465
+total_number_of_episodes = 2370, number_of_timesteps=2370000, per_episode_reward = -454.04, episode_reward_trend_value=-0.0031189317194831446
+total_number_of_episodes = 2380, number_of_timesteps=2380000, per_episode_reward = -454.12, episode_reward_trend_value=-0.0014023841081666432
+total_number_of_episodes = 2390, number_of_timesteps=2390000, per_episode_reward = -454.35, episode_reward_trend_value=-0.00513059417945922
+total_number_of_episodes = 2400, number_of_timesteps=2400000, per_episode_reward = -454.15, episode_reward_trend_value=-0.005671705526236792
+total_number_of_episodes = 2410, number_of_timesteps=2410000, per_episode_reward = -454.28, episode_reward_trend_value=-0.004366143530006639
+total_number_of_episodes = 2420, number_of_timesteps=2420000, per_episode_reward = -454.16, episode_reward_trend_value=-0.003487720093232838
+total_number_of_episodes = 2430, number_of_timesteps=2430000, per_episode_reward = -454.27, episode_reward_trend_value=-0.0031725463638445544
+total_number_of_episodes = 2440, number_of_timesteps=2440000, per_episode_reward = -454.03, episode_reward_trend_value=-0.00022385729361897372
+total_number_of_episodes = 2450, number_of_timesteps=2450000, per_episode_reward = -454.33, episode_reward_trend_value=-0.0028242590565620658
+total_number_of_episodes = 2460, number_of_timesteps=2460000, per_episode_reward = -454.31, episode_reward_trend_value=-0.0030515824375527247
+total_number_of_episodes = 2470, number_of_timesteps=2470000, per_episode_reward = -454.34, episode_reward_trend_value=-0.002484798983732617
+total_number_of_episodes = 2480, number_of_timesteps=2480000, per_episode_reward = -454.22, episode_reward_trend_value=0.0013620921439553512
+total_number_of_episodes = 2490, number_of_timesteps=2490000, per_episode_reward = -454.34, episode_reward_trend_value=-0.002127827696741254
+total_number_of_episodes = 2500, number_of_timesteps=2500000, per_episode_reward = -454.33, episode_reward_trend_value=-0.00045042766881996
+total_number_of_episodes = 2510, number_of_timesteps=2510000, per_episode_reward = -454.40, episode_reward_trend_value=-0.0026587348593579917
+total_number_of_episodes = 2520, number_of_timesteps=2520000, per_episode_reward = -454.48, episode_reward_trend_value=-0.002367055390415847
+total_number_of_episodes = 2530, number_of_timesteps=2530000, per_episode_reward = -454.36, episode_reward_trend_value=-0.003663993284360837
+total_number_of_episodes = 2540, number_of_timesteps=2540000, per_episode_reward = -454.41, episode_reward_trend_value=-0.0008170810151808736
+total_number_of_episodes = 2550, number_of_timesteps=2550000, per_episode_reward = -454.40, episode_reward_trend_value=-0.0009136650327585963
+total_number_of_episodes = 2560, number_of_timesteps=2560000, per_episode_reward = -454.42, episode_reward_trend_value=-0.0009007297750024968
+total_number_of_episodes = 2570, number_of_timesteps=2570000, per_episode_reward = -454.48, episode_reward_trend_value=-0.002848950233841505
+total_number_of_episodes = 2580, number_of_timesteps=2580000, per_episode_reward = -454.50, episode_reward_trend_value=-0.0018034528297341187
+total_number_of_episodes = 2590, number_of_timesteps=2590000, per_episode_reward = -454.54, episode_reward_trend_value=-0.002344184112397822
+total_number_of_episodes = 2600, number_of_timesteps=2600000, per_episode_reward = -454.75, episode_reward_trend_value=-0.00391739548126111
+total_number_of_episodes = 2610, number_of_timesteps=2610000, per_episode_reward = -454.49, episode_reward_trend_value=-0.00013345756653898713
+total_number_of_episodes = 2620, number_of_timesteps=2620000, per_episode_reward = -454.59, episode_reward_trend_value=-0.002588777365163095
+total_number_of_episodes = 2630, number_of_timesteps=2630000, per_episode_reward = -454.55, episode_reward_trend_value=-0.0016521298103523603
+total_number_of_episodes = 2640, number_of_timesteps=2640000, per_episode_reward = -454.66, episode_reward_trend_value=-0.0029466633850814914
+total_number_of_episodes = 2650, number_of_timesteps=2650000, per_episode_reward = -454.75, episode_reward_trend_value=-0.00362938152053592
+total_number_of_episodes = 2660, number_of_timesteps=2660000, per_episode_reward = -454.81, episode_reward_trend_value=-0.0036399678122582676
+total_number_of_episodes = 2670, number_of_timesteps=2670000, per_episode_reward = -454.86, episode_reward_trend_value=-0.003995575157481805
+total_number_of_episodes = 2680, number_of_timesteps=2680000, per_episode_reward = -454.87, episode_reward_trend_value=-0.0037227957892595337
+total_number_of_episodes = 2690, number_of_timesteps=2690000, per_episode_reward = -455.07, episode_reward_trend_value=-0.0035408211680766676
+total_number_of_episodes = 2700, number_of_timesteps=2700000, per_episode_reward = -454.95, episode_reward_trend_value=-0.005087426240279708
+total_number_of_episodes = 2710, number_of_timesteps=2710000, per_episode_reward = -454.98, episode_reward_trend_value=-0.0042713825084863145
+total_number_of_episodes = 2720, number_of_timesteps=2720000, per_episode_reward = -454.97, episode_reward_trend_value=-0.004581088271918235
+total_number_of_episodes = 2730, number_of_timesteps=2730000, per_episode_reward = -454.93, episode_reward_trend_value=-0.002982764754371677
+total_number_of_episodes = 2740, number_of_timesteps=2740000, per_episode_reward = -455.03, episode_reward_trend_value=-0.003068255107907842
+total_number_of_episodes = 2750, number_of_timesteps=2750000, per_episode_reward = -454.98, episode_reward_trend_value=-0.001956948995420286
+total_number_of_episodes = 2760, number_of_timesteps=2760000, per_episode_reward = -455.05, episode_reward_trend_value=-0.0021726266993368883
+total_number_of_episodes = 2770, number_of_timesteps=2770000, per_episode_reward = -455.01, episode_reward_trend_value=-0.0015713080714293583
+total_number_of_episodes = 2780, number_of_timesteps=2780000, per_episode_reward = -455.10, episode_reward_trend_value=-0.00033519536650348733
+total_number_of_episodes = 2790, number_of_timesteps=2790000, per_episode_reward = -455.03, episode_reward_trend_value=-0.0008342231477279762
+total_number_of_episodes = 2800, number_of_timesteps=2800000, per_episode_reward = -455.16, episode_reward_trend_value=-0.0020629041931758568
+total_number_of_episodes = 2810, number_of_timesteps=2810000, per_episode_reward = -455.30, episode_reward_trend_value=-0.0037097623891914587
+total_number_of_episodes = 2820, number_of_timesteps=2820000, per_episode_reward = -455.40, episode_reward_trend_value=-0.005169548527538837
+total_number_of_episodes = 2830, number_of_timesteps=2830000, per_episode_reward = -455.50, episode_reward_trend_value=-0.0052991798329761275
+total_number_of_episodes = 2840, number_of_timesteps=2840000, per_episode_reward = -455.56, episode_reward_trend_value=-0.006378020249721633
+total_number_of_episodes = 2850, number_of_timesteps=2850000, per_episode_reward = -455.53, episode_reward_trend_value=-0.005313875757941686
+total_number_of_episodes = 2860, number_of_timesteps=2860000, per_episode_reward = -455.46, episode_reward_trend_value=-0.004966131296833964
+total_number_of_episodes = 2870, number_of_timesteps=2870000, per_episode_reward = -455.55, episode_reward_trend_value=-0.00495436004408892
+total_number_of_episodes = 2880, number_of_timesteps=2880000, per_episode_reward = -455.57, episode_reward_trend_value=-0.005996913328282163
+total_number_of_episodes = 2890, number_of_timesteps=2890000, per_episode_reward = -455.61, episode_reward_trend_value=-0.004924368881617309
+total_number_of_episodes = 2900, number_of_timesteps=2900000, per_episode_reward = -455.56, episode_reward_trend_value=-0.0028905951222207528
+total_number_of_episodes = 2910, number_of_timesteps=2910000, per_episode_reward = -455.56, episode_reward_trend_value=-0.0018168168319486239
+total_number_of_episodes = 2920, number_of_timesteps=2920000, per_episode_reward = -455.56, episode_reward_trend_value=-0.000604663146157236
+total_number_of_episodes = 2930, number_of_timesteps=2930000, per_episode_reward = -455.49, episode_reward_trend_value=0.0007571992882364814
+total_number_of_episodes = 2940, number_of_timesteps=2940000, per_episode_reward = -455.39, episode_reward_trend_value=0.0016173150394087718
+total_number_of_episodes = 2950, number_of_timesteps=2950000, per_episode_reward = -455.53, episode_reward_trend_value=-0.0008389741263057557
+total_number_of_episodes = 2960, number_of_timesteps=2960000, per_episode_reward = -455.52, episode_reward_trend_value=0.00026997429648455785
+total_number_of_episodes = 2970, number_of_timesteps=2970000, per_episode_reward = -455.58, episode_reward_trend_value=-0.0001095817613569731
+total_number_of_episodes = 2980, number_of_timesteps=2980000, per_episode_reward = -455.47, episode_reward_trend_value=0.0015607926676977969
+total_number_of_episodes = 2990, number_of_timesteps=2990000, per_episode_reward = -455.53, episode_reward_trend_value=0.0003657393245368389
+total_number_of_episodes = 3000, number_of_timesteps=3000000, per_episode_reward = -455.45, episode_reward_trend_value=0.001189676384106835
+total_number_of_episodes = 3010, number_of_timesteps=3010000, per_episode_reward = -455.32, episode_reward_trend_value=0.002678726628737296
+total_number_of_episodes = 3020, number_of_timesteps=3020000, per_episode_reward = -455.46, episode_reward_trend_value=0.0003409426599489507
+total_number_of_episodes = 3030, number_of_timesteps=3030000, per_episode_reward = -455.57, episode_reward_trend_value=-0.002040176092205254
+total_number_of_episodes = 3040, number_of_timesteps=3040000, per_episode_reward = -455.46, episode_reward_trend_value=0.0008042696045290794
+total_number_of_episodes = 3050, number_of_timesteps=3050000, per_episode_reward = -455.61, episode_reward_trend_value=-0.0009640321186111578
+total_number_of_episodes = 3060, number_of_timesteps=3060000, per_episode_reward = -455.61, episode_reward_trend_value=-0.0003448348536374447
+total_number_of_episodes = 3070, number_of_timesteps=3070000, per_episode_reward = -455.54, episode_reward_trend_value=-0.0008368044616917005
+total_number_of_episodes = 3080, number_of_timesteps=3080000, per_episode_reward = -455.66, episode_reward_trend_value=-0.001522554942487078
+total_number_of_episodes = 3090, number_of_timesteps=3090000, per_episode_reward = -455.71, episode_reward_trend_value=-0.0029122198441232034
+total_number_of_episodes = 3100, number_of_timesteps=3100000, per_episode_reward = -455.76, episode_reward_trend_value=-0.004918352425085636
+total_number_of_episodes = 3110, number_of_timesteps=3110000, per_episode_reward = -455.69, episode_reward_trend_value=-0.002545948393835336
+total_number_of_episodes = 3120, number_of_timesteps=3120000, per_episode_reward = -455.60, episode_reward_trend_value=-0.00031265926668816565
+total_number_of_episodes = 3130, number_of_timesteps=3130000, per_episode_reward = -455.63, episode_reward_trend_value=-0.0018118025773983643
+total_number_of_episodes = 3140, number_of_timesteps=3140000, per_episode_reward = -455.65, episode_reward_trend_value=-0.0004499584242340562
+total_number_of_episodes = 3150, number_of_timesteps=3150000, per_episode_reward = -455.73, episode_reward_trend_value=-0.0013776949259781505
+total_number_of_episodes = 3160, number_of_timesteps=3160000, per_episode_reward = -455.69, episode_reward_trend_value=-0.0016683101250186557
+total_number_of_episodes = 3170, number_of_timesteps=3170000, per_episode_reward = -455.70, episode_reward_trend_value=-0.00034766835604184757
+total_number_of_episodes = 3180, number_of_timesteps=3180000, per_episode_reward = -455.51, episode_reward_trend_value=0.0022648379906867275
+total_number_of_episodes = 3190, number_of_timesteps=3190000, per_episode_reward = -455.43, episode_reward_trend_value=0.003632329340940209
+total_number_of_episodes = 3200, number_of_timesteps=3200000, per_episode_reward = -455.45, episode_reward_trend_value=0.0026985094566548975
+total_number_of_episodes = 3210, number_of_timesteps=3210000, per_episode_reward = -455.40, episode_reward_trend_value=0.0021675186391178158
+total_number_of_episodes = 3220, number_of_timesteps=3220000, per_episode_reward = -455.42, episode_reward_trend_value=0.0022463576820882735
+total_number_of_episodes = 3230, number_of_timesteps=3230000, per_episode_reward = -455.46, episode_reward_trend_value=0.002131899887518153
+total_number_of_episodes = 3240, number_of_timesteps=3240000, per_episode_reward = -455.43, episode_reward_trend_value=0.0032991192270016094
+total_number_of_episodes = 3250, number_of_timesteps=3250000, per_episode_reward = -455.36, episode_reward_trend_value=0.0036965488148812003
+total_number_of_episodes = 3260, number_of_timesteps=3260000, per_episode_reward = -455.36, episode_reward_trend_value=0.003776604586288891
+total_number_of_episodes = 3270, number_of_timesteps=3270000, per_episode_reward = -455.34, episode_reward_trend_value=0.0018570964550740933
+total_number_of_episodes = 3280, number_of_timesteps=3280000, per_episode_reward = -455.17, episode_reward_trend_value=0.002934498854657224
+total_number_of_episodes = 3290, number_of_timesteps=3290000, per_episode_reward = -455.04, episode_reward_trend_value=0.004510599053386007
+total_number_of_episodes = 3300, number_of_timesteps=3300000, per_episode_reward = -455.10, episode_reward_trend_value=0.003376479732132035
+total_number_of_episodes = 3310, number_of_timesteps=3310000, per_episode_reward = -455.20, episode_reward_trend_value=0.0025284615796181244
+total_number_of_episodes = 3320, number_of_timesteps=3320000, per_episode_reward = -455.24, episode_reward_trend_value=0.002390154177727608
+total_number_of_episodes = 3330, number_of_timesteps=3330000, per_episode_reward = -455.26, episode_reward_trend_value=0.0019719777874191396
+total_number_of_episodes = 3340, number_of_timesteps=3340000, per_episode_reward = -455.29, episode_reward_trend_value=0.0007497889831262859
+total_number_of_episodes = 3350, number_of_timesteps=3350000, per_episode_reward = -455.20, episode_reward_trend_value=0.001767288328857022
+total_number_of_episodes = 3360, number_of_timesteps=3360000, per_episode_reward = -455.24, episode_reward_trend_value=0.0011547613635722578
+total_number_of_episodes = 3370, number_of_timesteps=3370000, per_episode_reward = -455.25, episode_reward_trend_value=-0.0009447245212508429
+total_number_of_episodes = 3380, number_of_timesteps=3380000, per_episode_reward = -455.19, episode_reward_trend_value=-0.0017014165115761496
+total_number_of_episodes = 3390, number_of_timesteps=3390000, per_episode_reward = -455.16, episode_reward_trend_value=-0.0006296412632877946
+total_number_of_episodes = 3400, number_of_timesteps=3400000, per_episode_reward = -455.08, episode_reward_trend_value=0.0012611085138454806
+total_number_of_episodes = 3410, number_of_timesteps=3410000, per_episode_reward = -455.18, episode_reward_trend_value=0.0007681579658215772
+total_number_of_episodes = 3420, number_of_timesteps=3420000, per_episode_reward = -455.15, episode_reward_trend_value=0.0011721868776305654
+total_number_of_episodes = 3430, number_of_timesteps=3430000, per_episode_reward = -455.11, episode_reward_trend_value=0.002029271414984477
+total_number_of_episodes = 3440, number_of_timesteps=3440000, per_episode_reward = -455.16, episode_reward_trend_value=0.0004260602850573984
+total_number_of_episodes = 3450, number_of_timesteps=3450000, per_episode_reward = -455.31, episode_reward_trend_value=-0.000735688601722965
+total_number_of_episodes = 3460, number_of_timesteps=3460000, per_episode_reward = -455.23, episode_reward_trend_value=0.00023374835061720965
+total_number_of_episodes = 3470, number_of_timesteps=3470000, per_episode_reward = -455.16, episode_reward_trend_value=0.0003294216395602234
+total_number_of_episodes = 3480, number_of_timesteps=3480000, per_episode_reward = -455.28, episode_reward_trend_value=-0.001357476895735014
+total_number_of_episodes = 3490, number_of_timesteps=3490000, per_episode_reward = -455.36, episode_reward_trend_value=-0.0030588923670260707
+Process Process-4:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 157, in train_loop
+    all_updated_barrier.wait()  # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    except BrokenBarrierError as error:
+NameError: name 'BrokenBarrierError' is not defined
+total_number_of_episodes = 3500, number_of_timesteps=3500000, per_episode_reward = -455.26, episode_reward_trend_value=-0.0009376647513161314
+total_number_of_episodes = 3510, number_of_timesteps=3510000, per_episode_reward = -455.21, episode_reward_trend_value=-0.000625607408501436
+total_number_of_episodes = 3520, number_of_timesteps=3520000, per_episode_reward = -455.16, episode_reward_trend_value=-0.0006054080855916608
+total_number_of_episodes = 3530, number_of_timesteps=3530000, per_episode_reward = -455.18, episode_reward_trend_value=-0.00021196636863957488
+total_number_of_episodes = 3540, number_of_timesteps=3540000, per_episode_reward = -455.12, episode_reward_trend_value=0.0020233793160305898
+total_number_of_episodes = 3550, number_of_timesteps=3550000, per_episode_reward = -455.00, episode_reward_trend_value=0.0025869869652979105
+total_number_of_episodes = 3560, number_of_timesteps=3560000, per_episode_reward = -455.00, episode_reward_trend_value=0.001836545291544351
+total_number_of_episodes = 3570, number_of_timesteps=3570000, per_episode_reward = -455.18, episode_reward_trend_value=0.0010758172760075822
+total_number_of_episodes = 3580, number_of_timesteps=3580000, per_episode_reward = -455.03, episode_reward_trend_value=0.0036667589102674153
+total_number_of_episodes = 3590, number_of_timesteps=3590000, per_episode_reward = -454.81, episode_reward_trend_value=0.00497190320702935
+total_number_of_episodes = 3600, number_of_timesteps=3600000, per_episode_reward = -454.84, episode_reward_trend_value=0.004038450315173728
+total_number_of_episodes = 3610, number_of_timesteps=3610000, per_episode_reward = -454.97, episode_reward_trend_value=0.002140581336331277
+total_number_of_episodes = 3620, number_of_timesteps=3620000, per_episode_reward = -455.01, episode_reward_trend_value=0.0018822290995507904
+total_number_of_episodes = 3630, number_of_timesteps=3630000, per_episode_reward = -455.18, episode_reward_trend_value=-0.0006062664923522081
+total_number_of_episodes = 3640, number_of_timesteps=3640000, per_episode_reward = -454.96, episode_reward_trend_value=0.00047177052743702715
+total_number_of_episodes = 3650, number_of_timesteps=3650000, per_episode_reward = -454.99, episode_reward_trend_value=0.00010495368313867301
+total_number_of_episodes = 3660, number_of_timesteps=3660000, per_episode_reward = -454.90, episode_reward_trend_value=0.0030842460656205933
+total_number_of_episodes = 3670, number_of_timesteps=3670000, per_episode_reward = -454.82, episode_reward_trend_value=0.002359841454920621
+total_number_of_episodes = 3680, number_of_timesteps=3680000, per_episode_reward = -454.88, episode_reward_trend_value=-0.0007382258200935767
+total_number_of_episodes = 3690, number_of_timesteps=3690000, per_episode_reward = -454.79, episode_reward_trend_value=0.0006317824038237379
+total_number_of_episodes = 3700, number_of_timesteps=3700000, per_episode_reward = -454.92, episode_reward_trend_value=0.0005670558290066512
+total_number_of_episodes = 3710, number_of_timesteps=3710000, per_episode_reward = -454.93, episode_reward_trend_value=0.0008945078962805534
+total_number_of_episodes = 3720, number_of_timesteps=3720000, per_episode_reward = -454.93, episode_reward_trend_value=0.0027895239597866195
+total_number_of_episodes = 3730, number_of_timesteps=3730000, per_episode_reward = -454.84, episode_reward_trend_value=0.0013001006275064556
+total_number_of_episodes = 3740, number_of_timesteps=3740000, per_episode_reward = -454.98, episode_reward_trend_value=4.773531264908746e-05
+total_number_of_episodes = 3750, number_of_timesteps=3750000, per_episode_reward = -454.95, episode_reward_trend_value=-0.0004922785027480991
+total_number_of_episodes = 3760, number_of_timesteps=3760000, per_episode_reward = -454.85, episode_reward_trend_value=-0.00041616149940498163
+total_number_of_episodes = 3770, number_of_timesteps=3770000, per_episode_reward = -454.85, episode_reward_trend_value=0.0002761738364793271
+total_number_of_episodes = 3780, number_of_timesteps=3780000, per_episode_reward = -454.88, episode_reward_trend_value=-0.0010240559875765282
+total_number_of_episodes = 3790, number_of_timesteps=3790000, per_episode_reward = -454.88, episode_reward_trend_value=0.00047942643804188063
+total_number_of_episodes = 3800, number_of_timesteps=3800000, per_episode_reward = -454.80, episode_reward_trend_value=0.001451614372980556
+total_number_of_episodes = 3810, number_of_timesteps=3810000, per_episode_reward = -454.87, episode_reward_trend_value=0.0006389040964822673
+total_number_of_episodes = 3820, number_of_timesteps=3820000, per_episode_reward = -454.85, episode_reward_trend_value=-0.00011187080115178105
+total_number_of_episodes = 3830, number_of_timesteps=3830000, per_episode_reward = -454.91, episode_reward_trend_value=0.0008616489610087936
+total_number_of_episodes = 3840, number_of_timesteps=3840000, per_episode_reward = -454.84, episode_reward_trend_value=0.0012536605257095189
+total_number_of_episodes = 3850, number_of_timesteps=3850000, per_episode_reward = -454.91, episode_reward_trend_value=-0.0006022383794054854
+total_number_of_episodes = 3860, number_of_timesteps=3860000, per_episode_reward = -454.83, episode_reward_trend_value=0.00026058068062108456
+total_number_of_episodes = 3870, number_of_timesteps=3870000, per_episode_reward = -454.69, episode_reward_trend_value=0.0021465082029262957
+total_number_of_episodes = 3880, number_of_timesteps=3880000, per_episode_reward = -454.65, episode_reward_trend_value=0.002456473500353064
+total_number_of_episodes = 3890, number_of_timesteps=3890000, per_episode_reward = -454.68, episode_reward_trend_value=0.0012465722732656558
+total_number_of_episodes = 3900, number_of_timesteps=3900000, per_episode_reward = -454.71, episode_reward_trend_value=0.0017343544715490427
+total_number_of_episodes = 3910, number_of_timesteps=3910000, per_episode_reward = -454.73, episode_reward_trend_value=0.001358629805587144
+total_number_of_episodes = 3920, number_of_timesteps=3920000, per_episode_reward = -454.88, episode_reward_trend_value=0.0002957025214887684
+total_number_of_episodes = 3930, number_of_timesteps=3930000, per_episode_reward = -454.88, episode_reward_trend_value=-0.0004787475242305088
+total_number_of_episodes = 3940, number_of_timesteps=3940000, per_episode_reward = -454.90, episode_reward_trend_value=9.625397224542414e-05
+total_number_of_episodes = 3950, number_of_timesteps=3950000, per_episode_reward = -454.86, episode_reward_trend_value=-0.0002907990459334542
+total_number_of_episodes = 3960, number_of_timesteps=3960000, per_episode_reward = -454.99, episode_reward_trend_value=-0.003355528307436847
+total_number_of_episodes = 3970, number_of_timesteps=3970000, per_episode_reward = -454.90, episode_reward_trend_value=-0.002741891286903966
+total_number_of_episodes = 3980, number_of_timesteps=3980000, per_episode_reward = -454.94, episode_reward_trend_value=-0.002784920808350459
+total_number_of_episodes = 3990, number_of_timesteps=3990000, per_episode_reward = -454.86, episode_reward_trend_value=-0.001640915745642562
+Process Process-7:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 157, in train_loop
+    all_updated_barrier.wait()  # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    except BrokenBarrierError as error:
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-8:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 157, in train_loop
+    all_updated_barrier.wait()  # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    except BrokenBarrierError as error:
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-9:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 157, in train_loop
+    all_updated_barrier.wait()  # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    except BrokenBarrierError as error:
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-2:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 157, in train_loop
+    all_updated_barrier.wait()  # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    except BrokenBarrierError as error:
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-1:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 157, in train_loop
+    all_updated_barrier.wait()  # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
+  File "/usr/lib/python3.8/threading.py", line 610, in wait
+    self._enter() # Block while the barrier drains.
+  File "/usr/lib/python3.8/threading.py", line 634, in _enter
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    except BrokenBarrierError as error:
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-5:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 157, in train_loop
+    all_updated_barrier.wait()  # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    except BrokenBarrierError as error:
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-6:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 157, in train_loop
+    all_updated_barrier.wait()  # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    except BrokenBarrierError as error:
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-3:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 157, in train_loop
+    all_updated_barrier.wait()  # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
+  File "/usr/lib/python3.8/threading.py", line 610, in wait
+    self._enter() # Block while the barrier drains.
+  File "/usr/lib/python3.8/threading.py", line 634, in _enter
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    except BrokenBarrierError as error:
+NameError: name 'BrokenBarrierError' is not defined
+[32m[I 2022-10-19 21:57:48,754][0m Trial 0 finished with value: -454.9 and parameters: {'lr_b': 5, 'lr_e': -8, 'beta_b': 1, 'beta_e': -1, 'tmax': 0, 'activ': 2, 'hid': 1}. Best is trial 0 with value: -454.9.[0m
+total_number_of_episodes = 20, number_of_timesteps=20000, per_episode_reward = -614.97, episode_reward_trend_value=0.0
+total_number_of_episodes = 30, number_of_timesteps=30000, per_episode_reward = -559.16, episode_reward_trend_value=5.580688203491718
+total_number_of_episodes = 40, number_of_timesteps=40000, per_episode_reward = -557.82, episode_reward_trend_value=2.85721052346222
+total_number_of_episodes = 50, number_of_timesteps=50000, per_episode_reward = -563.61, episode_reward_trend_value=1.7119077713847635
+total_number_of_episodes = 60, number_of_timesteps=60000, per_episode_reward = -564.33, episode_reward_trend_value=1.2659582836887693
+total_number_of_episodes = 70, number_of_timesteps=70000, per_episode_reward = -569.06, episode_reward_trend_value=0.9180817744505021
+total_number_of_episodes = 80, number_of_timesteps=80000, per_episode_reward = -566.76, episode_reward_trend_value=0.8033606312426192
+total_number_of_episodes = 90, number_of_timesteps=90000, per_episode_reward = -570.25, episode_reward_trend_value=0.6387546238466094
+total_number_of_episodes = 100, number_of_timesteps=100000, per_episode_reward = -571.96, episode_reward_trend_value=0.5375432059367184
+total_number_of_episodes = 110, number_of_timesteps=110000, per_episode_reward = -568.22, episode_reward_trend_value=0.5193687747672913
+total_number_of_episodes = 120, number_of_timesteps=120000, per_episode_reward = -571.68, episode_reward_trend_value=-0.1390784132331368
+total_number_of_episodes = 130, number_of_timesteps=130000, per_episode_reward = -575.82, episode_reward_trend_value=-0.20001484697327468
+total_number_of_episodes = 140, number_of_timesteps=140000, per_episode_reward = -573.44, episode_reward_trend_value=-0.10919939533836213
+total_number_of_episodes = 150, number_of_timesteps=150000, per_episode_reward = -574.01, episode_reward_trend_value=-0.10760161617215165
+total_number_of_episodes = 160, number_of_timesteps=160000, per_episode_reward = -575.18, episode_reward_trend_value=-0.06797492587569928
+total_number_of_episodes = 170, number_of_timesteps=170000, per_episode_reward = -575.92, episode_reward_trend_value=-0.10174703059083816
+total_number_of_episodes = 180, number_of_timesteps=180000, per_episode_reward = -575.71, episode_reward_trend_value=-0.06060154468541188
+total_number_of_episodes = 190, number_of_timesteps=190000, per_episode_reward = -573.18, episode_reward_trend_value=-0.013490958661325042
+total_number_of_episodes = 200, number_of_timesteps=200000, per_episode_reward = -577.19, episode_reward_trend_value=-0.09959735025762989
+total_number_of_episodes = 210, number_of_timesteps=210000, per_episode_reward = -574.01, episode_reward_trend_value=-0.02597677828438489
+total_number_of_episodes = 220, number_of_timesteps=220000, per_episode_reward = -572.38, episode_reward_trend_value=0.03828963420665635
+total_number_of_episodes = 230, number_of_timesteps=230000, per_episode_reward = -574.75, episode_reward_trend_value=-0.014604143505573574
+total_number_of_episodes = 240, number_of_timesteps=240000, per_episode_reward = -576.01, episode_reward_trend_value=-0.02221739677382983
+total_number_of_episodes = 250, number_of_timesteps=250000, per_episode_reward = -573.90, episode_reward_trend_value=0.014260189841828228
+total_number_of_episodes = 260, number_of_timesteps=260000, per_episode_reward = -512.86, episode_reward_trend_value=0.7006668236482925
+total_number_of_episodes = 270, number_of_timesteps=270000, per_episode_reward = -511.95, episode_reward_trend_value=0.7084276137721095
+total_number_of_episodes = 280, number_of_timesteps=280000, per_episode_reward = -512.91, episode_reward_trend_value=0.6695860539146199
+total_number_of_episodes = 290, number_of_timesteps=290000, per_episode_reward = -515.30, episode_reward_trend_value=0.6876644339890593
+total_number_of_episodes = 300, number_of_timesteps=300000, per_episode_reward = -514.32, episode_reward_trend_value=0.6632509427968519
+total_number_of_episodes = 310, number_of_timesteps=310000, per_episode_reward = -514.38, episode_reward_trend_value=0.644426540750731
+total_number_of_episodes = 320, number_of_timesteps=320000, per_episode_reward = -515.46, episode_reward_trend_value=0.6587372359086645
+total_number_of_episodes = 330, number_of_timesteps=330000, per_episode_reward = -516.23, episode_reward_trend_value=0.6641853410200231
+total_number_of_episodes = 340, number_of_timesteps=340000, per_episode_reward = -515.11, episode_reward_trend_value=0.653181830524237
+total_number_of_episodes = 350, number_of_timesteps=350000, per_episode_reward = -515.98, episode_reward_trend_value=-0.03464756839927709
+total_number_of_episodes = 360, number_of_timesteps=360000, per_episode_reward = -516.44, episode_reward_trend_value=-0.049904084196797135
+total_number_of_episodes = 370, number_of_timesteps=370000, per_episode_reward = -516.50, episode_reward_trend_value=-0.03983644712102053
+total_number_of_episodes = 380, number_of_timesteps=380000, per_episode_reward = -515.44, episode_reward_trend_value=-0.001540614836092876
+total_number_of_episodes = 390, number_of_timesteps=390000, per_episode_reward = -516.50, episode_reward_trend_value=-0.024160214622649313
+total_number_of_episodes = 400, number_of_timesteps=400000, per_episode_reward = -515.62, episode_reward_trend_value=-0.013808573224725429
+total_number_of_episodes = 410, number_of_timesteps=410000, per_episode_reward = -516.48, episode_reward_trend_value=-0.01131402955504907
+total_number_of_episodes = 420, number_of_timesteps=420000, per_episode_reward = -516.52, episode_reward_trend_value=-0.003218882577124936
+total_number_of_episodes = 430, number_of_timesteps=430000, per_episode_reward = -516.51, episode_reward_trend_value=-0.015585915508716474
+total_number_of_episodes = 440, number_of_timesteps=440000, per_episode_reward = -516.23, episode_reward_trend_value=-0.0027717384159220474
+total_number_of_episodes = 450, number_of_timesteps=450000, per_episode_reward = -451.61, episode_reward_trend_value=0.7202965750683366
+total_number_of_episodes = 460, number_of_timesteps=460000, per_episode_reward = -450.77, episode_reward_trend_value=0.7303718896999417
+total_number_of_episodes = 470, number_of_timesteps=470000, per_episode_reward = -450.20, episode_reward_trend_value=0.7248097259029389
+total_number_of_episodes = 480, number_of_timesteps=480000, per_episode_reward = -450.81, episode_reward_trend_value=0.7298730523624715
+total_number_of_episodes = 490, number_of_timesteps=490000, per_episode_reward = -450.86, episode_reward_trend_value=0.7195868385886091
+total_number_of_episodes = 500, number_of_timesteps=500000, per_episode_reward = -451.12, episode_reward_trend_value=0.7263064901385456
+total_number_of_episodes = 510, number_of_timesteps=510000, per_episode_reward = -451.10, episode_reward_trend_value=0.726925250053254
+total_number_of_episodes = 520, number_of_timesteps=520000, per_episode_reward = -451.07, episode_reward_trend_value=0.7271938524327904
+total_number_of_episodes = 530, number_of_timesteps=530000, per_episode_reward = -451.14, episode_reward_trend_value=0.7231730478333322
+total_number_of_episodes = 540, number_of_timesteps=540000, per_episode_reward = -450.69, episode_reward_trend_value=0.010210451564376576
+total_number_of_episodes = 550, number_of_timesteps=550000, per_episode_reward = -450.19, episode_reward_trend_value=0.006426296494274513
+total_number_of_episodes = 560, number_of_timesteps=560000, per_episode_reward = -450.36, episode_reward_trend_value=-0.001791373921573975
+total_number_of_episodes = 570, number_of_timesteps=570000, per_episode_reward = -450.63, episode_reward_trend_value=0.002003284359637468
+total_number_of_episodes = 580, number_of_timesteps=580000, per_episode_reward = -450.60, episode_reward_trend_value=0.0028594713869368764
+total_number_of_episodes = 590, number_of_timesteps=590000, per_episode_reward = -450.71, episode_reward_trend_value=0.004522120274334106
+total_number_of_episodes = 600, number_of_timesteps=600000, per_episode_reward = -451.17, episode_reward_trend_value=-0.000815063548578918
+total_number_of_episodes = 610, number_of_timesteps=610000, per_episode_reward = -451.07, episode_reward_trend_value=-7.773901490963908e-05
+total_number_of_episodes = 620, number_of_timesteps=620000, per_episode_reward = -451.36, episode_reward_trend_value=-0.002416986910791113
+total_number_of_episodes = 630, number_of_timesteps=630000, per_episode_reward = -451.67, episode_reward_trend_value=-0.010792966600663728
+total_number_of_episodes = 640, number_of_timesteps=640000, per_episode_reward = -452.23, episode_reward_trend_value=-0.022746785136716755
+total_number_of_episodes = 650, number_of_timesteps=650000, per_episode_reward = -452.18, episode_reward_trend_value=-0.02020869728296159
+total_number_of_episodes = 660, number_of_timesteps=660000, per_episode_reward = -451.93, episode_reward_trend_value=-0.014438786273327902
+total_number_of_episodes = 670, number_of_timesteps=670000, per_episode_reward = -451.44, episode_reward_trend_value=-0.009356635630675531
+total_number_of_episodes = 680, number_of_timesteps=680000, per_episode_reward = -450.68, episode_reward_trend_value=0.000352361320210548
+total_number_of_episodes = 690, number_of_timesteps=690000, per_episode_reward = -449.98, episode_reward_trend_value=0.01328501433572266
+total_number_of_episodes = 700, number_of_timesteps=700000, per_episode_reward = -449.18, episode_reward_trend_value=0.020977806537882136
+total_number_of_episodes = 710, number_of_timesteps=710000, per_episode_reward = -448.46, episode_reward_trend_value=0.03225573195820996
+total_number_of_episodes = 720, number_of_timesteps=720000, per_episode_reward = -448.51, episode_reward_trend_value=0.03507870607170831
+total_number_of_episodes = 730, number_of_timesteps=730000, per_episode_reward = -448.33, episode_reward_trend_value=0.04342703855309019
+total_number_of_episodes = 740, number_of_timesteps=740000, per_episode_reward = -447.82, episode_reward_trend_value=0.04844622293809191
+total_number_of_episodes = 750, number_of_timesteps=750000, per_episode_reward = -447.82, episode_reward_trend_value=0.04568174687796045
+total_number_of_episodes = 760, number_of_timesteps=760000, per_episode_reward = -447.81, episode_reward_trend_value=0.040422443792937204
+total_number_of_episodes = 770, number_of_timesteps=770000, per_episode_reward = -448.40, episode_reward_trend_value=0.02525651515763975
+total_number_of_episodes = 780, number_of_timesteps=780000, per_episode_reward = -449.19, episode_reward_trend_value=0.00871794759503233
+total_number_of_episodes = 790, number_of_timesteps=790000, per_episode_reward = -449.98, episode_reward_trend_value=-0.008896167350534117
+total_number_of_episodes = 800, number_of_timesteps=800000, per_episode_reward = -450.46, episode_reward_trend_value=-0.022203073715744873
+total_number_of_episodes = 810, number_of_timesteps=810000, per_episode_reward = -450.93, episode_reward_trend_value=-0.026882345573496495
+total_number_of_episodes = 820, number_of_timesteps=820000, per_episode_reward = -451.49, episode_reward_trend_value=-0.03514077172649448
+total_number_of_episodes = 830, number_of_timesteps=830000, per_episode_reward = -452.05, episode_reward_trend_value=-0.04696768045751962
+total_number_of_episodes = 840, number_of_timesteps=840000, per_episode_reward = -452.48, episode_reward_trend_value=-0.05180859493802927
+total_number_of_episodes = 850, number_of_timesteps=850000, per_episode_reward = -452.91, episode_reward_trend_value=-0.0566785734192346
+total_number_of_episodes = 860, number_of_timesteps=860000, per_episode_reward = -453.47, episode_reward_trend_value=-0.05624381118007464
+total_number_of_episodes = 870, number_of_timesteps=870000, per_episode_reward = -454.02, episode_reward_trend_value=-0.05367215734418475
+total_number_of_episodes = 880, number_of_timesteps=880000, per_episode_reward = -454.65, episode_reward_trend_value=-0.051837681357244494
+total_number_of_episodes = 890, number_of_timesteps=890000, per_episode_reward = -455.28, episode_reward_trend_value=-0.05354616128124311
+total_number_of_episodes = 900, number_of_timesteps=900000, per_episode_reward = -455.86, episode_reward_trend_value=-0.05482343764232951
+total_number_of_episodes = 910, number_of_timesteps=910000, per_episode_reward = -456.45, episode_reward_trend_value=-0.055113058041939035
+total_number_of_episodes = 920, number_of_timesteps=920000, per_episode_reward = -456.88, episode_reward_trend_value=-0.05370589165914086
+total_number_of_episodes = 930, number_of_timesteps=930000, per_episode_reward = -457.32, episode_reward_trend_value=-0.05376704876439362
+total_number_of_episodes = 940, number_of_timesteps=940000, per_episode_reward = -458.53, episode_reward_trend_value=-0.06252491168534612
+total_number_of_episodes = 950, number_of_timesteps=950000, per_episode_reward = -459.75, episode_reward_trend_value=-0.06983080500467559
+total_number_of_episodes = 960, number_of_timesteps=960000, per_episode_reward = -460.21, episode_reward_trend_value=-0.06869107790459263
+total_number_of_episodes = 970, number_of_timesteps=970000, per_episode_reward = -460.66, episode_reward_trend_value=-0.06681417295556066
+total_number_of_episodes = 980, number_of_timesteps=980000, per_episode_reward = -462.02, episode_reward_trend_value=-0.07497653405150433
+total_number_of_episodes = 990, number_of_timesteps=990000, per_episode_reward = -463.38, episode_reward_trend_value=-0.08357009871036275
+total_number_of_episodes = 1000, number_of_timesteps=1000000, per_episode_reward = -464.39, episode_reward_trend_value=-0.08827378636691807
+total_number_of_episodes = 1010, number_of_timesteps=1010000, per_episode_reward = -465.40, episode_reward_trend_value=-0.09467426080588111
+total_number_of_episodes = 1020, number_of_timesteps=1020000, per_episode_reward = -466.69, episode_reward_trend_value=-0.10418664742134764
+total_number_of_episodes = 1030, number_of_timesteps=1030000, per_episode_reward = -467.98, episode_reward_trend_value=-0.10500232822111381
+total_number_of_episodes = 1040, number_of_timesteps=1040000, per_episode_reward = -469.02, episode_reward_trend_value=-0.1029628114095279
+total_number_of_episodes = 1050, number_of_timesteps=1050000, per_episode_reward = -470.05, episode_reward_trend_value=-0.1093689150173538
+total_number_of_episodes = 1060, number_of_timesteps=1060000, per_episode_reward = -471.59, episode_reward_trend_value=-0.12141776934798006
+total_number_of_episodes = 1070, number_of_timesteps=1070000, per_episode_reward = -473.13, episode_reward_trend_value=-0.12342735763363129
+total_number_of_episodes = 1080, number_of_timesteps=1080000, per_episode_reward = -474.09, episode_reward_trend_value=-0.11899889291915429
+total_number_of_episodes = 1090, number_of_timesteps=1090000, per_episode_reward = -475.06, episode_reward_trend_value=-0.11846030520697848
+total_number_of_episodes = 1100, number_of_timesteps=1100000, per_episode_reward = -475.54, episode_reward_trend_value=-0.11265661157981728
+total_number_of_episodes = 1110, number_of_timesteps=1110000, per_episode_reward = -476.03, episode_reward_trend_value=-0.10374100577615449
+total_number_of_episodes = 1120, number_of_timesteps=1120000, per_episode_reward = -477.13, episode_reward_trend_value=-0.10166740259093292
+total_number_of_episodes = 1130, number_of_timesteps=1130000, per_episode_reward = -478.24, episode_reward_trend_value=-0.10244899701706534
+total_number_of_episodes = 1140, number_of_timesteps=1140000, per_episode_reward = -479.46, episode_reward_trend_value=-0.10455572995418454
+total_number_of_episodes = 1150, number_of_timesteps=1150000, per_episode_reward = -480.68, episode_reward_trend_value=-0.10101971216850088
+total_number_of_episodes = 1160, number_of_timesteps=1160000, per_episode_reward = -481.66, episode_reward_trend_value=-0.09475762601014202
+total_number_of_episodes = 1170, number_of_timesteps=1170000, per_episode_reward = -482.64, episode_reward_trend_value=-0.0949335928519089
+total_number_of_episodes = 1180, number_of_timesteps=1180000, per_episode_reward = -484.22, episode_reward_trend_value=-0.1018557366194222
+total_number_of_episodes = 1190, number_of_timesteps=1190000, per_episode_reward = -485.81, episode_reward_trend_value=-0.11404298630192089
+Process Process-15:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    else:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 167, in train_loop
+    agent.add_update()
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    try:
+NameError: name 'BrokenBarrierError' is not defined
+total_number_of_episodes = 1200, number_of_timesteps=1200000, per_episode_reward = -487.03, episode_reward_trend_value=-0.12223565885581392
+total_number_of_episodes = 1210, number_of_timesteps=1210000, per_episode_reward = -488.26, episode_reward_trend_value=-0.12358632879126692
+total_number_of_episodes = 1220, number_of_timesteps=1220000, per_episode_reward = -489.68, episode_reward_trend_value=-0.12716227620290207
+total_number_of_episodes = 1230, number_of_timesteps=1230000, per_episode_reward = -491.11, episode_reward_trend_value=-0.12941308510355423
+total_number_of_episodes = 1240, number_of_timesteps=1240000, per_episode_reward = -491.67, episode_reward_trend_value=-0.12207533288677849
+total_number_of_episodes = 1250, number_of_timesteps=1250000, per_episode_reward = -492.23, episode_reward_trend_value=-0.11746364904267667
+total_number_of_episodes = 1260, number_of_timesteps=1260000, per_episode_reward = -493.52, episode_reward_trend_value=-0.12086618647681273
+total_number_of_episodes = 1270, number_of_timesteps=1270000, per_episode_reward = -494.80, episode_reward_trend_value=-0.11752254698519979
+total_number_of_episodes = 1280, number_of_timesteps=1280000, per_episode_reward = -497.45, episode_reward_trend_value=-0.1293166086920002
+total_number_of_episodes = 1290, number_of_timesteps=1290000, per_episode_reward = -500.09, episode_reward_trend_value=-0.14510524752740506
+total_number_of_episodes = 1300, number_of_timesteps=1300000, per_episode_reward = -502.03, episode_reward_trend_value=-0.152981992515507
+total_number_of_episodes = 1310, number_of_timesteps=1310000, per_episode_reward = -503.96, episode_reward_trend_value=-0.1586334600274256
+total_number_of_episodes = 1320, number_of_timesteps=1320000, per_episode_reward = -504.88, episode_reward_trend_value=-0.15301546803914334
+total_number_of_episodes = 1330, number_of_timesteps=1330000, per_episode_reward = -505.80, episode_reward_trend_value=-0.15698603716828957
+total_number_of_episodes = 1340, number_of_timesteps=1340000, per_episode_reward = -506.53, episode_reward_trend_value=-0.1588771735276162
+total_number_of_episodes = 1350, number_of_timesteps=1350000, per_episode_reward = -507.26, episode_reward_trend_value=-0.15275408860870432
+total_number_of_episodes = 1360, number_of_timesteps=1360000, per_episode_reward = -508.58, episode_reward_trend_value=-0.1531398550020261
+total_number_of_episodes = 1370, number_of_timesteps=1370000, per_episode_reward = -509.90, episode_reward_trend_value=-0.13838792019693388
+total_number_of_episodes = 1380, number_of_timesteps=1380000, per_episode_reward = -511.83, episode_reward_trend_value=-0.13043251014141347
+total_number_of_episodes = 1390, number_of_timesteps=1390000, per_episode_reward = -513.76, episode_reward_trend_value=-0.13038899393319842
+total_number_of_episodes = 1400, number_of_timesteps=1400000, per_episode_reward = -516.17, episode_reward_trend_value=-0.1356840838781453
+total_number_of_episodes = 1410, number_of_timesteps=1410000, per_episode_reward = -518.58, episode_reward_trend_value=-0.15224863332328925
+total_number_of_episodes = 1420, number_of_timesteps=1420000, per_episode_reward = -521.76, episode_reward_trend_value=-0.17736453966438148
+total_number_of_episodes = 1430, number_of_timesteps=1430000, per_episode_reward = -524.94, episode_reward_trend_value=-0.20455987877529397
+total_number_of_episodes = 1440, number_of_timesteps=1440000, per_episode_reward = -526.59, episode_reward_trend_value=-0.21469525402851244
+total_number_of_episodes = 1450, number_of_timesteps=1450000, per_episode_reward = -528.23, episode_reward_trend_value=-0.21832177796950164
+total_number_of_episodes = 1460, number_of_timesteps=1460000, per_episode_reward = -529.57, episode_reward_trend_value=-0.21852901360314708
+total_number_of_episodes = 1470, number_of_timesteps=1470000, per_episode_reward = -530.90, episode_reward_trend_value=-0.2119397244872213
+total_number_of_episodes = 1480, number_of_timesteps=1480000, per_episode_reward = -535.70, episode_reward_trend_value=-0.24375046446775112
+total_number_of_episodes = 1490, number_of_timesteps=1490000, per_episode_reward = -540.49, episode_reward_trend_value=-0.2702225982951202
+total_number_of_episodes = 1500, number_of_timesteps=1500000, per_episode_reward = -542.52, episode_reward_trend_value=-0.26602200239465595
+total_number_of_episodes = 1510, number_of_timesteps=1510000, per_episode_reward = -544.56, episode_reward_trend_value=-0.2532700495982441
+total_number_of_episodes = 1520, number_of_timesteps=1520000, per_episode_reward = -553.40, episode_reward_trend_value=-0.3161768469653162
+total_number_of_episodes = 1530, number_of_timesteps=1530000, per_episode_reward = -562.24, episode_reward_trend_value=-0.396143608190083
+total_number_of_episodes = 1540, number_of_timesteps=1540000, per_episode_reward = -564.98, episode_reward_trend_value=-0.4083112566962604
+total_number_of_episodes = 1550, number_of_timesteps=1550000, per_episode_reward = -567.72, episode_reward_trend_value=-0.4238981935097829
+total_number_of_episodes = 1560, number_of_timesteps=1560000, per_episode_reward = -576.00, episode_reward_trend_value=-0.5010385017740999
+total_number_of_episodes = 1570, number_of_timesteps=1570000, per_episode_reward = -584.28, episode_reward_trend_value=-0.5397787809419607
+total_number_of_episodes = 1580, number_of_timesteps=1580000, per_episode_reward = -597.85, episode_reward_trend_value=-0.6373018405096105
+total_number_of_episodes = 1590, number_of_timesteps=1590000, per_episode_reward = -611.42, episode_reward_trend_value=-0.7654976298050972
+Hit early stopping because -611.4179557692466 < -600
+Process Process-11:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    else:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 167, in train_loop
+    agent.add_update()
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    try:
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-20:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    else:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 167, in train_loop
+    agent.add_update()
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    try:
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-13:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    else:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 167, in train_loop
+    agent.add_update()
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    try:
+NameError: name 'BrokenBarrierError' is not defined
+[32m[I 2022-10-19 22:08:58,586][0m Trial 1 finished with value: -618.98 and parameters: {'lr_b': 3, 'lr_e': -5, 'beta_b': 5, 'beta_e': -7, 'tmax': 1, 'activ': 2, 'hid': 2}. Best is trial 0 with value: -454.9.[0m
+Process Process-30:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    else:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 167, in train_loop
+    agent.add_update()
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    try:
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-24:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    else:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 167, in train_loop
+    agent.add_update()
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    try:
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-28:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    else:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 167, in train_loop
+    agent.add_update()
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    try:
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-22:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    else:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 167, in train_loop
+    agent.add_update()
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    try:
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-21:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    else:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 167, in train_loop
+    agent.add_update()
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    try:
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-23:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    else:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 167, in train_loop
+    agent.add_update()
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    try:
+NameError: name 'BrokenBarrierError' is not defined
+total_number_of_episodes = 20, number_of_timesteps=20000, per_episode_reward = -642.96, episode_reward_trend_value=0.0
+total_number_of_episodes = 30, number_of_timesteps=30000, per_episode_reward = -658.26, episode_reward_trend_value=-1.5292717068499884
+total_number_of_episodes = 40, number_of_timesteps=40000, per_episode_reward = -652.63, episode_reward_trend_value=-0.48330778648376055
+total_number_of_episodes = 50, number_of_timesteps=50000, per_episode_reward = -647.87, episode_reward_trend_value=-0.1635323767881914
+total_number_of_episodes = 60, number_of_timesteps=60000, per_episode_reward = -651.19, episode_reward_trend_value=-0.20564993822131045
+total_number_of_episodes = 70, number_of_timesteps=70000, per_episode_reward = -649.41, episode_reward_trend_value=-0.12898573583959888
+total_number_of_episodes = 80, number_of_timesteps=80000, per_episode_reward = -649.59, episode_reward_trend_value=-0.11048170994646778
+total_number_of_episodes = 90, number_of_timesteps=90000, per_episode_reward = -646.23, episode_reward_trend_value=-0.046610681150675
+total_number_of_episodes = 100, number_of_timesteps=100000, per_episode_reward = -646.37, episode_reward_trend_value=-0.042631422271534804
+total_number_of_episodes = 110, number_of_timesteps=110000, per_episode_reward = -644.45, episode_reward_trend_value=-0.016478847693105713
+total_number_of_episodes = 120, number_of_timesteps=120000, per_episode_reward = -645.47, episode_reward_trend_value=0.142086386430132
+total_number_of_episodes = 130, number_of_timesteps=130000, per_episode_reward = -645.86, episode_reward_trend_value=0.07522815277345925
+total_number_of_episodes = 140, number_of_timesteps=140000, per_episode_reward = -645.04, episode_reward_trend_value=0.031418599366549595
+total_number_of_episodes = 150, number_of_timesteps=150000, per_episode_reward = -645.57, episode_reward_trend_value=0.06247167218276799
+total_number_of_episodes = 160, number_of_timesteps=160000, per_episode_reward = -645.32, episode_reward_trend_value=0.04541143311409617
+total_number_of_episodes = 170, number_of_timesteps=170000, per_episode_reward = -645.56, episode_reward_trend_value=0.044823425456735955
+total_number_of_episodes = 180, number_of_timesteps=180000, per_episode_reward = -646.84, episode_reward_trend_value=-0.006810876114757826
+total_number_of_episodes = 190, number_of_timesteps=190000, per_episode_reward = -647.57, episode_reward_trend_value=-0.013332503593164801
+total_number_of_episodes = 200, number_of_timesteps=200000, per_episode_reward = -647.11, episode_reward_trend_value=-0.029616085816554817
+total_number_of_episodes = 210, number_of_timesteps=210000, per_episode_reward = -651.00, episode_reward_trend_value=-0.061461541964148284
+Hit early stopping because -650.9991750235728 < -600
+Process Process-25:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    else:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 167, in train_loop
+    agent.add_update()
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    try:
+NameError: name 'BrokenBarrierError' is not defined
+[32m[I 2022-10-19 22:09:51,433][0m Trial 2 finished with value: -650.3 and parameters: {'lr_b': 3, 'lr_e': -7, 'beta_b': 2, 'beta_e': -1, 'tmax': 5, 'activ': 0, 'hid': 3}. Best is trial 0 with value: -454.9.[0m
+Process Process-34:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    else:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 167, in train_loop
+    agent.add_update()
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    try:
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-35:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    else:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 167, in train_loop
+    agent.add_update()
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    try:
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-32:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    else:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 167, in train_loop
+    agent.add_update()
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    try:
+NameError: name 'BrokenBarrierError' is not defined
+total_number_of_episodes = 20, number_of_timesteps=20000, per_episode_reward = -4045730178301382.50, episode_reward_trend_value=0.0
+Hit early stopping because -4045730178301382.5 < -800
+Process Process-36:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    else:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 167, in train_loop
+    agent.add_update()
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    try:
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-31:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    else:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 167, in train_loop
+    agent.add_update()
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    try:
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-38:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    else:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 167, in train_loop
+    agent.add_update()
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    try:
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-40:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    else:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 167, in train_loop
+    agent.add_update()
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    try:
+NameError: name 'BrokenBarrierError' is not defined
+[32m[I 2022-10-19 22:10:02,524][0m Trial 3 finished with value: -3704483845154493.0 and parameters: {'lr_b': 1, 'lr_e': -1, 'beta_b': 2, 'beta_e': -5, 'tmax': 1, 'activ': 0, 'hid': 0}. Best is trial 0 with value: -454.9.[0m
+total_number_of_episodes = 20, number_of_timesteps=20000, per_episode_reward = -670.97, episode_reward_trend_value=0.0
+total_number_of_episodes = 30, number_of_timesteps=30000, per_episode_reward = -650.30, episode_reward_trend_value=2.0669768904490295
+total_number_of_episodes = 40, number_of_timesteps=40000, per_episode_reward = -643.30, episode_reward_trend_value=1.3834246681356888
+total_number_of_episodes = 50, number_of_timesteps=50000, per_episode_reward = -640.44, episode_reward_trend_value=1.0177043577242444
+total_number_of_episodes = 60, number_of_timesteps=60000, per_episode_reward = -642.56, episode_reward_trend_value=0.7103988373020684
+total_number_of_episodes = 70, number_of_timesteps=70000, per_episode_reward = -647.51, episode_reward_trend_value=0.46916696855005513
+total_number_of_episodes = 80, number_of_timesteps=80000, per_episode_reward = -642.08, episode_reward_trend_value=0.4814882852661033
+total_number_of_episodes = 90, number_of_timesteps=90000, per_episode_reward = -640.13, episode_reward_trend_value=0.44060695442794245
+total_number_of_episodes = 100, number_of_timesteps=100000, per_episode_reward = -641.88, episode_reward_trend_value=0.36370132412448586
+total_number_of_episodes = 110, number_of_timesteps=110000, per_episode_reward = -644.37, episode_reward_trend_value=0.29554453099506445
+total_number_of_episodes = 120, number_of_timesteps=120000, per_episode_reward = -643.20, episode_reward_trend_value=0.07892927069686947
+total_number_of_episodes = 130, number_of_timesteps=130000, per_episode_reward = -642.92, episode_reward_trend_value=0.004287084793168106
+total_number_of_episodes = 140, number_of_timesteps=140000, per_episode_reward = -645.05, episode_reward_trend_value=-0.05124828568373611
+total_number_of_episodes = 150, number_of_timesteps=150000, per_episode_reward = -581.93, episode_reward_trend_value=0.673643669301234
+total_number_of_episodes = 160, number_of_timesteps=160000, per_episode_reward = -583.28, episode_reward_trend_value=0.7136784253128086
+total_number_of_episodes = 170, number_of_timesteps=170000, per_episode_reward = -582.36, episode_reward_trend_value=0.6635934605350446
+total_number_of_episodes = 180, number_of_timesteps=180000, per_episode_reward = -581.47, episode_reward_trend_value=0.6517335327379694
+total_number_of_episodes = 190, number_of_timesteps=190000, per_episode_reward = -580.52, episode_reward_trend_value=0.6817222501948815
+total_number_of_episodes = 200, number_of_timesteps=200000, per_episode_reward = -581.66, episode_reward_trend_value=0.696769347419902
+total_number_of_episodes = 210, number_of_timesteps=210000, per_episode_reward = -580.95, episode_reward_trend_value=0.6916231704758022
+total_number_of_episodes = 220, number_of_timesteps=220000, per_episode_reward = -581.63, episode_reward_trend_value=0.6809777656097278
+total_number_of_episodes = 230, number_of_timesteps=230000, per_episode_reward = -583.49, episode_reward_trend_value=0.6840729530708813
+total_number_of_episodes = 240, number_of_timesteps=240000, per_episode_reward = -584.68, episode_reward_trend_value=-0.03057635750210213
+total_number_of_episodes = 250, number_of_timesteps=250000, per_episode_reward = -587.10, episode_reward_trend_value=-0.042412414304713916
+total_number_of_episodes = 260, number_of_timesteps=260000, per_episode_reward = -584.85, episode_reward_trend_value=-0.027627280740788747
+total_number_of_episodes = 270, number_of_timesteps=270000, per_episode_reward = -585.87, episode_reward_trend_value=-0.04886411751042235
+total_number_of_episodes = 280, number_of_timesteps=280000, per_episode_reward = -582.07, episode_reward_trend_value=-0.017172041678740393
+total_number_of_episodes = 290, number_of_timesteps=290000, per_episode_reward = -584.10, episode_reward_trend_value=-0.027109639226323957
+total_number_of_episodes = 300, number_of_timesteps=300000, per_episode_reward = -583.78, episode_reward_trend_value=-0.0313503217662704
+total_number_of_episodes = 310, number_of_timesteps=310000, per_episode_reward = -582.77, episode_reward_trend_value=-0.012659460053597135
+total_number_of_episodes = 320, number_of_timesteps=320000, per_episode_reward = -583.10, episode_reward_trend_value=0.004301003264338811
+total_number_of_episodes = 330, number_of_timesteps=330000, per_episode_reward = -583.68, episode_reward_trend_value=0.01112521971122457
+total_number_of_episodes = 340, number_of_timesteps=340000, per_episode_reward = -584.29, episode_reward_trend_value=0.03126823658896885
+total_number_of_episodes = 350, number_of_timesteps=350000, per_episode_reward = -584.36, episode_reward_trend_value=0.005430849410014263
+total_number_of_episodes = 360, number_of_timesteps=360000, per_episode_reward = -582.64, episode_reward_trend_value=0.03588137217078358
+total_number_of_episodes = 370, number_of_timesteps=370000, per_episode_reward = -584.70, episode_reward_trend_value=-0.029293336838125267
+total_number_of_episodes = 380, number_of_timesteps=380000, per_episode_reward = -582.95, episode_reward_trend_value=0.01284239305820165
+total_number_of_episodes = 390, number_of_timesteps=390000, per_episode_reward = -582.31, episode_reward_trend_value=0.016306725618579144
+total_number_of_episodes = 400, number_of_timesteps=400000, per_episode_reward = -582.11, episode_reward_trend_value=0.0073595492244850095
+total_number_of_episodes = 410, number_of_timesteps=410000, per_episode_reward = -580.34, episode_reward_trend_value=0.030710095388333986
+total_number_of_episodes = 420, number_of_timesteps=420000, per_episode_reward = -581.00, episode_reward_trend_value=0.029741598715298145
+total_number_of_episodes = 430, number_of_timesteps=430000, per_episode_reward = -579.57, episode_reward_trend_value=0.05240905953355397
+total_number_of_episodes = 440, number_of_timesteps=440000, per_episode_reward = -580.96, episode_reward_trend_value=0.03776198480322314
+total_number_of_episodes = 450, number_of_timesteps=450000, per_episode_reward = -581.89, episode_reward_trend_value=0.008417173364784957
+total_number_of_episodes = 460, number_of_timesteps=460000, per_episode_reward = -582.16, episode_reward_trend_value=0.0282465856680018
+total_number_of_episodes = 470, number_of_timesteps=470000, per_episode_reward = -583.13, episode_reward_trend_value=-0.00197037039899644
+total_number_of_episodes = 480, number_of_timesteps=480000, per_episode_reward = -582.33, episode_reward_trend_value=-0.00027064456131837585
+total_number_of_episodes = 490, number_of_timesteps=490000, per_episode_reward = -582.12, episode_reward_trend_value=-0.00011309834506568626
+total_number_of_episodes = 500, number_of_timesteps=500000, per_episode_reward = -581.20, episode_reward_trend_value=-0.009587487288476698
+total_number_of_episodes = 510, number_of_timesteps=510000, per_episode_reward = -582.42, episode_reward_trend_value=-0.015725092458382682
+total_number_of_episodes = 520, number_of_timesteps=520000, per_episode_reward = -582.78, episode_reward_trend_value=-0.03563598400547284
+total_number_of_episodes = 530, number_of_timesteps=530000, per_episode_reward = -583.44, episode_reward_trend_value=-0.027607445267235815
+total_number_of_episodes = 540, number_of_timesteps=540000, per_episode_reward = -582.08, episode_reward_trend_value=-0.002133830383389876
+total_number_of_episodes = 550, number_of_timesteps=550000, per_episode_reward = -581.14, episode_reward_trend_value=0.011322145242257244
+total_number_of_episodes = 560, number_of_timesteps=560000, per_episode_reward = -581.25, episode_reward_trend_value=0.020894478449579562
+total_number_of_episodes = 570, number_of_timesteps=570000, per_episode_reward = -581.72, episode_reward_trend_value=0.006748473069664367
+total_number_of_episodes = 580, number_of_timesteps=580000, per_episode_reward = -580.70, episode_reward_trend_value=0.01573292668550342
+total_number_of_episodes = 590, number_of_timesteps=590000, per_episode_reward = -581.08, episode_reward_trend_value=0.0012757116057981774
+total_number_of_episodes = 600, number_of_timesteps=600000, per_episode_reward = -581.58, episode_reward_trend_value=0.009324211572848323
+total_number_of_episodes = 610, number_of_timesteps=610000, per_episode_reward = -580.63, episode_reward_trend_value=0.02387025318665413
+total_number_of_episodes = 620, number_of_timesteps=620000, per_episode_reward = -581.33, episode_reward_trend_value=0.02344903486816242
+total_number_of_episodes = 630, number_of_timesteps=630000, per_episode_reward = -581.30, episode_reward_trend_value=0.008610105949712003
+total_number_of_episodes = 640, number_of_timesteps=640000, per_episode_reward = -581.48, episode_reward_trend_value=-0.003744266416040571
+total_number_of_episodes = 650, number_of_timesteps=650000, per_episode_reward = -581.74, episode_reward_trend_value=-0.005521557944542918
+total_number_of_episodes = 660, number_of_timesteps=660000, per_episode_reward = -581.62, episode_reward_trend_value=0.0011061080491900712
+total_number_of_episodes = 670, number_of_timesteps=670000, per_episode_reward = -582.31, episode_reward_trend_value=-0.017899787296535883
+total_number_of_episodes = 680, number_of_timesteps=680000, per_episode_reward = -582.23, episode_reward_trend_value=-0.012744375014983688
+total_number_of_episodes = 690, number_of_timesteps=690000, per_episode_reward = -582.09, episode_reward_trend_value=-0.005692799578018063
+total_number_of_episodes = 700, number_of_timesteps=700000, per_episode_reward = -582.18, episode_reward_trend_value=-0.017235303802496875
+total_number_of_episodes = 710, number_of_timesteps=710000, per_episode_reward = -582.52, episode_reward_trend_value=-0.013143388281669863
+total_number_of_episodes = 720, number_of_timesteps=720000, per_episode_reward = -582.78, episode_reward_trend_value=-0.016451525680445733
+total_number_of_episodes = 730, number_of_timesteps=730000, per_episode_reward = -582.83, episode_reward_trend_value=-0.015032787906973984
+total_number_of_episodes = 740, number_of_timesteps=740000, per_episode_reward = -582.46, episode_reward_trend_value=-0.007992015750357951
+total_number_of_episodes = 750, number_of_timesteps=750000, per_episode_reward = -582.68, episode_reward_trend_value=-0.011750558372832781
+total_number_of_episodes = 760, number_of_timesteps=760000, per_episode_reward = -582.98, episode_reward_trend_value=-0.007383643938005157
+total_number_of_episodes = 770, number_of_timesteps=770000, per_episode_reward = -583.57, episode_reward_trend_value=-0.01484720837314626
+total_number_of_episodes = 780, number_of_timesteps=780000, per_episode_reward = -584.21, episode_reward_trend_value=-0.023564719736690325
+total_number_of_episodes = 790, number_of_timesteps=790000, per_episode_reward = -583.54, episode_reward_trend_value=-0.015114122956014045
+total_number_of_episodes = 800, number_of_timesteps=800000, per_episode_reward = -583.19, episode_reward_trend_value=-0.007518830872215353
+total_number_of_episodes = 810, number_of_timesteps=810000, per_episode_reward = -583.18, episode_reward_trend_value=-0.004414098973356633
+total_number_of_episodes = 820, number_of_timesteps=820000, per_episode_reward = -583.19, episode_reward_trend_value=-0.00400803952175516
+total_number_of_episodes = 830, number_of_timesteps=830000, per_episode_reward = -583.07, episode_reward_trend_value=-0.006741646578140919
+total_number_of_episodes = 840, number_of_timesteps=840000, per_episode_reward = -583.52, episode_reward_trend_value=-0.009333936888404221
+total_number_of_episodes = 850, number_of_timesteps=850000, per_episode_reward = -583.09, episode_reward_trend_value=-0.0011986341115339705
+total_number_of_episodes = 860, number_of_timesteps=860000, per_episode_reward = -583.77, episode_reward_trend_value=-0.0022655837524300495
+total_number_of_episodes = 870, number_of_timesteps=870000, per_episode_reward = -583.25, episode_reward_trend_value=0.010730990927940335
+total_number_of_episodes = 880, number_of_timesteps=880000, per_episode_reward = -583.29, episode_reward_trend_value=0.0027814465475279977
+total_number_of_episodes = 890, number_of_timesteps=890000, per_episode_reward = -582.77, episode_reward_trend_value=0.004696671629618424
+total_number_of_episodes = 900, number_of_timesteps=900000, per_episode_reward = -582.39, episode_reward_trend_value=0.008759955224056487
+total_number_of_episodes = 910, number_of_timesteps=910000, per_episode_reward = -582.55, episode_reward_trend_value=0.007119920853052816
+total_number_of_episodes = 920, number_of_timesteps=920000, per_episode_reward = -582.45, episode_reward_trend_value=0.006862335640981756
+total_number_of_episodes = 930, number_of_timesteps=930000, per_episode_reward = -582.22, episode_reward_trend_value=0.014513272061968665
+total_number_of_episodes = 940, number_of_timesteps=940000, per_episode_reward = -582.43, episode_reward_trend_value=0.00729833569543593
+total_number_of_episodes = 950, number_of_timesteps=950000, per_episode_reward = -582.76, episode_reward_trend_value=0.011263255271577084
+total_number_of_episodes = 960, number_of_timesteps=960000, per_episode_reward = -582.48, episode_reward_trend_value=0.00855992107375035
+total_number_of_episodes = 970, number_of_timesteps=970000, per_episode_reward = -582.72, episode_reward_trend_value=0.006379728486960327
+total_number_of_episodes = 980, number_of_timesteps=980000, per_episode_reward = -582.44, episode_reward_trend_value=0.0036849223212698234
+total_number_of_episodes = 990, number_of_timesteps=990000, per_episode_reward = -582.87, episode_reward_trend_value=-0.005351218765393797
+total_number_of_episodes = 1000, number_of_timesteps=1000000, per_episode_reward = -582.64, episode_reward_trend_value=-0.0009755757463633726
+total_number_of_episodes = 1010, number_of_timesteps=1010000, per_episode_reward = -582.73, episode_reward_trend_value=-0.0031223769671568234
+total_number_of_episodes = 1020, number_of_timesteps=1020000, per_episode_reward = -582.77, episode_reward_trend_value=-0.006193653199049246
+total_number_of_episodes = 1030, number_of_timesteps=1030000, per_episode_reward = -582.55, episode_reward_trend_value=-0.0013192868492423158
+total_number_of_episodes = 1040, number_of_timesteps=1040000, per_episode_reward = -582.49, episode_reward_trend_value=0.0029544151169804737
+total_number_of_episodes = 1050, number_of_timesteps=1050000, per_episode_reward = -582.67, episode_reward_trend_value=-0.0021494687340224217
+total_number_of_episodes = 1060, number_of_timesteps=1060000, per_episode_reward = -582.09, episode_reward_trend_value=0.006978831755956587
+total_number_of_episodes = 1070, number_of_timesteps=1070000, per_episode_reward = -582.52, episode_reward_trend_value=-0.0008855562721616176
+total_number_of_episodes = 1080, number_of_timesteps=1080000, per_episode_reward = -582.23, episode_reward_trend_value=0.007163145984527041
+total_number_of_episodes = 1090, number_of_timesteps=1090000, per_episode_reward = -582.02, episode_reward_trend_value=0.006905906743965159
+total_number_of_episodes = 1100, number_of_timesteps=1100000, per_episode_reward = -582.20, episode_reward_trend_value=0.0058769823394161196
+total_number_of_episodes = 1110, number_of_timesteps=1110000, per_episode_reward = -582.34, episode_reward_trend_value=0.00486861219843225
+total_number_of_episodes = 1120, number_of_timesteps=1120000, per_episode_reward = -582.22, episode_reward_trend_value=0.0036841778914852817
+total_number_of_episodes = 1130, number_of_timesteps=1130000, per_episode_reward = -581.92, episode_reward_trend_value=0.006314946960844736
+total_number_of_episodes = 1140, number_of_timesteps=1140000, per_episode_reward = -582.17, episode_reward_trend_value=0.005562830854569256
+total_number_of_episodes = 1150, number_of_timesteps=1150000, per_episode_reward = -582.17, episode_reward_trend_value=-0.0009191373169579088
+total_number_of_episodes = 1160, number_of_timesteps=1160000, per_episode_reward = -582.86, episode_reward_trend_value=-0.003773823433458448
+total_number_of_episodes = 1170, number_of_timesteps=1170000, per_episode_reward = -583.78, episode_reward_trend_value=-0.017252989637166948
+total_number_of_episodes = 1180, number_of_timesteps=1180000, per_episode_reward = -583.52, episode_reward_trend_value=-0.016675118611071106
+total_number_of_episodes = 1190, number_of_timesteps=1190000, per_episode_reward = -583.42, episode_reward_trend_value=-0.013497693928901652
+total_number_of_episodes = 1200, number_of_timesteps=1200000, per_episode_reward = -583.82, episode_reward_trend_value=-0.01651530241854036
+total_number_of_episodes = 1210, number_of_timesteps=1210000, per_episode_reward = -584.33, episode_reward_trend_value=-0.02347341458797448
+total_number_of_episodes = 1220, number_of_timesteps=1220000, per_episode_reward = -584.14, episode_reward_trend_value=-0.02458279418813668
+total_number_of_episodes = 1230, number_of_timesteps=1230000, per_episode_reward = -584.12, episode_reward_trend_value=-0.021694543885118694
+total_number_of_episodes = 1240, number_of_timesteps=1240000, per_episode_reward = -584.08, episode_reward_trend_value=-0.021236106239372374
+total_number_of_episodes = 1250, number_of_timesteps=1250000, per_episode_reward = -583.86, episode_reward_trend_value=-0.011103316443379502
+total_number_of_episodes = 1260, number_of_timesteps=1260000, per_episode_reward = -583.95, episode_reward_trend_value=-0.0018823783038619188
+total_number_of_episodes = 1270, number_of_timesteps=1270000, per_episode_reward = -583.95, episode_reward_trend_value=-0.004737555200327077
+total_number_of_episodes = 1280, number_of_timesteps=1280000, per_episode_reward = -583.92, episode_reward_trend_value=-0.005560350629348755
+total_number_of_episodes = 1290, number_of_timesteps=1290000, per_episode_reward = -584.20, episode_reward_trend_value=-0.004177749884629773
+total_number_of_episodes = 1300, number_of_timesteps=1300000, per_episode_reward = -584.24, episode_reward_trend_value=0.0010061196618001609
+total_number_of_episodes = 1310, number_of_timesteps=1310000, per_episode_reward = -584.39, episode_reward_trend_value=-0.0028560831331851154
+total_number_of_episodes = 1320, number_of_timesteps=1320000, per_episode_reward = -584.56, episode_reward_trend_value=-0.004895989489568819
+total_number_of_episodes = 1330, number_of_timesteps=1330000, per_episode_reward = -584.43, episode_reward_trend_value=-0.0038188757467474315
+total_number_of_episodes = 1340, number_of_timesteps=1340000, per_episode_reward = -584.38, episode_reward_trend_value=-0.005848679335341936
+total_number_of_episodes = 1350, number_of_timesteps=1350000, per_episode_reward = -584.38, episode_reward_trend_value=-0.004760280148448399
+total_number_of_episodes = 1360, number_of_timesteps=1360000, per_episode_reward = -584.53, episode_reward_trend_value=-0.0065143003996948005
+total_number_of_episodes = 1370, number_of_timesteps=1370000, per_episode_reward = -584.44, episode_reward_trend_value=-0.005803274482898107
+total_number_of_episodes = 1380, number_of_timesteps=1380000, per_episode_reward = -584.62, episode_reward_trend_value=-0.0047224613200569365
+total_number_of_episodes = 1390, number_of_timesteps=1390000, per_episode_reward = -584.36, episode_reward_trend_value=-0.0013968316601487155
+total_number_of_episodes = 1400, number_of_timesteps=1400000, per_episode_reward = -584.42, episode_reward_trend_value=-0.0003104334720420512
+total_number_of_episodes = 1410, number_of_timesteps=1410000, per_episode_reward = -584.35, episode_reward_trend_value=0.002398357592947933
+total_number_of_episodes = 1420, number_of_timesteps=1420000, per_episode_reward = -584.52, episode_reward_trend_value=-0.0011068772526186877
+total_number_of_episodes = 1430, number_of_timesteps=1430000, per_episode_reward = -584.81, episode_reward_trend_value=-0.004732489647597049
+total_number_of_episodes = 1440, number_of_timesteps=1440000, per_episode_reward = -584.63, episode_reward_trend_value=-0.0027866421589894546
+total_number_of_episodes = 1450, number_of_timesteps=1450000, per_episode_reward = -584.43, episode_reward_trend_value=0.0011770669188043334
+total_number_of_episodes = 1460, number_of_timesteps=1460000, per_episode_reward = -584.50, episode_reward_trend_value=-0.0006608338084093803
+total_number_of_episodes = 1470, number_of_timesteps=1470000, per_episode_reward = -584.62, episode_reward_trend_value=4.105464001769279e-05
+total_number_of_episodes = 1480, number_of_timesteps=1480000, per_episode_reward = -519.70, episode_reward_trend_value=0.7185026973110831
+total_number_of_episodes = 1490, number_of_timesteps=1490000, per_episode_reward = -519.47, episode_reward_trend_value=0.721631932938313
+total_number_of_episodes = 1500, number_of_timesteps=1500000, per_episode_reward = -519.46, episode_reward_trend_value=0.720970945809385
+total_number_of_episodes = 1510, number_of_timesteps=1510000, per_episode_reward = -519.69, episode_reward_trend_value=0.7204333553493775
+total_number_of_episodes = 1520, number_of_timesteps=1520000, per_episode_reward = -519.71, episode_reward_trend_value=0.7233000437578199
+total_number_of_episodes = 1530, number_of_timesteps=1530000, per_episode_reward = -519.53, episode_reward_trend_value=0.723328772221051
+total_number_of_episodes = 1540, number_of_timesteps=1540000, per_episode_reward = -519.27, episode_reward_trend_value=0.7239157545700765
+total_number_of_episodes = 1550, number_of_timesteps=1550000, per_episode_reward = -519.16, episode_reward_trend_value=0.7260459458310758
+total_number_of_episodes = 1560, number_of_timesteps=1560000, per_episode_reward = -519.03, episode_reward_trend_value=0.7287920240763974
+total_number_of_episodes = 1570, number_of_timesteps=1570000, per_episode_reward = -519.00, episode_reward_trend_value=0.007750299191198134
+total_number_of_episodes = 1580, number_of_timesteps=1580000, per_episode_reward = -518.85, episode_reward_trend_value=0.006887480933390736
+total_number_of_episodes = 1590, number_of_timesteps=1590000, per_episode_reward = -518.82, episode_reward_trend_value=0.007076233375856747
+total_number_of_episodes = 1600, number_of_timesteps=1600000, per_episode_reward = -518.93, episode_reward_trend_value=0.00842000101815251
+total_number_of_episodes = 1610, number_of_timesteps=1610000, per_episode_reward = -518.69, episode_reward_trend_value=0.011316163344885253
+total_number_of_episodes = 1620, number_of_timesteps=1620000, per_episode_reward = -518.52, episode_reward_trend_value=0.011277616930914922
+total_number_of_episodes = 1630, number_of_timesteps=1630000, per_episode_reward = -518.43, episode_reward_trend_value=0.009394620035182773
+total_number_of_episodes = 1640, number_of_timesteps=1640000, per_episode_reward = -518.48, episode_reward_trend_value=0.007472098415787008
+total_number_of_episodes = 1650, number_of_timesteps=1650000, per_episode_reward = -518.19, episode_reward_trend_value=0.009336051580524123
+total_number_of_episodes = 1660, number_of_timesteps=1660000, per_episode_reward = -518.25, episode_reward_trend_value=0.008382243363581034
+total_number_of_episodes = 1670, number_of_timesteps=1670000, per_episode_reward = -518.39, episode_reward_trend_value=0.0051472601824697345
+total_number_of_episodes = 1680, number_of_timesteps=1680000, per_episode_reward = -518.33, episode_reward_trend_value=0.005420255372789345
+total_number_of_episodes = 1690, number_of_timesteps=1690000, per_episode_reward = -518.05, episode_reward_trend_value=0.009767250401900027
+total_number_of_episodes = 1700, number_of_timesteps=1700000, per_episode_reward = -517.79, episode_reward_trend_value=0.010087711236318835
+total_number_of_episodes = 1710, number_of_timesteps=1710000, per_episode_reward = -517.69, episode_reward_trend_value=0.009192682937353109
+total_number_of_episodes = 1720, number_of_timesteps=1720000, per_episode_reward = -517.80, episode_reward_trend_value=0.006966291990525203
+total_number_of_episodes = 1730, number_of_timesteps=1730000, per_episode_reward = -517.98, episode_reward_trend_value=0.0055502571766775565
+total_number_of_episodes = 1740, number_of_timesteps=1740000, per_episode_reward = -517.95, episode_reward_trend_value=0.002664381035191986
+total_number_of_episodes = 1750, number_of_timesteps=1750000, per_episode_reward = -518.25, episode_reward_trend_value=1.9179959685465695e-06
+total_number_of_episodes = 1760, number_of_timesteps=1760000, per_episode_reward = -518.13, episode_reward_trend_value=0.002874212298447926
+total_number_of_episodes = 1770, number_of_timesteps=1770000, per_episode_reward = -518.08, episode_reward_trend_value=0.0028716769503300084
+total_number_of_episodes = 1780, number_of_timesteps=1780000, per_episode_reward = -518.17, episode_reward_trend_value=-0.0013067292612908609
+total_number_of_episodes = 1790, number_of_timesteps=1790000, per_episode_reward = -518.04, episode_reward_trend_value=-0.0027929929618949246
+total_number_of_episodes = 1800, number_of_timesteps=1800000, per_episode_reward = -518.12, episode_reward_trend_value=-0.004839971462448981
+total_number_of_episodes = 1810, number_of_timesteps=1810000, per_episode_reward = -518.06, episode_reward_trend_value=-0.0028850672372174005
+total_number_of_episodes = 1820, number_of_timesteps=1820000, per_episode_reward = -517.94, episode_reward_trend_value=0.0005100194660700354
+total_number_of_episodes = 1830, number_of_timesteps=1830000, per_episode_reward = -517.98, episode_reward_trend_value=-0.00030515651097226103
+total_number_of_episodes = 1840, number_of_timesteps=1840000, per_episode_reward = -518.22, episode_reward_trend_value=0.0002431510151281044
+total_number_of_episodes = 1850, number_of_timesteps=1850000, per_episode_reward = -518.16, episode_reward_trend_value=-0.00033985081632484555
+total_number_of_episodes = 1860, number_of_timesteps=1860000, per_episode_reward = -518.11, episode_reward_trend_value=-0.00037847356277072525
+total_number_of_episodes = 1870, number_of_timesteps=1870000, per_episode_reward = -518.44, episode_reward_trend_value=-0.0030092905754524205
+total_number_of_episodes = 1880, number_of_timesteps=1880000, per_episode_reward = -518.57, episode_reward_trend_value=-0.005911845700957959
+total_number_of_episodes = 1890, number_of_timesteps=1890000, per_episode_reward = -518.66, episode_reward_trend_value=-0.005906353776910894
+total_number_of_episodes = 1900, number_of_timesteps=1900000, per_episode_reward = -518.50, episode_reward_trend_value=-0.0049008120079873955
+total_number_of_episodes = 1910, number_of_timesteps=1910000, per_episode_reward = -518.51, episode_reward_trend_value=-0.006365720665918515
+total_number_of_episodes = 1920, number_of_timesteps=1920000, per_episode_reward = -518.56, episode_reward_trend_value=-0.006472795556915874
+total_number_of_episodes = 1930, number_of_timesteps=1930000, per_episode_reward = -518.46, episode_reward_trend_value=-0.002601991480546278
+total_number_of_episodes = 1940, number_of_timesteps=1940000, per_episode_reward = -518.43, episode_reward_trend_value=-0.0030004482387097496
+total_number_of_episodes = 1950, number_of_timesteps=1950000, per_episode_reward = -518.50, episode_reward_trend_value=-0.004353891655064975
+total_number_of_episodes = 1960, number_of_timesteps=1960000, per_episode_reward = -518.48, episode_reward_trend_value=-0.0005051365802905316
+total_number_of_episodes = 1970, number_of_timesteps=1970000, per_episode_reward = -518.59, episode_reward_trend_value=-0.0002231132275521001
+total_number_of_episodes = 1980, number_of_timesteps=1980000, per_episode_reward = -518.49, episode_reward_trend_value=0.001852120071307834
+total_number_of_episodes = 1990, number_of_timesteps=1990000, per_episode_reward = -518.76, episode_reward_trend_value=-0.002869678740670325
+total_number_of_episodes = 2000, number_of_timesteps=2000000, per_episode_reward = -518.80, episode_reward_trend_value=-0.003173596427020837
+total_number_of_episodes = 2010, number_of_timesteps=2010000, per_episode_reward = -518.78, episode_reward_trend_value=-0.0024857731011239696
+total_number_of_episodes = 2020, number_of_timesteps=2020000, per_episode_reward = -518.67, episode_reward_trend_value=-0.002327254681570897
+total_number_of_episodes = 2030, number_of_timesteps=2030000, per_episode_reward = -518.89, episode_reward_trend_value=-0.005085923065241281
+total_number_of_episodes = 2040, number_of_timesteps=2040000, per_episode_reward = -518.63, episode_reward_trend_value=-0.0014731515220571764
+total_number_of_episodes = 2050, number_of_timesteps=2050000, per_episode_reward = -518.58, episode_reward_trend_value=-0.0010952524451706975
+total_number_of_episodes = 2060, number_of_timesteps=2060000, per_episode_reward = -518.55, episode_reward_trend_value=0.00046740642960811684
+total_number_of_episodes = 2070, number_of_timesteps=2070000, per_episode_reward = -518.33, episode_reward_trend_value=0.0017164461184216231
+total_number_of_episodes = 2080, number_of_timesteps=2080000, per_episode_reward = -518.21, episode_reward_trend_value=0.006133862674317293
+total_number_of_episodes = 2090, number_of_timesteps=2090000, per_episode_reward = -518.07, episode_reward_trend_value=0.008025800627270503
+total_number_of_episodes = 2100, number_of_timesteps=2100000, per_episode_reward = -518.03, episode_reward_trend_value=0.008383093139754137
+total_number_of_episodes = 2110, number_of_timesteps=2110000, per_episode_reward = -518.16, episode_reward_trend_value=0.005606472277049255
+total_number_of_episodes = 2120, number_of_timesteps=2120000, per_episode_reward = -518.15, episode_reward_trend_value=0.008222480137087335
+total_number_of_episodes = 2130, number_of_timesteps=2130000, per_episode_reward = -518.10, episode_reward_trend_value=0.005923002447875408
+total_number_of_episodes = 2140, number_of_timesteps=2140000, per_episode_reward = -518.04, episode_reward_trend_value=0.005986656880951261
+total_number_of_episodes = 2150, number_of_timesteps=2150000, per_episode_reward = -518.17, episode_reward_trend_value=0.004239701803229915
+total_number_of_episodes = 2160, number_of_timesteps=2160000, per_episode_reward = -518.25, episode_reward_trend_value=0.0009757897206655898
+total_number_of_episodes = 2170, number_of_timesteps=2170000, per_episode_reward = -518.25, episode_reward_trend_value=-0.0004299572985499051
+total_number_of_episodes = 2180, number_of_timesteps=2180000, per_episode_reward = -518.24, episode_reward_trend_value=-0.0018796791286882178
+total_number_of_episodes = 2190, number_of_timesteps=2190000, per_episode_reward = -518.30, episode_reward_trend_value=-0.003035223188564689
+total_number_of_episodes = 2200, number_of_timesteps=2200000, per_episode_reward = -518.30, episode_reward_trend_value=-0.0015680281140614879
+total_number_of_episodes = 2210, number_of_timesteps=2210000, per_episode_reward = -518.38, episode_reward_trend_value=-0.002593273207264701
+total_number_of_episodes = 2220, number_of_timesteps=2220000, per_episode_reward = -518.47, episode_reward_trend_value=-0.004142635310439699
+total_number_of_episodes = 2230, number_of_timesteps=2230000, per_episode_reward = -518.48, episode_reward_trend_value=-0.0048144102278747086
+total_number_of_episodes = 2240, number_of_timesteps=2240000, per_episode_reward = -518.42, episode_reward_trend_value=-0.0027982720971736954
+total_number_of_episodes = 2250, number_of_timesteps=2250000, per_episode_reward = -518.36, episode_reward_trend_value=-0.001243004806671403
+total_number_of_episodes = 2260, number_of_timesteps=2260000, per_episode_reward = -518.48, episode_reward_trend_value=-0.002609238653880968
+total_number_of_episodes = 2270, number_of_timesteps=2270000, per_episode_reward = -518.45, episode_reward_trend_value=-0.0023476071129721276
+total_number_of_episodes = 2280, number_of_timesteps=2280000, per_episode_reward = -518.71, episode_reward_trend_value=-0.004514808980801869
+total_number_of_episodes = 2290, number_of_timesteps=2290000, per_episode_reward = -518.75, episode_reward_trend_value=-0.005005590469380018
+total_number_of_episodes = 2300, number_of_timesteps=2300000, per_episode_reward = -518.67, episode_reward_trend_value=-0.0032113115242421173
+total_number_of_episodes = 2310, number_of_timesteps=2310000, per_episode_reward = -518.74, episode_reward_trend_value=-0.0029390834463609078
+total_number_of_episodes = 2320, number_of_timesteps=2320000, per_episode_reward = -518.57, episode_reward_trend_value=-0.000997014487189871
+total_number_of_episodes = 2330, number_of_timesteps=2330000, per_episode_reward = -518.53, episode_reward_trend_value=-0.0012607540194898724
+total_number_of_episodes = 2340, number_of_timesteps=2340000, per_episode_reward = -518.35, episode_reward_trend_value=8.336059502198623e-05
+total_number_of_episodes = 2350, number_of_timesteps=2350000, per_episode_reward = -518.36, episode_reward_trend_value=0.0012981798496033057
+total_number_of_episodes = 2360, number_of_timesteps=2360000, per_episode_reward = -518.37, episode_reward_trend_value=0.0009532569882266115
+total_number_of_episodes = 2370, number_of_timesteps=2370000, per_episode_reward = -518.33, episode_reward_trend_value=0.004133129326328344
+total_number_of_episodes = 2380, number_of_timesteps=2380000, per_episode_reward = -518.40, episode_reward_trend_value=0.003932755748571203
+total_number_of_episodes = 2390, number_of_timesteps=2390000, per_episode_reward = -518.39, episode_reward_trend_value=0.0031887271316337422
+total_number_of_episodes = 2400, number_of_timesteps=2400000, per_episode_reward = -518.43, episode_reward_trend_value=0.003375739382986214
+total_number_of_episodes = 2410, number_of_timesteps=2410000, per_episode_reward = -518.52, episode_reward_trend_value=0.00048224981063135097
+total_number_of_episodes = 2420, number_of_timesteps=2420000, per_episode_reward = -518.54, episode_reward_trend_value=-0.00010712877039825093
+total_number_of_episodes = 2430, number_of_timesteps=2430000, per_episode_reward = -518.64, episode_reward_trend_value=-0.0032409702342811723
+total_number_of_episodes = 2440, number_of_timesteps=2440000, per_episode_reward = -518.58, episode_reward_trend_value=-0.002336243937491468
+total_number_of_episodes = 2450, number_of_timesteps=2450000, per_episode_reward = -518.56, episode_reward_trend_value=-0.0021252428307004974
+total_number_of_episodes = 2460, number_of_timesteps=2460000, per_episode_reward = -518.53, episode_reward_trend_value=-0.002124763694492534
+total_number_of_episodes = 2470, number_of_timesteps=2470000, per_episode_reward = -518.51, episode_reward_trend_value=-0.0012149994343758409
+total_number_of_episodes = 2480, number_of_timesteps=2480000, per_episode_reward = -518.70, episode_reward_trend_value=-0.003493428520439718
+total_number_of_episodes = 2490, number_of_timesteps=2490000, per_episode_reward = -518.63, episode_reward_trend_value=-0.002156359313327509
+total_number_of_episodes = 2500, number_of_timesteps=2500000, per_episode_reward = -518.73, episode_reward_trend_value=-0.002288013190795684
+total_number_of_episodes = 2510, number_of_timesteps=2510000, per_episode_reward = -518.71, episode_reward_trend_value=-0.0018820685515392043
+total_number_of_episodes = 2520, number_of_timesteps=2520000, per_episode_reward = -518.83, episode_reward_trend_value=-0.0020524400021132453
+total_number_of_episodes = 2530, number_of_timesteps=2530000, per_episode_reward = -518.66, episode_reward_trend_value=-0.0009081580084777366
+total_number_of_episodes = 2540, number_of_timesteps=2540000, per_episode_reward = -518.76, episode_reward_trend_value=-0.0022674351065360395
+total_number_of_episodes = 2550, number_of_timesteps=2550000, per_episode_reward = -518.85, episode_reward_trend_value=-0.0035859457009387876
+total_number_of_episodes = 2560, number_of_timesteps=2560000, per_episode_reward = -518.99, episode_reward_trend_value=-0.0052815347741531895
+total_number_of_episodes = 2570, number_of_timesteps=2570000, per_episode_reward = -518.92, episode_reward_trend_value=-0.0024703190262218614
+total_number_of_episodes = 2580, number_of_timesteps=2580000, per_episode_reward = -518.89, episode_reward_trend_value=-0.0028809203616080798
+total_number_of_episodes = 2590, number_of_timesteps=2590000, per_episode_reward = -518.97, episode_reward_trend_value=-0.0027195285637251093
+total_number_of_episodes = 2600, number_of_timesteps=2600000, per_episode_reward = -518.90, episode_reward_trend_value=-0.002121930638178229
+Process Process-47:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    if profile:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+    if use_shared_memory:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 157, in train_loop
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 654, in _wait
+    if not self._cond.wait_for(lambda : self._state != 0, timeout):
+  File "/usr/lib/python3.8/multiprocessing/synchronize.py", line 313, in wait_for
+    self.wait(waittime)
+  File "/usr/lib/python3.8/multiprocessing/synchronize.py", line 261, in wait
+    return self._wait_semaphore.acquire(True, timeout)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    import cProfile
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-46:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    if profile:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+    if use_shared_memory:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 146, in train_loop
+    while True:
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 283, in act
+    return self._act_train(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 310, in _act_train
+    pout, vout = self.model(statevar)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/linear.py", line 103, in forward
+    return F.linear(input, self.weight, self.bias)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    import cProfile
+NameError: name 'BrokenBarrierError' is not defined
+[33m[W 2022-10-19 22:23:42,239][0m Trial 4 failed because of the following error: KeyboardInterrupt()[0m
+Traceback (most recent call last):
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/optuna/study/_optimize.py", line 196, in _run_trial
+    value_or_values = func(trial)
+  File "./main/0_hyp_tuning.py", line 49, in objective
+    fitness_value = np.round(train_a3c.train_a3c(args), 2)
+  File "/home/jeffhykin/repos/bizav2/examples/atari/reproduction/a3c/train_a3c.py", line 263, in train_a3c
+    experiments.train_agent_async(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 596, in train_agent_async
+  File "/home/jeffhykin/repos/bizav2/pfrl/utils/async_.py", line 28, in run_async
+    each_process.join()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 149, in join
+    res = self._popen.wait(timeout)
+  File "/usr/lib/python3.8/multiprocessing/popen_fork.py", line 47, in wait
+    return self.poll(os.WNOHANG if timeout == 0.0 else 0)
+  File "/usr/lib/python3.8/multiprocessing/popen_fork.py", line 27, in poll
+    pid, sts = os.waitpid(self.pid, flag)
+KeyboardInterrupt
+Process Process-45:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    if profile:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+    if use_shared_memory:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 146, in train_loop
+    while True:
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 283, in act
+    return self._act_train(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 303, in _act_train
+    statevar = self.batch_states([obs], self.device, self.phi)
+  File "/home/jeffhykin/repos/bizav2/pfrl/utils/batch_states.py", line 33, in batch_states
+    collated_features = default_collate(features)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/utils/data/_utils/collate.py", line 146, in default_collate
+    return default_collate([torch.as_tensor(b) for b in batch])
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/utils/data/_utils/collate.py", line 138, in default_collate
+    return torch.stack(batch, 0, out=out)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    import cProfile
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-44:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    if profile:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+    if use_shared_memory:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 146, in train_loop
+    while True:
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 283, in act
+    return self._act_train(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 322, in _act_train
+    float(pout.entropy()) - self.average_entropy
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/distributions/independent.py", line 95, in entropy
+    entropy = self.base_dist.entropy()
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/distributions/normal.py", line 88, in entropy
+    return 0.5 + 0.5 * math.log(2 * math.pi) + torch.log(self.scale)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    import cProfile
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-50:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    if profile:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+    if use_shared_memory:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 146, in train_loop
+    while True:
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 283, in act
+    return self._act_train(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 310, in _act_train
+    pout, vout = self.model(statevar)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/linear.py", line 103, in forward
+    return F.linear(input, self.weight, self.bias)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    import cProfile
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-48:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    if profile:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+    if use_shared_memory:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 146, in train_loop
+    while True:
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 283, in act
+    return self._act_train(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 310, in _act_train
+    pout, vout = self.model(statevar)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/activation.py", line 670, in forward
+    return F.gelu(input)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    import cProfile
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-49:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    if profile:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+    if use_shared_memory:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 146, in train_loop
+    while True:
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 283, in act
+    return self._act_train(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 315, in _act_train
+    action = self.get_a3c_act(pout)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 329, in get_a3c_act
+    self.past_action[self.t] = action[0].detach()
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    import cProfile
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-42:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    if profile:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+    if use_shared_memory:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 146, in train_loop
+    while True:
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 283, in act
+    return self._act_train(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 315, in _act_train
+    action = self.get_a3c_act(pout)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 328, in get_a3c_act
+    action = pout.sample()
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/distributions/independent.py", line 85, in sample
+    return self.base_dist.sample(sample_shape)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/distributions/normal.py", line 64, in sample
+    return torch.normal(self.loc.expand(shape), self.scale.expand(shape))
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    import cProfile
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-41:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    if profile:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+    if use_shared_memory:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 148, in train_loop
+    a = agent.act(obs)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/gym/core.py", line 327, in step
+    observation, reward, done, info = self.env.step(action)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/gym/wrappers/time_limit.py", line 17, in step
+    observation, reward, done, info = self.env.step(action)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/gym/wrappers/order_enforcing.py", line 13, in step
+    observation, reward, done, info = self.env.step(action)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/gym/envs/mujoco/half_cheetah.py", line 13, in step
+    self.do_simulation(action, self.frame_skip)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/gym/envs/mujoco/mujoco_env.py", line 135, in do_simulation
+    if np.array(ctrl).shape != self.action_space.shape:
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    import cProfile
+NameError: name 'BrokenBarrierError' is not defined
+Process Process-43:
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 581, in run_func
+    if profile:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 550, in f
+    if use_shared_memory:
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 154, in train_loop
+    episode_len += 1
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 294, in observe
+    self._observe_train(obs, reward, done, reset)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 351, in _observe_train
+    self.update(statevar)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 176, in update
+    _, vout = self.model(statevar)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/nn/branched.py", line 30, in forward
+    return tuple(mod(*args, **kwargs) for mod in self.child_modules)
+  File "/home/jeffhykin/repos/bizav2/pfrl/nn/branched.py", line 30, in <genexpr>
+    return tuple(mod(*args, **kwargs) for mod in self.child_modules)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/policies/gaussian_policy.py", line 57, in forward
+    torch.distributions.Normal(loc=mean, scale=torch.sqrt(var)), 1
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/distributions/normal.py", line 50, in __init__
+    super(Normal, self).__init__(batch_shape, validate_args=validate_args)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/distributions/distribution.py", line 54, in __init__
+    if not valid.all():
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 582, in run_func
+    import cProfile
+NameError: name 'BrokenBarrierError' is not defined
+Traceback (most recent call last):
+  File "./main/0_hyp_tuning.py", line 63, in <module>
+    study.optimize(objective, gc_after_trial=True)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/optuna/study/study.py", line 419, in optimize
+    _optimize(
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/optuna/study/_optimize.py", line 66, in _optimize
+    _optimize_sequential(
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/optuna/study/_optimize.py", line 160, in _optimize_sequential
+    frozen_trial = _run_trial(study, func, catch)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/optuna/study/_optimize.py", line 234, in _run_trial
+    raise func_err
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/optuna/study/_optimize.py", line 196, in _run_trial
+    value_or_values = func(trial)
+  File "./main/0_hyp_tuning.py", line 49, in objective
+    fitness_value = np.round(train_a3c.train_a3c(args), 2)
+  File "/home/jeffhykin/repos/bizav2/examples/atari/reproduction/a3c/train_a3c.py", line 263, in train_a3c
+    experiments.train_agent_async(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 596, in train_agent_async
+    
+  File "/home/jeffhykin/repos/bizav2/pfrl/utils/async_.py", line 28, in run_async
+    each_process.join()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 149, in join
+    res = self._popen.wait(timeout)
+  File "/usr/lib/python3.8/multiprocessing/popen_fork.py", line 47, in wait
+    return self.poll(os.WNOHANG if timeout == 0.0 else 0)
+  File "/usr/lib/python3.8/multiprocessing/popen_fork.py", line 27, in poll
+    pid, sts = os.waitpid(self.pid, flag)
+KeyboardInterrupt

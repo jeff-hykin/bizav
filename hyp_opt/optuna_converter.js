@@ -19,7 +19,7 @@ for (const eachSourceString of studySourceStrings) {
         }
         
         const valueMatch = eachLine.match(/Trial (\d+) finished with value: ([\-+0-9.e]+) and parameters:/)
-        const parameterMatch = eachLine.match(/Trial (?:\d+) finished with value: ([\-+0-9.e]+) and parameters: (.+)\. Best is trial/)
+        const parameterMatch = eachLine.match(/Trial (?:\d+) finished with value: (?:[\-+0-9.e]+) and parameters: (.+)\. Best is trial/)
         if (valueMatch) {
             const trial = {}
             const [ _, trialIndex, value ] = valueMatch
