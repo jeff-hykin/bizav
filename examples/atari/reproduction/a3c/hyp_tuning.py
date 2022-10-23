@@ -36,7 +36,7 @@ def stage2_tuning(trial):
     # 
     hyper_modify_config(
         trial,
-        hyper_options=config.tuning.phase_1,
+        hyper_options=config.tuning.phase_2,
         env_config=env_config,
     )
     
@@ -48,7 +48,6 @@ def stage2_tuning(trial):
     return fitness_value
 
 def hyper_modify_config(trial, hyper_options, env_config):
-    options = config.tuning.phase_1
     # categorical_options
     for each_key, each_set_of_possibilitites in hyper_options.get("categorical_options",{}).items():
         env_config[each_key] = trial.suggest_categorical(each_key, each_set_of_possibilitites)
