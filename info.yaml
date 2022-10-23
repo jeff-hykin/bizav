@@ -39,7 +39,7 @@
             verbose: False
             env_config:
                 env_name: "HalfCheetah-v2"
-                training_episode_count: 4_000 # ~40,000,000 timesteps (as sum of all agents)
+                training_episode_count: 8_000 # 4,000 => ~40,000,000 timesteps (as sum of all agents)
                 learning_rate: 0.0003
                 beta: 0.0000001
                 t_max: 0
@@ -47,9 +47,31 @@
                 hidden_size: 2
                 variance_scaling_factor: 1 #FIXME: not optimized at all
                 permaban_threshold: 500    #FIXME: not optimized at all
-                
+            
+            tuning:
+                phase_1:
+                    categorical_options:
+                        activation: [0, 1, 2]
+                    sequential_options:
+                        t_max: [3, 5, 10, 20, 30, 50]
+                        hidden_size: [16, 32, 64, 128]
+                        # learning_rate: [ 0.1, 0.2, 0.3, 0.4, 0.01, 0.02, 0.03, 0.04, 0.001, 0.002, 0.003, 0.004, 0.0001, 0.0002, 0.0003, 0.0004, 0.00001, 0.00002, 0.00003, 0.00004, 0.000001, 0.000002, 0.000003, 0.000004, 0.0000001, 0.0000002, 0.0000003, 0.0000004, 0.00000001, 0.00000002, 0.00000003, 0.00000004, ]
+                        # beta:          [ 0.1, 0.2, 0.3, 0.4, 0.01, 0.02, 0.03, 0.04, 0.001, 0.002, 0.003, 0.004, 0.0001, 0.0002, 0.0003, 0.0004, 0.00001, 0.00002, 0.00003, 0.00004, 0.000001, 0.000002, 0.000003, 0.000004, 0.0000001, 0.0000002, 0.0000003, 0.0000004, 0.00000001, 0.00000002, 0.00000003, 0.00000004, ]
+                    sequential_exponential_options:
+                        learning_rate:
+                            base: [ 1, 2, 3, 4, ]
+                            exponent: [ -1, -2, -3, -4, -5, -6, -7, -8, ]
+                        beta:
+                            base: [ 1, 2, 3, 4, ]
+                            exponent: [ -1, -2, -3, -4, -5, -6, -7, -8, ]
+                phase_2:
+                    sequential_options:
+                        learning_rate: [ 0.0001, 0.0002, 0.0003, 0.0004, 0.00001 ]
+                        variance_scaling_factor: [ 0.01, 0.1, 1, 10, 100, 1000 ]
+                        permaban_threshold: [ 100, 500, 1000, 2000, 10_000 ]
+            
             early_stopping:
-                lowerbound_for_max_recent_change: 0.5 # if changes in average episode reward are this stable, it needs to just end
+                lowerbound_for_max_recent_change: 0.3 # if changes in average episode reward are this stable, it needs to just end
                 min_number_of_episodes: 10
                 thresholds: 
                     # epsiode_number: min_average_episode_value

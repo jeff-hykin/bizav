@@ -13,51 +13,66 @@ from main.config import config, env_config
 # dev_null = open(os.devnull, 'w')
 # sys.stderr = f
 
-def objective(trial):
-    args = args_from_config()
-    
+def stage1_tuning(trial):
     # 
-    # setup parameter options
+    # modify the config
     # 
-    fl_high = -1
-    fl_low = -8
-    
-    # descretize the learning rate options
-    lr_base = trial.suggest_int("lr_b", 1, 5)
-    lr_base = lr_base + (lr_base-1)
-    lr_exp = trial.suggest_int("lr_e", fl_low, fl_high)
-    args.lr = lr_base*(10**lr_exp)
+    hyper_modify_config(
+        hyper_options=config.tuning.phase_1,
+        env_config=env_config,
+    )
+        
+    # 
+    # run
+    # 
+    args = args_from_config() 
+    fitness_value = float(train_a3c.train_a3c(args))
+    return fitness_value
 
-    beta_base = trial.suggest_int("beta_b", 1, 5)
-    beta_base = beta_base + (beta_base-1)
-    beta_exp = trial.suggest_int("beta_e", fl_low, fl_high)
-    args.beta = beta_base*(10**beta_exp)
-
-    tmax_categories = [3, 5, 10, 20, 30, 50]
-    tmax_cat = trial.suggest_int("tmax", 0, len(tmax_categories)-1)
-    args.t_max = tmax_categories[tmax_cat]
-
-    args.activation = trial.suggest_categorical("activ", [0, 1, 2])
-
-    hid_categores = [16, 32, 64, 128]
-    hid_cat = trial.suggest_int("hid", 0, len(hid_categores)-1)
-    args.hidden_size = hid_categores[hid_cat]
+def stage2_tuning(trial):
+    # 
+    # modify the config
+    # 
+    hyper_modify_config(
+        hyper_options=config.tuning.phase_1,
+        env_config=env_config,
+    )
     
     # 
     # run
     # 
-    fitness_value = np.round(train_a3c.train_a3c(args), 2)
+    args = args_from_config()
+    fitness_value = float(train_a3c.train_a3c(args))
     return fitness_value
 
+def hyper_modify_config(hyper_options, env_config):
+    options = config.tuning.phase_1
+    # categorical_options
+    for each_key, each_set_of_possibilitites in hyper_options.get("categorical_options",{}).items():
+        env_config[each_key] = trial.suggest_categorical(each_key, each_set_of_possibilitites)
+    # sequential_options
+    for each_key, each_sequence_of_possibilitites in hyper_options.get("sequential_options",{}).items():
+        index_for_sequence = trial.suggest_int(each_key, 0, len(each_sequence_of_possibilitites)-1)
+        env_config[each_key] = each_sequence_of_possibilitites[index_for_sequence]
+    # sequential_exponential_options
+    for each_key, each_info in hyper_options.get("sequential_exponential_options",{}).items():
+        base_options     = each_info["base"]
+        exponent_options = each_info["exponent"]
+        index_for_base     = trial.suggest_int(each_key+"_base"    , 0, len(base_options)-1)
+        index_for_exponent = trial.suggest_int(each_key+"_exponent", 0, len(exponent_options)-1)
+        
+        base = base_options[index_for_base]
+        exponent = exponent_options[index_for_exponent]
+        env_config[each_key] = base*(10**exponent)
 
 if __name__ == "__main__":
     import torch
     torch.multiprocessing.freeze_support()
     
     optuna.logging.disable_default_handler()
-    sh = logging.StreamHandler(sys.stdout)
-    sh.setFormatter(optuna.logging.create_default_formatter())
-    optuna.logging.get_logger("optuna").addHandler(sh)
+    stream_handler = logging.StreamHandler(sys.stdout)
+    stream_handler.setFormatter(optuna.logging.create_default_formatter())
+    optuna.logging.get_logger("optuna").addHandler(stream_handler)
 
     study = optuna.create_study(direction="maximize", sampler=optuna.samplers.TPESampler(multivariate=True))
-    study.optimize(objective, gc_after_trial=True)
+    study.optimize(stage1_tuning, gc_after_trial=True)
