@@ -2,6 +2,7 @@
     # a central place for filepaths
     (path_to):
         this_file: "./info.yaml"
+        study_counter_file: "./study_counter.json"
         hyperparams_folder: "./hyp_opt"
         ac3_start: ./examples/atari/reproduction/a3c/train_a3c.py
 
@@ -67,18 +68,26 @@
                             exponent: [ -1, -2, -3, -4, -5, -6, -7, -8, ]
                 phase_2:
                     sequential_options:
-                        learning_rate: [ 0.0004, 0.00032, 0.00025 ]
+                        t_max: [3, 5,]
+                        hidden_size: [64, 128]
                         variance_scaling_factor: [ 0.01, 1, 100, 1000 ]
                         permaban_threshold: [ 100, 500, 1000, 2000, 10_000 ]
+                    sequential_exponential_options:
+                        learning_rate:
+                            base: [ 2, 3, ]
+                            exponent: [ -4, -5, ]
+                        beta:
+                            base: [ 1, 2, 3, 4, ]
+                            exponent: [ -4, -5, -6, -7, ]
             
             early_stopping:
                 lowerbound_for_max_recent_change: 0.1 # if changes in average episode reward are this stable, it needs to just end
                 min_number_of_episodes: 10
                 thresholds: 
                     # epsiode_number: min_average_episode_value
-                    10:  -1000
-                    100: -900
-                    200: -800 #  by epsiode 200, get -600 or better
+                    10:  -700
+                    # 100: -900
+                    # 200: -800 #  by epsiode 200, get -600 or better
                     # 1000: -500 # probably too agressive
         
         LUNAR_LANDER:

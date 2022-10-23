@@ -8,7 +8,7 @@ from super_map import LazyDict
 
 import train_a3c
 from train_a3c import args_from_config
-from main.config import config, env_config
+from main.config import study_number, config, env_config
 
 # dev_null = open(os.devnull, 'w')
 # sys.stderr = f
@@ -75,5 +75,5 @@ if __name__ == "__main__":
     stream_handler.setFormatter(optuna.logging.create_default_formatter())
     optuna.logging.get_logger("optuna").addHandler(stream_handler)
 
-    study = optuna.create_study(direction="maximize", sampler=optuna.samplers.TPESampler(multivariate=True))
+    study = optuna.create_study(direction="maximize", sampler=optuna.samplers.TPESampler(multivariate=True), study_name=f"study{study_number}")
     study.optimize(stage2_tuning, gc_after_trial=True)
