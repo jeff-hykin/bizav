@@ -7,9 +7,11 @@ import file_system_py as FS
 path = sys.argv[1]
 data = json.loads(FS.read(path))
 
-only_show_top = 20
+only_show_top = 10
 min_score = -700
 show_legend = True
+vertical_label = "Median Reward-per-Episode"
+horizonal_label = "Episode #"
 
 colors = ["#83ecc9", "#c3e88d", "#82aaff", "#89ddff", "#c792ea", "#e57eb3", "#fec355", "#f07178", "#f78c6c",]
 def wrap_around_get(number, a_list):
@@ -23,7 +25,7 @@ for each_curve_index, each_curve in enumerate(data):
     ]
     
     lines.append({
-        "label": f'{each_curve_index}',
+        "label": f'Trial {each_curve_index}',
         "fill": False,
         "score": max(values) if values else -math.inf,
         "tension": 0.1,
@@ -64,11 +66,20 @@ ss.DisplayCard("chartjs", {
                 "display": show_legend,
             },
         },
-        "pointRadius": 3, # the size of the dots
+        "pointRadius": 1, # the size of the dots
         "scales": {
             "y": {
-                "min": -700,
-                # "max": 200,
+                "min": min_score,
+                "title": {
+                    "display": True,
+                    "text": vertical_label,
+                },
+            },
+            "x": {
+                "title": {
+                    "display": True,
+                    "text": horizonal_label,
+                },
             },
         }
     }
