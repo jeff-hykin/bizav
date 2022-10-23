@@ -3960,3 +3960,922 @@ Hit early stopping because biggest_recent_change: 0.09238243839695315 < 0.1
 {"total_number_of_episodes":2920, "number_of_timesteps":2920000, "per_episode_reward":-706.74, "episode_reward_trend_value": 0.003954826611324178, "biggest_recent_change": 0.197599877272296 },
 {"total_number_of_episodes":2930, "number_of_timesteps":2930000, "per_episode_reward":-706.74, "episode_reward_trend_value": 0.004935954318413375, "biggest_recent_change": 0.197599877272296 },
 {"total_number_of_episodes":2940, "number_of_timesteps":2940000, "per_episode_reward":-706.69, "episode_reward_trend_value": 0.005010538667526513, "biggest_recent_change": 0.197599877272296 },
+{"total_number_of_episodes":2950, "number_of_timesteps":2950000, "per_episode_reward":-706.72, "episode_reward_trend_value": 0.002843361057153339, "biggest_recent_change": 0.197599877272296 },
+{"total_number_of_episodes":2960, "number_of_timesteps":2960000, "per_episode_reward":-706.52, "episode_reward_trend_value": 0.004353736632871611, "biggest_recent_change": 0.197599877272296 },
+{"total_number_of_episodes":2970, "number_of_timesteps":2970000, "per_episode_reward":-706.43, "episode_reward_trend_value": 0.005539303158981409, "biggest_recent_change": 0.197599877272296 },
+{"total_number_of_episodes":2980, "number_of_timesteps":2980000, "per_episode_reward":-706.41, "episode_reward_trend_value": 0.0065970050123660764, "biggest_recent_change": 0.197599877272296 },
+{"total_number_of_episodes":2990, "number_of_timesteps":2990000, "per_episode_reward":-706.34, "episode_reward_trend_value": 0.00647847650759685, "biggest_recent_change": 0.197599877272296 },
+{"total_number_of_episodes":3000, "number_of_timesteps":3000000, "per_episode_reward":-706.32, "episode_reward_trend_value": 0.0045777161762885045, "biggest_recent_change": 0.1949626519674439 },
+{"total_number_of_episodes":3010, "number_of_timesteps":3010000, "per_episode_reward":-706.37, "episode_reward_trend_value": 0.004076223834797727, "biggest_recent_change": 0.1949626519674439 },
+{"total_number_of_episodes":3020, "number_of_timesteps":3020000, "per_episode_reward":-706.33, "episode_reward_trend_value": 0.004638471380025698, "biggest_recent_change": 0.1949626519674439 },
+{"total_number_of_episodes":3030, "number_of_timesteps":3030000, "per_episode_reward":-706.19, "episode_reward_trend_value": 0.0055156176199969, "biggest_recent_change": 0.1949626519674439 },
+{"total_number_of_episodes":3040, "number_of_timesteps":3040000, "per_episode_reward":-706.29, "episode_reward_trend_value": 0.004745875908026341, "biggest_recent_change": 0.1949626519674439 },
+{"total_number_of_episodes":3050, "number_of_timesteps":3050000, "per_episode_reward":-706.26, "episode_reward_trend_value": 0.0028989731557961325, "biggest_recent_change": 0.1339244631751626 },
+{"total_number_of_episodes":3060, "number_of_timesteps":3060000, "per_episode_reward":-706.38, "episode_reward_trend_value": 0.0006064286100708058, "biggest_recent_change": 0.1339244631751626 },
+{"total_number_of_episodes":3070, "number_of_timesteps":3070000, "per_episode_reward":-706.37, "episode_reward_trend_value": 0.00046552997531661177, "biggest_recent_change": 0.1339244631751626 },
+{"total_number_of_episodes":3080, "number_of_timesteps":3080000, "per_episode_reward":-706.47, "episode_reward_trend_value": -0.0013966426922113189, "biggest_recent_change": 0.1339244631751626 },
+{"total_number_of_episodes":3090, "number_of_timesteps":3090000, "per_episode_reward":-706.32, "episode_reward_trend_value": -2.2073092562398718e-05, "biggest_recent_change": 0.15024271142294765 },
+{"total_number_of_episodes":3100, "number_of_timesteps":3100000, "per_episode_reward":-706.24, "episode_reward_trend_value": 0.0015455219368125958, "biggest_recent_change": 0.15024271142294765 },
+{"total_number_of_episodes":3110, "number_of_timesteps":3110000, "per_episode_reward":-706.06, "episode_reward_trend_value": 0.0029672199911854277, "biggest_recent_change": 0.17666343163011788 },
+{"total_number_of_episodes":3120, "number_of_timesteps":3120000, "per_episode_reward":-705.99, "episode_reward_trend_value": 0.00221419602555165, "biggest_recent_change": 0.17666343163011788 },
+{"total_number_of_episodes":3130, "number_of_timesteps":3130000, "per_episode_reward":-705.82, "episode_reward_trend_value": 0.005205974937894098, "biggest_recent_change": 0.17666343163011788 },
+{"total_number_of_episodes":3140, "number_of_timesteps":3140000, "per_episode_reward":-705.79, "episode_reward_trend_value": 0.005204794529371762, "biggest_recent_change": 0.17666343163011788 },
+{"total_number_of_episodes":3150, "number_of_timesteps":3150000, "per_episode_reward":-705.71, "episode_reward_trend_value": 0.007388064941020882, "biggest_recent_change": 0.17666343163011788 },
+{"total_number_of_episodes":3160, "number_of_timesteps":3160000, "per_episode_reward":-705.68, "episode_reward_trend_value": 0.0076759729746552485, "biggest_recent_change": 0.17666343163011788 },
+{"total_number_of_episodes":3170, "number_of_timesteps":3170000, "per_episode_reward":-705.74, "episode_reward_trend_value": 0.008102241242705885, "biggest_recent_change": 0.17666343163011788 },
+{"total_number_of_episodes":3180, "number_of_timesteps":3180000, "per_episode_reward":-705.78, "episode_reward_trend_value": 0.005997653706212228, "biggest_recent_change": 0.17666343163011788 },
+{"total_number_of_episodes":3190, "number_of_timesteps":3190000, "per_episode_reward":-705.65, "episode_reward_trend_value": 0.006486675969160337, "biggest_recent_change": 0.17666343163011788 },
+{"total_number_of_episodes":3200, "number_of_timesteps":3200000, "per_episode_reward":-705.77, "episode_reward_trend_value": 0.003227657641145419, "biggest_recent_change": 0.1700910955321433 },
+{"total_number_of_episodes":3210, "number_of_timesteps":3210000, "per_episode_reward":-705.60, "episode_reward_trend_value": 0.004356575825441825, "biggest_recent_change": 0.1700910955321433 },
+{"total_number_of_episodes":3220, "number_of_timesteps":3220000, "per_episode_reward":-705.61, "episode_reward_trend_value": 0.0023420343032259754, "biggest_recent_change": 0.16775494285479908 },
+{"total_number_of_episodes":3230, "number_of_timesteps":3230000, "per_episode_reward":-705.72, "episode_reward_trend_value": 0.0008630544014017182, "biggest_recent_change": 0.16775494285479908 },
+{"total_number_of_episodes":3240, "number_of_timesteps":3240000, "per_episode_reward":-705.74, "episode_reward_trend_value": -0.00032730112946081945, "biggest_recent_change": 0.16775494285479908 },
+{"total_number_of_episodes":3250, "number_of_timesteps":3250000, "per_episode_reward":-705.69, "episode_reward_trend_value": -0.00014957219076702836, "biggest_recent_change": 0.16775494285479908 },
+{"total_number_of_episodes":3260, "number_of_timesteps":3260000, "per_episode_reward":-705.70, "episode_reward_trend_value": 0.00048553358642998824, "biggest_recent_change": 0.16775494285479908 },
+{"total_number_of_episodes":3270, "number_of_timesteps":3270000, "per_episode_reward":-705.70, "episode_reward_trend_value": 0.0008794387647210695, "biggest_recent_change": 0.16775494285479908 },
+{"total_number_of_episodes":3280, "number_of_timesteps":3280000, "per_episode_reward":-705.74, "episode_reward_trend_value": -0.0009650615684929816, "biggest_recent_change": 0.16775494285479908 },
+{"total_number_of_episodes":3290, "number_of_timesteps":3290000, "per_episode_reward":-705.90, "episode_reward_trend_value": -0.0014065464966506625, "biggest_recent_change": 0.16775494285479908 },
+{"total_number_of_episodes":3300, "number_of_timesteps":3300000, "per_episode_reward":-705.95, "episode_reward_trend_value": -0.003835608333873905, "biggest_recent_change": 0.156381861425416 },
+{"total_number_of_episodes":3310, "number_of_timesteps":3310000, "per_episode_reward":-705.91, "episode_reward_trend_value": -0.003346802009603936, "biggest_recent_change": 0.156381861425416 },
+{"total_number_of_episodes":3320, "number_of_timesteps":3320000, "per_episode_reward":-705.78, "episode_reward_trend_value": -0.0007336588909235312, "biggest_recent_change": 0.156381861425416 },
+{"total_number_of_episodes":3330, "number_of_timesteps":3330000, "per_episode_reward":-705.83, "episode_reward_trend_value": -0.001028888628786717, "biggest_recent_change": 0.156381861425416 },
+{"total_number_of_episodes":3340, "number_of_timesteps":3340000, "per_episode_reward":-706.06, "episode_reward_trend_value": -0.004050698381747174, "biggest_recent_change": 0.22364753823205774 },
+{"total_number_of_episodes":3350, "number_of_timesteps":3350000, "per_episode_reward":-706.03, "episode_reward_trend_value": -0.003736573573145405, "biggest_recent_change": 0.22364753823205774 },
+{"total_number_of_episodes":3360, "number_of_timesteps":3360000, "per_episode_reward":-706.10, "episode_reward_trend_value": -0.0044226489150269626, "biggest_recent_change": 0.22364753823205774 },
+{"total_number_of_episodes":3370, "number_of_timesteps":3370000, "per_episode_reward":-706.08, "episode_reward_trend_value": -0.0038100968460349173, "biggest_recent_change": 0.22364753823205774 },
+{"total_number_of_episodes":3380, "number_of_timesteps":3380000, "per_episode_reward":-706.23, "episode_reward_trend_value": -0.003766934220023662, "biggest_recent_change": 0.22364753823205774 },
+{"total_number_of_episodes":3390, "number_of_timesteps":3390000, "per_episode_reward":-706.18, "episode_reward_trend_value": -0.002553029226039093, "biggest_recent_change": 0.22364753823205774 },
+{"total_number_of_episodes":3400, "number_of_timesteps":3400000, "per_episode_reward":-706.13, "episode_reward_trend_value": -0.002356580728053359, "biggest_recent_change": 0.22364753823205774 },
+{"total_number_of_episodes":3410, "number_of_timesteps":3410000, "per_episode_reward":-706.28, "episode_reward_trend_value": -0.0055489866662671574, "biggest_recent_change": 0.22364753823205774 },
+{"total_number_of_episodes":3420, "number_of_timesteps":3420000, "per_episode_reward":-706.17, "episode_reward_trend_value": -0.0037754259173640196, "biggest_recent_change": 0.22364753823205774 },
+{"total_number_of_episodes":3430, "number_of_timesteps":3430000, "per_episode_reward":-706.06, "episode_reward_trend_value": -6.220680550465355e-05, "biggest_recent_change": 0.1566066774224737 },
+{"total_number_of_episodes":3440, "number_of_timesteps":3440000, "per_episode_reward":-706.09, "episode_reward_trend_value": -0.000621613776757436, "biggest_recent_change": 0.1566066774224737 },
+{"total_number_of_episodes":3450, "number_of_timesteps":3450000, "per_episode_reward":-706.23, "episode_reward_trend_value": -0.0014266785974895255, "biggest_recent_change": 0.1566066774224737 },
+{"total_number_of_episodes":3460, "number_of_timesteps":3460000, "per_episode_reward":-706.21, "episode_reward_trend_value": -0.0013786910753386414, "biggest_recent_change": 0.1566066774224737 },
+{"total_number_of_episodes":3470, "number_of_timesteps":3470000, "per_episode_reward":-706.07, "episode_reward_trend_value": 0.0018234081971665243, "biggest_recent_change": 0.1566066774224737 },
+{"total_number_of_episodes":3480, "number_of_timesteps":3480000, "per_episode_reward":-706.10, "episode_reward_trend_value": 0.0008142986267216656, "biggest_recent_change": 0.1566066774224737 },
+{"total_number_of_episodes":3490, "number_of_timesteps":3490000, "per_episode_reward":-706.16, "episode_reward_trend_value": -0.0004316596752333781, "biggest_recent_change": 0.1566066774224737 },
+{"total_number_of_episodes":3500, "number_of_timesteps":3500000, "per_episode_reward":-706.28, "episode_reward_trend_value": 3.8615204754124634e-05, "biggest_recent_change": 0.13792131545051234 },
+{"total_number_of_episodes":3510, "number_of_timesteps":3510000, "per_episode_reward":-706.19, "episode_reward_trend_value": -0.0001798173280715471, "biggest_recent_change": 0.13792131545051234 },
+{"total_number_of_episodes":3520, "number_of_timesteps":3520000, "per_episode_reward":-706.20, "episode_reward_trend_value": -0.001540448955323528, "biggest_recent_change": 0.13792131545051234 },
+{"total_number_of_episodes":3530, "number_of_timesteps":3530000, "per_episode_reward":-706.19, "episode_reward_trend_value": -0.001083998539113256, "biggest_recent_change": 0.13792131545051234 },
+{"total_number_of_episodes":3540, "number_of_timesteps":3540000, "per_episode_reward":-706.15, "episode_reward_trend_value": 0.0008469549293977253, "biggest_recent_change": 0.1356917094410619 },
+{"total_number_of_episodes":3550, "number_of_timesteps":3550000, "per_episode_reward":-706.06, "episode_reward_trend_value": 0.001640240365689907, "biggest_recent_change": 0.1356917094410619 },
+{"total_number_of_episodes":3560, "number_of_timesteps":3560000, "per_episode_reward":-705.99, "episode_reward_trend_value": 0.000840908735098209, "biggest_recent_change": 0.11428193822359844 },
+{"total_number_of_episodes":3570, "number_of_timesteps":3570000, "per_episode_reward":-706.23, "episode_reward_trend_value": -0.0013887994710178948, "biggest_recent_change": 0.2331027729271682 },
+{"total_number_of_episodes":3580, "number_of_timesteps":3580000, "per_episode_reward":-706.11, "episode_reward_trend_value": 0.000549257789250785, "biggest_recent_change": 0.2331027729271682 },
+{"total_number_of_episodes":3590, "number_of_timesteps":3590000, "per_episode_reward":-706.27, "episode_reward_trend_value": 0.00010129501351785721, "biggest_recent_change": 0.2331027729271682 },
+{"total_number_of_episodes":3600, "number_of_timesteps":3600000, "per_episode_reward":-706.06, "episode_reward_trend_value": 0.0014806410701503916, "biggest_recent_change": 0.2331027729271682 },
+{"total_number_of_episodes":3610, "number_of_timesteps":3610000, "per_episode_reward":-706.13, "episode_reward_trend_value": 0.000812572776197208, "biggest_recent_change": 0.2331027729271682 },
+{"total_number_of_episodes":3620, "number_of_timesteps":3620000, "per_episode_reward":-705.95, "episode_reward_trend_value": 0.0025858457860067573, "biggest_recent_change": 0.2331027729271682 },
+{"total_number_of_episodes":3630, "number_of_timesteps":3630000, "per_episode_reward":-705.94, "episode_reward_trend_value": 0.0023596146091196916, "biggest_recent_change": 0.2331027729271682 },
+{"total_number_of_episodes":3640, "number_of_timesteps":3640000, "per_episode_reward":-705.81, "episode_reward_trend_value": 0.0027974113117289158, "biggest_recent_change": 0.2331027729271682 },
+{"total_number_of_episodes":3650, "number_of_timesteps":3650000, "per_episode_reward":-705.97, "episode_reward_trend_value": 0.00027951869420677315, "biggest_recent_change": 0.2331027729271682 },
+{"total_number_of_episodes":3660, "number_of_timesteps":3660000, "per_episode_reward":-705.90, "episode_reward_trend_value": 0.0036051555816432788, "biggest_recent_change": 0.21200431666204622 },
+{"total_number_of_episodes":3670, "number_of_timesteps":3670000, "per_episode_reward":-705.94, "episode_reward_trend_value": 0.0019695406723801373, "biggest_recent_change": 0.21200431666204622 },
+{"total_number_of_episodes":3680, "number_of_timesteps":3680000, "per_episode_reward":-705.94, "episode_reward_trend_value": 0.003649759089748588, "biggest_recent_change": 0.21200431666204622 },
+{"total_number_of_episodes":3690, "number_of_timesteps":3690000, "per_episode_reward":-706.00, "episode_reward_trend_value": 0.0006465734745587624, "biggest_recent_change": 0.17706687421809875 },
+{"total_number_of_episodes":3700, "number_of_timesteps":3700000, "per_episode_reward":-705.96, "episode_reward_trend_value": 0.0019192026844797913, "biggest_recent_change": 0.17706687421809875 },
+{"total_number_of_episodes":3710, "number_of_timesteps":3710000, "per_episode_reward":-705.89, "episode_reward_trend_value": 0.0007404926642897812, "biggest_recent_change": 0.16285847288918376 },
+{"total_number_of_episodes":3720, "number_of_timesteps":3720000, "per_episode_reward":-705.98, "episode_reward_trend_value": -0.0004818228375875656, "biggest_recent_change": 0.16285847288918376 },
+{"total_number_of_episodes":3730, "number_of_timesteps":3730000, "per_episode_reward":-705.94, "episode_reward_trend_value": -0.001536745563640175, "biggest_recent_change": 0.16285847288918376 },
+{"total_number_of_episodes":3740, "number_of_timesteps":3740000, "per_episode_reward":-705.84, "episode_reward_trend_value": 0.0014402772567387325, "biggest_recent_change": 0.10507358094491792 },
+{"total_number_of_episodes":3750, "number_of_timesteps":3750000, "per_episode_reward":-705.94, "episode_reward_trend_value": -0.0003628295225793307, "biggest_recent_change": 0.10507358094491792 },
+{"total_number_of_episodes":3760, "number_of_timesteps":3760000, "per_episode_reward":-706.10, "episode_reward_trend_value": -0.0018345964158937831, "biggest_recent_change": 0.16692016344802596 },
+{"total_number_of_episodes":3770, "number_of_timesteps":3770000, "per_episode_reward":-705.94, "episode_reward_trend_value": 5.228792820288516e-05, "biggest_recent_change": 0.16692016344802596 },
+{"total_number_of_episodes":3780, "number_of_timesteps":3780000, "per_episode_reward":-706.08, "episode_reward_trend_value": -0.0008854792307829484, "biggest_recent_change": 0.16692016344802596 },
+{"total_number_of_episodes":3790, "number_of_timesteps":3790000, "per_episode_reward":-706.29, "episode_reward_trend_value": -0.0037442859919956896, "biggest_recent_change": 0.2147967906894337 },
+{"total_number_of_episodes":3800, "number_of_timesteps":3800000, "per_episode_reward":-706.23, "episode_reward_trend_value": -0.0038449319294373814, "biggest_recent_change": 0.2147967906894337 },
+{"total_number_of_episodes":3810, "number_of_timesteps":3810000, "per_episode_reward":-706.15, "episode_reward_trend_value": -0.0019312796731911577, "biggest_recent_change": 0.2147967906894337 },
+{"total_number_of_episodes":3820, "number_of_timesteps":3820000, "per_episode_reward":-706.12, "episode_reward_trend_value": -0.001911939807609997, "biggest_recent_change": 0.2147967906894337 },
+{"total_number_of_episodes":3830, "number_of_timesteps":3830000, "per_episode_reward":-706.27, "episode_reward_trend_value": -0.004812641940831478, "biggest_recent_change": 0.2147967906894337 },
+{"total_number_of_episodes":3840, "number_of_timesteps":3840000, "per_episode_reward":-706.42, "episode_reward_trend_value": -0.005393895751727643, "biggest_recent_change": 0.2147967906894337 },
+{"total_number_of_episodes":3850, "number_of_timesteps":3850000, "per_episode_reward":-706.37, "episode_reward_trend_value": -0.0029324671864009765, "biggest_recent_change": 0.2147967906894337 },
+{"total_number_of_episodes":3860, "number_of_timesteps":3860000, "per_episode_reward":-706.15, "episode_reward_trend_value": -0.002339932013761528, "biggest_recent_change": 0.21976882602984915 },
+{"total_number_of_episodes":3870, "number_of_timesteps":3870000, "per_episode_reward":-706.05, "episode_reward_trend_value": 0.00034014752403916445, "biggest_recent_change": 0.21976882602984915 },
+{"total_number_of_episodes":3880, "number_of_timesteps":3880000, "per_episode_reward":-706.22, "episode_reward_trend_value": 0.0008489685602815674, "biggest_recent_change": 0.21976882602984915 },
+{"total_number_of_episodes":3890, "number_of_timesteps":3890000, "per_episode_reward":-706.33, "episode_reward_trend_value": -0.0011401138468828422, "biggest_recent_change": 0.21976882602984915 },
+{"total_number_of_episodes":3900, "number_of_timesteps":3900000, "per_episode_reward":-706.11, "episode_reward_trend_value": 0.0005273805731728014, "biggest_recent_change": 0.22779849649384687 },
+{"total_number_of_episodes":3910, "number_of_timesteps":3910000, "per_episode_reward":-706.20, "episode_reward_trend_value": -0.0008864011065308356, "biggest_recent_change": 0.22779849649384687 },
+{"total_number_of_episodes":3920, "number_of_timesteps":3920000, "per_episode_reward":-706.38, "episode_reward_trend_value": -0.00113954319627712, "biggest_recent_change": 0.22779849649384687 },
+{"total_number_of_episodes":3930, "number_of_timesteps":3930000, "per_episode_reward":-706.31, "episode_reward_trend_value": 0.0012146752661540935, "biggest_recent_change": 0.22779849649384687 },
+{"total_number_of_episodes":3940, "number_of_timesteps":3940000, "per_episode_reward":-706.11, "episode_reward_trend_value": 0.0028901943977264937, "biggest_recent_change": 0.22779849649384687 },
+{"total_number_of_episodes":3950, "number_of_timesteps":3950000, "per_episode_reward":-705.97, "episode_reward_trend_value": 0.001928783671393022, "biggest_recent_change": 0.22779849649384687 },
+{"total_number_of_episodes":3960, "number_of_timesteps":3960000, "per_episode_reward":-706.12, "episode_reward_trend_value": -0.0007793437299457967, "biggest_recent_change": 0.22779849649384687 },
+{"total_number_of_episodes":3970, "number_of_timesteps":3970000, "per_episode_reward":-705.92, "episode_reward_trend_value": 0.0033477389712579173, "biggest_recent_change": 0.22779849649384687 },
+{"total_number_of_episodes":3980, "number_of_timesteps":3980000, "per_episode_reward":-705.91, "episode_reward_trend_value": 0.0047212695458281615, "biggest_recent_change": 0.22779849649384687 },
+{"total_number_of_episodes":3990, "number_of_timesteps":3990000, "per_episode_reward":-705.99, "episode_reward_trend_value": 0.0013494842609917315, "biggest_recent_change": 0.20540512927289 },
+{"total_number_of_episodes":4000, "number_of_timesteps":4000000, "per_episode_reward":-705.92, "episode_reward_trend_value": 0.0030697239262293704, "biggest_recent_change": 0.20540512927289 },
+{"total_number_of_episodes":4010, "number_of_timesteps":4010000, "per_episode_reward":-705.94, "episode_reward_trend_value": 0.004871235595181942, "biggest_recent_change": 0.20540512927289 },
+{"total_number_of_episodes":4020, "number_of_timesteps":4020000, "per_episode_reward":-705.91, "episode_reward_trend_value": 0.004494326283996644, "biggest_recent_change": 0.20540512927289 },
+{"total_number_of_episodes":4030, "number_of_timesteps":4030000, "per_episode_reward":-705.86, "episode_reward_trend_value": 0.0027479328412103616, "biggest_recent_change": 0.20243454568071684 },
+{"total_number_of_episodes":4040, "number_of_timesteps":4040000, "per_episode_reward":-705.95, "episode_reward_trend_value": 0.0002308909618275518, "biggest_recent_change": 0.20243454568071684 },
+{"total_number_of_episodes":4050, "number_of_timesteps":4050000, "per_episode_reward":-706.11, "episode_reward_trend_value": 0.0001443247549850134, "biggest_recent_change": 0.20243454568071684 },
+{"total_number_of_episodes":4060, "number_of_timesteps":4060000, "per_episode_reward":-705.98, "episode_reward_trend_value": -0.0006565313821207989, "biggest_recent_change": 0.15299669934802296 },
+{"total_number_of_episodes":4070, "number_of_timesteps":4070000, "per_episode_reward":-705.86, "episode_reward_trend_value": 0.0005922153291989061, "biggest_recent_change": 0.15299669934802296 },
+{"total_number_of_episodes":4080, "number_of_timesteps":4080000, "per_episode_reward":-706.00, "episode_reward_trend_value": -0.00012805670887574807, "biggest_recent_change": 0.15299669934802296 },
+{"total_number_of_episodes":4090, "number_of_timesteps":4090000, "per_episode_reward":-705.99, "episode_reward_trend_value": -0.0007911812532888184, "biggest_recent_change": 0.15299669934802296 },
+{"total_number_of_episodes":4100, "number_of_timesteps":4100000, "per_episode_reward":-706.09, "episode_reward_trend_value": -0.0017554211774634294, "biggest_recent_change": 0.15299669934802296 },
+{"total_number_of_episodes":4110, "number_of_timesteps":4110000, "per_episode_reward":-706.22, "episode_reward_trend_value": -0.0034782805741365845, "biggest_recent_change": 0.15299669934802296 },
+{"total_number_of_episodes":4120, "number_of_timesteps":4120000, "per_episode_reward":-706.43, "episode_reward_trend_value": -0.006333477265075595, "biggest_recent_change": 0.2087379827623863 },
+{"total_number_of_episodes":4130, "number_of_timesteps":4130000, "per_episode_reward":-706.19, "episode_reward_trend_value": -0.002627301061544232, "biggest_recent_change": 0.24026394983320642 },
+{"total_number_of_episodes":4140, "number_of_timesteps":4140000, "per_episode_reward":-706.47, "episode_reward_trend_value": -0.00406158521087213, "biggest_recent_change": 0.28208227278753384 },
+{"total_number_of_episodes":4150, "number_of_timesteps":4150000, "per_episode_reward":-706.25, "episode_reward_trend_value": -0.0030698018700213146, "biggest_recent_change": 0.28208227278753384 },
+{"total_number_of_episodes":4160, "number_of_timesteps":4160000, "per_episode_reward":-706.40, "episode_reward_trend_value": -0.005996003249884375, "biggest_recent_change": 0.28208227278753384 },
+{"total_number_of_episodes":4170, "number_of_timesteps":4170000, "per_episode_reward":-706.23, "episode_reward_trend_value": -0.002602878006367367, "biggest_recent_change": 0.28208227278753384 },
+
+
+
+
+
+
+
+
+Process Process-208:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+Process Process-202:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+{"total_number_of_episodes":4180, "number_of_timesteps":4180000, "per_episode_reward":-706.28, "episode_reward_trend_value": -0.003196152286382888, "biggest_recent_change": 0.28208227278753384 },
+{"total_number_of_episodes":4190, "number_of_timesteps":4190000, "per_episode_reward":-706.10, "episode_reward_trend_value": -7.786294753234162e-05, "biggest_recent_change": 0.28208227278753384 },
+{"total_number_of_episodes":4200, "number_of_timesteps":4200000, "per_episode_reward":-706.23, "episode_reward_trend_value": -0.00015517750242300584, "biggest_recent_change": 0.28208227278753384 },
+{"total_number_of_episodes":4210, "number_of_timesteps":4210000, "per_episode_reward":-706.49, "episode_reward_trend_value": -0.0007008818035337249, "biggest_recent_change": 0.28208227278753384 },
+{"total_number_of_episodes":4220, "number_of_timesteps":4220000, "per_episode_reward":-706.33, "episode_reward_trend_value": -0.0015149930838245181, "biggest_recent_change": 0.28208227278753384 },
+{"total_number_of_episodes":4230, "number_of_timesteps":4230000, "per_episode_reward":-706.22, "episode_reward_trend_value": 0.0027686634971941103, "biggest_recent_change": 0.257851369862351 },
+{"total_number_of_episodes":4240, "number_of_timesteps":4240000, "per_episode_reward":-706.28, "episode_reward_trend_value": -0.0003369098569300554, "biggest_recent_change": 0.257851369862351 },
+{"total_number_of_episodes":4250, "number_of_timesteps":4250000, "per_episode_reward":-706.35, "episode_reward_trend_value": 0.0004577572054308298, "biggest_recent_change": 0.257851369862351 },
+{"total_number_of_episodes":4260, "number_of_timesteps":4260000, "per_episode_reward":-706.30, "episode_reward_trend_value": -0.0007191116304284151, "biggest_recent_change": 0.257851369862351 },
+{"total_number_of_episodes":4270, "number_of_timesteps":4270000, "per_episode_reward":-706.19, "episode_reward_trend_value": 0.0009935826997624039, "biggest_recent_change": 0.257851369862351 },
+{"total_number_of_episodes":4280, "number_of_timesteps":4280000, "per_episode_reward":-706.23, "episode_reward_trend_value": -0.0013692054113436016, "biggest_recent_change": 0.257851369862351 },
+{"total_number_of_episodes":4290, "number_of_timesteps":4290000, "per_episode_reward":-706.25, "episode_reward_trend_value": -0.00020175053473899928, "biggest_recent_change": 0.257851369862351 },
+{"total_number_of_episodes":4300, "number_of_timesteps":4300000, "per_episode_reward":-706.33, "episode_reward_trend_value": 0.0018343743215837095, "biggest_recent_change": 0.16699393460703504 },
+{"total_number_of_episodes":4310, "number_of_timesteps":4310000, "per_episode_reward":-706.28, "episode_reward_trend_value": 0.00046218544711109646, "biggest_recent_change": 0.10588360372219086 },
+{"total_number_of_episodes":4320, "number_of_timesteps":4320000, "per_episode_reward":-706.27, "episode_reward_trend_value": -0.0005844962189093571, "biggest_recent_change": 0.10588360372219086 },
+{"total_number_of_episodes":4330, "number_of_timesteps":4330000, "per_episode_reward":-706.37, "episode_reward_trend_value": -0.0009479422040852923, "biggest_recent_change": 0.10588360372219086 },
+{"total_number_of_episodes":4340, "number_of_timesteps":4340000, "per_episode_reward":-706.43, "episode_reward_trend_value": -0.0008644745794312156, "biggest_recent_change": 0.10588360372219086 },
+{"total_number_of_episodes":4350, "number_of_timesteps":4350000, "per_episode_reward":-706.27, "episode_reward_trend_value": 0.00028233590444036357, "biggest_recent_change": 0.16218935766949016 },
+{"total_number_of_episodes":4360, "number_of_timesteps":4360000, "per_episode_reward":-706.20, "episode_reward_trend_value": -0.00012310352051119684, "biggest_recent_change": 0.16218935766949016 },
+{"total_number_of_episodes":4370, "number_of_timesteps":4370000, "per_episode_reward":-706.35, "episode_reward_trend_value": -0.0013440241849694858, "biggest_recent_change": 0.16218935766949016 },
+{"total_number_of_episodes":4380, "number_of_timesteps":4380000, "per_episode_reward":-706.25, "episode_reward_trend_value": 6.896201041399763e-05, "biggest_recent_change": 0.16218935766949016 },
+{"total_number_of_episodes":4390, "number_of_timesteps":4390000, "per_episode_reward":-706.40, "episode_reward_trend_value": -0.000846085239600648, "biggest_recent_change": 0.16218935766949016 },
+{"total_number_of_episodes":4400, "number_of_timesteps":4400000, "per_episode_reward":-706.27, "episode_reward_trend_value": 0.00016451943241438334, "biggest_recent_change": 0.16218935766949016 },
+{"total_number_of_episodes":4410, "number_of_timesteps":4410000, "per_episode_reward":-706.31, "episode_reward_trend_value": -0.00038055760203153314, "biggest_recent_change": 0.16218935766949016 },
+{"total_number_of_episodes":4420, "number_of_timesteps":4420000, "per_episode_reward":-706.28, "episode_reward_trend_value": 0.0009761510168914356, "biggest_recent_change": 0.16218935766949016 },
+{"total_number_of_episodes":4430, "number_of_timesteps":4430000, "per_episode_reward":-706.36, "episode_reward_trend_value": 0.0008024841519588537, "biggest_recent_change": 0.16218935766949016 },
+{"total_number_of_episodes":4440, "number_of_timesteps":4440000, "per_episode_reward":-706.45, "episode_reward_trend_value": -0.0020447849719453697, "biggest_recent_change": 0.15695438529462535 },
+{"total_number_of_episodes":4450, "number_of_timesteps":4450000, "per_episode_reward":-706.49, "episode_reward_trend_value": -0.0032071457495034235, "biggest_recent_change": 0.15695438529462535 },
+{"total_number_of_episodes":4460, "number_of_timesteps":4460000, "per_episode_reward":-706.43, "episode_reward_trend_value": -0.0009379382920555044, "biggest_recent_change": 0.15695438529462535 },
+{"total_number_of_episodes":4470, "number_of_timesteps":4470000, "per_episode_reward":-706.38, "episode_reward_trend_value": -0.0014319551149987496, "biggest_recent_change": 0.15695438529462535 },
+{"total_number_of_episodes":4480, "number_of_timesteps":4480000, "per_episode_reward":-706.42, "episode_reward_trend_value": -0.0002323122216555223, "biggest_recent_change": 0.1344513563858527 },
+{"total_number_of_episodes":4490, "number_of_timesteps":4490000, "per_episode_reward":-706.54, "episode_reward_trend_value": -0.0030010322973112124, "biggest_recent_change": 0.11473345042315941 },
+{"total_number_of_episodes":4500, "number_of_timesteps":4500000, "per_episode_reward":-706.52, "episode_reward_trend_value": -0.002345687383117618, "biggest_recent_change": 0.11473345042315941 },
+{"total_number_of_episodes":4510, "number_of_timesteps":4510000, "per_episode_reward":-706.56, "episode_reward_trend_value": -0.0031133252299481583, "biggest_recent_change": 0.11473345042315941 },
+{"total_number_of_episodes":4520, "number_of_timesteps":4520000, "per_episode_reward":-706.48, "episode_reward_trend_value": -0.0013370003603654368, "biggest_recent_change": 0.11473345042315941 },
+{"total_number_of_episodes":4530, "number_of_timesteps":4530000, "per_episode_reward":-706.54, "episode_reward_trend_value": -0.0009222796840466193, "biggest_recent_change": 0.11473345042315941 },
+{"total_number_of_episodes":4540, "number_of_timesteps":4540000, "per_episode_reward":-706.44, "episode_reward_trend_value": 0.0005219063250099982, "biggest_recent_change": 0.11473345042315941 },
+{"total_number_of_episodes":4550, "number_of_timesteps":4550000, "per_episode_reward":-706.46, "episode_reward_trend_value": -0.00036207294592713877, "biggest_recent_change": 0.11473345042315941 },
+{"total_number_of_episodes":4560, "number_of_timesteps":4560000, "per_episode_reward":-706.55, "episode_reward_trend_value": -0.0019791506049866964, "biggest_recent_change": 0.11473345042315941 },
+{"total_number_of_episodes":4570, "number_of_timesteps":4570000, "per_episode_reward":-706.58, "episode_reward_trend_value": -0.0016768874770112536, "biggest_recent_change": 0.11473345042315941 },
+Hit early stopping because biggest_recent_change: 0.09475832631142111 < 0.1
+{"total_number_of_episodes":4580, "number_of_timesteps":4580000, "per_episode_reward":-706.55, "episode_reward_trend_value": -0.00012101859085128631, "biggest_recent_change": 0.09475832631142111 },
+[32m[I 2022-10-23 17:24:43,355][0m Trial 20 finished with value: -706.5661819546524 and parameters: {'learning_rate': 0, 'variance_scaling_factor': 2, 'permaban_threshold': 0}. Best is trial 20 with value: -706.5661819546524.[0m
+
+
+
+
+
+
+
+
+Process Process-216:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+Process Process-220:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-214:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-215:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-213:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-212:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+{"total_number_of_episodes":20, "number_of_timesteps":20000, "per_episode_reward":-790.86, "episode_reward_trend_value": 0.0, "biggest_recent_change": nan },
+{"total_number_of_episodes":30, "number_of_timesteps":30000, "per_episode_reward":-781.69, "episode_reward_trend_value": 0.9172218128169334, "biggest_recent_change": nan },
+{"total_number_of_episodes":40, "number_of_timesteps":40000, "per_episode_reward":-786.20, "episode_reward_trend_value": 0.23275258863803855, "biggest_recent_change": nan },
+{"total_number_of_episodes":50, "number_of_timesteps":50000, "per_episode_reward":-794.48, "episode_reward_trend_value": -0.12054847029565582, "biggest_recent_change": nan },
+{"total_number_of_episodes":60, "number_of_timesteps":60000, "per_episode_reward":-799.02, "episode_reward_trend_value": -0.20396436866268744, "biggest_recent_change": nan },
+{"total_number_of_episodes":70, "number_of_timesteps":70000, "per_episode_reward":-808.02, "episode_reward_trend_value": -0.34326228124386493, "biggest_recent_change": nan },
+{"total_number_of_episodes":80, "number_of_timesteps":80000, "per_episode_reward":-809.11, "episode_reward_trend_value": -0.30417856567708934, "biggest_recent_change": nan },
+{"total_number_of_episodes":90, "number_of_timesteps":90000, "per_episode_reward":-805.38, "episode_reward_trend_value": -0.20743339951550296, "biggest_recent_change": nan },
+{"total_number_of_episodes":100, "number_of_timesteps":100000, "per_episode_reward":-802.66, "episode_reward_trend_value": -0.14745146711147186, "biggest_recent_change": nan },
+{"total_number_of_episodes":110, "number_of_timesteps":110000, "per_episode_reward":-805.94, "episode_reward_trend_value": -0.1675981175579472, "biggest_recent_change": 9.172218128169334 },
+{"total_number_of_episodes":120, "number_of_timesteps":120000, "per_episode_reward":-804.87, "episode_reward_trend_value": -0.25755989791869194, "biggest_recent_change": 9.004539315685747 },
+{"total_number_of_episodes":130, "number_of_timesteps":130000, "per_episode_reward":-805.60, "episode_reward_trend_value": -0.21549824775164045, "biggest_recent_change": 9.004539315685747 },
+{"total_number_of_episodes":140, "number_of_timesteps":140000, "per_episode_reward":-803.81, "episode_reward_trend_value": -0.10374468157898364, "biggest_recent_change": 9.004539315685747 },
+{"total_number_of_episodes":150, "number_of_timesteps":150000, "per_episode_reward":-802.75, "episode_reward_trend_value": -0.041488878441191444, "biggest_recent_change": 9.004539315685747 },
+{"total_number_of_episodes":160, "number_of_timesteps":160000, "per_episode_reward":-805.39, "episode_reward_trend_value": 0.02920225744487779, "biggest_recent_change": 3.730375974540152 },
+{"total_number_of_episodes":170, "number_of_timesteps":170000, "per_episode_reward":-807.55, "episode_reward_trend_value": 0.017387296968638565, "biggest_recent_change": 3.730375974540152 },
+{"total_number_of_episodes":180, "number_of_timesteps":180000, "per_episode_reward":-803.51, "episode_reward_trend_value": 0.020799133901527968, "biggest_recent_change": 4.037441298500198 },
+{"total_number_of_episodes":190, "number_of_timesteps":190000, "per_episode_reward":-804.23, "episode_reward_trend_value": -0.017544409883937028, "biggest_recent_change": 4.037441298500198 },
+{"total_number_of_episodes":200, "number_of_timesteps":200000, "per_episode_reward":-805.23, "episode_reward_trend_value": 0.00789952717605047, "biggest_recent_change": 4.037441298500198 },
+{"total_number_of_episodes":210, "number_of_timesteps":210000, "per_episode_reward":-803.43, "episode_reward_trend_value": 0.015994453612084826, "biggest_recent_change": 4.037441298500198 },
+Hit early stopping because per_episode_reward: -803.4284386523861 < -800
+[32m[I 2022-10-23 17:25:04,567][0m Trial 21 finished with value: -802.7761305259194 and parameters: {'learning_rate': 0, 'variance_scaling_factor': 2, 'permaban_threshold': 0}. Best is trial 20 with value: -706.5661819546524.[0m
+
+
+
+
+Process Process-226:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-224:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-230:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-223:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+{"total_number_of_episodes":20, "number_of_timesteps":20000, "per_episode_reward":-784.38, "episode_reward_trend_value": 0.0, "biggest_recent_change": nan },
+{"total_number_of_episodes":30, "number_of_timesteps":30000, "per_episode_reward":-788.33, "episode_reward_trend_value": -0.3957212083708669, "biggest_recent_change": nan },
+{"total_number_of_episodes":40, "number_of_timesteps":40000, "per_episode_reward":-796.66, "episode_reward_trend_value": -0.6142824628149584, "biggest_recent_change": nan },
+{"total_number_of_episodes":50, "number_of_timesteps":50000, "per_episode_reward":-795.98, "episode_reward_trend_value": -0.3868467897858636, "biggest_recent_change": nan },
+{"total_number_of_episodes":60, "number_of_timesteps":60000, "per_episode_reward":-799.85, "episode_reward_trend_value": -0.3868475561218787, "biggest_recent_change": nan },
+{"total_number_of_episodes":70, "number_of_timesteps":70000, "per_episode_reward":-805.59, "episode_reward_trend_value": -0.4243602966873278, "biggest_recent_change": nan },
+{"total_number_of_episodes":80, "number_of_timesteps":80000, "per_episode_reward":-809.03, "episode_reward_trend_value": -0.4108242719652101, "biggest_recent_change": nan },
+{"total_number_of_episodes":90, "number_of_timesteps":90000, "per_episode_reward":-808.84, "episode_reward_trend_value": -0.34947712686053883, "biggest_recent_change": nan },
+{"total_number_of_episodes":100, "number_of_timesteps":100000, "per_episode_reward":-805.81, "episode_reward_trend_value": -0.2679622055364604, "biggest_recent_change": nan },
+{"total_number_of_episodes":110, "number_of_timesteps":110000, "per_episode_reward":-809.88, "episode_reward_trend_value": -0.28334239956505425, "biggest_recent_change": 8.328437172590498 },
+{"total_number_of_episodes":120, "number_of_timesteps":120000, "per_episode_reward":-803.30, "episode_reward_trend_value": -0.16624980115753943, "biggest_recent_change": 8.328437172590498 },
+{"total_number_of_episodes":130, "number_of_timesteps":130000, "per_episode_reward":-800.72, "episode_reward_trend_value": -0.04508097675208344, "biggest_recent_change": 6.581121772967663 },
+{"total_number_of_episodes":140, "number_of_timesteps":140000, "per_episode_reward":-796.70, "episode_reward_trend_value": -0.007940387795307894, "biggest_recent_change": 6.581121772967663 },
+{"total_number_of_episodes":150, "number_of_timesteps":150000, "per_episode_reward":-797.40, "episode_reward_trend_value": 0.02716977795147386, "biggest_recent_change": 6.581121772967663 },
+{"total_number_of_episodes":160, "number_of_timesteps":160000, "per_episode_reward":-796.03, "episode_reward_trend_value": 0.10621948718488232, "biggest_recent_change": 6.581121772967663 },
+{"total_number_of_episodes":170, "number_of_timesteps":170000, "per_episode_reward":-798.07, "episode_reward_trend_value": 0.12172494680926826, "biggest_recent_change": 6.581121772967663 },
+{"total_number_of_episodes":180, "number_of_timesteps":180000, "per_episode_reward":-794.22, "episode_reward_trend_value": 0.16246397336354776, "biggest_recent_change": 6.581121772967663 },
+{"total_number_of_episodes":190, "number_of_timesteps":190000, "per_episode_reward":-789.61, "episode_reward_trend_value": 0.18001931586465061, "biggest_recent_change": 6.581121772967663 },
+{"total_number_of_episodes":200, "number_of_timesteps":200000, "per_episode_reward":-792.51, "episode_reward_trend_value": 0.19296119737206885, "biggest_recent_change": 6.581121772967663 },
+{"total_number_of_episodes":210, "number_of_timesteps":210000, "per_episode_reward":-794.44, "episode_reward_trend_value": 0.09838704247376881, "biggest_recent_change": 4.6064032624201445 },
+{"total_number_of_episodes":220, "number_of_timesteps":220000, "per_episode_reward":-795.72, "episode_reward_trend_value": 0.05557720181665723, "biggest_recent_change": 4.6064032624201445 },
+{"total_number_of_episodes":230, "number_of_timesteps":230000, "per_episode_reward":-795.84, "episode_reward_trend_value": 0.009519676669616376, "biggest_recent_change": 4.6064032624201445 },
+{"total_number_of_episodes":240, "number_of_timesteps":240000, "per_episode_reward":-798.92, "episode_reward_trend_value": -0.016883518540915552, "biggest_recent_change": 4.6064032624201445 },
+{"total_number_of_episodes":250, "number_of_timesteps":250000, "per_episode_reward":-800.29, "episode_reward_trend_value": -0.047284528590125774, "biggest_recent_change": 4.6064032624201445 },
+Hit early stopping because per_episode_reward: -800.2898037692943 < -800
+
+
+
+
+Process Process-228:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-221:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+[32m[I 2022-10-23 17:25:29,519][0m Trial 22 finished with value: -799.7502855062887 and parameters: {'learning_rate': 0, 'variance_scaling_factor': 1, 'permaban_threshold': 1}. Best is trial 20 with value: -706.5661819546524.[0m
+
+
+
+
+
+
+
+
+Process Process-235:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+Process Process-232:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-236:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-231:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+{"total_number_of_episodes":20, "number_of_timesteps":20000, "per_episode_reward":-804.71, "episode_reward_trend_value": 0.0, "biggest_recent_change": nan },
+{"total_number_of_episodes":30, "number_of_timesteps":30000, "per_episode_reward":-789.62, "episode_reward_trend_value": 1.509422703207872, "biggest_recent_change": nan },
+{"total_number_of_episodes":40, "number_of_timesteps":40000, "per_episode_reward":-806.80, "episode_reward_trend_value": -0.10451396878060563, "biggest_recent_change": nan },
+{"total_number_of_episodes":50, "number_of_timesteps":50000, "per_episode_reward":-794.38, "episode_reward_trend_value": 0.3444858034383932, "biggest_recent_change": nan },
+{"total_number_of_episodes":60, "number_of_timesteps":60000, "per_episode_reward":-807.93, "episode_reward_trend_value": -0.08057475645996134, "biggest_recent_change": nan },
+{"total_number_of_episodes":70, "number_of_timesteps":70000, "per_episode_reward":-808.33, "episode_reward_trend_value": -0.07236218305570219, "biggest_recent_change": nan },
+{"total_number_of_episodes":80, "number_of_timesteps":80000, "per_episode_reward":-803.76, "episode_reward_trend_value": 0.015894415362093163, "biggest_recent_change": nan },
+{"total_number_of_episodes":90, "number_of_timesteps":90000, "per_episode_reward":-804.93, "episode_reward_trend_value": -0.0031597726273113426, "biggest_recent_change": nan },
+{"total_number_of_episodes":100, "number_of_timesteps":100000, "per_episode_reward":-800.23, "episode_reward_trend_value": 0.05600876369155543, "biggest_recent_change": nan },
+{"total_number_of_episodes":110, "number_of_timesteps":110000, "per_episode_reward":-794.49, "episode_reward_trend_value": 0.11360534889444882, "biggest_recent_change": 17.184506407690833 },
+{"total_number_of_episodes":120, "number_of_timesteps":120000, "per_episode_reward":-794.92, "episode_reward_trend_value": -0.058895196788776305, "biggest_recent_change": 17.184506407690833 },
+{"total_number_of_episodes":130, "number_of_timesteps":130000, "per_episode_reward":-796.75, "episode_reward_trend_value": 0.11170978252330314, "biggest_recent_change": 13.557564361550249 },
+{"total_number_of_episodes":140, "number_of_timesteps":140000, "per_episode_reward":-795.31, "episode_reward_trend_value": -0.01033999634385307, "biggest_recent_change": 13.557564361550249 },
+{"total_number_of_episodes":150, "number_of_timesteps":150000, "per_episode_reward":-793.97, "episode_reward_trend_value": 0.15520826136658772, "biggest_recent_change": 5.74378030517596 },
+{"total_number_of_episodes":160, "number_of_timesteps":160000, "per_episode_reward":-796.60, "episode_reward_trend_value": 0.1303728984511824, "biggest_recent_change": 5.74378030517596 },
+{"total_number_of_episodes":170, "number_of_timesteps":170000, "per_episode_reward":-797.58, "episode_reward_trend_value": 0.06869526155266056, "biggest_recent_change": 5.74378030517596 },
+{"total_number_of_episodes":180, "number_of_timesteps":180000, "per_episode_reward":-799.07, "episode_reward_trend_value": 0.06518645493520252, "biggest_recent_change": 5.74378030517596 },
+{"total_number_of_episodes":190, "number_of_timesteps":190000, "per_episode_reward":-796.64, "episode_reward_trend_value": 0.039893253105434366, "biggest_recent_change": 5.74378030517596 },
+{"total_number_of_episodes":200, "number_of_timesteps":200000, "per_episode_reward":-798.17, "episode_reward_trend_value": -0.04093431160802841, "biggest_recent_change": 2.6303015567731336 },
+{"total_number_of_episodes":210, "number_of_timesteps":210000, "per_episode_reward":-799.63, "episode_reward_trend_value": -0.05239809427757412, "biggest_recent_change": 2.6303015567731336 },
+{"total_number_of_episodes":220, "number_of_timesteps":220000, "per_episode_reward":-798.60, "episode_reward_trend_value": -0.020596207887983078, "biggest_recent_change": 2.6303015567731336 },
+{"total_number_of_episodes":230, "number_of_timesteps":230000, "per_episode_reward":-799.99, "episode_reward_trend_value": -0.052040841099638635, "biggest_recent_change": 2.6303015567731336 },
+{"total_number_of_episodes":240, "number_of_timesteps":240000, "per_episode_reward":-800.61, "episode_reward_trend_value": -0.07385519816432028, "biggest_recent_change": 2.6303015567731336 },
+Hit early stopping because per_episode_reward: -800.6128972008644 < -800
+[32m[I 2022-10-23 17:25:53,572][0m Trial 23 finished with value: -800.1274870528013 and parameters: {'learning_rate': 0, 'variance_scaling_factor': 2, 'permaban_threshold': 0}. Best is trial 20 with value: -706.5661819546524.[0m
+
+
+
+
+
+
+
+
+Process Process-242:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+Process Process-245:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-243:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-248:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+{"total_number_of_episodes":20, "number_of_timesteps":20000, "per_episode_reward":-783.31, "episode_reward_trend_value": 0.0, "biggest_recent_change": nan },
+{"total_number_of_episodes":30, "number_of_timesteps":30000, "per_episode_reward":-789.90, "episode_reward_trend_value": -0.6586833948231743, "biggest_recent_change": nan },
+{"total_number_of_episodes":40, "number_of_timesteps":40000, "per_episode_reward":-789.39, "episode_reward_trend_value": -0.30405661888671603, "biggest_recent_change": nan },
+{"total_number_of_episodes":50, "number_of_timesteps":50000, "per_episode_reward":-793.44, "episode_reward_trend_value": -0.33760422479354396, "biggest_recent_change": nan },
+{"total_number_of_episodes":60, "number_of_timesteps":60000, "per_episode_reward":-793.03, "episode_reward_trend_value": -0.24286176392617734, "biggest_recent_change": nan },
+{"total_number_of_episodes":70, "number_of_timesteps":70000, "per_episode_reward":-788.96, "episode_reward_trend_value": -0.11292090409260028, "biggest_recent_change": nan },
+{"total_number_of_episodes":80, "number_of_timesteps":80000, "per_episode_reward":-796.55, "episode_reward_trend_value": -0.22061862723268746, "biggest_recent_change": nan },
+{"total_number_of_episodes":90, "number_of_timesteps":90000, "per_episode_reward":-794.61, "episode_reward_trend_value": -0.16137120562430027, "biggest_recent_change": nan },
+{"total_number_of_episodes":100, "number_of_timesteps":100000, "per_episode_reward":-802.67, "episode_reward_trend_value": -0.24197674414452877, "biggest_recent_change": nan },
+{"total_number_of_episodes":110, "number_of_timesteps":110000, "per_episode_reward":-804.80, "episode_reward_trend_value": -0.23874626633561066, "biggest_recent_change": 8.062155137861282 },
+{"total_number_of_episodes":120, "number_of_timesteps":120000, "per_episode_reward":-803.89, "episode_reward_trend_value": -0.15541918088723225, "biggest_recent_change": 8.062155137861282 },
+{"total_number_of_episodes":130, "number_of_timesteps":130000, "per_episode_reward":-800.60, "episode_reward_trend_value": -0.12450140607588511, "biggest_recent_change": 8.062155137861282 },
+{"total_number_of_episodes":140, "number_of_timesteps":140000, "per_episode_reward":-800.66, "episode_reward_trend_value": -0.08019015130292549, "biggest_recent_change": 8.062155137861282 },
+{"total_number_of_episodes":150, "number_of_timesteps":150000, "per_episode_reward":-795.44, "episode_reward_trend_value": -0.02678831705571333, "biggest_recent_change": 8.062155137861282 },
+{"total_number_of_episodes":160, "number_of_timesteps":160000, "per_episode_reward":-793.29, "episode_reward_trend_value": -0.048147624107467535, "biggest_recent_change": 8.062155137861282 },
+{"total_number_of_episodes":170, "number_of_timesteps":170000, "per_episode_reward":-791.82, "episode_reward_trend_value": 0.05258866222326206, "biggest_recent_change": 8.062155137861282 },
+{"total_number_of_episodes":180, "number_of_timesteps":180000, "per_episode_reward":-788.92, "episode_reward_trend_value": 0.06323979370050666, "biggest_recent_change": 8.062155137861282 },
+{"total_number_of_episodes":190, "number_of_timesteps":190000, "per_episode_reward":-791.07, "episode_reward_trend_value": 0.12889083239104795, "biggest_recent_change": 5.219821269008321 },
+{"total_number_of_episodes":200, "number_of_timesteps":200000, "per_episode_reward":-792.25, "episode_reward_trend_value": 0.1394811221193916, "biggest_recent_change": 5.219821269008321 },
+{"total_number_of_episodes":210, "number_of_timesteps":210000, "per_episode_reward":-793.09, "episode_reward_trend_value": 0.11992933065651716, "biggest_recent_change": 5.219821269008321 },
+{"total_number_of_episodes":220, "number_of_timesteps":220000, "per_episode_reward":-795.20, "episode_reward_trend_value": 0.059939024240372875, "biggest_recent_change": 5.219821269008321 },
+{"total_number_of_episodes":230, "number_of_timesteps":230000, "per_episode_reward":-798.90, "episode_reward_trend_value": 0.01956488224465147, "biggest_recent_change": 5.219821269008321 },
+{"total_number_of_episodes":240, "number_of_timesteps":240000, "per_episode_reward":-800.53, "episode_reward_trend_value": -0.05658368581325198, "biggest_recent_change": 3.692654216120559 },
+Hit early stopping because per_episode_reward: -800.5306189386504 < -800
+
+
+
+
+Process Process-247:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-241:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+[32m[I 2022-10-23 17:26:17,533][0m Trial 24 finished with value: -798.6992634417444 and parameters: {'learning_rate': 0, 'variance_scaling_factor': 3, 'permaban_threshold': 4}. Best is trial 20 with value: -706.5661819546524.[0m
+
+
+
+
+
+
+
+
+Process Process-254:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+Process Process-252:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-255:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-256:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+{"total_number_of_episodes":20, "number_of_timesteps":20000, "per_episode_reward":-779.33, "episode_reward_trend_value": 0.0, "biggest_recent_change": nan },
+{"total_number_of_episodes":30, "number_of_timesteps":30000, "per_episode_reward":-772.25, "episode_reward_trend_value": 0.7074412695011005, "biggest_recent_change": nan },
+{"total_number_of_episodes":40, "number_of_timesteps":40000, "per_episode_reward":-784.84, "episode_reward_trend_value": -0.2756622258566779, "biggest_recent_change": nan },
+{"total_number_of_episodes":50, "number_of_timesteps":50000, "per_episode_reward":-789.61, "episode_reward_trend_value": -0.34270842077132785, "biggest_recent_change": nan },
+{"total_number_of_episodes":60, "number_of_timesteps":60000, "per_episode_reward":-797.65, "episode_reward_trend_value": -0.458158544257455, "biggest_recent_change": nan },
+{"total_number_of_episodes":70, "number_of_timesteps":70000, "per_episode_reward":-784.82, "episode_reward_trend_value": -0.10979980977093873, "biggest_recent_change": nan },
+{"total_number_of_episodes":80, "number_of_timesteps":80000, "per_episode_reward":-795.97, "episode_reward_trend_value": -0.27736166483973645, "biggest_recent_change": nan },
+{"total_number_of_episodes":90, "number_of_timesteps":90000, "per_episode_reward":-795.35, "episode_reward_trend_value": -0.22884752300500394, "biggest_recent_change": nan },
+{"total_number_of_episodes":100, "number_of_timesteps":100000, "per_episode_reward":-797.24, "episode_reward_trend_value": -0.22386608432137506, "biggest_recent_change": nan },
+{"total_number_of_episodes":110, "number_of_timesteps":110000, "per_episode_reward":-800.67, "episode_reward_trend_value": -0.237095394376777, "biggest_recent_change": 12.836351281751263 },
+{"total_number_of_episodes":120, "number_of_timesteps":120000, "per_episode_reward":-803.14, "episode_reward_trend_value": -0.34317645293888166, "biggest_recent_change": 12.836351281751263 },
+{"total_number_of_episodes":130, "number_of_timesteps":130000, "per_episode_reward":-802.99, "episode_reward_trend_value": -0.20166620508404853, "biggest_recent_change": 12.836351281751263 },
+{"total_number_of_episodes":140, "number_of_timesteps":140000, "per_episode_reward":-799.71, "episode_reward_trend_value": -0.11227512663057015, "biggest_recent_change": 12.836351281751263 },
+{"total_number_of_episodes":150, "number_of_timesteps":150000, "per_episode_reward":-802.42, "episode_reward_trend_value": -0.05297337114064299, "biggest_recent_change": 12.836351281751263 },
+{"total_number_of_episodes":160, "number_of_timesteps":160000, "per_episode_reward":-800.71, "episode_reward_trend_value": -0.17657968460641138, "biggest_recent_change": 11.151709401837252 },
+{"total_number_of_episodes":170, "number_of_timesteps":170000, "per_episode_reward":-802.23, "episode_reward_trend_value": -0.06950669051412382, "biggest_recent_change": 3.429298748199926 },
+{"total_number_of_episodes":180, "number_of_timesteps":180000, "per_episode_reward":-797.88, "episode_reward_trend_value": -0.02811633550257208, "biggest_recent_change": 4.347505231073569 },
+{"total_number_of_episodes":190, "number_of_timesteps":190000, "per_episode_reward":-797.44, "episode_reward_trend_value": -0.0022991705037838984, "biggest_recent_change": 4.347505231073569 },
+{"total_number_of_episodes":200, "number_of_timesteps":200000, "per_episode_reward":-796.92, "episode_reward_trend_value": 0.04164782522101025, "biggest_recent_change": 4.347505231073569 },
+{"total_number_of_episodes":210, "number_of_timesteps":210000, "per_episode_reward":-798.54, "episode_reward_trend_value": 0.05115001725485198, "biggest_recent_change": 4.347505231073569 },
+{"total_number_of_episodes":220, "number_of_timesteps":220000, "per_episode_reward":-798.50, "episode_reward_trend_value": 0.04991880931061006, "biggest_recent_change": 4.347505231073569 },
+{"total_number_of_episodes":230, "number_of_timesteps":230000, "per_episode_reward":-799.58, "episode_reward_trend_value": 0.0014940920162555612, "biggest_recent_change": 4.347505231073569 },
+{"total_number_of_episodes":240, "number_of_timesteps":240000, "per_episode_reward":-801.32, "episode_reward_trend_value": 0.012202211775405026, "biggest_recent_change": 4.347505231073569 },
+Hit early stopping because per_episode_reward: -801.323843928473 < -800
+
+
+
+
+Process Process-251:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-260:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+[32m[I 2022-10-23 17:26:41,595][0m Trial 25 finished with value: -800.1293978335714 and parameters: {'learning_rate': 1, 'variance_scaling_factor': 2, 'permaban_threshold': 0}. Best is trial 20 with value: -706.5661819546524.[0m
