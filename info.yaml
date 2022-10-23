@@ -67,8 +67,8 @@
                             exponent: [ -1, -2, -3, -4, -5, -6, -7, -8, ]
                 phase_2:
                     sequential_options:
-                        learning_rate: [ 0.00063, 0.0005, 0.0004, 0.00032, 0.00025, 0.0002, 0.00016, 0.00012 ]
-                        variance_scaling_factor: [ 0.01, 0.1, 1, 10, 100, 1000 ]
+                        learning_rate: [ 0.0004, 0.00032, 0.00025 ]
+                        variance_scaling_factor: [ 0.01, 1, 100, 1000 ]
                         permaban_threshold: [ 100, 500, 1000, 2000, 10_000 ]
             
             early_stopping:

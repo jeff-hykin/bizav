@@ -1,0 +1,12 @@
+{
+    "175": {"lr_b": 3, "lr_e": -4, "beta_b": 1, "beta_e": -5, "tmax": 0, "activ": 1, "hid": 2},
+    "215": {"lr_b": 3, "lr_e": -4, "beta_b": 1, "beta_e": -5, "tmax": 0, "activ": 1, "hid": 2},
+    "181": {"lr_b": 3, "lr_e": -4, "beta_b": 1, "beta_e": -6, "tmax": 0, "activ": 1, "hid": 2},
+    "198": {"lr_b": 3, "lr_e": -4, "beta_b": 1, "beta_e": -6, "tmax": 0, "activ": 1, "hid": 3},
+    "225": {"lr_b": 3, "lr_e": -4, "beta_b": 1, "beta_e": -6, "tmax": 0, "activ": 1, "hid": 2},
+    "206": {"lr_b": 3, "lr_e": -4, "beta_b": 1, "beta_e": -7, "tmax": 0, "activ": 1, "hid": 2},
+    "196": {"lr_b": 2, "lr_e": -4, "beta_b": 1, "beta_e": -7, "tmax": 0, "activ": 1, "hid": 2},
+    "213": {"lr_b": 2, "lr_e": -4, "beta_b": 1, "beta_e": -8, "tmax": 0, "activ": 1, "hid": 2},
+    "162": {"lr_b": 2, "lr_e": -4, "beta_b": 5, "beta_e": -6, "tmax": 0, "activ": 1, "hid": 3},
+    "159": {"lr_b": 2, "lr_e": -4, "beta_b": 5, "beta_e": -5, "tmax": 0, "activ": 1, "hid": 2}
+}

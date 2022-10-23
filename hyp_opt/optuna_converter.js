@@ -42,7 +42,7 @@ for (const eachSourceString of studySourceStrings) {
             
             trials.push(trial)
         } else {
-            console.log(`No trial info found on line: ${eachLine}`)
+            // console.log(`No trial info found on line: ${eachLine}`)
         }
     }
     
@@ -54,18 +54,43 @@ for (const eachSourceString of studySourceStrings) {
     // 
     const numberOfBuckets = 30
     const linearScores       = trials.map(each=>each.score)
-    const backwardScoreStats = stats(linearScores.map(each=>-each))
+    const flippedScores      = linearScores.map(each=>-each)
+    const backwardScoreStats = stats(flippedScores)
     const methods = {
         linearScores,
         dualLogScores: linearScores.map(each=>fullLogFunction(each)),
-        forwardLogScores: linearScores.map(each=>Math.log((each-scoreStats.min)+1)),
-        backwardLogScores: linearScores.map(each=>-(Math.log(((-each)-backwardScoreStats.min)+1))),
+        forwardLogScores: linearScores.map(each=>{
+            const forceToBePositive = each - scoreStats.min
+            const forceToBeAboveOne = forceToBePositive+1
+            const logScale = Math.log(forceToBeAboveOne)
+            return logScale
+        }),
+        backwardLogScores: linearScores.map(each=>{
+            const flipScores = -each
+            const forceToBePositive = flipScores - backwardScoreStats.min
+            const forceToBeAboveOne = forceToBePositive+1
+            const logScale = Math.log(forceToBeAboveOne)
+            const undoFlip = -logScale
+            return undoFlip
+        }),
     }
     const inverseScaling = {
         linearScores: each=>each,
         dualLogScores: each=>inverseFullLogFunction(each),
-        forwardLogScores: each=>Math.pow(Math.E, each)+scoreStats.min-1,
-        backwardLogScores: each=>-((-Math.pow(Math.E,each))-1+backwardScoreStats.min),
+        forwardLogScores: each=>{
+            const undoLog = Math.pow(Math.E, each)
+            const undoForceAboveOne = undoLog-1
+            const undoForceToBePositive = undoForceAboveOne + scoreStats.min
+            return undoForceToBePositive
+        },
+        backwardLogScores: each=>{
+            const flipScore = -each // always positive
+            const undoLog = Math.pow(Math.E,flipScore)
+            const undoForceAboveOne = undoLog-1
+            const undoForceToBePositive = undoForceAboveOne + backwardScoreStats.min
+            const undoFlip = -undoForceToBePositive
+            return undoFlip
+        },
     }
     const scoreRangeObject = {}
     for (const [whichMethod, scores] of Object.entries(methods)) {
@@ -224,7 +249,12 @@ console.log(`result written to :${outputPath}`)
                     Math.floor((eachValue-minValue) / bucketSize),
                     numberOfBuckets-1,
                 )
-                buckets[whichBucket].push(eachValue)
+                try {
+                    buckets[whichBucket].push(eachValue)
+                } catch (error) {
+                    console.debug(`{values, numberOfBuckets, asPercents=false} is:`,{values, numberOfBuckets, asPercents})
+                    throw error
+                }
             }
         }
         let bucketRanges
