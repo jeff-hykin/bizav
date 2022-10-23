@@ -41,10 +41,10 @@
                 env_name: "HalfCheetah-v2"
                 training_episode_count: 4_000 # ~40,000,000 timesteps (as sum of all agents)
                 learning_rate: 0.0003
-                beta: 0.0000002
+                beta: 0.0000001
                 t_max: 0
                 activation: 1
-                hidden_size: 1
+                hidden_size: 2
                 variance_scaling_factor: 1 #FIXME: not optimized at all
                 permaban_threshold: 500    #FIXME: not optimized at all
                 
