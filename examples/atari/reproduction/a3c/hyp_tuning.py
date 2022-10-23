@@ -44,6 +44,7 @@ def stage2_tuning(trial):
     # run
     # 
     args = args_from_config()
+    print(f'''args = {args}''')
     fitness_value = float(train_a3c.train_a3c(args))
     return fitness_value
 

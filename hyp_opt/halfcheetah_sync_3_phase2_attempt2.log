@@ -68523,3 +68523,718 @@ Traceback (most recent call last):
     raise BrokenBarrierError
 threading.BrokenBarrierError
 [32m[I 2022-10-23 18:20:21,938][0m Trial 601 finished with value: -797.5382151324953 and parameters: {'learning_rate': 0, 'variance_scaling_factor': 0, 'permaban_threshold': 0}. Best is trial 476 with value: -743.5633999135972.[0m
+
+
+
+
+
+
+
+
+Process Process-6023:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+Process Process-6025:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-6022:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-6030:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+{"total_number_of_episodes":20, "number_of_timesteps":20000, "per_episode_reward":-802.36, "episode_reward_trend_value": 0.0, "biggest_recent_change": nan },
+Hit early stopping because per_episode_reward: -802.3570782667973 < -700
+
+
+
+
+Process Process-6027:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-6029:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+[32m[I 2022-10-23 18:20:25,138][0m Trial 602 finished with value: -805.5093696944377 and parameters: {'learning_rate': 2, 'variance_scaling_factor': 1, 'permaban_threshold': 2}. Best is trial 476 with value: -743.5633999135972.[0m
+
+
+
+
+Process Process-6038:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-6033:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-6032:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-6039:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+{"total_number_of_episodes":20, "number_of_timesteps":20000, "per_episode_reward":-783.29, "episode_reward_trend_value": 0.0, "biggest_recent_change": nan },
+Hit early stopping because per_episode_reward: -783.2934228631739 < -700
+
+
+
+
+Process Process-6034:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-6040:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-6036:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+[32m[I 2022-10-23 18:20:28,394][0m Trial 603 finished with value: -782.6194613687121 and parameters: {'learning_rate': 0, 'variance_scaling_factor': 0, 'permaban_threshold': 0}. Best is trial 476 with value: -743.5633999135972.[0m
+
+
+
+
+
+
+
+
+Process Process-6045:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+Process Process-6050:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-6044:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-6048:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+{"total_number_of_episodes":20, "number_of_timesteps":20000, "per_episode_reward":-780.13, "episode_reward_trend_value": 0.0, "biggest_recent_change": nan },
+Hit early stopping because per_episode_reward: -780.1340771063011 < -700
+
+
+
+
+Process Process-6042:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+
+
+
+
+Process Process-6041:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 169, in train_loop
+    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+  File "/usr/lib/python3.8/threading.py", line 619, in wait
+    self._wait(timeout)
+  File "/usr/lib/python3.8/threading.py", line 659, in _wait
+    raise BrokenBarrierError
+threading.BrokenBarrierError
+[32m[I 2022-10-23 18:20:31,560][0m Trial 604 finished with value: -778.4686321304122 and parameters: {'learning_rate': 1, 'variance_scaling_factor': 0, 'permaban_threshold': 1}. Best is trial 476 with value: -743.5633999135972.[0m
+Process Process-6058:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 148, in train_loop
+    a = agent.act(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 283, in act
+    return self._act_train(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 302, in _act_train
+    with torch.no_grad():
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/autograd/grad_mode.py", line 121, in __init__
+    def __init__(self):
+KeyboardInterrupt
+[33m[W 2022-10-23 18:20:33,133][0m Trial 605 failed because of the following error: KeyboardInterrupt()[0m
+Traceback (most recent call last):
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/optuna/study/_optimize.py", line 196, in _run_trial
+    value_or_values = func(trial)
+  File "./main/0_hyp_tuning.py", line 47, in stage2_tuning
+    fitness_value = float(train_a3c.train_a3c(args))
+  File "/home/jeffhykin/repos/bizav2/examples/atari/reproduction/a3c/train_a3c.py", line 263, in train_a3c
+    experiments.train_agent_async(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 604, in train_agent_async
+    async_.run_async(processes, run_func)
+  File "/home/jeffhykin/repos/bizav2/pfrl/utils/async_.py", line 28, in run_async
+    each_process.join()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 149, in join
+    res = self._popen.wait(timeout)
+  File "/usr/lib/python3.8/multiprocessing/popen_fork.py", line 47, in wait
+    return self.poll(os.WNOHANG if timeout == 0.0 else 0)
+  File "/usr/lib/python3.8/multiprocessing/popen_fork.py", line 27, in poll
+    pid, sts = os.waitpid(self.pid, flag)
+KeyboardInterrupt
+Process Process-6057:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 148, in train_loop
+    a = agent.act(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 283, in act
+    return self._act_train(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 310, in _act_train
+    pout, vout = self.model(statevar)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/nn/branched.py", line 30, in forward
+    return tuple(mod(*args, **kwargs) for mod in self.child_modules)
+  File "/home/jeffhykin/repos/bizav2/pfrl/nn/branched.py", line 30, in <genexpr>
+    return tuple(mod(*args, **kwargs) for mod in self.child_modules)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/policies/gaussian_policy.py", line 55, in forward
+    var = self.var_func(self.var_param)
+  File "/home/jeffhykin/repos/bizav2/examples/atari/reproduction/a3c/train_a3c.py", line 371, in <lambda>
+    var_func=lambda x: torch.exp(2 * x),  # Parameterize log std
+KeyboardInterrupt
+Process Process-6059:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 148, in train_loop
+    a = agent.act(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 283, in act
+    return self._act_train(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 310, in _act_train
+    pout, vout = self.model(statevar)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/nn/branched.py", line 30, in forward
+    return tuple(mod(*args, **kwargs) for mod in self.child_modules)
+  File "/home/jeffhykin/repos/bizav2/pfrl/nn/branched.py", line 30, in <genexpr>
+    return tuple(mod(*args, **kwargs) for mod in self.child_modules)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/policies/gaussian_policy.py", line 55, in forward
+    var = self.var_func(self.var_param)
+  File "/home/jeffhykin/repos/bizav2/examples/atari/reproduction/a3c/train_a3c.py", line 371, in <lambda>
+    var_func=lambda x: torch.exp(2 * x),  # Parameterize log std
+KeyboardInterrupt
+Process Process-6054:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 148, in train_loop
+    a = agent.act(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 283, in act
+    return self._act_train(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 310, in _act_train
+    pout, vout = self.model(statevar)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/nn/branched.py", line 30, in forward
+    return tuple(mod(*args, **kwargs) for mod in self.child_modules)
+  File "/home/jeffhykin/repos/bizav2/pfrl/nn/branched.py", line 30, in <genexpr>
+    return tuple(mod(*args, **kwargs) for mod in self.child_modules)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/policies/gaussian_policy.py", line 57, in forward
+    torch.distributions.Normal(loc=mean, scale=torch.sqrt(var)), 1
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/distributions/normal.py", line 45, in __init__
+    self.loc, self.scale = broadcast_all(loc, scale)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/distributions/utils.py", line 40, in broadcast_all
+    return torch.broadcast_tensors(*values)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/functional.py", line 75, in broadcast_tensors
+    return _VF.broadcast_tensors(tensors)  # type: ignore[attr-defined]
+KeyboardInterrupt
+Process Process-6052:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 148, in train_loop
+    a = agent.act(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 283, in act
+    return self._act_train(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 315, in _act_train
+    action = self.get_a3c_act(pout)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 330, in get_a3c_act
+    action = action.cpu().numpy()[0]
+KeyboardInterrupt
+Process Process-6056:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 148, in train_loop
+    a = agent.act(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 283, in act
+    return self._act_train(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 310, in _act_train
+    pout, vout = self.model(statevar)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1104, in _call_impl
+    def _call_impl(self, *input, **kwargs):
+KeyboardInterrupt
+Process Process-6051:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 148, in train_loop
+    a = agent.act(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 283, in act
+    return self._act_train(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 315, in _act_train
+    action = self.get_a3c_act(pout)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 328, in get_a3c_act
+    action = pout.sample()
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/distributions/independent.py", line 85, in sample
+    return self.base_dist.sample(sample_shape)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/distributions/normal.py", line 64, in sample
+    return torch.normal(self.loc.expand(shape), self.scale.expand(shape))
+KeyboardInterrupt
+Process Process-6060:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 148, in train_loop
+    a = agent.act(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 283, in act
+    return self._act_train(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 310, in _act_train
+    pout, vout = self.model(statevar)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/linear.py", line 103, in forward
+    return F.linear(input, self.weight, self.bias)
+KeyboardInterrupt
+Process Process-6055:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 148, in train_loop
+    a = agent.act(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 283, in act
+    return self._act_train(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 303, in _act_train
+    statevar = self.batch_states([obs], self.device, self.phi)
+KeyboardInterrupt
+Process Process-6053:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 591, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 560, in f
+    train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 150, in train_loop
+    obs, r, done, info = env.step(a)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/gym/core.py", line 327, in step
+    observation, reward, done, info = self.env.step(action)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/gym/wrappers/time_limit.py", line 17, in step
+    observation, reward, done, info = self.env.step(action)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/gym/wrappers/order_enforcing.py", line 13, in step
+    observation, reward, done, info = self.env.step(action)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/gym/envs/mujoco/half_cheetah.py", line 16, in step
+    reward_ctrl = -0.1 * np.square(action).sum()
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/numpy/core/_methods.py", line 48, in _sum
+    return umr_sum(a, axis, dtype, out, keepdims, initial, where)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "./main/0_hyp_tuning.py", line 79, in <module>
+    study.optimize(stage2_tuning, gc_after_trial=True)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/optuna/study/study.py", line 419, in optimize
+    _optimize(
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/optuna/study/_optimize.py", line 66, in _optimize
+    _optimize_sequential(
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/optuna/study/_optimize.py", line 160, in _optimize_sequential
+    frozen_trial = _run_trial(study, func, catch)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/optuna/study/_optimize.py", line 234, in _run_trial
+    raise func_err
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/optuna/study/_optimize.py", line 196, in _run_trial
+    value_or_values = func(trial)
+  File "./main/0_hyp_tuning.py", line 47, in stage2_tuning
+    fitness_value = float(train_a3c.train_a3c(args))
+  File "/home/jeffhykin/repos/bizav2/examples/atari/reproduction/a3c/train_a3c.py", line 263, in train_a3c
+    experiments.train_agent_async(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 604, in train_agent_async
+    async_.run_async(processes, run_func)
+  File "/home/jeffhykin/repos/bizav2/pfrl/utils/async_.py", line 28, in run_async
+    each_process.join()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 149, in join
+    res = self._popen.wait(timeout)
+  File "/usr/lib/python3.8/multiprocessing/popen_fork.py", line 47, in wait
+    return self.poll(os.WNOHANG if timeout == 0.0 else 0)
+  File "/usr/lib/python3.8/multiprocessing/popen_fork.py", line 27, in poll
+    pid, sts = os.waitpid(self.pid, flag)
+KeyboardInterrupt
