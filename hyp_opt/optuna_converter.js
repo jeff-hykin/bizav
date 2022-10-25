@@ -1,13 +1,14 @@
 #!/usr/bin/env -S deno run --allow-all
 import { FileSystem } from "https://deno.land/x/quickr@0.4.3/main/file_system.js"
 import { stats, sum, spread, normalizeZeroToOne } from "https://deno.land/x/good@0.7.7/math.js"
+import { indent } from "https://deno.land/x/good@0.7.7/string.js"
 import { zip } from "https://deno.land/x/good@0.7.7/array.js"
 
 const pathToFile = Deno.args[0]
 
 const result = await FileSystem.read(pathToFile)
 const studySourceStrings = result.split('A new study created in memory with name')
-const studyResults = []
+let studyResults = ""
 for (const eachSourceString of studySourceStrings) {
     const lines = eachSourceString.split('\n')
     let indexOfbest = NaN
@@ -122,14 +123,24 @@ for (const eachSourceString of studySourceStrings) {
     // save summary
     //
     if (trials.length != 0) {
-        studyResults.push({
-            bestTrial,
-            scores: {
-                stats: {count: trials.length, ...scoreStats},
-                scoreRange: scoreRangeObject,
-            },
-            trials,
-        })
+        const scores = {
+            stats: {count: trials.length, ...scoreStats},
+            scoreRange: scoreRangeObject,
+        }
+        trials.sort((a,b)=>b.score-a.score)
+        const indentString = "                 "
+        let trialString = ""
+        for (const each of trials.slice(0,-1)) {
+            trialString += `${indentString}${JSON.stringify(each)},\n`
+        }
+        trialString += `${indentString}${JSON.stringify(trials.slice(-1)[0])}\n`
+
+        studyResults += `{
+            "bestTrial": ${indent({ string: JSON.stringify(bestTrial, 0, 4), by: "            "})},
+            "scoreRange": ${indent({ string: JSON.stringify(scores, 0, 4), by: "            " })},
+            "trialString": [\n${trialString}
+            ]
+        }`.replace(/\n        /g,"\n")
     }
 }
 
@@ -141,7 +152,7 @@ const [ folders, file_name, extension ] = FileSystem.pathPieces(pathToFile)
 const outputPath = `${FileSystem.join(...folders)}/${file_name}.json`
 await FileSystem.write({
     path: outputPath,
-    data: JSON.stringify(studyResults,0,4),
+    data: studyResults,
 })
 console.log(`result written to :${outputPath}`)
 
