@@ -428,7 +428,13 @@ def train_agent_async(
                         print(f"Hit early stopping because biggest_recent_change: {biggest_recent_change} < {config.early_stopping.lowerbound_for_max_recent_change}")
                         stop_event.set()
                 
-                print(f'''{{"total_number_of_episodes":{total_number_of_episodes}, "number_of_timesteps":{number_of_timesteps.value}, "per_episode_reward":{per_episode_reward:.2f}, "episode_reward_trend_value": {episode_reward_trend_value}, "biggest_recent_change": {biggest_recent_change} }},''')
+                print(json.dumps({
+                    "total_number_of_episodes": total_number_of_episodes,
+                    "number_of_timesteps": number_of_timesteps.value,
+                    "per_episode_reward": round(per_episode_reward, 2),
+                    "episode_reward_trend_value": episode_reward_trend_value,
+                    "biggest_recent_change": biggest_recent_change,
+                })+",")
                 for each_step, each_min_value in config.early_stopping.thresholds.items():
                     # if meets the increment-based threshold
                     if total_number_of_episodes > each_step:

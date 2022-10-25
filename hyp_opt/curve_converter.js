@@ -23,6 +23,7 @@ for (const eachSourceString of studySourceStrings) {
     jsonString = jsonString.replace(/,\n$/, "\n")
     jsonString += "]"
 
+    jsonString = jsonString.replace(/nan/g,'""')
     try {
         curves.push(JSON.parse(jsonString))
     } catch (error) {
