@@ -40,6 +40,7 @@ for each_curve_index, each_curve in enumerate(data):
 
 lines = sorted(lines, key=lambda each: each["score"])
 lines = lines[-only_show_top:]
+print(*[ each["label"]+"\n" for each in lines ])
 for line_index, line in enumerate(lines):
     line["backgroundColor"] = wrap_around_get(line_index, colors)
     line["borderColor"] = wrap_around_get(line_index, colors)

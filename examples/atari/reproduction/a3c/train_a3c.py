@@ -1,6 +1,6 @@
 import argparse
 import os
-from random import random, sample, choices, randn
+from random import random, sample, choices, randint
 
 # Prevent numpy from using multiple threads
 os.environ["OMP_NUM_THREADS"] = "1"
@@ -138,7 +138,7 @@ def args_from_config():
     args.activation         =  1
     
     # override with config
-    args.seed      = config.random_seeds[0] if config.use_frozen_random_seed else randn()
+    args.seed      = config.random_seeds[0] if config.use_frozen_random_seed else randint(0, 2**32 - 1)
     args.processes = config.number_of_processes
     args.malicious = config.number_of_malicious_processes
     args.mal_type  = config.attack_method
@@ -247,7 +247,7 @@ def train_a3c(args):
     # shared reward data
     import torch.multiprocessing as mp
     output = LazyDict()
-    if args.demo:
+    if config.evaluation.enabled:
         env = make_env(0, True)
         eval_stats = experiments.eval_performance(
             env=env, agent=agent, n_steps=args.eval_n_steps, n_episodes=None
@@ -261,6 +261,7 @@ def train_a3c(args):
             )
         )
     else:
+        help(experiments.train_agent_async)
         experiments.train_agent_async(
             agent=agent,
             outdir=args.outdir,
@@ -269,8 +270,8 @@ def train_a3c(args):
             profile=args.profile,
             steps=args.steps,
             eval_n_steps=args.eval_n_steps,
-            eval_n_episodes=None,
-            eval_interval=None,
+            eval_n_episodes=10, # 10 matches the paper
+            eval_interval=config.number_of_eval_steps,
             global_step_hooks=[],
             save_best_so_far_agent=True,
             num_agents_byz=args.malicious,
