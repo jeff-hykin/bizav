@@ -19,6 +19,7 @@
                                   # 'sign' being the reverse of a good agent (* 2.5)
                                   # 'act' being from a random policy (very dumb agent, but gradient in correct direction)
                                   # 'noise' being simply return noise instead of a gradient
+            use_frozen_random_seed: False
             random_seeds: [ 0 ]
             value_trend_lookback_size: 10
             early_stopping:
@@ -68,17 +69,17 @@
                             exponent: [ -1, -2, -3, -4, -5, -6, -7, -8, ]
                 phase_2:
                     sequential_options:
-                        t_max: [3, 5,]
-                        hidden_size: [64, 128]
+                        # t_max: [3, 5,]
+                        # hidden_size: [64, 128]
                         variance_scaling_factor: [ 0.01, 1, 100, 1000 ]
                         permaban_threshold: [ 100, 500, 1000, 2000, 10_000 ]
-                    sequential_exponential_options:
-                        learning_rate:
-                            base: [ 2, 3, ]
-                            exponent: [ -4, -5, ]
-                        beta:
-                            base: [ 1, 2, 3, 4, ]
-                            exponent: [ -4, -5, -6, -7, ]
+                    # sequential_exponential_options:
+                    #     learning_rate:
+                    #         base: [ 2, 3, ]
+                    #         exponent: [ -4, -5, ]
+                    #     beta:
+                    #         base: [ 1, 2, 3, 4, ]
+                    #         exponent: [ -4, -5, -6, -7, ]
             
             early_stopping:
                 lowerbound_for_max_recent_change: 0.1 # if changes in average episode reward are this stable, it needs to just end

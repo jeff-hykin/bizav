@@ -1,5 +1,6 @@
 import argparse
 import os
+from random import random, sample, choices, randn
 
 # Prevent numpy from using multiple threads
 os.environ["OMP_NUM_THREADS"] = "1"
@@ -137,7 +138,7 @@ def args_from_config():
     args.activation         =  1
     
     # override with config
-    args.seed      = config.random_seeds[0]
+    args.seed      = config.random_seeds[0] if config.use_frozen_random_seed else randn()
     args.processes = config.number_of_processes
     args.malicious = config.number_of_malicious_processes
     args.mal_type  = config.attack_method
