@@ -314,6 +314,7 @@ def train_agent_async(
         Trained agent.
     """
     global central_agent_process_index, when_all_processes_are_updated, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  process_index_to_temp_filter,  filtered_count,  act_val,  visits,  filtered_agents, episode_reward_trend, median_episode_rewards, episode_reward_trend
+    
     config.verbose and print("[starting train_agent_async()]")
     logger = logger or logging.getLogger(__name__)
 
@@ -428,6 +429,7 @@ def train_agent_async(
                         print(f"Hit early stopping because biggest_recent_change: {biggest_recent_change} < {config.early_stopping.lowerbound_for_max_recent_change}")
                         stop_event.set()
                 
+                import json
                 print(json.dumps({
                     "total_number_of_episodes": total_number_of_episodes,
                     "number_of_timesteps": number_of_timesteps.value,

@@ -165,7 +165,7 @@ def train_a3c(args):
     # Set different random seeds for different subprocesses.
     # If seed=0 and processes=4, subprocess seeds are [0, 1, 2, 3].
     # If seed=1 and processes=4, subprocess seeds are [4, 5, 6, 7].
-    process_seeds = np.arange(args.processes) + args.seed * args.processes
+    process_seeds = np.arange(args.processes) + int(args.seed/1000) * args.processes
     assert process_seeds.max() < one_above_max_seed
 
     args.outdir = experiments.prepare_output_dir(args, args.outdir)
@@ -261,7 +261,6 @@ def train_a3c(args):
             )
         )
     else:
-        help(experiments.train_agent_async)
         experiments.train_agent_async(
             agent=agent,
             outdir=args.outdir,
@@ -269,9 +268,8 @@ def train_a3c(args):
             make_env=make_env,
             profile=args.profile,
             steps=args.steps,
-            eval_n_steps=args.eval_n_steps,
-            eval_n_episodes=10, # 10 matches the paper
-            eval_interval=config.number_of_eval_steps,
+            eval_n_episodes=config.evaluation.number_of_epsiodes_during_eval,
+            eval_interval=config.evaluation.number_of_episodes_before_eval,
             global_step_hooks=[],
             save_best_so_far_agent=True,
             num_agents_byz=args.malicious,

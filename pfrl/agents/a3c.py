@@ -103,6 +103,7 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
         self.average_value_decay = average_value_decay
         self.average_entropy_decay = average_entropy_decay
         self.batch_states = batch_states
+        self.process_idx = process_idx
 
         self.device = torch.device("cpu")
         self.t = 0
