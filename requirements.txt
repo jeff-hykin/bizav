@@ -4,3 +4,6 @@ gym>=0.9.7
 numpy>=1.10.4
 filelock
 pillow
+./modules/gym
+
+./modules/pybullet-gym

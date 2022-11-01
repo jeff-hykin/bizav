@@ -38,6 +38,14 @@ optional = false
 python-versions = ">=3.6"
 
 [[package]]
+name = "blissful-basics"
+version = "0.2.13"
+description = "Tools I need in every python project"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[[package]]
 name = "box2d-py"
 version = "2.3.5"
 description = "Python Box2D"
@@ -393,8 +401,8 @@ python-versions = ">=3.8"
 
 [package.dependencies]
 numpy = [
-    {version = ">=1.21.0", markers = "python_version >= \"3.10\""},
     {version = ">=1.20.3", markers = "python_version < \"3.10\""},
+    {version = ">=1.21.0", markers = "python_version >= \"3.10\""},
 ]
 python-dateutil = ">=2.8.1"
 pytz = ">=2020.1"
@@ -731,7 +739,7 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<3.11"
-content-hash = "a4d11acb4b13089c1033a6f3b63cf05cdfedeaacf90de2dbc4da484911652d41"
+content-hash = "650c78fe9da3609d5bad1c59cf4f6897014cafefa847250095a8d4b217ece8d0"
 
 [metadata.files]
 alembic = [
@@ -745,6 +753,10 @@ attrs = [
 autopage = [
     {file = "autopage-0.5.1-py3-none-any.whl", hash = "sha256:0fbf5efbe78d466a26753e1dee3272423a3adc989d6a778c700e89a3f8ff0d88"},
     {file = "autopage-0.5.1.tar.gz", hash = "sha256:01be3ee61bb714e9090fcc5c10f4cf546c396331c620c6ae50a2321b28ed3199"},
+]
+blissful-basics = [
+    {file = "blissful_basics-0.2.13-py3-none-any.whl", hash = "sha256:53a9df9e83af303fd6a4f7e7796fd920b4b72e1c731cf9c319163d02a7c1bc3c"},
+    {file = "blissful_basics-0.2.13.tar.gz", hash = "sha256:bde91448721375176e842a2c7eae4a13d2822d12ac315d3293cd12977d2fccd8"},
 ]
 box2d-py = [
     {file = "box2d-py-2.3.5.tar.gz", hash = "sha256:b37dc38844bcd7def48a97111d2b082e4f81cca3cece7460feb3eacda0da2207"},

@@ -394,6 +394,7 @@ def train_agent_async(
                 
                 choices = set()
                 while len(choices) < config.number_of_malicious_processes:
+                    import random
                     choices.add(
                         random.choices(
                             process_indicies,
