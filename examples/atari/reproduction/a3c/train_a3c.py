@@ -151,6 +151,8 @@ def args_from_config():
     args.hidden_size        = env_config.hidden_size
     args.permaban_threshold = env_config.permaban_threshold
     
+    print(f'''config = {config}''')
+    print(f'''args = {args}''')
     return args
 
 
@@ -246,7 +248,26 @@ def train_a3c(args):
     
     # shared reward data
     import torch.multiprocessing as mp
-    output = LazyDict()
+    output = LazyDict(
+        median_episode_rewards=[],
+    )
+    experiments.train_agent_async(
+        agent=agent,
+        outdir=args.outdir,
+        processes=args.processes,
+        make_env=make_env,
+        profile=args.profile,
+        steps=args.steps,
+        eval_n_episodes=config.evaluation.number_of_epsiodes_during_eval,
+        eval_interval=config.evaluation.number_of_episodes_before_eval,
+        global_step_hooks=[],
+        save_best_so_far_agent=True,
+        num_agents_byz=args.malicious,
+        permaban_threshold=args.permaban_threshold,
+        output=output,
+    )
+    
+    # FIXME: check me, this doesnt seem right
     if config.evaluation.enabled:
         env = make_env(0, True)
         eval_stats = experiments.eval_performance(
@@ -259,22 +280,6 @@ def train_a3c(args):
                 eval_stats["median"],
                 eval_stats["stdev"],
             )
-        )
-    else:
-        experiments.train_agent_async(
-            agent=agent,
-            outdir=args.outdir,
-            processes=args.processes,
-            make_env=make_env,
-            profile=args.profile,
-            steps=args.steps,
-            eval_n_episodes=config.evaluation.number_of_epsiodes_during_eval,
-            eval_interval=config.evaluation.number_of_episodes_before_eval,
-            global_step_hooks=[],
-            save_best_so_far_agent=True,
-            num_agents_byz=args.malicious,
-            permaban_threshold=args.permaban_threshold,
-            output=output,
         )
     
     

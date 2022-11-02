@@ -39,6 +39,9 @@
 
 # [[ you can add tools for your project right here or at the bottom ]]
 
+[[packages]]
+load = [ "zellij",]
+
 # 
 # Python
 # 
