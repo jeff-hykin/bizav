@@ -53,6 +53,7 @@
         (default):
             evaluation:
                 enabled: False
+                number_of_epsiodes_during_eval: 10 # this value matches the prev paper
                 number_of_episodes_before_eval: 130
                 
             verbose: True
@@ -72,6 +73,12 @@
                 thresholds: {}
             
         CARTPOLE:
+            number_of_processes: 10
+            number_of_malicious_processes: 3
+            evaluation:
+                enabled: True
+                number_of_epsiodes_during_eval: 10 # this value matches the prev paper
+                number_of_episodes_before_eval: 130
             env_config:
                 env_name: CartPole-v1
                 training_episode_count: 100_000

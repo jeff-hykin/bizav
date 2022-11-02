@@ -133,7 +133,6 @@ def train_loop(
             logger.info("Saved the current model to %s", dirname)
 
     try:
-        config.verbose and print(f'''env = {env}''')
         episode_r                   = 0
         global_episode_count        = 0
         local_t                     = 0
