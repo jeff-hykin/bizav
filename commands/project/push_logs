@@ -10,17 +10,23 @@ if (!fileInfo.exists) {
 }
 
 const oneHourInMs = 1000 * 60 * 60
-setInterval(async ()=>{
+const task = async ()=>{
     // convert hyperopts
     var { success } = await run`commands/project/convert_optuna_log ${fileInfo.path}`
+    console.log(`success is:`,success)
     // convert curves
     var { success } = await run`commands/project/convert_curve_log ${fileInfo.path}`
+    console.log(`success is:`,success)
     // plot curves
-    var { success } = await run`python hyp_opt/curve_plotter.py ${fileInfo.path}`
+    const [ folders, name, ext ] = FileSystem.pathPieces(fileInfo.path)
+    var { success } = await run`python3 ./hyp_opt/curve_plotter.py ${FileSystem.join(...folders, name+".curves.json")}`
+    console.log(`success is:`,success)
     
     // push
     if (success) { var { success } = await run`git add -A` }
     if (success) { var { success } = await run`git commit -m ${'- autolog'}` }
     if (success) { var { success } = await run`git push` }
 
-}, oneHourInMs)
+}
+setInterval(task, oneHourInMs)
+task()
