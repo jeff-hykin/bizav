@@ -1,0 +1,26 @@
+#!/usr/bin/env -S deno run --allow-all
+
+import { FileSystem } from "https://deno.land/x/quickr@0.5.0/main/file_system.js"
+import { run, throwIfFails, zipInto, mergeInto, returnAsString, Timeout, Env, Cwd, Stdin, Stdout, Stderr, Out, Overwrite, AppendTo } from "https://deno.land/x/quickr@0.5.0/main/run.js"
+
+
+const fileInfo = await FileSystem.info(Deno.args[0])
+if (!fileInfo.exists) {
+    throw Error(`That file doesn't seem to exist: ${fileInfo.path}`)
+}
+
+const oneHourInMs = 1000 * 60 * 60
+setInterval(async ()=>{
+    // convert hyperopts
+    var { success } = await run`commands/project/convert_optuna_log ${fileInfo.path}`
+    // convert curves
+    var { success } = await run`commands/project/convert_curve_log ${fileInfo.path}`
+    // plot curves
+    var { success } = await run`python hyp_opt/curve_plotter.py ${fileInfo.path}`
+    
+    // push
+    if (success) { var { success } = await run`git add -A` }
+    if (success) { var { success } = await run`git commit -m ${'- autolog'}` }
+    if (success) { var { success } = await run`git push` }
+
+}, oneHourInMs)
