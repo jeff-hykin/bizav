@@ -160,6 +160,18 @@
                     # 200: -800 #  by epsiode 200, get -600 or better
                     # 1000: -500 # probably too agressive
         
+        BEST_BENIGN_CHEETAH:
+            number_of_malicious_processes: 0
+            env_config:
+                env_name: "HalfCheetah-v2"
+                learning_rate: 0.0002
+                t_max: 5
+                hidden_size: 128
+                variance_scaling_factor: 100
+                permaban_threshold: 1000
+                beta: 0.00002
+                activation: 1
+        
         LUNAR_LANDER:
             env_config:
                 env_name: "LunarLander-v2"
