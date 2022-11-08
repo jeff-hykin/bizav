@@ -208,8 +208,6 @@ def train_loop(
                         break
                 
                 proportional_number_of_timesteps = number_of_timesteps.value / config.number_of_processes
-                print(f'''global_episode_count = {global_episode_count}''')
-                print(f'''max_number_of_episodes = {max_number_of_episodes}''')
                 if global_episode_count >= max_number_of_episodes or stop_event.is_set():
                     break
 

@@ -162,6 +162,8 @@
         
         BEST_BENIGN_CHEETAH:
             number_of_malicious_processes: 0
+            evaluation:
+                enabled: True
             env_config:
                 env_name: "HalfCheetah-v2"
                 learning_rate: 0.0002
