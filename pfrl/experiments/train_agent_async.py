@@ -119,6 +119,7 @@ def train_loop(
     byzantine_agent_number=0,
 ):
     global episode_reward_trend
+    max_number_of_episodes = config.training.episode_count # override arg (could use cleaning up)
     config.verbose and print("[starting train_loop()]")
     logger = logger or logging.getLogger(__name__)
 
@@ -207,6 +208,8 @@ def train_loop(
                         break
                 
                 proportional_number_of_timesteps = number_of_timesteps.value / config.number_of_processes
+                print(f'''global_episode_count = {global_episode_count}''')
+                print(f'''max_number_of_episodes = {max_number_of_episodes}''')
                 if global_episode_count >= max_number_of_episodes or stop_event.is_set():
                     break
 
@@ -530,8 +533,8 @@ def train_agent_async(
     else:
         evaluator = AsyncEvaluator(
             n_steps=eval_n_steps,
-            n_episodes=eval_n_episodes,
-            eval_interval=eval_interval,
+            n_episodes=eval_n_episodes,  # eval_n_episodes = config.evaluation.number_of_epsiodes_during_eval,
+            eval_interval=eval_interval, # eval_interval   = config.evaluation.number_of_episodes_before_eval,
             outdir=outdir,
             max_episode_len=max_episode_len,
             step_offset=step_offset,

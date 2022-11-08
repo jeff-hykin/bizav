@@ -13,7 +13,7 @@ mal_args = f'''
 env_config = config.env_config
 env_args =f'''
     --env {env_config.env_name}
-    --steps {env_config.training_episode_count}
+    --steps {config.training.episode_count}
     --lr {env_config.learning_rate}
     --beta {env_config.beta}
     --t-max {env_config.t_max}

@@ -121,8 +121,6 @@ def args_from_config():
     args.steps              =  8 * 10**7
     args.max_frames         =  30 * 60 * 60, # 30 minutes with 60 fps help="Maximum number of frames for each episode.",
     args.lr                 =  7e-4
-    args.eval_interval      =  250000
-    args.eval_n_steps       =  125000
     args.demo               =  False
     args.load_pretrained    =  False
     args.pretrained_type    = "best" # choices=["best", "final"]
@@ -143,7 +141,7 @@ def args_from_config():
     args.malicious = config.number_of_malicious_processes
     args.mal_type  = config.attack_method
     args.env                = env_config.env_name
-    args.steps              = env_config.training_episode_count
+    args.steps              = config.training.episode_count
     args.lr                 = env_config.learning_rate
     args.beta               = env_config.beta
     args.t_max              = env_config.t_max
@@ -246,74 +244,90 @@ def train_a3c(args):
                 ]
             )
     
-    # shared reward data
-    import torch.multiprocessing as mp
-    output = LazyDict(
-        median_episode_rewards=[],
-    )
-    experiments.train_agent_async(
-        agent=agent,
-        outdir=args.outdir,
-        processes=args.processes,
-        make_env=make_env,
-        profile=args.profile,
-        steps=args.steps,
-        eval_n_episodes=config.evaluation.number_of_epsiodes_during_eval,
-        eval_interval=config.evaluation.number_of_episodes_before_eval,
-        global_step_hooks=[],
-        save_best_so_far_agent=True,
-        num_agents_byz=args.malicious,
-        permaban_threshold=args.permaban_threshold,
-        output=output,
-    )
+    # argument saftey check (before training)
+    if config.evaluation.enabled:
+        only_one_is_none = (config.evaluation.final_eval.number_of_episodes != None) != (config.evaluation.final_eval.number_of_steps != None)
+        if not only_one_is_none:
+            raise Exception(f'''
+            only one of these should be None, but instead I get this:
+                config.evaluation.final_eval.number_of_episodes: {config.evaluation.final_eval.number_of_episodes}
+                config.evaluation.final_eval.number_of_steps: {config.evaluation.final_eval.number_of_steps}
+            ''')
+    
+    # 
+    # 
+    # Training
+    # 
+    # 
+    if True:
+        # shared reward data
+        import torch.multiprocessing as mp
+        output = LazyDict(
+            median_episode_rewards=[],
+        )
+        experiments.train_agent_async(
+            agent=agent,
+            outdir=args.outdir,
+            processes=args.processes,
+            make_env=make_env,
+            profile=args.profile,
+            steps=args.steps,
+            eval_n_episodes=config.evaluation.number_of_epsiodes_during_eval,
+            eval_interval=config.evaluation.number_of_episodes_before_eval,
+            global_step_hooks=[],
+            save_best_so_far_agent=True,
+            num_agents_byz=args.malicious,
+            permaban_threshold=args.permaban_threshold,
+            output=output,
+        )
+        # output.median_episode_rewards
+        # output.episode_reward_trend
+        # output.check_rate
+        # output.number_of_episodes
+        
+        # mean_reward = get_results(os.path.join(args.outdir, str(args.seed) + '.log'), gym.spec(args.env).reward_threshold)
+        mean_reward = sum(output.median_episode_rewards)/len(output.median_episode_rewards)
+        
+        # 
+        # estimate final value (only relevent with early early_stopping)
+        # 
+        try:
+            from main.utils import trend_calculate
+            episode_reward_trend_value   = trend_calculate(output.episode_reward_trend) / output.check_rate
+            number_of_remaining_episodes = output.number_of_episodes - config.evaluation.number_of_episodes_before_eval
+            if number_of_remaining_episodes > 0:
+                import math
+                end_result_estimate = math.log2(number_of_remaining_episodes) * episode_reward_trend_value
+                end_result_thresholds = list(config.early_stopping.thresholds.values())
+                if end_result_thresholds:
+                    best_threshold = max(end_result_thresholds)
+                    if end_result_estimate > best_threshold:
+                        print(f"{episode_reward_trend_value} for the remaining {number_of_remaining_episodes} would've still ended up being above: {best_threshold} (it would be {end_result_estimate})")
+                        return mean_reward
+                    else:
+                        print(f'''end_result_estimate = {end_result_estimate}''')
+                        return end_result_estimate # use the estimate to try and help the optimizer
+                return mean_reward
+        except Exception as error:
+            print("From the 'estimate final value' code")
+            print(error)
     
     # FIXME: check me, this doesnt seem right
     if config.evaluation.enabled:
         env = make_env(0, True)
         eval_stats = experiments.eval_performance(
-            env=env, agent=agent, n_steps=args.eval_n_steps, n_episodes=None
+            env=env,
+            agent=agent,
+            n_steps=config.evaluation.final_eval.number_of_steps,
+            n_episodes=config.evaluation.final_eval.number_of_episodes,
         )
-        print(
-            "n_steps: {} mean: {} median: {} stdev: {}".format(
-                args.eval_n_steps,
-                eval_stats["mean"],
-                eval_stats["median"],
-                eval_stats["stdev"],
-            )
-        )
-    
-    
-    # output.median_episode_rewards
-    # output.episode_reward_trend
-    # output.check_rate
-    # output.number_of_episodes
-    
-    # mean_reward = get_results(os.path.join(args.outdir, str(args.seed) + '.log'), gym.spec(args.env).reward_threshold)
-    mean_reward = sum(output.median_episode_rewards)/len(output.median_episode_rewards)
-    
-    # 
-    # estimate final value (only relevent with early early_stopping)
-    # 
-    try:
-        from main.utils import trend_calculate
-        episode_reward_trend_value   = trend_calculate(output.episode_reward_trend) / output.check_rate
-        number_of_remaining_episodes = output.number_of_episodes - args.eval_n_steps
-        if number_of_remaining_episodes > 0:
-            import math
-            end_result_estimate = math.log2(number_of_remaining_episodes) * episode_reward_trend_value
-            end_result_thresholds = list(config.early_stopping.thresholds.values())
-            if end_result_thresholds:
-                best_threshold = max(end_result_thresholds)
-                if end_result_estimate > best_threshold:
-                    print(f"{episode_reward_trend_value} for the remaining {number_of_remaining_episodes} would've still ended up being above: {best_threshold} (it would be {end_result_estimate})")
-                    return mean_reward
-                else:
-                    print(f'''end_result_estimate = {end_result_estimate}''')
-                    return end_result_estimate # use the estimate to try and help the optimizer
-            return mean_reward
-    except Exception as error:
-        print("From the 'estimate final value' code")
-        print(error)
+        print(f'''final_eval: {(dict(
+            number_of_steps=config.evaluation.final_eval.number_of_steps,
+            number_of_episodes=config.evaluation.final_eval.number_of_episodes,
+            mean=eval_stats["mean"],
+            median=eval_stats["median"],
+            stdev=eval_stats["stdev"],
+        ))}''')
     
     return mean_reward
 
