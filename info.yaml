@@ -6,6 +6,7 @@
         hyperparams_folder: "./hyp_opt"
         ac3_start: ./examples/atari/reproduction/a3c/train_a3c.py
         study_checkpoints: ./study_checkpoints.ignore/
+        comparison_log_folder: ./logs/comparisons/
 
     # git-ignored path (chooses profile)
     (local_data): ./local_data.ignore.yaml
@@ -64,6 +65,7 @@
             verbose: True
             number_of_processes: 10
             number_of_malicious_processes: 3
+            expected_number_of_malicious_processes: 3 # set this to 0 to disable UCB
             logarithmic_scale_reference: [ 0.1, 0.08, 0.063, 0.05, 0.04, 0.032, 0.025, 0.02, 0.016, 0.012, 0.01, 0.008, 0.0063, 0.005, 0.004, 0.0032, 0.0025, 0.002, 0.0016, 0.0012, 0.001, 0.0008, 0.00063, 0.0005, 0.0004, 0.00032, 0.00025, 0.0002, 0.00016, 0.00012, 0.00001, 0.000008, 0.0000063, 0.000005, 0.000004, 0.0000032, 0.0000025, 0.000002, 0.0000016, 0.0000012, ]
             attack_method: 'sign' # 
                                   # 'sign' being the reverse of a good agent (* 2.5)
@@ -96,8 +98,6 @@
                             exponent: [ -1, -2, -3, -4, -5, -6, -7, -8, ]
             
         CARTPOLE:
-            number_of_processes: 10
-            number_of_malicious_processes: 3
             evaluation:
                 enabled: True
                 number_of_epsiodes_during_eval: 10 # this value matches the prev paper
@@ -106,7 +106,7 @@
                     number_of_steps: 125_000
             
             training:
-                episode_count: 100_000
+                episode_count: 21_000
             
             env_config:
                 env_name: CartPole-v1
@@ -202,7 +202,7 @@
                 t_max: 10
                 hidden_size: 128
             training:
-                episode_count: 100_000
+                episode_count: 40_000
             evaluation:
                 number_of_episodes_before_eval: 130
                 number_of_epsiodes_during_eval: 10 # this value matches the prev paper
