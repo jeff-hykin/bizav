@@ -5,6 +5,7 @@
         study_counter_file: "./study_counter.json"
         hyperparams_folder: "./hyp_opt"
         ac3_start: ./examples/atari/reproduction/a3c/train_a3c.py
+        study_checkpoints: ./study_checkpoints.ignore/
 
     # git-ignored path (chooses profile)
     (local_data): ./local_data.ignore.yaml

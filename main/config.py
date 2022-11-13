@@ -10,6 +10,7 @@ info = find_and_load(
 )
 config = info.config
 env_config = config.env_config
+args = info.unused_args
 
 # 
 # study count
