@@ -155,7 +155,7 @@ def args_from_config():
 
 
 one_above_max_seed = 2**31
-def train_a3c(args, trial):
+def train_a3c(args, trial=None):
     config.verbose and print("[starting train_a3c()]")
     # Set a random seed used in PFRL.
     # If you use more than one processes, the results will be no longer
@@ -276,7 +276,6 @@ def train_a3c(args, trial):
             eval_interval=config.evaluation.number_of_episodes_before_eval,
             global_step_hooks=[],
             save_best_so_far_agent=True,
-            num_agents_byz=args.malicious,
             permaban_threshold=args.permaban_threshold,
             output=output,
             trial=trial,
@@ -313,7 +312,6 @@ def train_a3c(args, trial):
             print("From the 'estimate final value' code")
             print(error)
     
-    # FIXME: check me, this doesnt seem right
     if config.evaluation.enabled:
         env = make_env(0, True)
         eval_stats = experiments.eval_performance(
