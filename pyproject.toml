@@ -6,7 +6,6 @@ authors = [""]
 
 [tool.poetry.dependencies]
 python = ">=3.8,<3.11"
-pip = "20.1.1"
 torch = "^1.12.1"
 # gym = "0.22.0"
 numpy = "^1.23.4"
