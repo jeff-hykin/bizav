@@ -156,17 +156,29 @@ def train_loop(
             agent.observe(obs, r, done, reset)
 
             if agent.updated:
-                all_updated_barrier.wait()  # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
+                try:
+                    all_updated_barrier.wait()  # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
+                except Exception as error:
+                    print(f"exited at all_updated_barrier.wait(): {process_idx}")
+                    exit()
                 # only one process runs this
                 if process_idx == central_agent_process_index:
-                    when_all_processes_are_updated()
+                    try:
+                        when_all_processes_are_updated()
+                    except Exception as error:
+                        print(f"exited at when_all_processes_are_updated(): {process_idx}")
+                        stop_event.set()
                     
                 if byzantine_agent_number > 0:
                     # If not current UCB action and not permanently filtered, include agent's gradient in global model
                     if process_index_to_temp_filter.value != process_idx and filtered_agents[process_idx] == 0: agent.add_update()
                 else:
                     agent.add_update()
-                update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+                try:
+                    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+                except Exception as error:
+                    print(f"exited at update_barrier.wait(): {process_idx}")
+                    exit()
                 agent.after_update()    # Each agent will download the global model after the optimizer max_number_of_episodes
 
             if done or reset:# Get and increment the global number_of_episodes
@@ -267,6 +279,7 @@ def train_agent_async(
     num_agents_byz=0,
     permaban_threshold=1,
     output=LazyDict(),
+    trial=None,
 ):
     """Train agent asynchronously using multiprocessing.
 
@@ -422,12 +435,22 @@ def train_agent_async(
                 episode_reward_trend = output.episode_reward_trend = episode_reward_trend[-config.value_trend_lookback_size:]
                 episode_reward_trend_value = trend_calculate(episode_reward_trend) / check_rate
                 biggest_recent_change = math.nan
+                
+                # check optuna stopper
+                import optuna
+                if trial:
+                    trial.report(per_episode_reward, total_number_of_episodes)
+                    if trial.should_prune():
+                        stop_event.set()
+                        raise optuna.TrialPruned()
+                
                 if len(episode_reward_trend) >= config.value_trend_lookback_size:
                     absolute_changes = [ abs(each) for each in utils.sequential_value_changes(episode_reward_trend)  ]
                     biggest_recent_change = max(absolute_changes)
                     if biggest_recent_change < config.early_stopping.lowerbound_for_max_recent_change:
                         print(f"Hit early stopping because biggest_recent_change: {biggest_recent_change} < {config.early_stopping.lowerbound_for_max_recent_change}")
                         stop_event.set()
+                        raise optuna.TrialPruned()
                 
                 import json
                 print(json.dumps({
@@ -437,6 +460,7 @@ def train_agent_async(
                     "episode_reward_trend_value": episode_reward_trend_value,
                     "biggest_recent_change": biggest_recent_change,
                 })+",")
+                
                 for each_step, each_min_value in config.early_stopping.thresholds.items():
                     # if meets the increment-based threshold
                     if total_number_of_episodes > each_step:
@@ -444,6 +468,7 @@ def train_agent_async(
                         if per_episode_reward < each_min_value:
                             print(f"Hit early stopping because per_episode_reward: {per_episode_reward} < {each_min_value}")
                             stop_event.set()
+                            raise optuna.TrialPruned()
         
         # print("[starting when_all_processes_are_updated()]")
         all_malicious_actors_found = filtered_count.value == num_agents_byz
@@ -564,8 +589,7 @@ def train_agent_async(
             local_agent = agent
         local_agent.process_idx = process_idx
 
-        def f():
-            train_loop(
+        f = lambda : train_loop(
                 process_idx=process_idx,
                 number_of_episodes=number_of_episodes,
                 agent=local_agent,
@@ -587,26 +611,18 @@ def train_agent_async(
                 byzantine_agent_number=num_agents_byz,
                 median_episode_rewards=median_episode_rewards,
             )
-        
-        if profile:
-            import cProfile
-
-            cProfile.runctx(
-                "f()", globals(), locals(), f"profile-{os.getpid()}.out"
-            )
-        else:
-            try:
+        try:
+            if profile:
+                import cProfile
+                cProfile.runctx("f()", globals(), locals(), f"profile-{os.getpid()}.out")
+            else:
                 f()
-            except Exception as error:
-                print(error)
-                print()
-                print()
-                print()
-                raise
-
-        env.close()
-        if eval_env is not env:
-            eval_env.close()
+        except Exception as error:
+            raise error
+        finally:
+            env.close()
+            if eval_env is not env:
+                eval_env.close()
     
     config.verbose and print("[about to call async_.run_async()]")
     async_.run_async(processes, run_func)

@@ -6,19 +6,20 @@ install_requires = [
     'gym==0.22.0',
     'pillow',
     'pygame',
-    "torch>=1.12.1"
-    "numpy>=1.23.4"
-    "filelock>=3.8.0"
-    "Pillow>=9.2.0"
-    "optuna>=3.0.3"
-    "pandas>=1.5.0"
-    "matplotlib>=3.6.1"
-    "pygame2.1.0"
-    "quik-config>=1.6.0"
-    "box2d-py2.3.5"
-    "blissful-basics0.2.1"
-    "super-map1.3.1"
+    "torch>=1.12.1",
+    "numpy>=1.23.4",
+    "filelock>=3.8.0",
+    "Pillow>=9.2.0",
+    "optuna>=3.0.3",
+    "pandas>=1.5.0",
+    "matplotlib>=3.6.1",
+    "pygame2.1.0",
+    "quik-config>=1.6.0",
+    "box2d-py2.3.5",
+    "blissful-basics0.2.1",
+    "super-map1.3.1",
     'mujoco-py<2.2,>=2.1',
+    'plotly>=5.11.0',
 ]
 
 test_requires = [

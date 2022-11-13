@@ -13,11 +13,8 @@ from blissful_basics import FS
 
 # dev_null = open(os.devnull, 'w')
 # sys.stderr = f
-active_trial = None
 
 def stage1_tuning(trial):
-    global active_trial
-    active_trial = trial
     # 
     # modify the config
     # 
@@ -31,12 +28,10 @@ def stage1_tuning(trial):
     # run
     # 
     args = args_from_config() 
-    fitness_value = float(train_a3c.train_a3c(args))
+    fitness_value = float(train_a3c.train_a3c(args, trial))
     return fitness_value
 
 def stage2_tuning(trial):
-    global active_trial
-    active_trial = trial
     
     # 
     # modify the config
@@ -51,8 +46,7 @@ def stage2_tuning(trial):
     # run
     # 
     args = args_from_config()
-    print(f'''args = {args}''')
-    fitness_value = float(train_a3c.train_a3c(args))
+    fitness_value = float(train_a3c.train_a3c(args, trial))
     return fitness_value
 
 def hyper_modify_config(trial, hyper_options, env_config):
@@ -90,20 +84,16 @@ def start_running_trials(objective, number_of_trials):
     storage = optuna.storages.RDBStorage(
         f"sqlite:///{info.path_to.study_checkpoints}/{study_name}.db",
         heartbeat_interval=1,
-        failed_trial_callback=RetryFailedTrialCallback(),
+        failed_trial_callback=optuna.storages.RetryFailedTrialCallback(),
     )
     study = optuna.create_study(
         storage=storage,
         study_name=study_name,
+        sampler=optuna.samplers.TPESampler(multivariate=True),
         direction="maximize",
         load_if_exists=True
     )
-    study.optimize(
-        objective,
-        n_trials=number_of_trials,
-        sampler=optuna.samplers.TPESampler(multivariate=True),
-    )
-    study.optimize(objective, gc_after_trial=True)
+    study.optimize(objective, n_trials=number_of_trials, gc_after_trial=True)
 
     pruned_trials = study.get_trials(states=(optuna.trial.TrialState.PRUNED,))
     complete_trials = study.get_trials(states=(optuna.trial.TrialState.COMPLETE,))
@@ -129,4 +119,4 @@ if __name__ == "__main__":
     import torch
     torch.multiprocessing.freeze_support()
     
-    start_running_trials(objective=stage2_tuning, number_of_trials=300)
+    start_running_trials(objective=stage2_tuning, number_of_trials=config.tuning.number_of_trials)

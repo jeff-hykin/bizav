@@ -155,7 +155,7 @@ def args_from_config():
 
 
 one_above_max_seed = 2**31
-def train_a3c(args):
+def train_a3c(args, trial):
     config.verbose and print("[starting train_a3c()]")
     # Set a random seed used in PFRL.
     # If you use more than one processes, the results will be no longer
@@ -279,6 +279,7 @@ def train_a3c(args):
             num_agents_byz=args.malicious,
             permaban_threshold=args.permaban_threshold,
             output=output,
+            trial=trial,
         )
         # output.median_episode_rewards
         # output.episode_reward_trend

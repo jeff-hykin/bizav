@@ -78,6 +78,7 @@
                 thresholds: {}
             
             tuning:
+                number_of_trials: 300
                 phase_1:
                     categorical_options:
                         activation: [0, 1, 2]
