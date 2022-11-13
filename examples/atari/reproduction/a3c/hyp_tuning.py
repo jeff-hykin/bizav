@@ -119,4 +119,4 @@ if __name__ == "__main__":
     import torch
     torch.multiprocessing.freeze_support()
     
-    start_running_trials(objective=stage2_tuning, number_of_trials=config.tuning.number_of_trials)
+    start_running_trials(objective=stage1_tuning, number_of_trials=config.tuning.number_of_trials)
