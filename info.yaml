@@ -54,7 +54,7 @@
     (profiles):
         (default):
             evaluation:
-                enabled: False
+                enabled: True
                 number_of_episodes_before_eval: 130
                 number_of_epsiodes_during_eval: 10 # this value matches the prev paper
                 final_eval:
@@ -99,7 +99,6 @@
             
         CARTPOLE:
             evaluation:
-                enabled: True
                 number_of_epsiodes_during_eval: 10 # this value matches the prev paper
                 number_of_episodes_before_eval: 130
                 final_eval:
@@ -132,7 +131,6 @@
         CHEETAH:
             verbose: False
             evaluation:
-                enabled: False
                 number_of_epsiodes_during_eval: 10 # matches the prev paper
                 number_of_episodes_before_eval: 550 # (if this number is 550, and there are 10 processes => 55 epsiodes per process)
                 final_eval:
@@ -193,8 +191,6 @@
         
         BEST_BENIGN_CHEETAH:
             number_of_malicious_processes: 0
-            evaluation:
-                enabled: True
             env_config:
                 env_name: "HalfCheetah-v2"
                 learning_rate: 0.0002
