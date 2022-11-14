@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "fornix"
+name = "pfrl"
 version = "0.1.0"
 description = ""
 authors = [""]
