@@ -40018,5 +40018,4119 @@
             "biggest_recent_change": 0.22536967979158362
         }
     ],
-    []
+    [
+        {
+            "total_number_of_episodes": 20,
+            "number_of_timesteps": 20000,
+            "per_episode_reward": -664.11,
+            "episode_reward_trend_value": 0,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 30,
+            "number_of_timesteps": 30000,
+            "per_episode_reward": -635.85,
+            "episode_reward_trend_value": 2.8257935835021497,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 40,
+            "number_of_timesteps": 40000,
+            "per_episode_reward": -635.46,
+            "episode_reward_trend_value": 1.432669773735131,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 50,
+            "number_of_timesteps": 50000,
+            "per_episode_reward": -639.38,
+            "episode_reward_trend_value": 0.8242405805071295,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 60,
+            "number_of_timesteps": 60000,
+            "per_episode_reward": -642.64,
+            "episode_reward_trend_value": 0.5368980758457212,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 70,
+            "number_of_timesteps": 70000,
+            "per_episode_reward": -648.39,
+            "episode_reward_trend_value": 0.3144008319996124,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 80,
+            "number_of_timesteps": 80000,
+            "per_episode_reward": -650.43,
+            "episode_reward_trend_value": 0.22802516556039903,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 90,
+            "number_of_timesteps": 90000,
+            "per_episode_reward": -653.04,
+            "episode_reward_trend_value": 0.1581816011932298,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 100,
+            "number_of_timesteps": 100000,
+            "per_episode_reward": -651.81,
+            "episode_reward_trend_value": 0.15375946766588414,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 110,
+            "number_of_timesteps": 110000,
+            "per_episode_reward": -652.78,
+            "episode_reward_trend_value": 0.12592203622307224,
+            "biggest_recent_change": 28.2579358350215
+        },
+        {
+            "total_number_of_episodes": 120,
+            "number_of_timesteps": 120000,
+            "per_episode_reward": -646.48,
+            "episode_reward_trend_value": -0.11803760238862852,
+            "biggest_recent_change": 6.301568359968428
+        },
+        {
+            "total_number_of_episodes": 130,
+            "number_of_timesteps": 130000,
+            "per_episode_reward": -643.66,
+            "episode_reward_trend_value": -0.09117874048914827,
+            "biggest_recent_change": 6.301568359968428
+        },
+        {
+            "total_number_of_episodes": 140,
+            "number_of_timesteps": 140000,
+            "per_episode_reward": -642.63,
+            "episode_reward_trend_value": -0.03602507436811872,
+            "biggest_recent_change": 6.301568359968428
+        },
+        {
+            "total_number_of_episodes": 150,
+            "number_of_timesteps": 150000,
+            "per_episode_reward": -581.08,
+            "episode_reward_trend_value": 0.6839711654508847,
+            "biggest_recent_change": 61.54836720232527
+        },
+        {
+            "total_number_of_episodes": 160,
+            "number_of_timesteps": 160000,
+            "per_episode_reward": -581.34,
+            "episode_reward_trend_value": 0.7450566075622039,
+            "biggest_recent_change": 61.54836720232527
+        },
+        {
+            "total_number_of_episodes": 170,
+            "number_of_timesteps": 170000,
+            "per_episode_reward": -581.67,
+            "episode_reward_trend_value": 0.7640464310930521,
+            "biggest_recent_change": 61.54836720232527
+        },
+        {
+            "total_number_of_episodes": 180,
+            "number_of_timesteps": 180000,
+            "per_episode_reward": -583.84,
+            "episode_reward_trend_value": 0.7688514456033848,
+            "biggest_recent_change": 61.54836720232527
+        },
+        {
+            "total_number_of_episodes": 190,
+            "number_of_timesteps": 190000,
+            "per_episode_reward": -584.45,
+            "episode_reward_trend_value": 0.748483807773141,
+            "biggest_recent_change": 61.54836720232527
+        },
+        {
+            "total_number_of_episodes": 200,
+            "number_of_timesteps": 200000,
+            "per_episode_reward": -585.58,
+            "episode_reward_trend_value": 0.7466183856018928,
+            "biggest_recent_change": 61.54836720232527
+        },
+        {
+            "total_number_of_episodes": 210,
+            "number_of_timesteps": 210000,
+            "per_episode_reward": -586.43,
+            "episode_reward_trend_value": 0.6672081200072448,
+            "biggest_recent_change": 61.54836720232527
+        },
+        {
+            "total_number_of_episodes": 220,
+            "number_of_timesteps": 220000,
+            "per_episode_reward": -585.82,
+            "episode_reward_trend_value": 0.6426930379585479,
+            "biggest_recent_change": 61.54836720232527
+        },
+        {
+            "total_number_of_episodes": 230,
+            "number_of_timesteps": 230000,
+            "per_episode_reward": -584.87,
+            "episode_reward_trend_value": 0.6417476245502434,
+            "biggest_recent_change": 61.54836720232527
+        },
+        {
+            "total_number_of_episodes": 240,
+            "number_of_timesteps": 240000,
+            "per_episode_reward": -582.93,
+            "episode_reward_trend_value": -0.020610007729040567,
+            "biggest_recent_change": 2.1763465441679273
+        },
+        {
+            "total_number_of_episodes": 250,
+            "number_of_timesteps": 250000,
+            "per_episode_reward": -581.65,
+            "episode_reward_trend_value": -0.0035381409386016256,
+            "biggest_recent_change": 2.1763465441679273
+        },
+        {
+            "total_number_of_episodes": 260,
+            "number_of_timesteps": 260000,
+            "per_episode_reward": -582.83,
+            "episode_reward_trend_value": -0.012994051227653675,
+            "biggest_recent_change": 2.1763465441679273
+        },
+        {
+            "total_number_of_episodes": 270,
+            "number_of_timesteps": 270000,
+            "per_episode_reward": -580.59,
+            "episode_reward_trend_value": 0.03610472784580325,
+            "biggest_recent_change": 2.2425435724431964
+        },
+        {
+            "total_number_of_episodes": 280,
+            "number_of_timesteps": 280000,
+            "per_episode_reward": -581.6,
+            "episode_reward_trend_value": 0.03165040683320892,
+            "biggest_recent_change": 2.2425435724431964
+        },
+        {
+            "total_number_of_episodes": 290,
+            "number_of_timesteps": 290000,
+            "per_episode_reward": -581.52,
+            "episode_reward_trend_value": 0.045112606393200215,
+            "biggest_recent_change": 2.2425435724431964
+        },
+        {
+            "total_number_of_episodes": 300,
+            "number_of_timesteps": 300000,
+            "per_episode_reward": -581.28,
+            "episode_reward_trend_value": 0.057141420333408,
+            "biggest_recent_change": 2.2425435724431964
+        },
+        {
+            "total_number_of_episodes": 310,
+            "number_of_timesteps": 310000,
+            "per_episode_reward": -582.11,
+            "episode_reward_trend_value": 0.04126465544879668,
+            "biggest_recent_change": 2.2425435724431964
+        },
+        {
+            "total_number_of_episodes": 320,
+            "number_of_timesteps": 320000,
+            "per_episode_reward": -581.96,
+            "episode_reward_trend_value": 0.03234668460631585,
+            "biggest_recent_change": 2.2425435724431964
+        },
+        {
+            "total_number_of_episodes": 330,
+            "number_of_timesteps": 330000,
+            "per_episode_reward": -581.19,
+            "episode_reward_trend_value": 0.01930735115326393,
+            "biggest_recent_change": 2.2425435724431964
+        },
+        {
+            "total_number_of_episodes": 340,
+            "number_of_timesteps": 340000,
+            "per_episode_reward": -580.15,
+            "episode_reward_trend_value": 0.01670062848974112,
+            "biggest_recent_change": 2.2425435724431964
+        },
+        {
+            "total_number_of_episodes": 350,
+            "number_of_timesteps": 350000,
+            "per_episode_reward": -580.09,
+            "episode_reward_trend_value": 0.030543803952969028,
+            "biggest_recent_change": 2.2425435724431964
+        },
+        {
+            "total_number_of_episodes": 360,
+            "number_of_timesteps": 360000,
+            "per_episode_reward": -579.36,
+            "episode_reward_trend_value": 0.013708887066607328,
+            "biggest_recent_change": 1.0436713275929606
+        },
+        {
+            "total_number_of_episodes": 370,
+            "number_of_timesteps": 370000,
+            "per_episode_reward": -579.31,
+            "episode_reward_trend_value": 0.025417133747493558,
+            "biggest_recent_change": 1.0436713275929606
+        },
+        {
+            "total_number_of_episodes": 380,
+            "number_of_timesteps": 380000,
+            "per_episode_reward": -579.1,
+            "episode_reward_trend_value": 0.026932796145815195,
+            "biggest_recent_change": 1.0436713275929606
+        },
+        {
+            "total_number_of_episodes": 390,
+            "number_of_timesteps": 390000,
+            "per_episode_reward": -577.64,
+            "episode_reward_trend_value": 0.04054564016277532,
+            "biggest_recent_change": 1.4623936725952262
+        },
+        {
+            "total_number_of_episodes": 400,
+            "number_of_timesteps": 400000,
+            "per_episode_reward": -578.42,
+            "episode_reward_trend_value": 0.0409521955216279,
+            "biggest_recent_change": 1.4623936725952262
+        },
+        {
+            "total_number_of_episodes": 410,
+            "number_of_timesteps": 410000,
+            "per_episode_reward": -579.05,
+            "episode_reward_trend_value": 0.0322764826145999,
+            "biggest_recent_change": 1.4623936725952262
+        },
+        {
+            "total_number_of_episodes": 420,
+            "number_of_timesteps": 420000,
+            "per_episode_reward": -514.76,
+            "episode_reward_trend_value": 0.7381231129918786,
+            "biggest_recent_change": 64.28883702037012
+        },
+        {
+            "total_number_of_episodes": 430,
+            "number_of_timesteps": 430000,
+            "per_episode_reward": -513.51,
+            "episode_reward_trend_value": 0.740499392830994,
+            "biggest_recent_change": 64.28883702037012
+        },
+        {
+            "total_number_of_episodes": 440,
+            "number_of_timesteps": 440000,
+            "per_episode_reward": -514.66,
+            "episode_reward_trend_value": 0.7269370368134357,
+            "biggest_recent_change": 64.28883702037012
+        },
+        {
+            "total_number_of_episodes": 450,
+            "number_of_timesteps": 450000,
+            "per_episode_reward": -515.2,
+            "episode_reward_trend_value": 0.7128296274170945,
+            "biggest_recent_change": 64.28883702037012
+        },
+        {
+            "total_number_of_episodes": 460,
+            "number_of_timesteps": 460000,
+            "per_episode_reward": -513.99,
+            "episode_reward_trend_value": 0.7258125713419796,
+            "biggest_recent_change": 64.28883702037012
+        },
+        {
+            "total_number_of_episodes": 470,
+            "number_of_timesteps": 470000,
+            "per_episode_reward": -513.69,
+            "episode_reward_trend_value": 0.7267809456975745,
+            "biggest_recent_change": 64.28883702037012
+        },
+        {
+            "total_number_of_episodes": 480,
+            "number_of_timesteps": 480000,
+            "per_episode_reward": -512.36,
+            "episode_reward_trend_value": 0.7252335419570651,
+            "biggest_recent_change": 64.28883702037012
+        },
+        {
+            "total_number_of_episodes": 490,
+            "number_of_timesteps": 490000,
+            "per_episode_reward": -512.15,
+            "episode_reward_trend_value": 0.7363754255957449,
+            "biggest_recent_change": 64.28883702037012
+        },
+        {
+            "total_number_of_episodes": 500,
+            "number_of_timesteps": 500000,
+            "per_episode_reward": -511.67,
+            "episode_reward_trend_value": 0.748674646137448,
+            "biggest_recent_change": 64.28883702037012
+        },
+        {
+            "total_number_of_episodes": 510,
+            "number_of_timesteps": 510000,
+            "per_episode_reward": -512.28,
+            "episode_reward_trend_value": 0.027567316585854467,
+            "biggest_recent_change": 1.3231273359493798
+        },
+        {
+            "total_number_of_episodes": 520,
+            "number_of_timesteps": 520000,
+            "per_episode_reward": -513.02,
+            "episode_reward_trend_value": 0.00541886010440117,
+            "biggest_recent_change": 1.3231273359493798
+        },
+        {
+            "total_number_of_episodes": 530,
+            "number_of_timesteps": 530000,
+            "per_episode_reward": -514.33,
+            "episode_reward_trend_value": 0.003695532899551937,
+            "biggest_recent_change": 1.3231273359493798
+        },
+        {
+            "total_number_of_episodes": 540,
+            "number_of_timesteps": 540000,
+            "per_episode_reward": -513.74,
+            "episode_reward_trend_value": 0.016276116795257974,
+            "biggest_recent_change": 1.3231273359493798
+        },
+        {
+            "total_number_of_episodes": 550,
+            "number_of_timesteps": 550000,
+            "per_episode_reward": -512.67,
+            "episode_reward_trend_value": 0.014640425883441013,
+            "biggest_recent_change": 1.3231273359493798
+        },
+        {
+            "total_number_of_episodes": 560,
+            "number_of_timesteps": 560000,
+            "per_episode_reward": -511.48,
+            "episode_reward_trend_value": 0.024523057424914264,
+            "biggest_recent_change": 1.3231273359493798
+        },
+        {
+            "total_number_of_episodes": 570,
+            "number_of_timesteps": 570000,
+            "per_episode_reward": -510.88,
+            "episode_reward_trend_value": 0.016515939327919366,
+            "biggest_recent_change": 1.3103051729211757
+        },
+        {
+            "total_number_of_episodes": 580,
+            "number_of_timesteps": 580000,
+            "per_episode_reward": -511.87,
+            "episode_reward_trend_value": 0.0030556889058402704,
+            "biggest_recent_change": 1.3103051729211757
+        },
+        {
+            "total_number_of_episodes": 590,
+            "number_of_timesteps": 590000,
+            "per_episode_reward": -511.55,
+            "episode_reward_trend_value": 0.0013436601701067097,
+            "biggest_recent_change": 1.3103051729211757
+        },
+        {
+            "total_number_of_episodes": 600,
+            "number_of_timesteps": 600000,
+            "per_episode_reward": -511.71,
+            "episode_reward_trend_value": 0.006341102898311924,
+            "biggest_recent_change": 1.3103051729211757
+        },
+        {
+            "total_number_of_episodes": 610,
+            "number_of_timesteps": 610000,
+            "per_episode_reward": -512.69,
+            "episode_reward_trend_value": 0.003659896783253518,
+            "biggest_recent_change": 1.3103051729211757
+        },
+        {
+            "total_number_of_episodes": 620,
+            "number_of_timesteps": 620000,
+            "per_episode_reward": -512.32,
+            "episode_reward_trend_value": 0.022346471019082197,
+            "biggest_recent_change": 1.1889359583777264
+        },
+        {
+            "total_number_of_episodes": 630,
+            "number_of_timesteps": 630000,
+            "per_episode_reward": -512.15,
+            "episode_reward_trend_value": 0.017631682113103075,
+            "biggest_recent_change": 1.1889359583777264
+        },
+        {
+            "total_number_of_episodes": 640,
+            "number_of_timesteps": 640000,
+            "per_episode_reward": -512.26,
+            "episode_reward_trend_value": 0.004513908660712534,
+            "biggest_recent_change": 1.1889359583777264
+        },
+        {
+            "total_number_of_episodes": 650,
+            "number_of_timesteps": 650000,
+            "per_episode_reward": -512.51,
+            "episode_reward_trend_value": -0.011487785934488353,
+            "biggest_recent_change": 0.99457204157261
+        },
+        {
+            "total_number_of_episodes": 660,
+            "number_of_timesteps": 660000,
+            "per_episode_reward": -448.42,
+            "episode_reward_trend_value": 0.693954675689888,
+            "biggest_recent_change": 64.0923082534137
+        },
+        {
+            "total_number_of_episodes": 670,
+            "number_of_timesteps": 670000,
+            "per_episode_reward": -448.18,
+            "episode_reward_trend_value": 0.7076909907251674,
+            "biggest_recent_change": 64.0923082534137
+        },
+        {
+            "total_number_of_episodes": 680,
+            "number_of_timesteps": 680000,
+            "per_episode_reward": -448.43,
+            "episode_reward_trend_value": 0.7013695743088457,
+            "biggest_recent_change": 64.0923082534137
+        },
+        {
+            "total_number_of_episodes": 690,
+            "number_of_timesteps": 690000,
+            "per_episode_reward": -448.22,
+            "episode_reward_trend_value": 0.7054527693361239,
+            "biggest_recent_change": 64.0923082534137
+        },
+        {
+            "total_number_of_episodes": 700,
+            "number_of_timesteps": 700000,
+            "per_episode_reward": -448.76,
+            "episode_reward_trend_value": 0.7103414114473094,
+            "biggest_recent_change": 64.0923082534137
+        },
+        {
+            "total_number_of_episodes": 710,
+            "number_of_timesteps": 710000,
+            "per_episode_reward": -449.08,
+            "episode_reward_trend_value": 0.7026603147194919,
+            "biggest_recent_change": 64.0923082534137
+        },
+        {
+            "total_number_of_episodes": 720,
+            "number_of_timesteps": 720000,
+            "per_episode_reward": -449.22,
+            "episode_reward_trend_value": 0.6992116781451797,
+            "biggest_recent_change": 64.0923082534137
+        },
+        {
+            "total_number_of_episodes": 730,
+            "number_of_timesteps": 730000,
+            "per_episode_reward": -448.36,
+            "episode_reward_trend_value": 0.7100799426905313,
+            "biggest_recent_change": 64.0923082534137
+        },
+        {
+            "total_number_of_episodes": 740,
+            "number_of_timesteps": 740000,
+            "per_episode_reward": -448.26,
+            "episode_reward_trend_value": 0.7139218082588564,
+            "biggest_recent_change": 64.0923082534137
+        },
+        {
+            "total_number_of_episodes": 750,
+            "number_of_timesteps": 750000,
+            "per_episode_reward": -447.74,
+            "episode_reward_trend_value": 0.007560323782465478,
+            "biggest_recent_change": 0.8666082047116106
+        },
+        {
+            "total_number_of_episodes": 760,
+            "number_of_timesteps": 760000,
+            "per_episode_reward": -447.93,
+            "episode_reward_trend_value": 0.002788774497195037,
+            "biggest_recent_change": 0.8666082047116106
+        },
+        {
+            "total_number_of_episodes": 770,
+            "number_of_timesteps": 770000,
+            "per_episode_reward": -448.03,
+            "episode_reward_trend_value": 0.004457770481081348,
+            "biggest_recent_change": 0.8666082047116106
+        },
+        {
+            "total_number_of_episodes": 780,
+            "number_of_timesteps": 780000,
+            "per_episode_reward": -448.51,
+            "episode_reward_trend_value": -0.003176835245977827,
+            "biggest_recent_change": 0.8666082047116106
+        },
+        {
+            "total_number_of_episodes": 790,
+            "number_of_timesteps": 790000,
+            "per_episode_reward": -448.59,
+            "episode_reward_trend_value": 0.0018185959416819567,
+            "biggest_recent_change": 0.8666082047116106
+        },
+        {
+            "total_number_of_episodes": 800,
+            "number_of_timesteps": 800000,
+            "per_episode_reward": -448.52,
+            "episode_reward_trend_value": 0.006245905332040517,
+            "biggest_recent_change": 0.8666082047116106
+        },
+        {
+            "total_number_of_episodes": 810,
+            "number_of_timesteps": 810000,
+            "per_episode_reward": -449.29,
+            "episode_reward_trend_value": -0.0006986775411298317,
+            "biggest_recent_change": 0.8666082047116106
+        },
+        {
+            "total_number_of_episodes": 820,
+            "number_of_timesteps": 820000,
+            "per_episode_reward": -448.96,
+            "episode_reward_trend_value": -0.006683857007454384,
+            "biggest_recent_change": 0.7697339941980772
+        },
+        {
+            "total_number_of_episodes": 830,
+            "number_of_timesteps": 830000,
+            "per_episode_reward": -449.36,
+            "episode_reward_trend_value": -0.012231377063989158,
+            "biggest_recent_change": 0.7697339941980772
+        },
+        {
+            "total_number_of_episodes": 840,
+            "number_of_timesteps": 840000,
+            "per_episode_reward": -449.01,
+            "episode_reward_trend_value": -0.014075039618966103,
+            "biggest_recent_change": 0.7697339941980772
+        },
+        {
+            "total_number_of_episodes": 850,
+            "number_of_timesteps": 850000,
+            "per_episode_reward": -449,
+            "episode_reward_trend_value": -0.011908156791044651,
+            "biggest_recent_change": 0.7697339941980772
+        },
+        {
+            "total_number_of_episodes": 860,
+            "number_of_timesteps": 860000,
+            "per_episode_reward": -448.89,
+            "episode_reward_trend_value": -0.009586698064489004,
+            "biggest_recent_change": 0.7697339941980772
+        },
+        {
+            "total_number_of_episodes": 870,
+            "number_of_timesteps": 870000,
+            "per_episode_reward": -448.98,
+            "episode_reward_trend_value": -0.005208108592734106,
+            "biggest_recent_change": 0.7697339941980772
+        },
+        {
+            "total_number_of_episodes": 880,
+            "number_of_timesteps": 880000,
+            "per_episode_reward": -448.9,
+            "episode_reward_trend_value": -0.003381594781865892,
+            "biggest_recent_change": 0.7697339941980772
+        },
+        {
+            "total_number_of_episodes": 890,
+            "number_of_timesteps": 890000,
+            "per_episode_reward": -448.29,
+            "episode_reward_trend_value": 0.002527761898219675,
+            "biggest_recent_change": 0.7697339941980772
+        },
+        {
+            "total_number_of_episodes": 900,
+            "number_of_timesteps": 900000,
+            "per_episode_reward": -448.08,
+            "episode_reward_trend_value": 0.013356489690545459,
+            "biggest_recent_change": 0.6104877491397929
+        },
+        {
+            "total_number_of_episodes": 910,
+            "number_of_timesteps": 910000,
+            "per_episode_reward": -447.81,
+            "episode_reward_trend_value": 0.012712327491367307,
+            "biggest_recent_change": 0.6104877491397929
+        },
+        {
+            "total_number_of_episodes": 920,
+            "number_of_timesteps": 920000,
+            "per_episode_reward": -447.83,
+            "episode_reward_trend_value": 0.017041358470649155,
+            "biggest_recent_change": 0.6104877491397929
+        },
+        {
+            "total_number_of_episodes": 930,
+            "number_of_timesteps": 930000,
+            "per_episode_reward": -447.84,
+            "episode_reward_trend_value": 0.012949979474440296,
+            "biggest_recent_change": 0.6104877491397929
+        },
+        {
+            "total_number_of_episodes": 940,
+            "number_of_timesteps": 940000,
+            "per_episode_reward": -447.99,
+            "episode_reward_trend_value": 0.01127169940987124,
+            "biggest_recent_change": 0.6104877491397929
+        },
+        {
+            "total_number_of_episodes": 950,
+            "number_of_timesteps": 950000,
+            "per_episode_reward": -447.82,
+            "episode_reward_trend_value": 0.011839168091211782,
+            "biggest_recent_change": 0.6104877491397929
+        },
+        {
+            "total_number_of_episodes": 960,
+            "number_of_timesteps": 960000,
+            "per_episode_reward": -448.19,
+            "episode_reward_trend_value": 0.008759754970007963,
+            "biggest_recent_change": 0.6104877491397929
+        },
+        {
+            "total_number_of_episodes": 970,
+            "number_of_timesteps": 970000,
+            "per_episode_reward": -448.71,
+            "episode_reward_trend_value": 0.002078314132395715,
+            "biggest_recent_change": 0.6104877491397929
+        },
+        {
+            "total_number_of_episodes": 980,
+            "number_of_timesteps": 980000,
+            "per_episode_reward": -448.48,
+            "episode_reward_trend_value": -0.0021343604209000154,
+            "biggest_recent_change": 0.5245099560835911
+        },
+        {
+            "total_number_of_episodes": 990,
+            "number_of_timesteps": 990000,
+            "per_episode_reward": -448.92,
+            "episode_reward_trend_value": -0.009296126079349657,
+            "biggest_recent_change": 0.5245099560835911
+        },
+        {
+            "total_number_of_episodes": 1000,
+            "number_of_timesteps": 1000000,
+            "per_episode_reward": -448.66,
+            "episode_reward_trend_value": -0.009346937707409273,
+            "biggest_recent_change": 0.5245099560835911
+        },
+        {
+            "total_number_of_episodes": 1010,
+            "number_of_timesteps": 1010000,
+            "per_episode_reward": -448.68,
+            "episode_reward_trend_value": -0.00944209818153657,
+            "biggest_recent_change": 0.5245099560835911
+        },
+        {
+            "total_number_of_episodes": 1020,
+            "number_of_timesteps": 1020000,
+            "per_episode_reward": -448.94,
+            "episode_reward_trend_value": -0.012182269492484465,
+            "biggest_recent_change": 0.5245099560835911
+        },
+        {
+            "total_number_of_episodes": 1030,
+            "number_of_timesteps": 1030000,
+            "per_episode_reward": -449.13,
+            "episode_reward_trend_value": -0.012725238650049025,
+            "biggest_recent_change": 0.5245099560835911
+        },
+        {
+            "total_number_of_episodes": 1040,
+            "number_of_timesteps": 1040000,
+            "per_episode_reward": -449.04,
+            "episode_reward_trend_value": -0.013516626891851046,
+            "biggest_recent_change": 0.5245099560835911
+        },
+        {
+            "total_number_of_episodes": 1050,
+            "number_of_timesteps": 1050000,
+            "per_episode_reward": -449.07,
+            "episode_reward_trend_value": -0.009786211418658139,
+            "biggest_recent_change": 0.5245099560835911
+        },
+        {
+            "total_number_of_episodes": 1060,
+            "number_of_timesteps": 1060000,
+            "per_episode_reward": -449.18,
+            "episode_reward_trend_value": -0.005235348268445882,
+            "biggest_recent_change": 0.43970740214922444
+        },
+        {
+            "total_number_of_episodes": 1070,
+            "number_of_timesteps": 1070000,
+            "per_episode_reward": -449.19,
+            "episode_reward_trend_value": -0.007843646126497737,
+            "biggest_recent_change": 0.43970740214922444
+        },
+        {
+            "total_number_of_episodes": 1080,
+            "number_of_timesteps": 1080000,
+            "per_episode_reward": -449.45,
+            "episode_reward_trend_value": -0.005871119510334842,
+            "biggest_recent_change": 0.2653944082910016
+        },
+        {
+            "total_number_of_episodes": 1090,
+            "number_of_timesteps": 1090000,
+            "per_episode_reward": -449.21,
+            "episode_reward_trend_value": -0.0061225116465935675,
+            "biggest_recent_change": 0.26218000669456387
+        },
+        {
+            "total_number_of_episodes": 1100,
+            "number_of_timesteps": 1100000,
+            "per_episode_reward": -449.81,
+            "episode_reward_trend_value": -0.012557667538024791,
+            "biggest_recent_change": 0.6028411438941248
+        },
+        {
+            "total_number_of_episodes": 1110,
+            "number_of_timesteps": 1110000,
+            "per_episode_reward": -449.89,
+            "episode_reward_trend_value": -0.010595046435048517,
+            "biggest_recent_change": 0.6028411438941248
+        },
+        {
+            "total_number_of_episodes": 1120,
+            "number_of_timesteps": 1120000,
+            "per_episode_reward": -449.95,
+            "episode_reward_trend_value": -0.009101457371042444,
+            "biggest_recent_change": 0.6028411438941248
+        },
+        {
+            "total_number_of_episodes": 1130,
+            "number_of_timesteps": 1130000,
+            "per_episode_reward": -450.47,
+            "episode_reward_trend_value": -0.015896762749724756,
+            "biggest_recent_change": 0.6028411438941248
+        },
+        {
+            "total_number_of_episodes": 1140,
+            "number_of_timesteps": 1140000,
+            "per_episode_reward": -450.38,
+            "episode_reward_trend_value": -0.014614792654056904,
+            "biggest_recent_change": 0.6028411438941248
+        },
+        {
+            "total_number_of_episodes": 1150,
+            "number_of_timesteps": 1150000,
+            "per_episode_reward": -450.76,
+            "episode_reward_trend_value": -0.01756503085220768,
+            "biggest_recent_change": 0.6028411438941248
+        },
+        {
+            "total_number_of_episodes": 1160,
+            "number_of_timesteps": 1160000,
+            "per_episode_reward": -450.48,
+            "episode_reward_trend_value": -0.014359333635096996,
+            "biggest_recent_change": 0.6028411438941248
+        },
+        {
+            "total_number_of_episodes": 1170,
+            "number_of_timesteps": 1170000,
+            "per_episode_reward": -450.25,
+            "episode_reward_trend_value": -0.008941731234064162,
+            "biggest_recent_change": 0.6028411438941248
+        },
+        {
+            "total_number_of_episodes": 1180,
+            "number_of_timesteps": 1180000,
+            "per_episode_reward": -450.1,
+            "episode_reward_trend_value": -0.009946938401241646,
+            "biggest_recent_change": 0.6028411438941248
+        },
+        {
+            "total_number_of_episodes": 1190,
+            "number_of_timesteps": 1190000,
+            "per_episode_reward": -450.19,
+            "episode_reward_trend_value": -0.004212006464883997,
+            "biggest_recent_change": 0.5195363883141226
+        },
+        {
+            "total_number_of_episodes": 1200,
+            "number_of_timesteps": 1200000,
+            "per_episode_reward": -450.33,
+            "episode_reward_trend_value": -0.004814069341923263,
+            "biggest_recent_change": 0.5195363883141226
+        },
+        {
+            "total_number_of_episodes": 1210,
+            "number_of_timesteps": 1210000,
+            "per_episode_reward": -450.4,
+            "episode_reward_trend_value": -0.0049777135815809795,
+            "biggest_recent_change": 0.5195363883141226
+        },
+        {
+            "total_number_of_episodes": 1220,
+            "number_of_timesteps": 1220000,
+            "per_episode_reward": -450.37,
+            "episode_reward_trend_value": 0.0011194578361331273,
+            "biggest_recent_change": 0.38045371039805786
+        },
+        {
+            "total_number_of_episodes": 1230,
+            "number_of_timesteps": 1230000,
+            "per_episode_reward": -450.45,
+            "episode_reward_trend_value": -0.0007046821484569439,
+            "biggest_recent_change": 0.38045371039805786
+        },
+        {
+            "total_number_of_episodes": 1240,
+            "number_of_timesteps": 1240000,
+            "per_episode_reward": -450.42,
+            "episode_reward_trend_value": 0.0037939568095667815,
+            "biggest_recent_change": 0.28511298165847165
+        },
+        {
+            "total_number_of_episodes": 1250,
+            "number_of_timesteps": 1250000,
+            "per_episode_reward": -450.47,
+            "episode_reward_trend_value": 0.00014083436120699845,
+            "biggest_recent_change": 0.22540420939839123
+        },
+        {
+            "total_number_of_episodes": 1260,
+            "number_of_timesteps": 1260000,
+            "per_episode_reward": -450.68,
+            "episode_reward_trend_value": -0.004682564675860906,
+            "biggest_recent_change": 0.20870170393772014
+        },
+        {
+            "total_number_of_episodes": 1270,
+            "number_of_timesteps": 1270000,
+            "per_episode_reward": -450.4,
+            "episode_reward_trend_value": -0.0032839166813390525,
+            "biggest_recent_change": 0.27817879048870964
+        },
+        {
+            "total_number_of_episodes": 1280,
+            "number_of_timesteps": 1280000,
+            "per_episode_reward": -450.65,
+            "episode_reward_trend_value": -0.005108703887496327,
+            "biggest_recent_change": 0.27817879048870964
+        },
+        {
+            "total_number_of_episodes": 1290,
+            "number_of_timesteps": 1290000,
+            "per_episode_reward": -450.79,
+            "episode_reward_trend_value": -0.005105732602740747,
+            "biggest_recent_change": 0.27817879048870964
+        },
+        {
+            "total_number_of_episodes": 1300,
+            "number_of_timesteps": 1300000,
+            "per_episode_reward": -450.7,
+            "episode_reward_trend_value": -0.003321649155825273,
+            "biggest_recent_change": 0.27817879048870964
+        },
+        {
+            "total_number_of_episodes": 1310,
+            "number_of_timesteps": 1310000,
+            "per_episode_reward": -450.76,
+            "episode_reward_trend_value": -0.004289804006393499,
+            "biggest_recent_change": 0.27817879048870964
+        },
+        {
+            "total_number_of_episodes": 1320,
+            "number_of_timesteps": 1320000,
+            "per_episode_reward": -450.6,
+            "episode_reward_trend_value": -0.001716333641163222,
+            "biggest_recent_change": 0.27817879048870964
+        },
+        {
+            "total_number_of_episodes": 1330,
+            "number_of_timesteps": 1330000,
+            "per_episode_reward": -450.6,
+            "episode_reward_trend_value": -0.0019263060511131396,
+            "biggest_recent_change": 0.27817879048870964
+        },
+        {
+            "total_number_of_episodes": 1340,
+            "number_of_timesteps": 1340000,
+            "per_episode_reward": -450.78,
+            "episode_reward_trend_value": -0.0034322934011242977,
+            "biggest_recent_change": 0.27817879048870964
+        },
+        {
+            "total_number_of_episodes": 1350,
+            "number_of_timesteps": 1350000,
+            "per_episode_reward": -450.69,
+            "episode_reward_trend_value": -0.00017119131125898295,
+            "biggest_recent_change": 0.27817879048870964
+        },
+        {
+            "total_number_of_episodes": 1360,
+            "number_of_timesteps": 1360000,
+            "per_episode_reward": -451.1,
+            "episode_reward_trend_value": -0.0077709213743339155,
+            "biggest_recent_change": 0.4057969151880343
+        },
+        {
+            "total_number_of_episodes": 1370,
+            "number_of_timesteps": 1370000,
+            "per_episode_reward": -451.25,
+            "episode_reward_trend_value": -0.006721364664213701,
+            "biggest_recent_change": 0.4057969151880343
+        },
+        {
+            "total_number_of_episodes": 1380,
+            "number_of_timesteps": 1380000,
+            "per_episode_reward": -451.18,
+            "episode_reward_trend_value": -0.004388618315857053,
+            "biggest_recent_change": 0.4057969151880343
+        },
+        {
+            "total_number_of_episodes": 1390,
+            "number_of_timesteps": 1390000,
+            "per_episode_reward": -451.55,
+            "episode_reward_trend_value": -0.009458860135259152,
+            "biggest_recent_change": 0.4057969151880343
+        },
+        {
+            "total_number_of_episodes": 1400,
+            "number_of_timesteps": 1400000,
+            "per_episode_reward": -451.4,
+            "episode_reward_trend_value": -0.00712131404583829,
+            "biggest_recent_change": 0.4057969151880343
+        },
+        {
+            "total_number_of_episodes": 1410,
+            "number_of_timesteps": 1410000,
+            "per_episode_reward": -451.5,
+            "episode_reward_trend_value": -0.010003684432458864,
+            "biggest_recent_change": 0.4057969151880343
+        },
+        {
+            "total_number_of_episodes": 1420,
+            "number_of_timesteps": 1420000,
+            "per_episode_reward": -451.28,
+            "episode_reward_trend_value": -0.007560222899413323,
+            "biggest_recent_change": 0.4057969151880343
+        },
+        {
+            "total_number_of_episodes": 1430,
+            "number_of_timesteps": 1430000,
+            "per_episode_reward": -451.4,
+            "episode_reward_trend_value": -0.006993656699035,
+            "biggest_recent_change": 0.4057969151880343
+        },
+        {
+            "total_number_of_episodes": 1440,
+            "number_of_timesteps": 1440000,
+            "per_episode_reward": -451.28,
+            "episode_reward_trend_value": -0.006511229387804936,
+            "biggest_recent_change": 0.4057969151880343
+        },
+        {
+            "total_number_of_episodes": 1450,
+            "number_of_timesteps": 1450000,
+            "per_episode_reward": -450.98,
+            "episode_reward_trend_value": 0.0013207544882302754,
+            "biggest_recent_change": 0.36869531888333995
+        },
+        {
+            "total_number_of_episodes": 1460,
+            "number_of_timesteps": 1460000,
+            "per_episode_reward": -451.34,
+            "episode_reward_trend_value": -0.001021186448109448,
+            "biggest_recent_change": 0.36869531888333995
+        },
+        {
+            "total_number_of_episodes": 1470,
+            "number_of_timesteps": 1470000,
+            "per_episode_reward": -451.49,
+            "episode_reward_trend_value": -0.003418774365335745,
+            "biggest_recent_change": 0.36869531888333995
+        },
+        {
+            "total_number_of_episodes": 1480,
+            "number_of_timesteps": 1480000,
+            "per_episode_reward": -451.34,
+            "episode_reward_trend_value": 0.0022790913143618734,
+            "biggest_recent_change": 0.367242698535847
+        },
+        {
+            "total_number_of_episodes": 1490,
+            "number_of_timesteps": 1490000,
+            "per_episode_reward": -451.31,
+            "episode_reward_trend_value": 0.0009660290137288839,
+            "biggest_recent_change": 0.367242698535847
+        },
+        {
+            "total_number_of_episodes": 1500,
+            "number_of_timesteps": 1500000,
+            "per_episode_reward": -451.26,
+            "episode_reward_trend_value": 0.0026547811990939056,
+            "biggest_recent_change": 0.367242698535847
+        },
+        {
+            "total_number_of_episodes": 1510,
+            "number_of_timesteps": 1510000,
+            "per_episode_reward": -451.32,
+            "episode_reward_trend_value": -0.0005186857013736951,
+            "biggest_recent_change": 0.367242698535847
+        },
+        {
+            "total_number_of_episodes": 1520,
+            "number_of_timesteps": 1520000,
+            "per_episode_reward": -451.4,
+            "episode_reward_trend_value": 0.00009186926579205748,
+            "biggest_recent_change": 0.367242698535847
+        },
+        {
+            "total_number_of_episodes": 1530,
+            "number_of_timesteps": 1530000,
+            "per_episode_reward": -450.98,
+            "episode_reward_trend_value": 0.003246803912079107,
+            "biggest_recent_change": 0.4121600603266984
+        },
+        {
+            "total_number_of_episodes": 1540,
+            "number_of_timesteps": 1540000,
+            "per_episode_reward": -450.88,
+            "episode_reward_trend_value": 0.0011255255173144483,
+            "biggest_recent_change": 0.4121600603266984
+        },
+        {
+            "total_number_of_episodes": 1550,
+            "number_of_timesteps": 1550000,
+            "per_episode_reward": -451.05,
+            "episode_reward_trend_value": 0.0033118105093908274,
+            "biggest_recent_change": 0.4121600603266984
+        },
+        {
+            "total_number_of_episodes": 1560,
+            "number_of_timesteps": 1560000,
+            "per_episode_reward": -451.08,
+            "episode_reward_trend_value": 0.00454764163685392,
+            "biggest_recent_change": 0.4121600603266984
+        },
+        {
+            "total_number_of_episodes": 1570,
+            "number_of_timesteps": 1570000,
+            "per_episode_reward": -450.85,
+            "episode_reward_trend_value": 0.005451208140352213,
+            "biggest_recent_change": 0.4121600603266984
+        },
+        {
+            "total_number_of_episodes": 1580,
+            "number_of_timesteps": 1580000,
+            "per_episode_reward": -450.76,
+            "episode_reward_trend_value": 0.006061939582504768,
+            "biggest_recent_change": 0.4121600603266984
+        },
+        {
+            "total_number_of_episodes": 1590,
+            "number_of_timesteps": 1590000,
+            "per_episode_reward": -450.64,
+            "episode_reward_trend_value": 0.006918339038977844,
+            "biggest_recent_change": 0.4121600603266984
+        },
+        {
+            "total_number_of_episodes": 1600,
+            "number_of_timesteps": 1600000,
+            "per_episode_reward": -450.66,
+            "episode_reward_trend_value": 0.007327765099680998,
+            "biggest_recent_change": 0.4121600603266984
+        },
+        {
+            "total_number_of_episodes": 1610,
+            "number_of_timesteps": 1610000,
+            "per_episode_reward": -450.75,
+            "episode_reward_trend_value": 0.007221928025006087,
+            "biggest_recent_change": 0.4121600603266984
+        },
+        {
+            "total_number_of_episodes": 1620,
+            "number_of_timesteps": 1620000,
+            "per_episode_reward": -450.68,
+            "episode_reward_trend_value": 0.003333534049344027,
+            "biggest_recent_change": 0.22543357760429217
+        },
+        {
+            "total_number_of_episodes": 1630,
+            "number_of_timesteps": 1630000,
+            "per_episode_reward": -450.81,
+            "episode_reward_trend_value": 0.0007060954819432179,
+            "biggest_recent_change": 0.22543357760429217
+        },
+        {
+            "total_number_of_episodes": 1640,
+            "number_of_timesteps": 1640000,
+            "per_episode_reward": -451.24,
+            "episode_reward_trend_value": -0.0021101040105949978,
+            "biggest_recent_change": 0.4239350035774123
+        },
+        {
+            "total_number_of_episodes": 1650,
+            "number_of_timesteps": 1650000,
+            "per_episode_reward": -451.52,
+            "episode_reward_trend_value": -0.004949553991647488,
+            "biggest_recent_change": 0.4239350035774123
+        },
+        {
+            "total_number_of_episodes": 1660,
+            "number_of_timesteps": 1660000,
+            "per_episode_reward": -451.2,
+            "episode_reward_trend_value": -0.003895639994976818,
+            "biggest_recent_change": 0.4239350035774123
+        },
+        {
+            "total_number_of_episodes": 1670,
+            "number_of_timesteps": 1670000,
+            "per_episode_reward": -451.18,
+            "episode_reward_trend_value": -0.004569823025764208,
+            "biggest_recent_change": 0.4239350035774123
+        },
+        {
+            "total_number_of_episodes": 1680,
+            "number_of_timesteps": 1680000,
+            "per_episode_reward": -451.26,
+            "episode_reward_trend_value": -0.006883519948963921,
+            "biggest_recent_change": 0.4239350035774123
+        },
+        {
+            "total_number_of_episodes": 1690,
+            "number_of_timesteps": 1690000,
+            "per_episode_reward": -451.02,
+            "episode_reward_trend_value": -0.00399938061475685,
+            "biggest_recent_change": 0.4239350035774123
+        },
+        {
+            "total_number_of_episodes": 1700,
+            "number_of_timesteps": 1700000,
+            "per_episode_reward": -450.93,
+            "episode_reward_trend_value": -0.0020047973992379613,
+            "biggest_recent_change": 0.4239350035774123
+        },
+        {
+            "total_number_of_episodes": 1710,
+            "number_of_timesteps": 1710000,
+            "per_episode_reward": -450.95,
+            "episode_reward_trend_value": -0.0029639325695528544,
+            "biggest_recent_change": 0.4239350035774123
+        },
+        {
+            "total_number_of_episodes": 1720,
+            "number_of_timesteps": 1720000,
+            "per_episode_reward": -451.19,
+            "episode_reward_trend_value": -0.004238856027914532,
+            "biggest_recent_change": 0.4239350035774123
+        },
+        {
+            "total_number_of_episodes": 1730,
+            "number_of_timesteps": 1730000,
+            "per_episode_reward": -451.06,
+            "episode_reward_trend_value": 0.0019115755424782793,
+            "biggest_recent_change": 0.32028583730465243
+        },
+        {
+            "total_number_of_episodes": 1740,
+            "number_of_timesteps": 1740000,
+            "per_episode_reward": -451.08,
+            "episode_reward_trend_value": 0.0049561187280504435,
+            "biggest_recent_change": 0.32028583730465243
+        },
+        {
+            "total_number_of_episodes": 1750,
+            "number_of_timesteps": 1750000,
+            "per_episode_reward": -450.91,
+            "episode_reward_trend_value": 0.0032283631897226115,
+            "biggest_recent_change": 0.24304600419230837
+        },
+        {
+            "total_number_of_episodes": 1760,
+            "number_of_timesteps": 1760000,
+            "per_episode_reward": -451.02,
+            "episode_reward_trend_value": 0.0017837979711645049,
+            "biggest_recent_change": 0.24304600419230837
+        },
+        {
+            "total_number_of_episodes": 1770,
+            "number_of_timesteps": 1770000,
+            "per_episode_reward": -450.91,
+            "episode_reward_trend_value": 0.0038772728739736016,
+            "biggest_recent_change": 0.24304600419230837
+        },
+        {
+            "total_number_of_episodes": 1780,
+            "number_of_timesteps": 1780000,
+            "per_episode_reward": -450.92,
+            "episode_reward_trend_value": 0.001100179437692835,
+            "biggest_recent_change": 0.24304600419230837
+        },
+        {
+            "total_number_of_episodes": 1790,
+            "number_of_timesteps": 1790000,
+            "per_episode_reward": -450.86,
+            "episode_reward_trend_value": 0.0007769342920722819,
+            "biggest_recent_change": 0.24304600419230837
+        },
+        {
+            "total_number_of_episodes": 1800,
+            "number_of_timesteps": 1800000,
+            "per_episode_reward": -450.77,
+            "episode_reward_trend_value": 0.0020495090603295314,
+            "biggest_recent_change": 0.24304600419230837
+        },
+        {
+            "total_number_of_episodes": 1810,
+            "number_of_timesteps": 1810000,
+            "per_episode_reward": -450.55,
+            "episode_reward_trend_value": 0.007209261232604705,
+            "biggest_recent_change": 0.22133169131245722
+        },
+        {
+            "total_number_of_episodes": 1820,
+            "number_of_timesteps": 1820000,
+            "per_episode_reward": -450.64,
+            "episode_reward_trend_value": 0.0046918589775335326,
+            "biggest_recent_change": 0.22133169131245722
+        },
+        {
+            "total_number_of_episodes": 1830,
+            "number_of_timesteps": 1830000,
+            "per_episode_reward": -450.45,
+            "episode_reward_trend_value": 0.006980600297177059,
+            "biggest_recent_change": 0.22133169131245722
+        },
+        {
+            "total_number_of_episodes": 1840,
+            "number_of_timesteps": 1840000,
+            "per_episode_reward": -450.31,
+            "episode_reward_trend_value": 0.0067506358593107055,
+            "biggest_recent_change": 0.22133169131245722
+        },
+        {
+            "total_number_of_episodes": 1850,
+            "number_of_timesteps": 1850000,
+            "per_episode_reward": -449.82,
+            "episode_reward_trend_value": 0.01326054425486076,
+            "biggest_recent_change": 0.4844488866720553
+        },
+        {
+            "total_number_of_episodes": 1860,
+            "number_of_timesteps": 1860000,
+            "per_episode_reward": -450.24,
+            "episode_reward_trend_value": 0.007472558663578689,
+            "biggest_recent_change": 0.4844488866720553
+        },
+        {
+            "total_number_of_episodes": 1870,
+            "number_of_timesteps": 1870000,
+            "per_episode_reward": -450.36,
+            "episode_reward_trend_value": 0.006319000956712746,
+            "biggest_recent_change": 0.4844488866720553
+        },
+        {
+            "total_number_of_episodes": 1880,
+            "number_of_timesteps": 1880000,
+            "per_episode_reward": -450.62,
+            "episode_reward_trend_value": 0.002598198050697596,
+            "biggest_recent_change": 0.4844488866720553
+        },
+        {
+            "total_number_of_episodes": 1890,
+            "number_of_timesteps": 1890000,
+            "per_episode_reward": -450.45,
+            "episode_reward_trend_value": 0.0034990463039068546,
+            "biggest_recent_change": 0.4844488866720553
+        },
+        {
+            "total_number_of_episodes": 1900,
+            "number_of_timesteps": 1900000,
+            "per_episode_reward": -450.06,
+            "episode_reward_trend_value": 0.005388250857595267,
+            "biggest_recent_change": 0.4844488866720553
+        },
+        {
+            "total_number_of_episodes": 1910,
+            "number_of_timesteps": 1910000,
+            "per_episode_reward": -450.14,
+            "episode_reward_trend_value": 0.005554577242423244,
+            "biggest_recent_change": 0.4844488866720553
+        },
+        {
+            "total_number_of_episodes": 1920,
+            "number_of_timesteps": 1920000,
+            "per_episode_reward": -450.35,
+            "episode_reward_trend_value": 0.001148428391965379,
+            "biggest_recent_change": 0.4844488866720553
+        },
+        {
+            "total_number_of_episodes": 1930,
+            "number_of_timesteps": 1930000,
+            "per_episode_reward": -450.1,
+            "episode_reward_trend_value": 0.0022990880976338857,
+            "biggest_recent_change": 0.4844488866720553
+        },
+        {
+            "total_number_of_episodes": 1940,
+            "number_of_timesteps": 1940000,
+            "per_episode_reward": -449.89,
+            "episode_reward_trend_value": -0.000785686890593398,
+            "biggest_recent_change": 0.4162878217913999
+        },
+        {
+            "total_number_of_episodes": 1950,
+            "number_of_timesteps": 1950000,
+            "per_episode_reward": -450.13,
+            "episode_reward_trend_value": 0.001244090223564045,
+            "biggest_recent_change": 0.39136010114441433
+        },
+        {
+            "total_number_of_episodes": 1960,
+            "number_of_timesteps": 1960000,
+            "per_episode_reward": -450.31,
+            "episode_reward_trend_value": 0.0004547473919419392,
+            "biggest_recent_change": 0.39136010114441433
+        },
+        {
+            "total_number_of_episodes": 1970,
+            "number_of_timesteps": 1970000,
+            "per_episode_reward": -450.41,
+            "episode_reward_trend_value": 0.0023284942882052444,
+            "biggest_recent_change": 0.39136010114441433
+        },
+        {
+            "total_number_of_episodes": 1980,
+            "number_of_timesteps": 1980000,
+            "per_episode_reward": -450.45,
+            "episode_reward_trend_value": 2.4089438410454833e-7,
+            "biggest_recent_change": 0.39136010114441433
+        },
+        {
+            "total_number_of_episodes": 1990,
+            "number_of_timesteps": 1990000,
+            "per_episode_reward": -450.32,
+            "episode_reward_trend_value": -0.0029231405203581236,
+            "biggest_recent_change": 0.24765041295734136
+        },
+        {
+            "total_number_of_episodes": 2000,
+            "number_of_timesteps": 2000000,
+            "per_episode_reward": -450.44,
+            "episode_reward_trend_value": -0.003268436189045411,
+            "biggest_recent_change": 0.24765041295734136
+        },
+        {
+            "total_number_of_episodes": 2010,
+            "number_of_timesteps": 2010000,
+            "per_episode_reward": -450.55,
+            "episode_reward_trend_value": -0.0022050211083435695,
+            "biggest_recent_change": 0.24765041295734136
+        },
+        {
+            "total_number_of_episodes": 2020,
+            "number_of_timesteps": 2020000,
+            "per_episode_reward": -450.65,
+            "episode_reward_trend_value": -0.006111859856998257,
+            "biggest_recent_change": 0.23360788151723
+        },
+        {
+            "total_number_of_episodes": 2030,
+            "number_of_timesteps": 2030000,
+            "per_episode_reward": -450.75,
+            "episode_reward_trend_value": -0.009487852612683253,
+            "biggest_recent_change": 0.23360788151723
+        },
+        {
+            "total_number_of_episodes": 2040,
+            "number_of_timesteps": 2040000,
+            "per_episode_reward": -450.84,
+            "episode_reward_trend_value": -0.007959054453675663,
+            "biggest_recent_change": 0.18855277632667367
+        },
+        {
+            "total_number_of_episodes": 2050,
+            "number_of_timesteps": 2050000,
+            "per_episode_reward": -450.91,
+            "episode_reward_trend_value": -0.0066402813160430525,
+            "biggest_recent_change": 0.12825577381761377
+        },
+        {
+            "total_number_of_episodes": 2060,
+            "number_of_timesteps": 2060000,
+            "per_episode_reward": -450.96,
+            "episode_reward_trend_value": -0.006106262683838773,
+            "biggest_recent_change": 0.12825577381761377
+        },
+        {
+            "total_number_of_episodes": 2070,
+            "number_of_timesteps": 2070000,
+            "per_episode_reward": -450.88,
+            "episode_reward_trend_value": -0.004760072955903322,
+            "biggest_recent_change": 0.12825577381761377
+        },
+        {
+            "total_number_of_episodes": 2080,
+            "number_of_timesteps": 2080000,
+            "per_episode_reward": -450.89,
+            "episode_reward_trend_value": -0.00635021518070668,
+            "biggest_recent_change": 0.11306960074580275
+        },
+        {
+            "total_number_of_episodes": 2090,
+            "number_of_timesteps": 2090000,
+            "per_episode_reward": -450.88,
+            "episode_reward_trend_value": -0.004932937005383388,
+            "biggest_recent_change": 0.10928872292112146
+        },
+        {
+            "total_number_of_episodes": 2100,
+            "number_of_timesteps": 2100000,
+            "per_episode_reward": -450.8,
+            "episode_reward_trend_value": -0.0028131700507622605,
+            "biggest_recent_change": 0.10396507442158054
+        }
+    ],
+    [
+        {
+            "total_number_of_episodes": 20,
+            "number_of_timesteps": 20000,
+            "per_episode_reward": -683.04,
+            "episode_reward_trend_value": 0,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 30,
+            "number_of_timesteps": 30000,
+            "per_episode_reward": -672.23,
+            "episode_reward_trend_value": 1.0815118342153256,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 40,
+            "number_of_timesteps": 40000,
+            "per_episode_reward": -672.51,
+            "episode_reward_trend_value": 0.526755172228377,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 50,
+            "number_of_timesteps": 50000,
+            "per_episode_reward": -680.84,
+            "episode_reward_trend_value": 0.07339172168605804,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 60,
+            "number_of_timesteps": 60000,
+            "per_episode_reward": -680.51,
+            "episode_reward_trend_value": 0.0633835332794888,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 70,
+            "number_of_timesteps": 70000,
+            "per_episode_reward": -678.91,
+            "episode_reward_trend_value": 0.08257056650174491,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 80,
+            "number_of_timesteps": 80000,
+            "per_episode_reward": -675.21,
+            "episode_reward_trend_value": 0.13050595127889247,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 90,
+            "number_of_timesteps": 90000,
+            "per_episode_reward": -670.34,
+            "episode_reward_trend_value": 0.18148937666758067,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 100,
+            "number_of_timesteps": 100000,
+            "per_episode_reward": -670.24,
+            "episode_reward_trend_value": 0.1600087589729199,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 110,
+            "number_of_timesteps": 110000,
+            "per_episode_reward": -667.31,
+            "episode_reward_trend_value": 0.17477482227803118,
+            "biggest_recent_change": 10.815118342153255
+        },
+        {
+            "total_number_of_episodes": 120,
+            "number_of_timesteps": 120000,
+            "per_episode_reward": -663.25,
+            "episode_reward_trend_value": 0.09977678963888997,
+            "biggest_recent_change": 8.333351793985798
+        },
+        {
+            "total_number_of_episodes": 130,
+            "number_of_timesteps": 130000,
+            "per_episode_reward": -662.51,
+            "episode_reward_trend_value": 0.11112375945178629,
+            "biggest_recent_change": 8.333351793985798
+        },
+        {
+            "total_number_of_episodes": 140,
+            "number_of_timesteps": 140000,
+            "per_episode_reward": -662.65,
+            "episode_reward_trend_value": 0.20210467876187926,
+            "biggest_recent_change": 4.873899289997098
+        },
+        {
+            "total_number_of_episodes": 150,
+            "number_of_timesteps": 150000,
+            "per_episode_reward": -659.19,
+            "episode_reward_trend_value": 0.2368736143036295,
+            "biggest_recent_change": 4.873899289997098
+        },
+        {
+            "total_number_of_episodes": 160,
+            "number_of_timesteps": 160000,
+            "per_episode_reward": -594.93,
+            "episode_reward_trend_value": 0.933156895232206,
+            "biggest_recent_change": 64.25868227747958
+        },
+        {
+            "total_number_of_episodes": 170,
+            "number_of_timesteps": 170000,
+            "per_episode_reward": -596.36,
+            "episode_reward_trend_value": 0.8760880659326808,
+            "biggest_recent_change": 64.25868227747958
+        },
+        {
+            "total_number_of_episodes": 180,
+            "number_of_timesteps": 180000,
+            "per_episode_reward": -594.68,
+            "episode_reward_trend_value": 0.8406760630549343,
+            "biggest_recent_change": 64.25868227747958
+        },
+        {
+            "total_number_of_episodes": 190,
+            "number_of_timesteps": 190000,
+            "per_episode_reward": -593.67,
+            "episode_reward_trend_value": 0.850737610388401,
+            "biggest_recent_change": 64.25868227747958
+        },
+        {
+            "total_number_of_episodes": 200,
+            "number_of_timesteps": 200000,
+            "per_episode_reward": -595.7,
+            "episode_reward_trend_value": 0.7956570402962926,
+            "biggest_recent_change": 64.25868227747958
+        },
+        {
+            "total_number_of_episodes": 210,
+            "number_of_timesteps": 210000,
+            "per_episode_reward": -594.89,
+            "episode_reward_trend_value": 0.7595509451455188,
+            "biggest_recent_change": 64.25868227747958
+        },
+        {
+            "total_number_of_episodes": 220,
+            "number_of_timesteps": 220000,
+            "per_episode_reward": -593.62,
+            "episode_reward_trend_value": 0.7653529964040355,
+            "biggest_recent_change": 64.25868227747958
+        },
+        {
+            "total_number_of_episodes": 230,
+            "number_of_timesteps": 230000,
+            "per_episode_reward": -595.26,
+            "episode_reward_trend_value": 0.7488279592556233,
+            "biggest_recent_change": 64.25868227747958
+        },
+        {
+            "total_number_of_episodes": 240,
+            "number_of_timesteps": 240000,
+            "per_episode_reward": -597.01,
+            "episode_reward_trend_value": 0.6908537306147309,
+            "biggest_recent_change": 64.25868227747958
+        },
+        {
+            "total_number_of_episodes": 250,
+            "number_of_timesteps": 250000,
+            "per_episode_reward": -599,
+            "episode_reward_trend_value": -0.0451951688029289,
+            "biggest_recent_change": 2.0282180211005425
+        },
+        {
+            "total_number_of_episodes": 260,
+            "number_of_timesteps": 260000,
+            "per_episode_reward": -597.14,
+            "episode_reward_trend_value": -0.008610068860677226,
+            "biggest_recent_change": 2.0282180211005425
+        },
+        {
+            "total_number_of_episodes": 270,
+            "number_of_timesteps": 270000,
+            "per_episode_reward": -598.42,
+            "episode_reward_trend_value": -0.041559376108365444,
+            "biggest_recent_change": 2.0282180211005425
+        },
+        {
+            "total_number_of_episodes": 280,
+            "number_of_timesteps": 280000,
+            "per_episode_reward": -598.57,
+            "episode_reward_trend_value": -0.0543587021330331,
+            "biggest_recent_change": 2.0282180211005425
+        },
+        {
+            "total_number_of_episodes": 290,
+            "number_of_timesteps": 290000,
+            "per_episode_reward": -598.91,
+            "episode_reward_trend_value": -0.03563622995285793,
+            "biggest_recent_change": 1.9857186701098044
+        },
+        {
+            "total_number_of_episodes": 300,
+            "number_of_timesteps": 300000,
+            "per_episode_reward": -597.35,
+            "episode_reward_trend_value": -0.027314518567594502,
+            "biggest_recent_change": 1.9857186701098044
+        },
+        {
+            "total_number_of_episodes": 310,
+            "number_of_timesteps": 310000,
+            "per_episode_reward": -597.05,
+            "episode_reward_trend_value": -0.038027862412580916,
+            "biggest_recent_change": 1.9857186701098044
+        },
+        {
+            "total_number_of_episodes": 320,
+            "number_of_timesteps": 320000,
+            "per_episode_reward": -596.76,
+            "episode_reward_trend_value": -0.016714732848952786,
+            "biggest_recent_change": 1.9857186701098044
+        },
+        {
+            "total_number_of_episodes": 330,
+            "number_of_timesteps": 330000,
+            "per_episode_reward": -597.01,
+            "episode_reward_trend_value": 0.00006182750686952608,
+            "biggest_recent_change": 1.9857186701098044
+        },
+        {
+            "total_number_of_episodes": 340,
+            "number_of_timesteps": 340000,
+            "per_episode_reward": -597.93,
+            "episode_reward_trend_value": 0.011800704310708928,
+            "biggest_recent_change": 1.858293109491683
+        },
+        {
+            "total_number_of_episodes": 350,
+            "number_of_timesteps": 350000,
+            "per_episode_reward": -598.27,
+            "episode_reward_trend_value": -0.012538528888473543,
+            "biggest_recent_change": 1.5647008657346078
+        },
+        {
+            "total_number_of_episodes": 360,
+            "number_of_timesteps": 360000,
+            "per_episode_reward": -597.82,
+            "episode_reward_trend_value": 0.006634124747018985,
+            "biggest_recent_change": 1.5647008657346078
+        },
+        {
+            "total_number_of_episodes": 370,
+            "number_of_timesteps": 370000,
+            "per_episode_reward": -598.42,
+            "episode_reward_trend_value": 0.001591640130501067,
+            "biggest_recent_change": 1.5647008657346078
+        },
+        {
+            "total_number_of_episodes": 380,
+            "number_of_timesteps": 380000,
+            "per_episode_reward": -597.13,
+            "episode_reward_trend_value": 0.01978971029219565,
+            "biggest_recent_change": 1.5647008657346078
+        },
+        {
+            "total_number_of_episodes": 390,
+            "number_of_timesteps": 390000,
+            "per_episode_reward": -598.63,
+            "episode_reward_trend_value": -0.014300381839063903,
+            "biggest_recent_change": 1.503407426078752
+        },
+        {
+            "total_number_of_episodes": 400,
+            "number_of_timesteps": 400000,
+            "per_episode_reward": -596.84,
+            "episode_reward_trend_value": 0.0023269021837083728,
+            "biggest_recent_change": 1.7956516148421997
+        },
+        {
+            "total_number_of_episodes": 410,
+            "number_of_timesteps": 410000,
+            "per_episode_reward": -597.1,
+            "episode_reward_trend_value": -0.003730165993743463,
+            "biggest_recent_change": 1.7956516148421997
+        },
+        {
+            "total_number_of_episodes": 420,
+            "number_of_timesteps": 420000,
+            "per_episode_reward": -595.18,
+            "episode_reward_trend_value": 0.02032678523027648,
+            "biggest_recent_change": 1.9201293438608218
+        },
+        {
+            "total_number_of_episodes": 430,
+            "number_of_timesteps": 430000,
+            "per_episode_reward": -528.78,
+            "episode_reward_trend_value": 0.7683406810797767,
+            "biggest_recent_change": 66.39203086869077
+        },
+        {
+            "total_number_of_episodes": 440,
+            "number_of_timesteps": 440000,
+            "per_episode_reward": -529.5,
+            "episode_reward_trend_value": 0.7640876363871143,
+            "biggest_recent_change": 66.39203086869077
+        },
+        {
+            "total_number_of_episodes": 450,
+            "number_of_timesteps": 450000,
+            "per_episode_reward": -528.5,
+            "episode_reward_trend_value": 0.770225775621874,
+            "biggest_recent_change": 66.39203086869077
+        },
+        {
+            "total_number_of_episodes": 460,
+            "number_of_timesteps": 460000,
+            "per_episode_reward": -529.2,
+            "episode_reward_trend_value": 0.769161670736312,
+            "biggest_recent_change": 66.39203086869077
+        },
+        {
+            "total_number_of_episodes": 470,
+            "number_of_timesteps": 470000,
+            "per_episode_reward": -528.17,
+            "episode_reward_trend_value": 0.7662122397977896,
+            "biggest_recent_change": 66.39203086869077
+        },
+        {
+            "total_number_of_episodes": 480,
+            "number_of_timesteps": 480000,
+            "per_episode_reward": -529.21,
+            "episode_reward_trend_value": 0.7713062479148902,
+            "biggest_recent_change": 66.39203086869077
+        },
+        {
+            "total_number_of_episodes": 490,
+            "number_of_timesteps": 490000,
+            "per_episode_reward": -529.61,
+            "episode_reward_trend_value": 0.746965061862914,
+            "biggest_recent_change": 66.39203086869077
+        },
+        {
+            "total_number_of_episodes": 500,
+            "number_of_timesteps": 500000,
+            "per_episode_reward": -529.83,
+            "episode_reward_trend_value": 0.747449597148093,
+            "biggest_recent_change": 66.39203086869077
+        },
+        {
+            "total_number_of_episodes": 510,
+            "number_of_timesteps": 510000,
+            "per_episode_reward": -529.42,
+            "episode_reward_trend_value": 0.7306489836374542,
+            "biggest_recent_change": 66.39203086869077
+        },
+        {
+            "total_number_of_episodes": 520,
+            "number_of_timesteps": 520000,
+            "per_episode_reward": -529.82,
+            "episode_reward_trend_value": -0.011497358458503488,
+            "biggest_recent_change": 1.0449466955396929
+        },
+        {
+            "total_number_of_episodes": 530,
+            "number_of_timesteps": 530000,
+            "per_episode_reward": -529.94,
+            "episode_reward_trend_value": -0.004935216025194223,
+            "biggest_recent_change": 1.0449466955396929
+        },
+        {
+            "total_number_of_episodes": 540,
+            "number_of_timesteps": 540000,
+            "per_episode_reward": -529.82,
+            "episode_reward_trend_value": -0.014672298304181671,
+            "biggest_recent_change": 1.0449466955396929
+        },
+        {
+            "total_number_of_episodes": 550,
+            "number_of_timesteps": 550000,
+            "per_episode_reward": -529.45,
+            "episode_reward_trend_value": -0.0027389728427730615,
+            "biggest_recent_change": 1.0449466955396929
+        },
+        {
+            "total_number_of_episodes": 560,
+            "number_of_timesteps": 560000,
+            "per_episode_reward": -529.95,
+            "episode_reward_trend_value": -0.019828540704735234,
+            "biggest_recent_change": 1.0449466955396929
+        },
+        {
+            "total_number_of_episodes": 570,
+            "number_of_timesteps": 570000,
+            "per_episode_reward": -529.73,
+            "episode_reward_trend_value": -0.005738437310817012,
+            "biggest_recent_change": 0.5088791023758859
+        },
+        {
+            "total_number_of_episodes": 580,
+            "number_of_timesteps": 580000,
+            "per_episode_reward": -530.02,
+            "episode_reward_trend_value": -0.0045863799070553395,
+            "biggest_recent_change": 0.5088791023758859
+        },
+        {
+            "total_number_of_episodes": 590,
+            "number_of_timesteps": 590000,
+            "per_episode_reward": -530.14,
+            "episode_reward_trend_value": -0.0034524365199950406,
+            "biggest_recent_change": 0.5088791023758859
+        },
+        {
+            "total_number_of_episodes": 600,
+            "number_of_timesteps": 600000,
+            "per_episode_reward": -529.9,
+            "episode_reward_trend_value": -0.005405485594877114,
+            "biggest_recent_change": 0.5088791023758859
+        },
+        {
+            "total_number_of_episodes": 610,
+            "number_of_timesteps": 610000,
+            "per_episode_reward": -529.81,
+            "episode_reward_trend_value": 0.00011119046057501691,
+            "biggest_recent_change": 0.5088791023758859
+        },
+        {
+            "total_number_of_episodes": 620,
+            "number_of_timesteps": 620000,
+            "per_episode_reward": -530.49,
+            "episode_reward_trend_value": -0.006046386304155426,
+            "biggest_recent_change": 0.6786009906022628
+        },
+        {
+            "total_number_of_episodes": 630,
+            "number_of_timesteps": 630000,
+            "per_episode_reward": -530.07,
+            "episode_reward_trend_value": -0.0028322668282928336,
+            "biggest_recent_change": 0.6786009906022628
+        },
+        {
+            "total_number_of_episodes": 640,
+            "number_of_timesteps": 640000,
+            "per_episode_reward": -530.87,
+            "episode_reward_trend_value": -0.01577737602962467,
+            "biggest_recent_change": 0.7906093228854161
+        },
+        {
+            "total_number_of_episodes": 650,
+            "number_of_timesteps": 650000,
+            "per_episode_reward": -532.01,
+            "episode_reward_trend_value": -0.02289125132117028,
+            "biggest_recent_change": 1.1491278786149905
+        },
+        {
+            "total_number_of_episodes": 660,
+            "number_of_timesteps": 660000,
+            "per_episode_reward": -531.86,
+            "episode_reward_trend_value": -0.02368410839744936,
+            "biggest_recent_change": 1.1491278786149905
+        },
+        {
+            "total_number_of_episodes": 670,
+            "number_of_timesteps": 670000,
+            "per_episode_reward": -464.92,
+            "episode_reward_trend_value": 0.7233353239183846,
+            "biggest_recent_change": 66.94037894492794
+        },
+        {
+            "total_number_of_episodes": 680,
+            "number_of_timesteps": 680000,
+            "per_episode_reward": -465.16,
+            "episode_reward_trend_value": 0.7219832786594932,
+            "biggest_recent_change": 66.94037894492794
+        },
+        {
+            "total_number_of_episodes": 690,
+            "number_of_timesteps": 690000,
+            "per_episode_reward": -464.94,
+            "episode_reward_trend_value": 0.721832601853759,
+            "biggest_recent_change": 66.94037894492794
+        },
+        {
+            "total_number_of_episodes": 700,
+            "number_of_timesteps": 700000,
+            "per_episode_reward": -464.59,
+            "episode_reward_trend_value": 0.7246339509125739,
+            "biggest_recent_change": 66.94037894492794
+        },
+        {
+            "total_number_of_episodes": 710,
+            "number_of_timesteps": 710000,
+            "per_episode_reward": -464.74,
+            "episode_reward_trend_value": 0.7304761699551919,
+            "biggest_recent_change": 66.94037894492794
+        },
+        {
+            "total_number_of_episodes": 720,
+            "number_of_timesteps": 720000,
+            "per_episode_reward": -464.67,
+            "episode_reward_trend_value": 0.7266755595469375,
+            "biggest_recent_change": 66.94037894492794
+        },
+        {
+            "total_number_of_episodes": 730,
+            "number_of_timesteps": 730000,
+            "per_episode_reward": -464.68,
+            "episode_reward_trend_value": 0.7353394296106198,
+            "biggest_recent_change": 66.94037894492794
+        },
+        {
+            "total_number_of_episodes": 740,
+            "number_of_timesteps": 740000,
+            "per_episode_reward": -464.22,
+            "episode_reward_trend_value": 0.7532504992670265,
+            "biggest_recent_change": 66.94037894492794
+        },
+        {
+            "total_number_of_episodes": 750,
+            "number_of_timesteps": 750000,
+            "per_episode_reward": -464.53,
+            "episode_reward_trend_value": 0.7481354548690142,
+            "biggest_recent_change": 66.94037894492794
+        },
+        {
+            "total_number_of_episodes": 760,
+            "number_of_timesteps": 760000,
+            "per_episode_reward": -464.29,
+            "episode_reward_trend_value": 0.007075477709293586,
+            "biggest_recent_change": 0.4628683904616082
+        },
+        {
+            "total_number_of_episodes": 770,
+            "number_of_timesteps": 770000,
+            "per_episode_reward": -464.48,
+            "episode_reward_trend_value": 0.007546731248966251,
+            "biggest_recent_change": 0.4628683904616082
+        },
+        {
+            "total_number_of_episodes": 780,
+            "number_of_timesteps": 780000,
+            "per_episode_reward": -464.89,
+            "episode_reward_trend_value": 0.0005189523973279442,
+            "biggest_recent_change": 0.4628683904616082
+        },
+        {
+            "total_number_of_episodes": 790,
+            "number_of_timesteps": 790000,
+            "per_episode_reward": -465.34,
+            "episode_reward_trend_value": -0.008267569818685337,
+            "biggest_recent_change": 0.4628683904616082
+        },
+        {
+            "total_number_of_episodes": 800,
+            "number_of_timesteps": 800000,
+            "per_episode_reward": -465.11,
+            "episode_reward_trend_value": -0.004013042568869372,
+            "biggest_recent_change": 0.4628683904616082
+        },
+        {
+            "total_number_of_episodes": 810,
+            "number_of_timesteps": 810000,
+            "per_episode_reward": -464.71,
+            "episode_reward_trend_value": -0.00044891835539841754,
+            "biggest_recent_change": 0.4628683904616082
+        },
+        {
+            "total_number_of_episodes": 820,
+            "number_of_timesteps": 820000,
+            "per_episode_reward": -464.25,
+            "episode_reward_trend_value": 0.0048112860642712954,
+            "biggest_recent_change": 0.4628683904616082
+        },
+        {
+            "total_number_of_episodes": 830,
+            "number_of_timesteps": 830000,
+            "per_episode_reward": -463.42,
+            "episode_reward_trend_value": 0.008956819247276825,
+            "biggest_recent_change": 0.835966376932106
+        },
+        {
+            "total_number_of_episodes": 840,
+            "number_of_timesteps": 840000,
+            "per_episode_reward": -464.25,
+            "episode_reward_trend_value": 0.0031716087388720857,
+            "biggest_recent_change": 0.835966376932106
+        },
+        {
+            "total_number_of_episodes": 850,
+            "number_of_timesteps": 850000,
+            "per_episode_reward": -464.72,
+            "episode_reward_trend_value": -0.00482444909768876,
+            "biggest_recent_change": 0.835966376932106
+        },
+        {
+            "total_number_of_episodes": 860,
+            "number_of_timesteps": 860000,
+            "per_episode_reward": -464.66,
+            "episode_reward_trend_value": -0.0019932794892055326,
+            "biggest_recent_change": 0.835966376932106
+        },
+        {
+            "total_number_of_episodes": 870,
+            "number_of_timesteps": 870000,
+            "per_episode_reward": -464.94,
+            "episode_reward_trend_value": -0.0004865841504283708,
+            "biggest_recent_change": 0.835966376932106
+        },
+        {
+            "total_number_of_episodes": 880,
+            "number_of_timesteps": 880000,
+            "per_episode_reward": -464.45,
+            "episode_reward_trend_value": 0.009832380414029432,
+            "biggest_recent_change": 0.835966376932106
+        },
+        {
+            "total_number_of_episodes": 890,
+            "number_of_timesteps": 890000,
+            "per_episode_reward": -464.91,
+            "episode_reward_trend_value": 0.002130115908455031,
+            "biggest_recent_change": 0.835966376932106
+        },
+        {
+            "total_number_of_episodes": 900,
+            "number_of_timesteps": 900000,
+            "per_episode_reward": -463.8,
+            "episode_reward_trend_value": 0.010175286992578473,
+            "biggest_recent_change": 1.1150677247900376
+        },
+        {
+            "total_number_of_episodes": 910,
+            "number_of_timesteps": 910000,
+            "per_episode_reward": -464.39,
+            "episode_reward_trend_value": -0.0015076639141076006,
+            "biggest_recent_change": 1.1150677247900376
+        },
+        {
+            "total_number_of_episodes": 920,
+            "number_of_timesteps": 920000,
+            "per_episode_reward": -463.42,
+            "episode_reward_trend_value": -0.00005186860319478607,
+            "biggest_recent_change": 1.1150677247900376
+        },
+        {
+            "total_number_of_episodes": 930,
+            "number_of_timesteps": 930000,
+            "per_episode_reward": -462.7,
+            "episode_reward_trend_value": 0.01718633230289015,
+            "biggest_recent_change": 1.1150677247900376
+        },
+        {
+            "total_number_of_episodes": 940,
+            "number_of_timesteps": 940000,
+            "per_episode_reward": -462.75,
+            "episode_reward_trend_value": 0.021926289372644053,
+            "biggest_recent_change": 1.1150677247900376
+        },
+        {
+            "total_number_of_episodes": 950,
+            "number_of_timesteps": 950000,
+            "per_episode_reward": -463.01,
+            "episode_reward_trend_value": 0.01826031953719078,
+            "biggest_recent_change": 1.1150677247900376
+        },
+        {
+            "total_number_of_episodes": 960,
+            "number_of_timesteps": 960000,
+            "per_episode_reward": -462.68,
+            "episode_reward_trend_value": 0.025118683506310115,
+            "biggest_recent_change": 1.1150677247900376
+        },
+        {
+            "total_number_of_episodes": 970,
+            "number_of_timesteps": 970000,
+            "per_episode_reward": -462.32,
+            "episode_reward_trend_value": 0.023674405652443258,
+            "biggest_recent_change": 1.1150677247900376
+        },
+        {
+            "total_number_of_episodes": 980,
+            "number_of_timesteps": 980000,
+            "per_episode_reward": -463.06,
+            "episode_reward_trend_value": 0.020544658830699013,
+            "biggest_recent_change": 1.1150677247900376
+        },
+        {
+            "total_number_of_episodes": 990,
+            "number_of_timesteps": 990000,
+            "per_episode_reward": -463.49,
+            "episode_reward_trend_value": 0.0034145900279440866,
+            "biggest_recent_change": 0.9669879549142593
+        },
+        {
+            "total_number_of_episodes": 1000,
+            "number_of_timesteps": 1000000,
+            "per_episode_reward": -463.14,
+            "episode_reward_trend_value": 0.013814597328046022,
+            "biggest_recent_change": 0.9669879549142593
+        },
+        {
+            "total_number_of_episodes": 1010,
+            "number_of_timesteps": 1010000,
+            "per_episode_reward": -463.13,
+            "episode_reward_trend_value": 0.003228509011943162,
+            "biggest_recent_change": 0.7447748437418795
+        },
+        {
+            "total_number_of_episodes": 1020,
+            "number_of_timesteps": 1020000,
+            "per_episode_reward": -463.23,
+            "episode_reward_trend_value": -0.005863694736754294,
+            "biggest_recent_change": 0.7447748437418795
+        },
+        {
+            "total_number_of_episodes": 1030,
+            "number_of_timesteps": 1030000,
+            "per_episode_reward": -463.14,
+            "episode_reward_trend_value": -0.004370137813461699,
+            "biggest_recent_change": 0.7447748437418795
+        },
+        {
+            "total_number_of_episodes": 1040,
+            "number_of_timesteps": 1040000,
+            "per_episode_reward": -462.82,
+            "episode_reward_trend_value": 0.002193627494119078,
+            "biggest_recent_change": 0.7447748437418795
+        },
+        {
+            "total_number_of_episodes": 1050,
+            "number_of_timesteps": 1050000,
+            "per_episode_reward": -462.67,
+            "episode_reward_trend_value": 0.0000772894049147352,
+            "biggest_recent_change": 0.7447748437418795
+        },
+        {
+            "total_number_of_episodes": 1060,
+            "number_of_timesteps": 1060000,
+            "per_episode_reward": -463.1,
+            "episode_reward_trend_value": -0.008624892294899508,
+            "biggest_recent_change": 0.7447748437418795
+        },
+        {
+            "total_number_of_episodes": 1070,
+            "number_of_timesteps": 1070000,
+            "per_episode_reward": -462.88,
+            "episode_reward_trend_value": 0.0020042926676189328,
+            "biggest_recent_change": 0.42777920813267656
+        },
+        {
+            "total_number_of_episodes": 1080,
+            "number_of_timesteps": 1080000,
+            "per_episode_reward": -463.49,
+            "episode_reward_trend_value": 0.0000015397265883621004,
+            "biggest_recent_change": 0.6068862321506572
+        },
+        {
+            "total_number_of_episodes": 1090,
+            "number_of_timesteps": 1090000,
+            "per_episode_reward": -463.93,
+            "episode_reward_trend_value": -0.008728383575498811,
+            "biggest_recent_change": 0.6068862321506572
+        },
+        {
+            "total_number_of_episodes": 1100,
+            "number_of_timesteps": 1100000,
+            "per_episode_reward": -463.87,
+            "episode_reward_trend_value": -0.008276993314909633,
+            "biggest_recent_change": 0.6068862321506572
+        },
+        {
+            "total_number_of_episodes": 1110,
+            "number_of_timesteps": 1110000,
+            "per_episode_reward": -464.31,
+            "episode_reward_trend_value": -0.012083164768578552,
+            "biggest_recent_change": 0.6068862321506572
+        },
+        {
+            "total_number_of_episodes": 1120,
+            "number_of_timesteps": 1120000,
+            "per_episode_reward": -464.06,
+            "episode_reward_trend_value": -0.010229007441921567,
+            "biggest_recent_change": 0.6068862321506572
+        },
+        {
+            "total_number_of_episodes": 1130,
+            "number_of_timesteps": 1130000,
+            "per_episode_reward": -463.9,
+            "episode_reward_trend_value": -0.012061071040068327,
+            "biggest_recent_change": 0.6068862321506572
+        },
+        {
+            "total_number_of_episodes": 1140,
+            "number_of_timesteps": 1140000,
+            "per_episode_reward": -463.51,
+            "episode_reward_trend_value": -0.009399647587522647,
+            "biggest_recent_change": 0.6068862321506572
+        },
+        {
+            "total_number_of_episodes": 1150,
+            "number_of_timesteps": 1150000,
+            "per_episode_reward": -463.58,
+            "episode_reward_trend_value": -0.005415664138829218,
+            "biggest_recent_change": 0.6068862321506572
+        },
+        {
+            "total_number_of_episodes": 1160,
+            "number_of_timesteps": 1160000,
+            "per_episode_reward": -463.44,
+            "episode_reward_trend_value": -0.006195957174681629,
+            "biggest_recent_change": 0.6068862321506572
+        },
+        {
+            "total_number_of_episodes": 1170,
+            "number_of_timesteps": 1170000,
+            "per_episode_reward": -463.44,
+            "episode_reward_trend_value": 0.000522207040281349,
+            "biggest_recent_change": 0.43863315519502066
+        },
+        {
+            "total_number_of_episodes": 1180,
+            "number_of_timesteps": 1180000,
+            "per_episode_reward": -463.55,
+            "episode_reward_trend_value": 0.004234971868524124,
+            "biggest_recent_change": 0.43863315519502066
+        },
+        {
+            "total_number_of_episodes": 1190,
+            "number_of_timesteps": 1190000,
+            "per_episode_reward": -463.41,
+            "episode_reward_trend_value": 0.00515847543858917,
+            "biggest_recent_change": 0.43863315519502066
+        },
+        {
+            "total_number_of_episodes": 1200,
+            "number_of_timesteps": 1200000,
+            "per_episode_reward": -463.75,
+            "episode_reward_trend_value": 0.006268824726343307,
+            "biggest_recent_change": 0.3881517224118056
+        },
+        {
+            "total_number_of_episodes": 1210,
+            "number_of_timesteps": 1210000,
+            "per_episode_reward": -463.63,
+            "episode_reward_trend_value": 0.004756929070470051,
+            "biggest_recent_change": 0.3881517224118056
+        },
+        {
+            "total_number_of_episodes": 1220,
+            "number_of_timesteps": 1220000,
+            "per_episode_reward": -462.93,
+            "episode_reward_trend_value": 0.010849667102384173,
+            "biggest_recent_change": 0.7061825073872114
+        },
+        {
+            "total_number_of_episodes": 1230,
+            "number_of_timesteps": 1230000,
+            "per_episode_reward": -463.4,
+            "episode_reward_trend_value": 0.0012696059770639244,
+            "biggest_recent_change": 0.7061825073872114
+        },
+        {
+            "total_number_of_episodes": 1240,
+            "number_of_timesteps": 1240000,
+            "per_episode_reward": -463.26,
+            "episode_reward_trend_value": 0.003640620200870773,
+            "biggest_recent_change": 0.7061825073872114
+        },
+        {
+            "total_number_of_episodes": 1250,
+            "number_of_timesteps": 1250000,
+            "per_episode_reward": -463.51,
+            "episode_reward_trend_value": -0.0007973723235105959,
+            "biggest_recent_change": 0.7061825073872114
+        },
+        {
+            "total_number_of_episodes": 1260,
+            "number_of_timesteps": 1260000,
+            "per_episode_reward": -463.6,
+            "episode_reward_trend_value": -0.0017013469819453855,
+            "biggest_recent_change": 0.7061825073872114
+        },
+        {
+            "total_number_of_episodes": 1270,
+            "number_of_timesteps": 1270000,
+            "per_episode_reward": -463.48,
+            "episode_reward_trend_value": 0.0007314337930792034,
+            "biggest_recent_change": 0.7061825073872114
+        },
+        {
+            "total_number_of_episodes": 1280,
+            "number_of_timesteps": 1280000,
+            "per_episode_reward": -463.3,
+            "episode_reward_trend_value": 0.0012342324714141896,
+            "biggest_recent_change": 0.7061825073872114
+        },
+        {
+            "total_number_of_episodes": 1290,
+            "number_of_timesteps": 1290000,
+            "per_episode_reward": -463.49,
+            "episode_reward_trend_value": 0.0028834154374881866,
+            "biggest_recent_change": 0.7061825073872114
+        },
+        {
+            "total_number_of_episodes": 1300,
+            "number_of_timesteps": 1300000,
+            "per_episode_reward": -463.52,
+            "episode_reward_trend_value": 0.0012989485439574208,
+            "biggest_recent_change": 0.7061825073872114
+        },
+        {
+            "total_number_of_episodes": 1310,
+            "number_of_timesteps": 1310000,
+            "per_episode_reward": -463.7,
+            "episode_reward_trend_value": -0.008633655147496535,
+            "biggest_recent_change": 0.4740537788670167
+        },
+        {
+            "total_number_of_episodes": 1320,
+            "number_of_timesteps": 1320000,
+            "per_episode_reward": -463.45,
+            "episode_reward_trend_value": -0.0005927430409378252,
+            "biggest_recent_change": 0.2577938975362599
+        },
+        {
+            "total_number_of_episodes": 1330,
+            "number_of_timesteps": 1330000,
+            "per_episode_reward": -463.67,
+            "episode_reward_trend_value": -0.0045954654503033345,
+            "biggest_recent_change": 0.2577938975362599
+        },
+        {
+            "total_number_of_episodes": 1340,
+            "number_of_timesteps": 1340000,
+            "per_episode_reward": -463.6,
+            "episode_reward_trend_value": -0.0009488106429431456,
+            "biggest_recent_change": 0.24962831072326708
+        },
+        {
+            "total_number_of_episodes": 1350,
+            "number_of_timesteps": 1350000,
+            "per_episode_reward": -463.44,
+            "episode_reward_trend_value": 0.0017429024626627171,
+            "biggest_recent_change": 0.24962831072326708
+        },
+        {
+            "total_number_of_episodes": 1360,
+            "number_of_timesteps": 1360000,
+            "per_episode_reward": -463.25,
+            "episode_reward_trend_value": 0.002578028700058768,
+            "biggest_recent_change": 0.24962831072326708
+        },
+        {
+            "total_number_of_episodes": 1370,
+            "number_of_timesteps": 1370000,
+            "per_episode_reward": -463.04,
+            "episode_reward_trend_value": 0.002854259262194445,
+            "biggest_recent_change": 0.24962831072326708
+        },
+        {
+            "total_number_of_episodes": 1380,
+            "number_of_timesteps": 1380000,
+            "per_episode_reward": -463.2,
+            "episode_reward_trend_value": 0.00318919573315068,
+            "biggest_recent_change": 0.24962831072326708
+        },
+        {
+            "total_number_of_episodes": 1390,
+            "number_of_timesteps": 1390000,
+            "per_episode_reward": -463.06,
+            "episode_reward_trend_value": 0.0050386236620700705,
+            "biggest_recent_change": 0.24962831072326708
+        },
+        {
+            "total_number_of_episodes": 1400,
+            "number_of_timesteps": 1400000,
+            "per_episode_reward": -463.08,
+            "episode_reward_trend_value": 0.0069587436942899535,
+            "biggest_recent_change": 0.24962831072326708
+        },
+        {
+            "total_number_of_episodes": 1410,
+            "number_of_timesteps": 1410000,
+            "per_episode_reward": -462.94,
+            "episode_reward_trend_value": 0.005718603919929263,
+            "biggest_recent_change": 0.21607443445054741
+        },
+        {
+            "total_number_of_episodes": 1420,
+            "number_of_timesteps": 1420000,
+            "per_episode_reward": -463.18,
+            "episode_reward_trend_value": 0.005431132918467559,
+            "biggest_recent_change": 0.24194682458210082
+        },
+        {
+            "total_number_of_episodes": 1430,
+            "number_of_timesteps": 1430000,
+            "per_episode_reward": -463.45,
+            "episode_reward_trend_value": 0.0016523704152051424,
+            "biggest_recent_change": 0.26968359016746035
+        },
+        {
+            "total_number_of_episodes": 1440,
+            "number_of_timesteps": 1440000,
+            "per_episode_reward": -463.16,
+            "episode_reward_trend_value": 0.003060645106506854,
+            "biggest_recent_change": 0.28538972965856146
+        },
+        {
+            "total_number_of_episodes": 1450,
+            "number_of_timesteps": 1450000,
+            "per_episode_reward": -463.01,
+            "episode_reward_trend_value": 0.0026934017025723733,
+            "biggest_recent_change": 0.28538972965856146
+        },
+        {
+            "total_number_of_episodes": 1460,
+            "number_of_timesteps": 1460000,
+            "per_episode_reward": -463.31,
+            "episode_reward_trend_value": -0.002988237707042016,
+            "biggest_recent_change": 0.3032544639990533
+        },
+        {
+            "total_number_of_episodes": 1470,
+            "number_of_timesteps": 1470000,
+            "per_episode_reward": -463.36,
+            "episode_reward_trend_value": -0.0017343930304081015,
+            "biggest_recent_change": 0.3032544639990533
+        },
+        {
+            "total_number_of_episodes": 1480,
+            "number_of_timesteps": 1480000,
+            "per_episode_reward": -463.51,
+            "episode_reward_trend_value": -0.0049807317121519645,
+            "biggest_recent_change": 0.3032544639990533
+        },
+        {
+            "total_number_of_episodes": 1490,
+            "number_of_timesteps": 1490000,
+            "per_episode_reward": -463.89,
+            "episode_reward_trend_value": -0.0090726812297444,
+            "biggest_recent_change": 0.38321647852717433
+        },
+        {
+            "total_number_of_episodes": 1500,
+            "number_of_timesteps": 1500000,
+            "per_episode_reward": -463.7,
+            "episode_reward_trend_value": -0.008446312626935853,
+            "biggest_recent_change": 0.38321647852717433
+        },
+        {
+            "total_number_of_episodes": 1510,
+            "number_of_timesteps": 1510000,
+            "per_episode_reward": -464.01,
+            "episode_reward_trend_value": -0.009177309697373756,
+            "biggest_recent_change": 0.38321647852717433
+        },
+        {
+            "total_number_of_episodes": 1520,
+            "number_of_timesteps": 1520000,
+            "per_episode_reward": -464,
+            "episode_reward_trend_value": -0.006055606517500993,
+            "biggest_recent_change": 0.38321647852717433
+        },
+        {
+            "total_number_of_episodes": 1530,
+            "number_of_timesteps": 1530000,
+            "per_episode_reward": -464.18,
+            "episode_reward_trend_value": -0.011269128141777981,
+            "biggest_recent_change": 0.38321647852717433
+        },
+        {
+            "total_number_of_episodes": 1540,
+            "number_of_timesteps": 1540000,
+            "per_episode_reward": -463.98,
+            "episode_reward_trend_value": -0.01080278809421884,
+            "biggest_recent_change": 0.38321647852717433
+        },
+        {
+            "total_number_of_episodes": 1550,
+            "number_of_timesteps": 1550000,
+            "per_episode_reward": -463.92,
+            "episode_reward_trend_value": -0.006760743533132857,
+            "biggest_recent_change": 0.38321647852717433
+        },
+        {
+            "total_number_of_episodes": 1560,
+            "number_of_timesteps": 1560000,
+            "per_episode_reward": -463.36,
+            "episode_reward_trend_value": -0.00006260042988830921,
+            "biggest_recent_change": 0.555547930224634
+        },
+        {
+            "total_number_of_episodes": 1570,
+            "number_of_timesteps": 1570000,
+            "per_episode_reward": -463.07,
+            "episode_reward_trend_value": 0.004895000044667262,
+            "biggest_recent_change": 0.555547930224634
+        },
+        {
+            "total_number_of_episodes": 1580,
+            "number_of_timesteps": 1580000,
+            "per_episode_reward": -463.26,
+            "episode_reward_trend_value": 0.007043758245149296,
+            "biggest_recent_change": 0.555547930224634
+        },
+        {
+            "total_number_of_episodes": 1590,
+            "number_of_timesteps": 1590000,
+            "per_episode_reward": -463.25,
+            "episode_reward_trend_value": 0.004972755416970484,
+            "biggest_recent_change": 0.555547930224634
+        },
+        {
+            "total_number_of_episodes": 1600,
+            "number_of_timesteps": 1600000,
+            "per_episode_reward": -463.35,
+            "episode_reward_trend_value": 0.007329113493617317,
+            "biggest_recent_change": 0.555547930224634
+        },
+        {
+            "total_number_of_episodes": 1610,
+            "number_of_timesteps": 1610000,
+            "per_episode_reward": -463.08,
+            "episode_reward_trend_value": 0.010180126114933172,
+            "biggest_recent_change": 0.555547930224634
+        },
+        {
+            "total_number_of_episodes": 1620,
+            "number_of_timesteps": 1620000,
+            "per_episode_reward": -462.83,
+            "episode_reward_trend_value": 0.014976162797094933,
+            "biggest_recent_change": 0.555547930224634
+        },
+        {
+            "total_number_of_episodes": 1630,
+            "number_of_timesteps": 1630000,
+            "per_episode_reward": -462.46,
+            "episode_reward_trend_value": 0.016929078667778364,
+            "biggest_recent_change": 0.555547930224634
+        },
+        {
+            "total_number_of_episodes": 1640,
+            "number_of_timesteps": 1640000,
+            "per_episode_reward": -462.53,
+            "episode_reward_trend_value": 0.015439176683191943,
+            "biggest_recent_change": 0.555547930224634
+        },
+        {
+            "total_number_of_episodes": 1650,
+            "number_of_timesteps": 1650000,
+            "per_episode_reward": -462.62,
+            "episode_reward_trend_value": 0.008239567182935541,
+            "biggest_recent_change": 0.374340950783278
+        },
+        {
+            "total_number_of_episodes": 1660,
+            "number_of_timesteps": 1660000,
+            "per_episode_reward": -462.61,
+            "episode_reward_trend_value": 0.005141484094602649,
+            "biggest_recent_change": 0.374340950783278
+        },
+        {
+            "total_number_of_episodes": 1670,
+            "number_of_timesteps": 1670000,
+            "per_episode_reward": -462.7,
+            "episode_reward_trend_value": 0.006253165304447192,
+            "biggest_recent_change": 0.374340950783278
+        },
+        {
+            "total_number_of_episodes": 1680,
+            "number_of_timesteps": 1680000,
+            "per_episode_reward": -462.54,
+            "episode_reward_trend_value": 0.007938379252895958,
+            "biggest_recent_change": 0.374340950783278
+        },
+        {
+            "total_number_of_episodes": 1690,
+            "number_of_timesteps": 1690000,
+            "per_episode_reward": -462.45,
+            "episode_reward_trend_value": 0.009911405222315277,
+            "biggest_recent_change": 0.374340950783278
+        },
+        {
+            "total_number_of_episodes": 1700,
+            "number_of_timesteps": 1700000,
+            "per_episode_reward": -462.22,
+            "episode_reward_trend_value": 0.009577073390081143,
+            "biggest_recent_change": 0.374340950783278
+        },
+        {
+            "total_number_of_episodes": 1710,
+            "number_of_timesteps": 1710000,
+            "per_episode_reward": -462.34,
+            "episode_reward_trend_value": 0.005464942266967102,
+            "biggest_recent_change": 0.374340950783278
+        },
+        {
+            "total_number_of_episodes": 1720,
+            "number_of_timesteps": 1720000,
+            "per_episode_reward": -462.56,
+            "episode_reward_trend_value": -0.0011666729711912972,
+            "biggest_recent_change": 0.23777096703844336
+        },
+        {
+            "total_number_of_episodes": 1730,
+            "number_of_timesteps": 1730000,
+            "per_episode_reward": -462.59,
+            "episode_reward_trend_value": -0.000648978223902456,
+            "biggest_recent_change": 0.23777096703844336
+        },
+        {
+            "total_number_of_episodes": 1740,
+            "number_of_timesteps": 1740000,
+            "per_episode_reward": -462.47,
+            "episode_reward_trend_value": 0.0017316407600282621,
+            "biggest_recent_change": 0.23777096703844336
+        },
+        {
+            "total_number_of_episodes": 1750,
+            "number_of_timesteps": 1750000,
+            "per_episode_reward": -462.33,
+            "episode_reward_trend_value": 0.003064604251889907,
+            "biggest_recent_change": 0.23777096703844336
+        },
+        {
+            "total_number_of_episodes": 1760,
+            "number_of_timesteps": 1760000,
+            "per_episode_reward": -462.62,
+            "episode_reward_trend_value": 0.0008621615570215605,
+            "biggest_recent_change": 0.2879967741359337
+        },
+        {
+            "total_number_of_episodes": 1770,
+            "number_of_timesteps": 1770000,
+            "per_episode_reward": -462.55,
+            "episode_reward_trend_value": -0.00018605000941849742,
+            "biggest_recent_change": 0.2879967741359337
+        },
+        {
+            "total_number_of_episodes": 1780,
+            "number_of_timesteps": 1780000,
+            "per_episode_reward": -462.37,
+            "episode_reward_trend_value": 0.0009346752483793353,
+            "biggest_recent_change": 0.2879967741359337
+        },
+        {
+            "total_number_of_episodes": 1790,
+            "number_of_timesteps": 1790000,
+            "per_episode_reward": -462.24,
+            "episode_reward_trend_value": -0.00030115051878599135,
+            "biggest_recent_change": 0.2879967741359337
+        },
+        {
+            "total_number_of_episodes": 1800,
+            "number_of_timesteps": 1800000,
+            "per_episode_reward": -462.13,
+            "episode_reward_trend_value": 0.0023153618520085377,
+            "biggest_recent_change": 0.2879967741359337
+        },
+        {
+            "total_number_of_episodes": 1810,
+            "number_of_timesteps": 1810000,
+            "per_episode_reward": -462.26,
+            "episode_reward_trend_value": 0.0033388471270275966,
+            "biggest_recent_change": 0.2879967741359337
+        },
+        {
+            "total_number_of_episodes": 1820,
+            "number_of_timesteps": 1820000,
+            "per_episode_reward": -462.02,
+            "episode_reward_trend_value": 0.006317758160861962,
+            "biggest_recent_change": 0.2879967741359337
+        },
+        {
+            "total_number_of_episodes": 1830,
+            "number_of_timesteps": 1830000,
+            "per_episode_reward": -461.81,
+            "episode_reward_trend_value": 0.007351230229614379,
+            "biggest_recent_change": 0.2879967741359337
+        },
+        {
+            "total_number_of_episodes": 1840,
+            "number_of_timesteps": 1840000,
+            "per_episode_reward": -461.8,
+            "episode_reward_trend_value": 0.005907209940186123,
+            "biggest_recent_change": 0.2879967741359337
+        },
+        {
+            "total_number_of_episodes": 1850,
+            "number_of_timesteps": 1850000,
+            "per_episode_reward": -461.49,
+            "episode_reward_trend_value": 0.012515514545015094,
+            "biggest_recent_change": 0.3067506402986737
+        },
+        {
+            "total_number_of_episodes": 1860,
+            "number_of_timesteps": 1860000,
+            "per_episode_reward": -461.3,
+            "episode_reward_trend_value": 0.013879729988601892,
+            "biggest_recent_change": 0.3067506402986737
+        },
+        {
+            "total_number_of_episodes": 1870,
+            "number_of_timesteps": 1870000,
+            "per_episode_reward": -461.28,
+            "episode_reward_trend_value": 0.012092802569986816,
+            "biggest_recent_change": 0.3067506402986737
+        },
+        {
+            "total_number_of_episodes": 1880,
+            "number_of_timesteps": 1880000,
+            "per_episode_reward": -461.22,
+            "episode_reward_trend_value": 0.011415934225179728,
+            "biggest_recent_change": 0.3067506402986737
+        },
+        {
+            "total_number_of_episodes": 1890,
+            "number_of_timesteps": 1890000,
+            "per_episode_reward": -461.29,
+            "episode_reward_trend_value": 0.009330366085363393,
+            "biggest_recent_change": 0.3067506402986737
+        },
+        {
+            "total_number_of_episodes": 1900,
+            "number_of_timesteps": 1900000,
+            "per_episode_reward": -461.18,
+            "episode_reward_trend_value": 0.012063269673266557,
+            "biggest_recent_change": 0.3067506402986737
+        },
+        {
+            "total_number_of_episodes": 1910,
+            "number_of_timesteps": 1910000,
+            "per_episode_reward": -461.18,
+            "episode_reward_trend_value": 0.009321421503021081,
+            "biggest_recent_change": 0.3067506402986737
+        },
+        {
+            "total_number_of_episodes": 1920,
+            "number_of_timesteps": 1920000,
+            "per_episode_reward": -461.25,
+            "episode_reward_trend_value": 0.006179111233794604,
+            "biggest_recent_change": 0.3067506402986737
+        },
+        {
+            "total_number_of_episodes": 1930,
+            "number_of_timesteps": 1930000,
+            "per_episode_reward": -461.15,
+            "episode_reward_trend_value": 0.007189768897817178,
+            "biggest_recent_change": 0.3067506402986737
+        },
+        {
+            "total_number_of_episodes": 1940,
+            "number_of_timesteps": 1940000,
+            "per_episode_reward": -461.04,
+            "episode_reward_trend_value": 0.005046448646956808,
+            "biggest_recent_change": 0.18810825505107687
+        },
+        {
+            "total_number_of_episodes": 1950,
+            "number_of_timesteps": 1950000,
+            "per_episode_reward": -460.95,
+            "episode_reward_trend_value": 0.003922963049449714,
+            "biggest_recent_change": 0.11557057701202211
+        },
+        {
+            "total_number_of_episodes": 1960,
+            "number_of_timesteps": 1960000,
+            "per_episode_reward": -460.82,
+            "episode_reward_trend_value": 0.0051319292045276495,
+            "biggest_recent_change": 0.13075676270790382
+        },
+        {
+            "total_number_of_episodes": 1970,
+            "number_of_timesteps": 1970000,
+            "per_episode_reward": -460.59,
+            "episode_reward_trend_value": 0.0069797701813311295,
+            "biggest_recent_change": 0.23193418487323925
+        },
+        {
+            "total_number_of_episodes": 1980,
+            "number_of_timesteps": 1980000,
+            "per_episode_reward": -460.71,
+            "episode_reward_trend_value": 0.006450512813744859,
+            "biggest_recent_change": 0.23193418487323925
+        },
+        {
+            "total_number_of_episodes": 1990,
+            "number_of_timesteps": 1990000,
+            "per_episode_reward": -460.8,
+            "episode_reward_trend_value": 0.00419037742044313,
+            "biggest_recent_change": 0.23193418487323925
+        },
+        {
+            "total_number_of_episodes": 2000,
+            "number_of_timesteps": 2000000,
+            "per_episode_reward": -460.64,
+            "episode_reward_trend_value": 0.005995407415083617,
+            "biggest_recent_change": 0.23193418487323925
+        },
+        {
+            "total_number_of_episodes": 2010,
+            "number_of_timesteps": 2010000,
+            "per_episode_reward": -460.63,
+            "episode_reward_trend_value": 0.006932614464615325,
+            "biggest_recent_change": 0.23193418487323925
+        },
+        {
+            "total_number_of_episodes": 2020,
+            "number_of_timesteps": 2020000,
+            "per_episode_reward": -460.58,
+            "episode_reward_trend_value": 0.006406926091232082,
+            "biggest_recent_change": 0.23193418487323925
+        },
+        {
+            "total_number_of_episodes": 2030,
+            "number_of_timesteps": 2030000,
+            "per_episode_reward": -460.58,
+            "episode_reward_trend_value": 0.005072349219443595,
+            "biggest_recent_change": 0.23193418487323925
+        },
+        {
+            "total_number_of_episodes": 2040,
+            "number_of_timesteps": 2040000,
+            "per_episode_reward": -460.46,
+            "episode_reward_trend_value": 0.0054063406863071525,
+            "biggest_recent_change": 0.23193418487323925
+        },
+        {
+            "total_number_of_episodes": 2050,
+            "number_of_timesteps": 2050000,
+            "per_episode_reward": -460.48,
+            "episode_reward_trend_value": 0.003734379387328267,
+            "biggest_recent_change": 0.23193418487323925
+        },
+        {
+            "total_number_of_episodes": 2060,
+            "number_of_timesteps": 2060000,
+            "per_episode_reward": -460.44,
+            "episode_reward_trend_value": 0.0016700182033907315,
+            "biggest_recent_change": 0.15681925238254735
+        },
+        {
+            "total_number_of_episodes": 2070,
+            "number_of_timesteps": 2070000,
+            "per_episode_reward": -460.49,
+            "episode_reward_trend_value": 0.0024203663095976125,
+            "biggest_recent_change": 0.15681925238254735
+        },
+        {
+            "total_number_of_episodes": 2080,
+            "number_of_timesteps": 2080000,
+            "per_episode_reward": -460.55,
+            "episode_reward_trend_value": 0.002715968989046284,
+            "biggest_recent_change": 0.15681925238254735
+        },
+        {
+            "total_number_of_episodes": 2090,
+            "number_of_timesteps": 2090000,
+            "per_episode_reward": -460.59,
+            "episode_reward_trend_value": 0.0005311843680930097,
+            "biggest_recent_change": 0.11705378329315863
+        },
+        {
+            "total_number_of_episodes": 2100,
+            "number_of_timesteps": 2100000,
+            "per_episode_reward": -460.55,
+            "episode_reward_trend_value": 0.0007913997384567514,
+            "biggest_recent_change": 0.11705378329315863
+        },
+        {
+            "total_number_of_episodes": 2110,
+            "number_of_timesteps": 2110000,
+            "per_episode_reward": -460.52,
+            "episode_reward_trend_value": 0.000622886685668315,
+            "biggest_recent_change": 0.11705378329315863
+        },
+        {
+            "total_number_of_episodes": 2120,
+            "number_of_timesteps": 2120000,
+            "per_episode_reward": -460.53,
+            "episode_reward_trend_value": 0.0005586256091836124,
+            "biggest_recent_change": 0.11705378329315863
+        }
+    ],
+    [
+        {
+            "total_number_of_episodes": 20,
+            "number_of_timesteps": 20000,
+            "per_episode_reward": -677.14,
+            "episode_reward_trend_value": 0,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 30,
+            "number_of_timesteps": 30000,
+            "per_episode_reward": -647.76,
+            "episode_reward_trend_value": 2.9379180670244525,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 40,
+            "number_of_timesteps": 40000,
+            "per_episode_reward": -656.7,
+            "episode_reward_trend_value": 1.0221186566924416,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 50,
+            "number_of_timesteps": 50000,
+            "per_episode_reward": -656.98,
+            "episode_reward_trend_value": 0.6722086724269729,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 60,
+            "number_of_timesteps": 60000,
+            "per_episode_reward": -658.96,
+            "episode_reward_trend_value": 0.454520632247872,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 70,
+            "number_of_timesteps": 70000,
+            "per_episode_reward": -665.68,
+            "episode_reward_trend_value": 0.22929391292641638,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 80,
+            "number_of_timesteps": 80000,
+            "per_episode_reward": -659.86,
+            "episode_reward_trend_value": 0.28799975123574767,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 90,
+            "number_of_timesteps": 90000,
+            "per_episode_reward": -657.52,
+            "episode_reward_trend_value": 0.2803569684478492,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 100,
+            "number_of_timesteps": 100000,
+            "per_episode_reward": -650.04,
+            "episode_reward_trend_value": 0.3387855797154316,
+            "biggest_recent_change": null
+        },
+        {
+            "total_number_of_episodes": 110,
+            "number_of_timesteps": 110000,
+            "per_episode_reward": -651.47,
+            "episode_reward_trend_value": 0.28520485187873673,
+            "biggest_recent_change": 29.379180670244523
+        },
+        {
+            "total_number_of_episodes": 120,
+            "number_of_timesteps": 120000,
+            "per_episode_reward": -655.12,
+            "episode_reward_trend_value": -0.08172872318773317,
+            "biggest_recent_change": 8.93680753639569
+        },
+        {
+            "total_number_of_episodes": 130,
+            "number_of_timesteps": 130000,
+            "per_episode_reward": -660.25,
+            "episode_reward_trend_value": -0.03946020417354375,
+            "biggest_recent_change": 7.4778585858850875
+        },
+        {
+            "total_number_of_episodes": 140,
+            "number_of_timesteps": 140000,
+            "per_episode_reward": -657.32,
+            "episode_reward_trend_value": -0.0038421313498260027,
+            "biggest_recent_change": 7.4778585858850875
+        },
+        {
+            "total_number_of_episodes": 150,
+            "number_of_timesteps": 150000,
+            "per_episode_reward": -654.98,
+            "episode_reward_trend_value": 0.04419706617579651,
+            "biggest_recent_change": 7.4778585858850875
+        },
+        {
+            "total_number_of_episodes": 160,
+            "number_of_timesteps": 160000,
+            "per_episode_reward": -656.12,
+            "episode_reward_trend_value": 0.10616274462173705,
+            "biggest_recent_change": 7.4778585858850875
+        },
+        {
+            "total_number_of_episodes": 170,
+            "number_of_timesteps": 170000,
+            "per_episode_reward": -655.31,
+            "episode_reward_trend_value": 0.05057588767525153,
+            "biggest_recent_change": 7.4778585858850875
+        },
+        {
+            "total_number_of_episodes": 180,
+            "number_of_timesteps": 180000,
+            "per_episode_reward": -655.62,
+            "episode_reward_trend_value": 0.02106257266214142,
+            "biggest_recent_change": 7.4778585858850875
+        },
+        {
+            "total_number_of_episodes": 190,
+            "number_of_timesteps": 190000,
+            "per_episode_reward": -656.39,
+            "episode_reward_trend_value": -0.07059932024232517,
+            "biggest_recent_change": 5.132640825118642
+        },
+        {
+            "total_number_of_episodes": 200,
+            "number_of_timesteps": 200000,
+            "per_episode_reward": -656.48,
+            "episode_reward_trend_value": -0.0556633720605027,
+            "biggest_recent_change": 5.132640825118642
+        },
+        {
+            "total_number_of_episodes": 210,
+            "number_of_timesteps": 210000,
+            "per_episode_reward": -654.15,
+            "episode_reward_trend_value": 0.010749355427575817,
+            "biggest_recent_change": 5.132640825118642
+        },
+        {
+            "total_number_of_episodes": 220,
+            "number_of_timesteps": 220000,
+            "per_episode_reward": -652.52,
+            "episode_reward_trend_value": 0.0858732547661551,
+            "biggest_recent_change": 2.9295135930949527
+        },
+        {
+            "total_number_of_episodes": 230,
+            "number_of_timesteps": 230000,
+            "per_episode_reward": -654.68,
+            "episode_reward_trend_value": 0.02932005908537197,
+            "biggest_recent_change": 2.338092894411716
+        },
+        {
+            "total_number_of_episodes": 240,
+            "number_of_timesteps": 240000,
+            "per_episode_reward": -655.59,
+            "episode_reward_trend_value": -0.006760821672576691,
+            "biggest_recent_change": 2.3323043881893
+        },
+        {
+            "total_number_of_episodes": 250,
+            "number_of_timesteps": 250000,
+            "per_episode_reward": -655.86,
+            "episode_reward_trend_value": 0.0028941324467824515,
+            "biggest_recent_change": 2.3323043881893
+        },
+        {
+            "total_number_of_episodes": 260,
+            "number_of_timesteps": 260000,
+            "per_episode_reward": -657,
+            "episode_reward_trend_value": -0.018814541423446622,
+            "biggest_recent_change": 2.3323043881893
+        },
+        {
+            "total_number_of_episodes": 270,
+            "number_of_timesteps": 270000,
+            "per_episode_reward": -659.97,
+            "episode_reward_trend_value": -0.04829428241558844,
+            "biggest_recent_change": 2.964372323268094
+        },
+        {
+            "total_number_of_episodes": 280,
+            "number_of_timesteps": 280000,
+            "per_episode_reward": -659.13,
+            "episode_reward_trend_value": -0.0303572471383139,
+            "biggest_recent_change": 2.964372323268094
+        },
+        {
+            "total_number_of_episodes": 290,
+            "number_of_timesteps": 290000,
+            "per_episode_reward": -659.81,
+            "episode_reward_trend_value": -0.03697359010409527,
+            "biggest_recent_change": 2.964372323268094
+        },
+        {
+            "total_number_of_episodes": 300,
+            "number_of_timesteps": 300000,
+            "per_episode_reward": -657.74,
+            "episode_reward_trend_value": -0.0398212061189396,
+            "biggest_recent_change": 2.964372323268094
+        },
+        {
+            "total_number_of_episodes": 310,
+            "number_of_timesteps": 310000,
+            "per_episode_reward": -656.32,
+            "episode_reward_trend_value": -0.04215306789891934,
+            "biggest_recent_change": 2.964372323268094
+        },
+        {
+            "total_number_of_episodes": 320,
+            "number_of_timesteps": 320000,
+            "per_episode_reward": -587.97,
+            "episode_reward_trend_value": 0.7412881861358326,
+            "biggest_recent_change": 68.34943884495215
+        },
+        {
+            "total_number_of_episodes": 330,
+            "number_of_timesteps": 330000,
+            "per_episode_reward": -587.61,
+            "episode_reward_trend_value": 0.7553327107392117,
+            "biggest_recent_change": 68.34943884495215
+        },
+        {
+            "total_number_of_episodes": 340,
+            "number_of_timesteps": 340000,
+            "per_episode_reward": -586.25,
+            "episode_reward_trend_value": 0.7734423772038908,
+            "biggest_recent_change": 68.34943884495215
+        },
+        {
+            "total_number_of_episodes": 350,
+            "number_of_timesteps": 350000,
+            "per_episode_reward": -586.75,
+            "episode_reward_trend_value": 0.7806321218839546,
+            "biggest_recent_change": 68.34943884495215
+        },
+        {
+            "total_number_of_episodes": 360,
+            "number_of_timesteps": 360000,
+            "per_episode_reward": -587.11,
+            "episode_reward_trend_value": 0.809589482608841,
+            "biggest_recent_change": 68.34943884495215
+        },
+        {
+            "total_number_of_episodes": 370,
+            "number_of_timesteps": 370000,
+            "per_episode_reward": -588.57,
+            "episode_reward_trend_value": 0.7839296709575958,
+            "biggest_recent_change": 68.34943884495215
+        },
+        {
+            "total_number_of_episodes": 380,
+            "number_of_timesteps": 380000,
+            "per_episode_reward": -588.36,
+            "episode_reward_trend_value": 0.7938964567584208,
+            "biggest_recent_change": 68.34943884495215
+        },
+        {
+            "total_number_of_episodes": 390,
+            "number_of_timesteps": 390000,
+            "per_episode_reward": -589.94,
+            "episode_reward_trend_value": 0.7532681849537198,
+            "biggest_recent_change": 68.34943884495215
+        },
+        {
+            "total_number_of_episodes": 400,
+            "number_of_timesteps": 400000,
+            "per_episode_reward": -589.23,
+            "episode_reward_trend_value": 0.7454476208868679,
+            "biggest_recent_change": 68.34943884495215
+        },
+        {
+            "total_number_of_episodes": 410,
+            "number_of_timesteps": 410000,
+            "per_episode_reward": -588.53,
+            "episode_reward_trend_value": -0.006272384761590881,
+            "biggest_recent_change": 1.580525515569775
+        },
+        {
+            "total_number_of_episodes": 420,
+            "number_of_timesteps": 420000,
+            "per_episode_reward": -587.04,
+            "episode_reward_trend_value": 0.006368088887409663,
+            "biggest_recent_change": 1.580525515569775
+        },
+        {
+            "total_number_of_episodes": 430,
+            "number_of_timesteps": 430000,
+            "per_episode_reward": -587.53,
+            "episode_reward_trend_value": -0.014147138812717864,
+            "biggest_recent_change": 1.580525515569775
+        },
+        {
+            "total_number_of_episodes": 440,
+            "number_of_timesteps": 440000,
+            "per_episode_reward": -587.74,
+            "episode_reward_trend_value": -0.011069446933103994,
+            "biggest_recent_change": 1.580525515569775
+        },
+        {
+            "total_number_of_episodes": 450,
+            "number_of_timesteps": 450000,
+            "per_episode_reward": -587.94,
+            "episode_reward_trend_value": -0.009295739120241503,
+            "biggest_recent_change": 1.580525515569775
+        },
+        {
+            "total_number_of_episodes": 460,
+            "number_of_timesteps": 460000,
+            "per_episode_reward": -587.67,
+            "episode_reward_trend_value": 0.009988007211237953,
+            "biggest_recent_change": 1.580525515569775
+        },
+        {
+            "total_number_of_episodes": 470,
+            "number_of_timesteps": 470000,
+            "per_episode_reward": -588.25,
+            "episode_reward_trend_value": 0.0012022327840352572,
+            "biggest_recent_change": 1.580525515569775
+        },
+        {
+            "total_number_of_episodes": 480,
+            "number_of_timesteps": 480000,
+            "per_episode_reward": -588.43,
+            "episode_reward_trend_value": 0.016759848878506192,
+            "biggest_recent_change": 1.4924634689105005
+        },
+        {
+            "total_number_of_episodes": 490,
+            "number_of_timesteps": 490000,
+            "per_episode_reward": -588.69,
+            "episode_reward_trend_value": 0.005995727265457794,
+            "biggest_recent_change": 1.4924634689105005
+        },
+        {
+            "total_number_of_episodes": 500,
+            "number_of_timesteps": 500000,
+            "per_episode_reward": -587.88,
+            "episode_reward_trend_value": 0.007205197905136629,
+            "biggest_recent_change": 1.4924634689105005
+        },
+        {
+            "total_number_of_episodes": 510,
+            "number_of_timesteps": 510000,
+            "per_episode_reward": -588.24,
+            "episode_reward_trend_value": -0.013370040495871965,
+            "biggest_recent_change": 0.8034906941619511
+        },
+        {
+            "total_number_of_episodes": 520,
+            "number_of_timesteps": 520000,
+            "per_episode_reward": -588.01,
+            "episode_reward_trend_value": -0.005398012435045984,
+            "biggest_recent_change": 0.8034906941619511
+        },
+        {
+            "total_number_of_episodes": 530,
+            "number_of_timesteps": 530000,
+            "per_episode_reward": -587.97,
+            "episode_reward_trend_value": -0.0024742735765698855,
+            "biggest_recent_change": 0.8034906941619511
+        },
+        {
+            "total_number_of_episodes": 540,
+            "number_of_timesteps": 540000,
+            "per_episode_reward": -586.71,
+            "episode_reward_trend_value": 0.013678612062166293,
+            "biggest_recent_change": 1.2551835526155628
+        },
+        {
+            "total_number_of_episodes": 550,
+            "number_of_timesteps": 550000,
+            "per_episode_reward": -587.51,
+            "episode_reward_trend_value": 0.0017643357830631127,
+            "biggest_recent_change": 1.2551835526155628
+        },
+        {
+            "total_number_of_episodes": 560,
+            "number_of_timesteps": 560000,
+            "per_episode_reward": -586.16,
+            "episode_reward_trend_value": 0.023224279809817793,
+            "biggest_recent_change": 1.3520407473293972
+        },
+        {
+            "total_number_of_episodes": 570,
+            "number_of_timesteps": 570000,
+            "per_episode_reward": -586.76,
+            "episode_reward_trend_value": 0.018537124654497146,
+            "biggest_recent_change": 1.3520407473293972
+        },
+        {
+            "total_number_of_episodes": 580,
+            "number_of_timesteps": 580000,
+            "per_episode_reward": -586.73,
+            "episode_reward_trend_value": 0.02177941743575502,
+            "biggest_recent_change": 1.3520407473293972
+        },
+        {
+            "total_number_of_episodes": 590,
+            "number_of_timesteps": 590000,
+            "per_episode_reward": -586.64,
+            "episode_reward_trend_value": 0.013788852318997315,
+            "biggest_recent_change": 1.3520407473293972
+        },
+        {
+            "total_number_of_episodes": 600,
+            "number_of_timesteps": 600000,
+            "per_episode_reward": -586.41,
+            "episode_reward_trend_value": 0.02039690217412979,
+            "biggest_recent_change": 1.3520407473293972
+        },
+        {
+            "total_number_of_episodes": 610,
+            "number_of_timesteps": 610000,
+            "per_episode_reward": -586.43,
+            "episode_reward_trend_value": 0.017552375694904438,
+            "biggest_recent_change": 1.3520407473293972
+        },
+        {
+            "total_number_of_episodes": 620,
+            "number_of_timesteps": 620000,
+            "per_episode_reward": -586.74,
+            "episode_reward_trend_value": 0.013650665514337057,
+            "biggest_recent_change": 1.3520407473293972
+        },
+        {
+            "total_number_of_episodes": 630,
+            "number_of_timesteps": 630000,
+            "per_episode_reward": -587.64,
+            "episode_reward_trend_value": -0.010313362839201545,
+            "biggest_recent_change": 1.3520407473293972
+        },
+        {
+            "total_number_of_episodes": 640,
+            "number_of_timesteps": 640000,
+            "per_episode_reward": -587.37,
+            "episode_reward_trend_value": 0.0015971421039517333,
+            "biggest_recent_change": 1.3520407473293972
+        },
+        {
+            "total_number_of_episodes": 650,
+            "number_of_timesteps": 650000,
+            "per_episode_reward": -587.33,
+            "episode_reward_trend_value": -0.013022196161291,
+            "biggest_recent_change": 0.9015789992029113
+        },
+        {
+            "total_number_of_episodes": 660,
+            "number_of_timesteps": 660000,
+            "per_episode_reward": -586.62,
+            "episode_reward_trend_value": 0.0016490742319105166,
+            "biggest_recent_change": 0.9015789992029113
+        },
+        {
+            "total_number_of_episodes": 670,
+            "number_of_timesteps": 670000,
+            "per_episode_reward": -586.31,
+            "episode_reward_trend_value": 0.004581463976630099,
+            "biggest_recent_change": 0.9015789992029113
+        },
+        {
+            "total_number_of_episodes": 680,
+            "number_of_timesteps": 680000,
+            "per_episode_reward": -585.9,
+            "episode_reward_trend_value": 0.008273580486972302,
+            "biggest_recent_change": 0.9015789992029113
+        },
+        {
+            "total_number_of_episodes": 690,
+            "number_of_timesteps": 690000,
+            "per_episode_reward": -585.69,
+            "episode_reward_trend_value": 0.007965104838347593,
+            "biggest_recent_change": 0.9015789992029113
+        },
+        {
+            "total_number_of_episodes": 700,
+            "number_of_timesteps": 700000,
+            "per_episode_reward": -586.26,
+            "episode_reward_trend_value": 0.0018670556951898714,
+            "biggest_recent_change": 0.9015789992029113
+        },
+        {
+            "total_number_of_episodes": 710,
+            "number_of_timesteps": 710000,
+            "per_episode_reward": -586.77,
+            "episode_reward_trend_value": -0.0003539070874340824,
+            "biggest_recent_change": 0.9015789992029113
+        },
+        {
+            "total_number_of_episodes": 720,
+            "number_of_timesteps": 720000,
+            "per_episode_reward": -586.99,
+            "episode_reward_trend_value": 0.007197166373220575,
+            "biggest_recent_change": 0.718230304341887
+        },
+        {
+            "total_number_of_episodes": 730,
+            "number_of_timesteps": 730000,
+            "per_episode_reward": -586.82,
+            "episode_reward_trend_value": 0.00616762672454014,
+            "biggest_recent_change": 0.718230304341887
+        },
+        {
+            "total_number_of_episodes": 740,
+            "number_of_timesteps": 740000,
+            "per_episode_reward": -586.47,
+            "episode_reward_trend_value": 0.009630241723046613,
+            "biggest_recent_change": 0.718230304341887
+        },
+        {
+            "total_number_of_episodes": 750,
+            "number_of_timesteps": 750000,
+            "per_episode_reward": -586.02,
+            "episode_reward_trend_value": 0.006573039174270434,
+            "biggest_recent_change": 0.5741225044475868
+        },
+        {
+            "total_number_of_episodes": 760,
+            "number_of_timesteps": 760000,
+            "per_episode_reward": -586.14,
+            "episode_reward_trend_value": 0.001969591692071996,
+            "biggest_recent_change": 0.5741225044475868
+        },
+        {
+            "total_number_of_episodes": 770,
+            "number_of_timesteps": 770000,
+            "per_episode_reward": -586.41,
+            "episode_reward_trend_value": -0.005713227563563174,
+            "biggest_recent_change": 0.5741225044475868
+        },
+        {
+            "total_number_of_episodes": 780,
+            "number_of_timesteps": 780000,
+            "per_episode_reward": -586.64,
+            "episode_reward_trend_value": -0.010530097206729908,
+            "biggest_recent_change": 0.5741225044475868
+        },
+        {
+            "total_number_of_episodes": 790,
+            "number_of_timesteps": 790000,
+            "per_episode_reward": -586.8,
+            "episode_reward_trend_value": -0.005946077786514555,
+            "biggest_recent_change": 0.5051431247336495
+        },
+        {
+            "total_number_of_episodes": 800,
+            "number_of_timesteps": 800000,
+            "per_episode_reward": -586.64,
+            "episode_reward_trend_value": 0.0014617431175060524,
+            "biggest_recent_change": 0.4430820749520308
+        },
+        {
+            "total_number_of_episodes": 810,
+            "number_of_timesteps": 810000,
+            "per_episode_reward": -587.14,
+            "episode_reward_trend_value": -0.0016276033588016818,
+            "biggest_recent_change": 0.5000235706116882
+        },
+        {
+            "total_number_of_episodes": 820,
+            "number_of_timesteps": 820000,
+            "per_episode_reward": -587.1,
+            "episode_reward_trend_value": -0.003182555423836675,
+            "biggest_recent_change": 0.5000235706116882
+        },
+        {
+            "total_number_of_episodes": 830,
+            "number_of_timesteps": 830000,
+            "per_episode_reward": -586.65,
+            "episode_reward_trend_value": -0.0019733861319019123,
+            "biggest_recent_change": 0.5000235706116882
+        },
+        {
+            "total_number_of_episodes": 840,
+            "number_of_timesteps": 840000,
+            "per_episode_reward": -586.56,
+            "episode_reward_trend_value": -0.005970782942085862,
+            "biggest_recent_change": 0.5000235706116882
+        },
+        {
+            "total_number_of_episodes": 850,
+            "number_of_timesteps": 850000,
+            "per_episode_reward": -586.34,
+            "episode_reward_trend_value": -0.0022950105669502186,
+            "biggest_recent_change": 0.5000235706116882
+        },
+        {
+            "total_number_of_episodes": 860,
+            "number_of_timesteps": 860000,
+            "per_episode_reward": -586.38,
+            "episode_reward_trend_value": 0.0003779215577411479,
+            "biggest_recent_change": 0.5000235706116882
+        },
+        {
+            "total_number_of_episodes": 870,
+            "number_of_timesteps": 870000,
+            "per_episode_reward": -586.3,
+            "episode_reward_trend_value": 0.0037647889872788358,
+            "biggest_recent_change": 0.5000235706116882
+        },
+        {
+            "total_number_of_episodes": 880,
+            "number_of_timesteps": 880000,
+            "per_episode_reward": -585.91,
+            "episode_reward_trend_value": 0.009933333548998589,
+            "biggest_recent_change": 0.5000235706116882
+        },
+        {
+            "total_number_of_episodes": 890,
+            "number_of_timesteps": 890000,
+            "per_episode_reward": -585.84,
+            "episode_reward_trend_value": 0.008829253445354526,
+            "biggest_recent_change": 0.5000235706116882
+        },
+        {
+            "total_number_of_episodes": 900,
+            "number_of_timesteps": 900000,
+            "per_episode_reward": -585.65,
+            "episode_reward_trend_value": 0.01650471768823536,
+            "biggest_recent_change": 0.4567608895972626
+        },
+        {
+            "total_number_of_episodes": 910,
+            "number_of_timesteps": 910000,
+            "per_episode_reward": -585.4,
+            "episode_reward_trend_value": 0.018908709971059225,
+            "biggest_recent_change": 0.4567608895972626
+        },
+        {
+            "total_number_of_episodes": 920,
+            "number_of_timesteps": 920000,
+            "per_episode_reward": -585.3,
+            "episode_reward_trend_value": 0.014958922092500871,
+            "biggest_recent_change": 0.3936082539265726
+        },
+        {
+            "total_number_of_episodes": 930,
+            "number_of_timesteps": 930000,
+            "per_episode_reward": -585.31,
+            "episode_reward_trend_value": 0.01387981806459114,
+            "biggest_recent_change": 0.3936082539265726
+        },
+        {
+            "total_number_of_episodes": 940,
+            "number_of_timesteps": 940000,
+            "per_episode_reward": -584.94,
+            "episode_reward_trend_value": 0.015649571509531293,
+            "biggest_recent_change": 0.3936082539265726
+        },
+        {
+            "total_number_of_episodes": 950,
+            "number_of_timesteps": 950000,
+            "per_episode_reward": -584.74,
+            "episode_reward_trend_value": 0.018238243396542154,
+            "biggest_recent_change": 0.3936082539265726
+        },
+        {
+            "total_number_of_episodes": 960,
+            "number_of_timesteps": 960000,
+            "per_episode_reward": -584.57,
+            "episode_reward_trend_value": 0.019206628245688584,
+            "biggest_recent_change": 0.3936082539265726
+        },
+        {
+            "total_number_of_episodes": 970,
+            "number_of_timesteps": 970000,
+            "per_episode_reward": -584.66,
+            "episode_reward_trend_value": 0.013818645434629514,
+            "biggest_recent_change": 0.3775293217112221
+        },
+        {
+            "total_number_of_episodes": 980,
+            "number_of_timesteps": 980000,
+            "per_episode_reward": -584.83,
+            "episode_reward_trend_value": 0.011256107815649506,
+            "biggest_recent_change": 0.3775293217112221
+        },
+        {
+            "total_number_of_episodes": 990,
+            "number_of_timesteps": 990000,
+            "per_episode_reward": -585.3,
+            "episode_reward_trend_value": 0.003960143997483101,
+            "biggest_recent_change": 0.4658685323873897
+        },
+        {
+            "total_number_of_episodes": 1000,
+            "number_of_timesteps": 1000000,
+            "per_episode_reward": -585.11,
+            "episode_reward_trend_value": 0.003176608694813391,
+            "biggest_recent_change": 0.4658685323873897
+        },
+        {
+            "total_number_of_episodes": 1010,
+            "number_of_timesteps": 1010000,
+            "per_episode_reward": -585.34,
+            "episode_reward_trend_value": -0.00048100781304027707,
+            "biggest_recent_change": 0.4658685323873897
+        },
+        {
+            "total_number_of_episodes": 1020,
+            "number_of_timesteps": 1020000,
+            "per_episode_reward": -585.14,
+            "episode_reward_trend_value": 0.0019487463389964432,
+            "biggest_recent_change": 0.4658685323873897
+        },
+        {
+            "total_number_of_episodes": 1030,
+            "number_of_timesteps": 1030000,
+            "per_episode_reward": -585.06,
+            "episode_reward_trend_value": -0.0014373165824660343,
+            "biggest_recent_change": 0.4658685323873897
+        },
+        {
+            "total_number_of_episodes": 1040,
+            "number_of_timesteps": 1040000,
+            "per_episode_reward": -584.98,
+            "episode_reward_trend_value": -0.0027032776342391825,
+            "biggest_recent_change": 0.4658685323873897
+        },
+        {
+            "total_number_of_episodes": 1050,
+            "number_of_timesteps": 1050000,
+            "per_episode_reward": -584.83,
+            "episode_reward_trend_value": -0.002918610236618709,
+            "biggest_recent_change": 0.4658685323873897
+        },
+        {
+            "total_number_of_episodes": 1060,
+            "number_of_timesteps": 1060000,
+            "per_episode_reward": -585.32,
+            "episode_reward_trend_value": -0.0072577131775220655,
+            "biggest_recent_change": 0.48182946375004576
+        },
+        {
+            "total_number_of_episodes": 1070,
+            "number_of_timesteps": 1070000,
+            "per_episode_reward": -585.18,
+            "episode_reward_trend_value": -0.003927081625152419,
+            "biggest_recent_change": 0.48182946375004576
+        },
+        {
+            "total_number_of_episodes": 1080,
+            "number_of_timesteps": 1080000,
+            "per_episode_reward": -585.25,
+            "episode_reward_trend_value": 0.0005373048684469318,
+            "biggest_recent_change": 0.48182946375004576
+        },
+        {
+            "total_number_of_episodes": 1090,
+            "number_of_timesteps": 1090000,
+            "per_episode_reward": -585.52,
+            "episode_reward_trend_value": -0.004553068050265412,
+            "biggest_recent_change": 0.48182946375004576
+        },
+        {
+            "total_number_of_episodes": 1100,
+            "number_of_timesteps": 1100000,
+            "per_episode_reward": -585.16,
+            "episode_reward_trend_value": 0.002029412089583123,
+            "biggest_recent_change": 0.48182946375004576
+        },
+        {
+            "total_number_of_episodes": 1110,
+            "number_of_timesteps": 1110000,
+            "per_episode_reward": -585.17,
+            "episode_reward_trend_value": -0.00035066229055852696,
+            "biggest_recent_change": 0.48182946375004576
+        },
+        {
+            "total_number_of_episodes": 1120,
+            "number_of_timesteps": 1120000,
+            "per_episode_reward": -584.73,
+            "episode_reward_trend_value": 0.003697756664343564,
+            "biggest_recent_change": 0.48182946375004576
+        },
+        {
+            "total_number_of_episodes": 1130,
+            "number_of_timesteps": 1130000,
+            "per_episode_reward": -584.98,
+            "episode_reward_trend_value": -0.000014095888541810887,
+            "biggest_recent_change": 0.48182946375004576
+        },
+        {
+            "total_number_of_episodes": 1140,
+            "number_of_timesteps": 1140000,
+            "per_episode_reward": -584.73,
+            "episode_reward_trend_value": 0.0011312995964759566,
+            "biggest_recent_change": 0.48182946375004576
+        },
+        {
+            "total_number_of_episodes": 1150,
+            "number_of_timesteps": 1150000,
+            "per_episode_reward": -584.77,
+            "episode_reward_trend_value": 0.006065220280344066,
+            "biggest_recent_change": 0.43714136472078735
+        },
+        {
+            "total_number_of_episodes": 1160,
+            "number_of_timesteps": 1160000,
+            "per_episode_reward": -585.01,
+            "episode_reward_trend_value": 0.0019756748625367336,
+            "biggest_recent_change": 0.43714136472078735
+        },
+        {
+            "total_number_of_episodes": 1170,
+            "number_of_timesteps": 1170000,
+            "per_episode_reward": -585.14,
+            "episode_reward_trend_value": 0.0012312477312042978,
+            "biggest_recent_change": 0.43714136472078735
+        },
+        {
+            "total_number_of_episodes": 1180,
+            "number_of_timesteps": 1180000,
+            "per_episode_reward": -584.9,
+            "episode_reward_trend_value": 0.006962390894693726,
+            "biggest_recent_change": 0.43714136472078735
+        },
+        {
+            "total_number_of_episodes": 1190,
+            "number_of_timesteps": 1190000,
+            "per_episode_reward": -584.97,
+            "episode_reward_trend_value": 0.002145212190066559,
+            "biggest_recent_change": 0.43714136472078735
+        },
+        {
+            "total_number_of_episodes": 1200,
+            "number_of_timesteps": 1200000,
+            "per_episode_reward": -585.28,
+            "episode_reward_trend_value": -0.0012168399924399232,
+            "biggest_recent_change": 0.43714136472078735
+        },
+        {
+            "total_number_of_episodes": 1210,
+            "number_of_timesteps": 1210000,
+            "per_episode_reward": -585.36,
+            "episode_reward_trend_value": -0.00694076085582967,
+            "biggest_recent_change": 0.31191651743142756
+        },
+        {
+            "total_number_of_episodes": 1220,
+            "number_of_timesteps": 1220000,
+            "per_episode_reward": -519.41,
+            "episode_reward_trend_value": 0.7285961896581764,
+            "biggest_recent_change": 65.94904326947187
+        },
+        {
+            "total_number_of_episodes": 1230,
+            "number_of_timesteps": 1230000,
+            "per_episode_reward": -519.39,
+            "episode_reward_trend_value": 0.726068357956558,
+            "biggest_recent_change": 65.94904326947187
+        },
+        {
+            "total_number_of_episodes": 1240,
+            "number_of_timesteps": 1240000,
+            "per_episode_reward": -519.45,
+            "episode_reward_trend_value": 0.7257700494331932,
+            "biggest_recent_change": 65.94904326947187
+        },
+        {
+            "total_number_of_episodes": 1250,
+            "number_of_timesteps": 1250000,
+            "per_episode_reward": -519.24,
+            "episode_reward_trend_value": 0.7307061344149512,
+            "biggest_recent_change": 65.94904326947187
+        },
+        {
+            "total_number_of_episodes": 1260,
+            "number_of_timesteps": 1260000,
+            "per_episode_reward": -519.52,
+            "episode_reward_trend_value": 0.7290697169509246,
+            "biggest_recent_change": 65.94904326947187
+        },
+        {
+            "total_number_of_episodes": 1270,
+            "number_of_timesteps": 1270000,
+            "per_episode_reward": -519.47,
+            "episode_reward_trend_value": 0.7269453186109407,
+            "biggest_recent_change": 65.94904326947187
+        },
+        {
+            "total_number_of_episodes": 1280,
+            "number_of_timesteps": 1280000,
+            "per_episode_reward": -519.65,
+            "episode_reward_trend_value": 0.7257790665833352,
+            "biggest_recent_change": 65.94904326947187
+        },
+        {
+            "total_number_of_episodes": 1290,
+            "number_of_timesteps": 1290000,
+            "per_episode_reward": -519.77,
+            "episode_reward_trend_value": 0.7278880092068801,
+            "biggest_recent_change": 65.94904326947187
+        },
+        {
+            "total_number_of_episodes": 1300,
+            "number_of_timesteps": 1300000,
+            "per_episode_reward": -519.88,
+            "episode_reward_trend_value": 0.7275727620349964,
+            "biggest_recent_change": 65.94904326947187
+        },
+        {
+            "total_number_of_episodes": 1310,
+            "number_of_timesteps": 1310000,
+            "per_episode_reward": -519.87,
+            "episode_reward_trend_value": -0.005089649416477945,
+            "biggest_recent_change": 0.27834976154576907
+        },
+        {
+            "total_number_of_episodes": 1320,
+            "number_of_timesteps": 1320000,
+            "per_episode_reward": -519.84,
+            "episode_reward_trend_value": -0.00501280994398788,
+            "biggest_recent_change": 0.27834976154576907
+        },
+        {
+            "total_number_of_episodes": 1330,
+            "number_of_timesteps": 1330000,
+            "per_episode_reward": -519.89,
+            "episode_reward_trend_value": -0.004890152162963407,
+            "biggest_recent_change": 0.27834976154576907
+        },
+        {
+            "total_number_of_episodes": 1340,
+            "number_of_timesteps": 1340000,
+            "per_episode_reward": -519.99,
+            "episode_reward_trend_value": -0.008293199719241784,
+            "biggest_recent_change": 0.27834976154576907
+        },
+        {
+            "total_number_of_episodes": 1350,
+            "number_of_timesteps": 1350000,
+            "per_episode_reward": -519.77,
+            "episode_reward_trend_value": -0.0027550699330276983,
+            "biggest_recent_change": 0.22008191921349862
+        },
+        {
+            "total_number_of_episodes": 1360,
+            "number_of_timesteps": 1360000,
+            "per_episode_reward": -520.16,
+            "episode_reward_trend_value": -0.007588716339499671,
+            "biggest_recent_change": 0.3868817307482004
+        },
+        {
+            "total_number_of_episodes": 1370,
+            "number_of_timesteps": 1370000,
+            "per_episode_reward": -520.3,
+            "episode_reward_trend_value": -0.007259058704513184,
+            "biggest_recent_change": 0.3868817307482004
+        },
+        {
+            "total_number_of_episodes": 1380,
+            "number_of_timesteps": 1380000,
+            "per_episode_reward": -520.51,
+            "episode_reward_trend_value": -0.008206299439754932,
+            "biggest_recent_change": 0.3868817307482004
+        },
+        {
+            "total_number_of_episodes": 1390,
+            "number_of_timesteps": 1390000,
+            "per_episode_reward": -520.35,
+            "episode_reward_trend_value": -0.00529127078945319,
+            "biggest_recent_change": 0.3868817307482004
+        },
+        {
+            "total_number_of_episodes": 1400,
+            "number_of_timesteps": 1400000,
+            "per_episode_reward": -520.14,
+            "episode_reward_trend_value": -0.0030147103029270913,
+            "biggest_recent_change": 0.3868817307482004
+        },
+        {
+            "total_number_of_episodes": 1410,
+            "number_of_timesteps": 1410000,
+            "per_episode_reward": -520.46,
+            "episode_reward_trend_value": -0.006959424197411105,
+            "biggest_recent_change": 0.3868817307482004
+        },
+        {
+            "total_number_of_episodes": 1420,
+            "number_of_timesteps": 1420000,
+            "per_episode_reward": -520.39,
+            "episode_reward_trend_value": -0.005522950715716332,
+            "biggest_recent_change": 0.3868817307482004
+        },
+        {
+            "total_number_of_episodes": 1430,
+            "number_of_timesteps": 1430000,
+            "per_episode_reward": -520.54,
+            "episode_reward_trend_value": -0.0060973952424546955,
+            "biggest_recent_change": 0.3868817307482004
+        },
+        {
+            "total_number_of_episodes": 1440,
+            "number_of_timesteps": 1440000,
+            "per_episode_reward": -520.45,
+            "episode_reward_trend_value": -0.007524156867510909,
+            "biggest_recent_change": 0.3868817307482004
+        },
+        {
+            "total_number_of_episodes": 1450,
+            "number_of_timesteps": 1450000,
+            "per_episode_reward": -520.25,
+            "episode_reward_trend_value": -0.0011033536125675406,
+            "biggest_recent_change": 0.3257997630856835
+        },
+        {
+            "total_number_of_episodes": 1460,
+            "number_of_timesteps": 1460000,
+            "per_episode_reward": -520.42,
+            "episode_reward_trend_value": -0.0012836866963172925,
+            "biggest_recent_change": 0.3257997630856835
+        },
+        {
+            "total_number_of_episodes": 1470,
+            "number_of_timesteps": 1470000,
+            "per_episode_reward": -520.63,
+            "episode_reward_trend_value": -0.001406885583415058,
+            "biggest_recent_change": 0.3257997630856835
+        },
+        {
+            "total_number_of_episodes": 1480,
+            "number_of_timesteps": 1480000,
+            "per_episode_reward": -520.53,
+            "episode_reward_trend_value": -0.0019669460057520557,
+            "biggest_recent_change": 0.3257997630856835
+        },
+        {
+            "total_number_of_episodes": 1490,
+            "number_of_timesteps": 1490000,
+            "per_episode_reward": -520.43,
+            "episode_reward_trend_value": -0.0032187769558820237,
+            "biggest_recent_change": 0.3257997630856835
+        },
+        {
+            "total_number_of_episodes": 1500,
+            "number_of_timesteps": 1500000,
+            "per_episode_reward": -520.48,
+            "episode_reward_trend_value": -0.0001794803491457565,
+            "biggest_recent_change": 0.21845124732294607
+        },
+        {
+            "total_number_of_episodes": 1510,
+            "number_of_timesteps": 1510000,
+            "per_episode_reward": -520.46,
+            "episode_reward_trend_value": -0.0008527720137812544,
+            "biggest_recent_change": 0.21845124732294607
+        },
+        {
+            "total_number_of_episodes": 1520,
+            "number_of_timesteps": 1520000,
+            "per_episode_reward": -520.78,
+            "episode_reward_trend_value": -0.0026511410846561984,
+            "biggest_recent_change": 0.3123169417893905
+        },
+        {
+            "total_number_of_episodes": 1530,
+            "number_of_timesteps": 1530000,
+            "per_episode_reward": -521.11,
+            "episode_reward_trend_value": -0.007342336237107045,
+            "biggest_recent_change": 0.33053419076213686
+        },
+        {
+            "total_number_of_episodes": 1540,
+            "number_of_timesteps": 1540000,
+            "per_episode_reward": -521.17,
+            "episode_reward_trend_value": -0.010164812527686234,
+            "biggest_recent_change": 0.33053419076213686
+        },
+        {
+            "total_number_of_episodes": 1550,
+            "number_of_timesteps": 1550000,
+            "per_episode_reward": -521.45,
+            "episode_reward_trend_value": -0.011486722142501548,
+            "biggest_recent_change": 0.33053419076213686
+        },
+        {
+            "total_number_of_episodes": 1560,
+            "number_of_timesteps": 1560000,
+            "per_episode_reward": -521.27,
+            "episode_reward_trend_value": -0.007055021143070109,
+            "biggest_recent_change": 0.33053419076213686
+        },
+        {
+            "total_number_of_episodes": 1570,
+            "number_of_timesteps": 1570000,
+            "per_episode_reward": -521.11,
+            "episode_reward_trend_value": -0.006517081796835101,
+            "biggest_recent_change": 0.33053419076213686
+        },
+        {
+            "total_number_of_episodes": 1580,
+            "number_of_timesteps": 1580000,
+            "per_episode_reward": -520.84,
+            "episode_reward_trend_value": -0.004605280743506531,
+            "biggest_recent_change": 0.33053419076213686
+        },
+        {
+            "total_number_of_episodes": 1590,
+            "number_of_timesteps": 1590000,
+            "per_episode_reward": -520.95,
+            "episode_reward_trend_value": -0.005228597199939284,
+            "biggest_recent_change": 0.33053419076213686
+        },
+        {
+            "total_number_of_episodes": 1600,
+            "number_of_timesteps": 1600000,
+            "per_episode_reward": -520.94,
+            "episode_reward_trend_value": -0.005292642363575498,
+            "biggest_recent_change": 0.33053419076213686
+        },
+        {
+            "total_number_of_episodes": 1610,
+            "number_of_timesteps": 1610000,
+            "per_episode_reward": -521.22,
+            "episode_reward_trend_value": -0.0049711163486727454,
+            "biggest_recent_change": 0.33053419076213686
+        },
+        {
+            "total_number_of_episodes": 1620,
+            "number_of_timesteps": 1620000,
+            "per_episode_reward": -520.95,
+            "episode_reward_trend_value": 0.0017831091183337674,
+            "biggest_recent_change": 0.2833796004481428
+        },
+        {
+            "total_number_of_episodes": 1630,
+            "number_of_timesteps": 1630000,
+            "per_episode_reward": -521.25,
+            "episode_reward_trend_value": -0.0009218024782601079,
+            "biggest_recent_change": 0.30647434764887294
+        },
+        {
+            "total_number_of_episodes": 1640,
+            "number_of_timesteps": 1640000,
+            "per_episode_reward": -521.19,
+            "episode_reward_trend_value": 0.002901812728162491,
+            "biggest_recent_change": 0.30647434764887294
+        },
+        {
+            "total_number_of_episodes": 1650,
+            "number_of_timesteps": 1650000,
+            "per_episode_reward": -520.92,
+            "episode_reward_trend_value": 0.003893755823476871,
+            "biggest_recent_change": 0.30647434764887294
+        },
+        {
+            "total_number_of_episodes": 1660,
+            "number_of_timesteps": 1660000,
+            "per_episode_reward": -520.73,
+            "episode_reward_trend_value": 0.00431875900901812,
+            "biggest_recent_change": 0.30647434764887294
+        },
+        {
+            "total_number_of_episodes": 1670,
+            "number_of_timesteps": 1670000,
+            "per_episode_reward": -520.92,
+            "episode_reward_trend_value": -0.0008583765669514933,
+            "biggest_recent_change": 0.30647434764887294
+        },
+        {
+            "total_number_of_episodes": 1680,
+            "number_of_timesteps": 1680000,
+            "per_episode_reward": -520.78,
+            "episode_reward_trend_value": 0.001861306876708113,
+            "biggest_recent_change": 0.30647434764887294
+        }
+    ]
 ]
