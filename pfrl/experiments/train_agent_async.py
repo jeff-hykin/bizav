@@ -417,48 +417,50 @@ def train_agent_async(
         # 
         # early stopping check
         # 
-        if trial: # AKA: if hyperparameter tuning
-            total_number_of_episodes = number_of_episodes.value
-            if total_number_of_episodes > config.early_stopping.min_number_of_episodes:
-                output.number_of_episodes = total_number_of_episodes # keep the output value up to date
+        total_number_of_episodes = number_of_episodes.value
+        if total_number_of_episodes > config.early_stopping.min_number_of_episodes:
+            output.number_of_episodes = total_number_of_episodes # keep the output value up to date
+            
+            # limiter
+            if total_number_of_episodes >= prev_total_number_of_episodes + check_rate:
+                prev_total_number_of_episodes = total_number_of_episodes
+                # reset the rewards of filtered-out agents
+                for process_index in range(config.number_of_processes):
+                    if filtered_agents[process_index]:
+                        median_episode_rewards[process_index] = 0
+                per_episode_reward = sum(median_episode_rewards)/len(median_episode_rewards)
+                episode_reward_trend.append(per_episode_reward)
+                episode_reward_trend = output.episode_reward_trend = episode_reward_trend[-config.value_trend_lookback_size:]
+                episode_reward_trend_value = trend_calculate(episode_reward_trend) / check_rate
+                biggest_recent_change = math.nan
                 
-                # limiter
-                if total_number_of_episodes >= prev_total_number_of_episodes + check_rate:
-                    prev_total_number_of_episodes = total_number_of_episodes
-                    # reset the rewards of filtered-out agents
-                    for process_index in range(config.number_of_processes):
-                        if filtered_agents[process_index]:
-                            median_episode_rewards[process_index] = 0
-                    per_episode_reward = sum(median_episode_rewards)/len(median_episode_rewards)
-                    episode_reward_trend.append(per_episode_reward)
-                    episode_reward_trend = output.episode_reward_trend = episode_reward_trend[-config.value_trend_lookback_size:]
-                    episode_reward_trend_value = trend_calculate(episode_reward_trend) / check_rate
-                    biggest_recent_change = math.nan
-                    
-                    # check optuna stopper
+                # check optuna stopper
+                if trial:
                     import optuna
                     trial.report(per_episode_reward, total_number_of_episodes)
                     if trial.should_prune():
                         stop_event.set()
                         raise optuna.TrialPruned()
-                    
-                    if len(episode_reward_trend) >= config.value_trend_lookback_size:
-                        absolute_changes = [ abs(each) for each in utils.sequential_value_changes(episode_reward_trend)  ]
-                        biggest_recent_change = max(absolute_changes)
-                        if biggest_recent_change < config.early_stopping.lowerbound_for_max_recent_change:
-                            print(f"Hit early stopping because biggest_recent_change: {biggest_recent_change} < {config.early_stopping.lowerbound_for_max_recent_change}")
-                            stop_event.set()
-                            raise optuna.TrialPruned()
-                    
-                    import json
-                    print(json.dumps({
-                        "total_number_of_episodes": total_number_of_episodes,
-                        "number_of_timesteps": number_of_timesteps.value,
-                        "per_episode_reward": round(per_episode_reward, 2),
-                        "episode_reward_trend_value": episode_reward_trend_value,
-                        "biggest_recent_change": biggest_recent_change,
-                    })+",")
-                    
+                
+                if len(episode_reward_trend) >= config.value_trend_lookback_size:
+                    absolute_changes = [ abs(each) for each in utils.sequential_value_changes(episode_reward_trend)  ]
+                    biggest_recent_change = max(absolute_changes)
+                    if trial and biggest_recent_change < config.early_stopping.lowerbound_for_max_recent_change:
+                        print(f"Hit early stopping because biggest_recent_change: {biggest_recent_change} < {config.early_stopping.lowerbound_for_max_recent_change}")
+                        stop_event.set()
+                        raise optuna.TrialPruned()
+                
+                import json
+                print(json.dumps({
+                    "total_number_of_episodes": total_number_of_episodes,
+                    "number_of_timesteps": number_of_timesteps.value,
+                    "per_episode_reward": round(per_episode_reward, 2),
+                    "episode_reward_trend_value": episode_reward_trend_value,
+                    "biggest_recent_change": biggest_recent_change,
+                })+",")
+                
+                # only do early stopping if tuning hyperparameters
+                if trial:
                     for each_step, each_min_value in config.early_stopping.thresholds.items():
                         # if meets the increment-based threshold
                         if total_number_of_episodes > each_step:
