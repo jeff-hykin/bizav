@@ -16,17 +16,17 @@
     },
     "scoreRange":             {
         "stats": {
-            "count": 80,
+            "count": 82,
             "min": -257639747597122.2,
             "max": 605.4108294198734,
             "range": 257639747597727.6,
-            "average": -5509516323053.453,
-            "median": -701.299903986499,
-            "sum": -440761305844276.25
+            "average": -5375137876148.3125,
+            "median": -452.1890076959962,
+            "sum": -440761305844161.6
         },
         "scoreRange": {
             "linearScores": {
-                "[ 97-100%]:   -4,293,995,792,690.0": 77,
+                "[ 97-100%]:   -4,293,995,792,690.0": 79,
                 "[ 93- 97%]:  -12,881,987,379,280.9": 0,
                 "[ 90- 93%]:  -21,469,978,965,871.8": 0,
                 "[ 87- 90%]:  -30,057,970,552,462.8": 0,
@@ -58,7 +58,7 @@
                 "[  0-  3%]: -253,345,751,803,826.7": 1
             },
             "dualLogScores": {
-                "[ 97-100%]:                  383.2": 9,
+                "[ 97-100%]:                  383.2": 10,
                 "[ 93- 97%]:                  101.6": 1,
                 "[ 90- 93%]:                   26.4": 0,
                 "[ 87- 90%]:                    6.3": 0,
@@ -67,7 +67,7 @@
                 "[ 77- 80%]:                   -9.7": 1,
                 "[ 73- 77%]:                  -39.1": 2,
                 "[ 70- 73%]:                 -149.3": 8,
-                "[ 67- 70%]:                 -561.7": 44,
+                "[ 67- 70%]:                 -561.7": 45,
                 "[ 63- 67%]:               -2,104.9": 5,
                 "[ 60- 63%]:               -7,879.7": 2,
                 "[ 57- 60%]:              -29,490.3": 0,
@@ -90,7 +90,7 @@
                 "[  0-  3%]: -163,243,520,480,048.0": 2
             },
             "forwardLogScores": {
-                "[ 97-100%]:  -86,199,645,289,967.4": 79,
+                "[ 97-100%]:  -86,199,645,289,967.4": 81,
                 "[ 93- 97%]: -200,918,559,162,918.0": 0,
                 "[ 90- 93%]: -238,873,466,114,017.0": 0,
                 "[ 87- 90%]: -251,430,898,127,904.3": 0,
@@ -125,10 +125,10 @@
                 "[ 97-100%]:                  604.3": 1,
                 "[ 93- 97%]:                  600.3": 1,
                 "[ 90- 93%]:                  588.0": 1,
-                "[ 87- 90%]:                  550.8": 3,
+                "[ 87- 90%]:                  550.8": 4,
                 "[ 83- 87%]:                  438.5": 2,
                 "[ 80- 83%]:                   99.0": 10,
-                "[ 77- 80%]:                 -927.0": 49,
+                "[ 77- 80%]:                 -927.0": 50,
                 "[ 73- 77%]:               -4,028.4": 4,
                 "[ 70- 73%]:              -13,402.4": 1,
                 "[ 67- 70%]:              -41,735.5": 0,
@@ -159,6 +159,7 @@
          {"trialIndex":34,"score":605.4108294198734,"parameters":{"activation":1,"t_max":0,"hidden_size":2,"variance_scaling_factor":0,"permaban_threshold":1,"learning_rate_base":3,"learning_rate_exponent":4,"beta_base":2,"beta_exponent":6}},
          {"trialIndex":75,"score":601.7574592759802,"parameters":{"activation":1,"t_max":1,"hidden_size":2,"variance_scaling_factor":0,"permaban_threshold":0,"learning_rate_base":2,"learning_rate_exponent":3,"beta_base":0,"beta_exponent":4}},
          {"trialIndex":67,"score":595.4792029445193,"parameters":{"activation":1,"t_max":2,"hidden_size":3,"variance_scaling_factor":1,"permaban_threshold":0,"learning_rate_base":2,"learning_rate_exponent":3,"beta_base":0,"beta_exponent":5}},
+         {"trialIndex":82,"score":571.9705826681053,"parameters":{"activation":1,"t_max":1,"hidden_size":1,"variance_scaling_factor":0,"permaban_threshold":0,"learning_rate_base":0,"learning_rate_exponent":3,"beta_base":0,"beta_exponent":6}},
          {"trialIndex":14,"score":567.0168389471071,"parameters":{"activation":0,"t_max":2,"hidden_size":3,"variance_scaling_factor":0,"permaban_threshold":1,"learning_rate_base":4,"learning_rate_exponent":4,"beta_base":4,"beta_exponent":6}},
          {"trialIndex":77,"score":542.4544084414129,"parameters":{"activation":1,"t_max":2,"hidden_size":1,"variance_scaling_factor":0,"permaban_threshold":1,"learning_rate_base":1,"learning_rate_exponent":3,"beta_base":0,"beta_exponent":7}},
          {"trialIndex":65,"score":538.3926051194437,"parameters":{"activation":1,"t_max":1,"hidden_size":1,"variance_scaling_factor":0,"permaban_threshold":1,"learning_rate_base":2,"learning_rate_exponent":3,"beta_base":1,"beta_exponent":5}},
@@ -190,6 +191,7 @@
          {"trialIndex":74,"score":-454.08386182938585,"parameters":{"activation":1,"t_max":3,"hidden_size":2,"variance_scaling_factor":2,"permaban_threshold":1,"learning_rate_base":3,"learning_rate_exponent":6,"beta_base":0,"beta_exponent":3}},
          {"trialIndex":23,"score":-454.3758504420081,"parameters":{"activation":2,"t_max":1,"hidden_size":3,"variance_scaling_factor":0,"permaban_threshold":3,"learning_rate_base":4,"learning_rate_exponent":7,"beta_base":4,"beta_exponent":7}},
          {"trialIndex":31,"score":-456.7125399383191,"parameters":{"activation":1,"t_max":2,"hidden_size":3,"variance_scaling_factor":2,"permaban_threshold":2,"learning_rate_base":4,"learning_rate_exponent":6,"beta_base":3,"beta_exponent":5}},
+         {"trialIndex":83,"score":-457.36534787187895,"parameters":{"activation":1,"t_max":1,"hidden_size":2,"variance_scaling_factor":1,"permaban_threshold":0,"learning_rate_base":0,"learning_rate_exponent":5,"beta_base":0,"beta_exponent":7}},
          {"trialIndex":22,"score":-460.67966871523777,"parameters":{"activation":2,"t_max":0,"hidden_size":1,"variance_scaling_factor":0,"permaban_threshold":2,"learning_rate_base":2,"learning_rate_exponent":6,"beta_base":3,"beta_exponent":5}},
          {"trialIndex":33,"score":-462.1865002274302,"parameters":{"activation":0,"t_max":1,"hidden_size":3,"variance_scaling_factor":0,"permaban_threshold":0,"learning_rate_base":2,"learning_rate_exponent":7,"beta_base":2,"beta_exponent":4}},
          {"trialIndex":28,"score":-466.14414417097566,"parameters":{"activation":1,"t_max":0,"hidden_size":2,"variance_scaling_factor":0,"permaban_threshold":0,"learning_rate_base":4,"learning_rate_exponent":7,"beta_base":4,"beta_exponent":7}},
