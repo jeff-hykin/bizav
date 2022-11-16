@@ -179,12 +179,14 @@ class HogLog:
     
     def read(self, filepath):
         number_of_elements_so_far = 0
-        output = {}
+        output = {"__source__":[]}
         with open(filepath,'r') as f:
             output_string = f.read()
-            for each in preprocessors:
+            for each in self.preprocessors:
                 output_string = each(output_string)
             for each_line in output_string.splitlines():
+                if each_line.endswith(","):
+                    each_line = each_line[:-1]
                 try:
                     parsed_line = json.loads(each_line)
                     if isinstance(parsed_line, dict):
@@ -194,7 +196,10 @@ class HogLog:
                             output[each_new_key] = [None]*number_of_elements_so_far
                         # add a row
                         for each_key, each_list in output.items():
-                            each_list.append(parsed_line.get(each_key, None))
+                            if each_key == "__source__":
+                                each_list.append(filepath)
+                            else:
+                                each_list.append(parsed_line.get(each_key, None))
                         number_of_elements_so_far += 1
                 except Exception as error:
                     pass
