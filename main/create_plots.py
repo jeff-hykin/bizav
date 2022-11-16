@@ -30,11 +30,13 @@ def bandit_logs(string):
 
 @log_reader.add_preprocessor()
 def bandit_logs(string):
-    lines = []
+    lines = [
+        '{"final_eval":false}'
+    ]
     for line in string.splitlines():
         # Step 50 3 visits [1.0, 3.0, 1.0, 34.0, 6.0, 1.0, 4.0]  episode_count: 31 q_vals: [-11.111, -9.362, -11.111, -8.611, -9.259, -11.111, -9.539]
         if line.startswith("final_eval: "):
-            line = line[len("final_eval: "):].replace("None", "null").replace("True", 'true').replace("False", 'false').replace("'", '"').replace("}", '"final_eval": true }')
+            line = line[len("final_eval: "):].replace("None", "null").replace("True", 'true').replace("False", 'false').replace("'", '"').replace("}", ', "final_eval": true }')
         lines.append(line)
     return '\n'.join(lines)
 
@@ -52,13 +54,12 @@ from main.utils import plot_line
 
 for each in sys.argv[1:]:
     this_df = df.copy()
-    this_df = this_df[df["__source__"] == each]
-    this_df = this_df[df["total_number_of_episodes"] != None]
-    this_df = this_df[df["total_number_of_episodes"] != None]
+    this_df = this_df[this_df["__source__"] == each]
+    this_df = this_df[this_df["total_number_of_episodes"] == this_df["total_number_of_episodes"]]
     plot_line(
         plot_name="default",
         line_name=FS.basename(each),
         new_x_values=this_df['total_number_of_episodes'].tolist(),
         new_y_values=this_df['per_episode_reward'].tolist()
     )
-    print(f'''this_df[df["final_eval"] != None] = {this_df[df["final_eval"] != None]}''')
+    print(f'''this_df[df["final_eval"] != None] = {df[df["final_eval"] == df["final_eval"]][df["final_eval"] == True]}''')
