@@ -11,7 +11,7 @@ from main.config import config, env_config, info, args as cli_args
 from train_a3c import args_from_config
 import train_a3c
 
-runs_for_comparison = 10
+runs_for_comparison = 1
 aspects_to_compare = {
     "profile": [ "CARTPOLE", "LUNAR_LANDER", "CHEETAH", ],
     "attack_method": [
@@ -67,13 +67,14 @@ def main():
         
         from statistics import mean as average
         fitness_values = []
+        print(f'''starting: {log_file_path}''')
         with RedirectOutput(log_file_path):
             args = args_from_config() # put them into the format that train_a3c expects
             # record multiple runs
             fitness_values = [ float(train_a3c.train_a3c(args)) for each in range(runs_for_comparison) ]
-            print(f'''{log_file_path} fitness_value = {average(fitness_value)}''')
+            print(f'''{log_file_path} fitness_value = {average(fitness_values)}''')
         
-        print(f'''{log_file_path} fitness_value = {average(fitness_value)}''')
+        print(f'''{log_file_path} fitness_value = {average(fitness_values)}''')
 
 class RedirectOutput:
     def __init__(self, path_to_file=None):
