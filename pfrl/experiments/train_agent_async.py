@@ -160,7 +160,6 @@ def train_loop(
 
             if agent.updated:
                 try:
-                    print(f"{process_idx} waiting for barrier")
                     all_updated_barrier.wait()  # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
                 except Exception as error:
                     print(f"exited at all_updated_barrier.wait(): {process_idx}, error = {error}")
