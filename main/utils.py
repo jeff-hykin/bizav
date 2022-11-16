@@ -157,3 +157,46 @@ def variance_plot():
 
     fig.update_traces(mode='lines')
     fig.show()
+
+
+
+import json
+from os.path import join
+class HogLog:
+    # for parsing messy logs and turning them into a CSV/dataframe structure
+    def __init__(self, ):
+        self.preprocessors = []
+    
+    def add_preprocessor(self, function=None):
+        if function!= None:
+            self.preprocessors.append(function)
+            return self
+        else:
+            def decorator_name(function_being_wrapped):
+                self.preprocessors.append(function_being_wrapped)
+                return function_being_wrapped
+            return decorator_name
+    
+    def read(self, filepath):
+        number_of_elements_so_far = 0
+        output = {}
+        with open(filepath,'r') as f:
+            output_string = f.read()
+            for each in preprocessors:
+                output_string = each(output_string)
+            for each_line in output_string.splitlines():
+                try:
+                    parsed_line = json.loads(each_line)
+                    if isinstance(parsed_line, dict):
+                        output_keys = set(output.keys())
+                        new_keys = [ each for each in parsed_line.keys() if each not in output_keys ]
+                        for each_new_key in new_keys:
+                            output[each_new_key] = [None]*number_of_elements_so_far
+                        # add a row
+                        for each_key, each_list in output.items():
+                            each_list.append(parsed_line.get(each_key, None))
+                        number_of_elements_so_far += 1
+                except Exception as error:
+                    pass
+        self.frame = output
+        return output
