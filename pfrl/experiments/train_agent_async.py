@@ -29,7 +29,6 @@ check_rate = config.number_of_processes
 # globals
 # 
 central_agent_process_index    = None
-when_all_processes_are_updated = None
 prev_total_number_of_episodes  = None
 number_of_timesteps            = None
 number_of_episodes             = None
@@ -41,6 +40,11 @@ visits                         = None
 filtered_agents                = None
 episode_reward_trend           = None
 median_episode_rewards         = None
+
+# global functions
+when_all_processes_are_updated = None
+early_stopping_check = None
+choose_ucb_action = None
 
 def reset_globals():
     global central_agent_process_index, when_all_processes_are_updated, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  process_index_to_temp_filter,  filtered_count,  act_val,  visits,  filtered_agents, episode_reward_trend, median_episode_rewards
@@ -158,15 +162,15 @@ def train_loop(
                 try:
                     all_updated_barrier.wait()  # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
                 except Exception as error:
-                    print(f"exited at all_updated_barrier.wait(): {process_idx}")
+                    print(f"exited at all_updated_barrier.wait(): {process_idx}, error = {error}")
                     exit()
-                # FIXME: in theory only one process should run the when_all_processes_are_updated() but instead it gets run 10x for every .wait()
-                # if process_idx == central_agent_process_index:
-                #     try:
-                #         when_all_processes_are_updated()
-                #     except Exception as error:
-                #         print(f"exited at when_all_processes_are_updated(): {process_idx}")
-                #         stop_event.set()
+                if process_idx == central_agent_process_index:
+                    try:
+                        early_stopping_check()
+                        choose_ucb_action()
+                    except Exception as error:
+                        print(f"exited at early_stopping_check(): {process_idx}, error = {error}")
+                        stop_event.set()
                     
                 if config.expected_number_of_malicious_processes > 0:
                     # If not current UCB action and not permanently filtered, include agent's gradient in global model
@@ -176,7 +180,7 @@ def train_loop(
                 try:
                     update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
                 except Exception as error:
-                    print(f"exited at update_barrier.wait(): {process_idx}")
+                    print(f"exited at update_barrier.wait(): {process_idx}, error = {error}")
                     exit()
                 agent.after_update()    # Each agent will download the global model after the optimizer max_number_of_episodes
 
@@ -411,9 +415,9 @@ def train_agent_async(
                 all_grads.append(np.asarray(my_grad))
             return np.vstack(all_grads)
         
-    global when_all_processes_are_updated
-    def when_all_processes_are_updated():
-        global central_agent_process_index, when_all_processes_are_updated, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  process_index_to_temp_filter,  filtered_count,  act_val,  visits,  filtered_agents, episode_reward_trend, median_episode_rewards, episode_reward_trend
+    global early_stopping_check
+    def early_stopping_check():
+        global central_agent_process_index, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  process_index_to_temp_filter,  filtered_count,  act_val,  visits,  filtered_agents, episode_reward_trend, median_episode_rewards, episode_reward_trend
         # 
         # early stopping check
         # 
@@ -467,19 +471,21 @@ def train_agent_async(
                                 print(f"Hit early stopping because per_episode_reward: {per_episode_reward} < {each_min_value}")
                                 stop_event.set()
                                 raise optuna.TrialPruned()
-        
-        # print("[starting when_all_processes_are_updated()]")
+    
+    global choose_ucb_action
+    def choose_ucb_action():
+        global central_agent_process_index, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  process_index_to_temp_filter,  filtered_count,  act_val,  visits,  filtered_agents, episode_reward_trend, median_episode_rewards, episode_reward_trend
         all_malicious_actors_found = filtered_count.value == config.expected_number_of_malicious_processes
         if all_malicious_actors_found:
             return
-
+        
         # Update values
         if number_of_updates.value != 0:
-            # Compute gradient mean
-            ucb_reward = ucb.reward_func(ucb.smart_gradient_of_agents)
+            # # Compute gradient mean
+            # ucb_reward = ucb.reward_func(ucb.smart_gradient_of_agents)
             
-            # Update Q-values
-            ucb.update_step(ucb_reward)
+            # # Update Q-values
+            # ucb.update_step(ucb_reward)
             
             # 
             # Permanently disable an agent
@@ -499,7 +505,7 @@ def train_agent_async(
                     if visit_count < env_config.permaban_threshold:
                         visits[process_index] = 0
                         ucb.value_per_process[process_index] = 0
-
+                    
         # Select next action
         process_index = ucb.choose_action()
 
@@ -509,6 +515,19 @@ def train_agent_async(
         
         number_of_updates.value += 1
     
+    global when_all_processes_are_updated        
+    def when_all_processes_are_updated():
+        # print("[starting when_all_processes_are_updated()]")
+        all_malicious_actors_found = filtered_count.value == config.expected_number_of_malicious_processes
+        if not all_malicious_actors_found and number_of_updates.value != 0:
+            # FIXME: fow some reason this is (and needs to be) called #-of-processes time per update (rather than once) when in theory it should only need to be called once
+            # ucb.smart_gradient_of_agents already iterates through all the processes, but for some reason it needs to be called process-times on top of that
+            
+            # Compute gradient mean
+            ucb_reward = ucb.reward_func(ucb.smart_gradient_of_agents) # gradients 
+            # Update Q-values
+            ucb.update_step(ucb_reward)
+            
     all_updated_barrier = mp.Barrier(processes, when_all_processes_are_updated)
 
     def sync_updates():
