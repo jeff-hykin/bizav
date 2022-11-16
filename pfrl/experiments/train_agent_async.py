@@ -160,13 +160,13 @@ def train_loop(
                 except Exception as error:
                     print(f"exited at all_updated_barrier.wait(): {process_idx}")
                     exit()
-                # only one process runs this
-                if process_idx == central_agent_process_index:
-                    try:
-                        when_all_processes_are_updated()
-                    except Exception as error:
-                        print(f"exited at when_all_processes_are_updated(): {process_idx}")
-                        stop_event.set()
+                # FIXME: in theory only one process should run the when_all_processes_are_updated() but instead it gets run 10x for every .wait()
+                # if process_idx == central_agent_process_index:
+                #     try:
+                #         when_all_processes_are_updated()
+                #     except Exception as error:
+                #         print(f"exited at when_all_processes_are_updated(): {process_idx}")
+                #         stop_event.set()
                     
                 if config.expected_number_of_malicious_processes > 0:
                     # If not current UCB action and not permanently filtered, include agent's gradient in global model
@@ -509,7 +509,7 @@ def train_agent_async(
         
         number_of_updates.value += 1
     
-    all_updated_barrier = mp.Barrier(processes, lambda : None)
+    all_updated_barrier = mp.Barrier(processes, when_all_processes_are_updated)
 
     def sync_updates():
         if filtered_count.value != config.expected_number_of_malicious_processes:
