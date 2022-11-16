@@ -102,6 +102,7 @@
                 number_of_epsiodes_during_eval: 10 # this value matches the prev paper
                 number_of_episodes_before_eval: 130
                 final_eval:
+                    number_of_episodes: null
                     number_of_steps: 125_000
             
             training:
@@ -134,6 +135,7 @@
                 number_of_epsiodes_during_eval: 10 # matches the prev paper
                 number_of_episodes_before_eval: 550 # (if this number is 550, and there are 10 processes => 55 epsiodes per process)
                 final_eval:
+                    number_of_steps: null
                     number_of_episodes: 10 # TODO maybe increase this?
             
             training:
@@ -220,4 +222,5 @@
                 number_of_episodes_before_eval: 130
                 number_of_epsiodes_during_eval: 10 # this value matches the prev paper
                 final_eval:
+                    number_of_episodes: null
                     number_of_steps: 125_000 # TODO: not sure if this is a good number

@@ -1,0 +1,502 @@
+config = {
+    "evaluation": {
+        "enabled": True, 
+        "number_of_episodes_before_eval": 550, 
+        "number_of_epsiodes_during_eval": 10, 
+        "final_eval": {
+            "number_of_steps": None, 
+            "number_of_episodes": 10, 
+        }, 
+    }, 
+    "verbose": False, 
+    "number_of_processes": 10, 
+    "number_of_malicious_processes": 3, 
+    "expected_number_of_malicious_processes": 0, 
+    "logarithmic_scale_reference": {
+        0: 0.1, 
+        1: 0.08, 
+        2: 0.063, 
+        3: 0.05, 
+        4: 0.04, 
+        5: 0.032, 
+        6: 0.025, 
+        7: 0.02, 
+        8: 0.016, 
+        9: 0.012, 
+        10: 0.01, 
+        11: 0.008, 
+        12: 0.0063, 
+        13: 0.005, 
+        14: 0.004, 
+        15: 0.0032, 
+        16: 0.0025, 
+        17: 0.002, 
+        18: 0.0016, 
+        19: 0.0012, 
+        20: 0.001, 
+        21: 0.0008, 
+        22: 0.00063, 
+        23: 0.0005, 
+        24: 0.0004, 
+        25: 0.00032, 
+        26: 0.00025, 
+        27: 0.0002, 
+        28: 0.00016, 
+        29: 0.00012, 
+        30: 1e-05, 
+        31: 8e-06, 
+        32: 6.3e-06, 
+        33: 5e-06, 
+        34: 4e-06, 
+        35: 3.2e-06, 
+        36: 2.5e-06, 
+        37: 2e-06, 
+        38: 1.6e-06, 
+        39: 1.2e-06, 
+    }, 
+    "attack_method": "sign", 
+    "use_frozen_random_seed": False, 
+    "random_seeds": {0: 0, }, 
+    "value_trend_lookback_size": 10, 
+    "early_stopping": {
+        "lowerbound_for_max_recent_change": 0.1, 
+        "min_number_of_episodes": 10, 
+        "thresholds": {10: -700, }, 
+    }, 
+    "tuning": {
+        "number_of_trials": 300, 
+        "phase_1": {
+            "categorical_options": {"activation": {0: 0, 1: 1, 2: 2, }, }, 
+            "sequential_options": {
+                "t_max": {0: 3, 1: 5, 2: 10, 3: 20, 4: 30, 5: 50, }, 
+                "hidden_size": {0: 16, 1: 32, 2: 64, 3: 128, }, 
+                "learning_rate": {
+                    0: 0.1, 
+                    1: 0.08, 
+                    2: 0.063, 
+                    3: 0.05, 
+                    4: 0.04, 
+                    5: 0.032, 
+                    6: 0.025, 
+                    7: 0.02, 
+                    8: 0.016, 
+                    9: 0.012, 
+                    10: 0.01, 
+                    11: 0.008, 
+                    12: 0.0063, 
+                    13: 0.005, 
+                    14: 0.004, 
+                    15: 0.0032, 
+                    16: 0.0025, 
+                    17: 0.002, 
+                    18: 0.0016, 
+                    19: 0.0012, 
+                    20: 0.001, 
+                    21: 0.0008, 
+                    22: 0.00063, 
+                    23: 0.0005, 
+                    24: 0.0004, 
+                    25: 0.00032, 
+                    26: 0.00025, 
+                    27: 0.0002, 
+                    28: 0.00016, 
+                    29: 0.00012, 
+                    30: 1e-05, 
+                    31: 8e-06, 
+                    32: 6.3e-06, 
+                    33: 5e-06, 
+                    34: 4e-06, 
+                    35: 3.2e-06, 
+                    36: 2.5e-06, 
+                    37: 2e-06, 
+                    38: 1.6e-06, 
+                    39: 1.2e-06, 
+                }, 
+                "beta": {
+                    0: 0.1, 
+                    1: 0.08, 
+                    2: 0.063, 
+                    3: 0.05, 
+                    4: 0.04, 
+                    5: 0.032, 
+                    6: 0.025, 
+                    7: 0.02, 
+                    8: 0.016, 
+                    9: 0.012, 
+                    10: 0.01, 
+                    11: 0.008, 
+                    12: 0.0063, 
+                    13: 0.005, 
+                    14: 0.004, 
+                    15: 0.0032, 
+                    16: 0.0025, 
+                    17: 0.002, 
+                    18: 0.0016, 
+                    19: 0.0012, 
+                    20: 0.001, 
+                    21: 0.0008, 
+                    22: 0.00063, 
+                    23: 0.0005, 
+                    24: 0.0004, 
+                    25: 0.00032, 
+                    26: 0.00025, 
+                    27: 0.0002, 
+                    28: 0.00016, 
+                    29: 0.00012, 
+                    30: 1e-05, 
+                    31: 8e-06, 
+                    32: 6.3e-06, 
+                    33: 5e-06, 
+                    34: 4e-06, 
+                    35: 3.2e-06, 
+                    36: 2.5e-06, 
+                    37: 2e-06, 
+                    38: 1.6e-06, 
+                    39: 1.2e-06, 
+                }, 
+                "variance_scaling_factor": {0: 0.01, 1: 1, 2: 100, 3: 1000, }, 
+                "permaban_threshold": {0: 100, 1: 500, 2: 1000, 3: 2000, 4: 10000, }, 
+            }, 
+            "sequential_exponential_options": {
+                "learning_rate": {
+                    "base": {0: 1, 1: 3, 2: 5, 3: 7, 4: 9, }, 
+                    "exponent": {
+                        0: -1, 
+                        1: -2, 
+                        2: -3, 
+                        3: -4, 
+                        4: -5, 
+                        5: -6, 
+                        6: -7, 
+                        7: -8, 
+                    }, 
+                }, 
+                "beta": {
+                    "base": {0: 1, 1: 3, 2: 5, 3: 7, 4: 9, }, 
+                    "exponent": {
+                        0: -1, 
+                        1: -2, 
+                        2: -3, 
+                        3: -4, 
+                        4: -5, 
+                        5: -6, 
+                        6: -7, 
+                        7: -8, 
+                    }, 
+                }, 
+            }, 
+        }, 
+        "phase_2": {
+            "sequential_options": {
+                "t_max": {0: 3, 1: 5, }, 
+                "hidden_size": {0: 64, 1: 128, }, 
+                "variance_scaling_factor": {0: 0.01, 1: 1, 2: 100, 3: 1000, }, 
+                "permaban_threshold": {0: 100, 1: 500, 2: 1000, 3: 2000, 4: 10000, }, 
+            }, 
+            "sequential_exponential_options": {
+                "learning_rate": {
+                    "base": {0: 1, 1: 3, 2: 5, 3: 7, 4: 9, }, 
+                    "exponent": {0: -4, 1: -5, }, 
+                }, 
+                "beta": {
+                    "base": {0: 1, 1: 3, 2: 5, 3: 7, 4: 9, }, 
+                    "exponent": {0: -4, 1: -5, 2: -6, 3: -7, }, 
+                }, 
+            }, 
+        }, 
+    }, 
+    "training": {"episode_count": 80000, }, 
+    "env_config": {
+        "env_name": "HalfCheetah-v2", 
+        "learning_rate": 0.0003, 
+        "beta": 1e-07, 
+        "t_max": 0, 
+        "activation": 1, 
+        "hidden_size": 2, 
+        "permaban_threshold": 500, 
+        "variance_scaling_factor": 1, 
+    }, 
+}
+args = {
+    "processes": 10, 
+    "env": "HalfCheetah-v2", 
+    "seed": 328392536, 
+    "outdir": "results", 
+    "t_max": 0, 
+    "beta": 1e-07, 
+    "profile": False, 
+    "steps": 80000, 
+    "max_frames": (108000, ), 
+    "lr": 0.0003, 
+    "demo": False, 
+    "load_pretrained": False, 
+    "pretrained_type": "best", 
+    "load": "", 
+    "log_level": 20, 
+    "render": False, 
+    "monitor": False, 
+    "permaban_threshold": 500, 
+    "malicious": 3, 
+    "mal_type": "sign", 
+    "rew_scale": 1.0, 
+    "hidden_size": 2, 
+    "activation": 1, 
+}
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav2/examples/atari/reproduction/a3c/comparison.py", line 74, in main
+    fitness_values = [ float(train_a3c.train_a3c(args)) for each in range(runs_for_comparison) ]
+  File "/home/jeffhykin/repos/bizav2/examples/atari/reproduction/a3c/comparison.py", line 74, in <listcomp>
+    fitness_values = [ float(train_a3c.train_a3c(args)) for each in range(runs_for_comparison) ]
+  File "/home/jeffhykin/repos/bizav2/examples/atari/reproduction/a3c/train_a3c.py", line 268, in train_a3c
+    experiments.train_agent_async(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 638, in train_agent_async
+    async_.run_async(processes, run_func)
+  File "/home/jeffhykin/repos/bizav2/pfrl/utils/async_.py", line 28, in run_async
+    each_process.join()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 149, in join
+    res = self._popen.wait(timeout)
+  File "/usr/lib/python3.8/multiprocessing/popen_fork.py", line 47, in wait
+    return self.poll(os.WNOHANG if timeout == 0.0 else 0)
+  File "/usr/lib/python3.8/multiprocessing/popen_fork.py", line 27, in poll
+    pid, sts = os.waitpid(self.pid, flag)
+KeyboardInterrupt
+Process Process-2:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 629, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 603, in <lambda>
+    f = lambda : train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 151, in train_loop
+    a = agent.act(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 284, in act
+    return self._act_train(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 316, in _act_train
+    action = self.get_a3c_act(pout)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 329, in get_a3c_act
+    action = pout.sample()
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/distributions/independent.py", line 85, in sample
+    return self.base_dist.sample(sample_shape)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/distributions/normal.py", line 64, in sample
+    return torch.normal(self.loc.expand(shape), self.scale.expand(shape))
+KeyboardInterrupt
+Process Process-7:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 629, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 603, in <lambda>
+    f = lambda : train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 151, in train_loop
+    a = agent.act(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 284, in act
+    return self._act_train(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 303, in _act_train
+    with torch.no_grad():
+KeyboardInterrupt
+Process Process-8:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 629, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 603, in <lambda>
+    f = lambda : train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 151, in train_loop
+    a = agent.act(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 284, in act
+    return self._act_train(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 304, in _act_train
+    statevar = self.batch_states([obs], self.device, self.phi)
+  File "/home/jeffhykin/repos/bizav2/pfrl/utils/batch_states.py", line 33, in batch_states
+    collated_features = default_collate(features)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/utils/data/_utils/collate.py", line 143, in default_collate
+    if np_str_obj_array_pattern.search(elem.dtype.str) is not None:
+KeyboardInterrupt
+Process Process-4:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 629, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 603, in <lambda>
+    f = lambda : train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 151, in train_loop
+    a = agent.act(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 284, in act
+    return self._act_train(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 320, in _act_train
+    float(vout) - self.average_value
+KeyboardInterrupt
+Process Process-5:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 629, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 603, in <lambda>
+    f = lambda : train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 151, in train_loop
+    a = agent.act(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 284, in act
+    return self._act_train(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 304, in _act_train
+    statevar = self.batch_states([obs], self.device, self.phi)
+  File "/home/jeffhykin/repos/bizav2/pfrl/utils/batch_states.py", line 31, in batch_states
+    features = [phi(s) for s in states]
+  File "/home/jeffhykin/repos/bizav2/pfrl/utils/batch_states.py", line 31, in <listcomp>
+    features = [phi(s) for s in states]
+  File "/home/jeffhykin/repos/bizav2/examples/atari/reproduction/a3c/train_a3c.py", line 207, in phi
+    return np.asarray(x, dtype=np.float32)
+KeyboardInterrupt
+when_all_processes_are_updated
+{"total_number_of_episodes": 20, "number_of_timesteps": 20000, "per_episode_reward": -752.79, "episode_reward_trend_value": 0.0, "biggest_recent_change": NaN},
+{"total_number_of_episodes": 30, "number_of_timesteps": 30000, "per_episode_reward": -717.44, "episode_reward_trend_value": 3.5352257807232035, "biggest_recent_change": NaN},
+{"total_number_of_episodes": 40, "number_of_timesteps": 40000, "per_episode_reward": -729.89, "episode_reward_trend_value": 1.144888293453954, "biggest_recent_change": NaN},
+Process Process-1:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 629, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 603, in <lambda>
+    f = lambda : train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 151, in train_loop
+    a = agent.act(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 284, in act
+    return self._act_train(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 311, in _act_train
+    pout, vout = self.model(statevar)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/linear.py", line 103, in forward
+    return F.linear(input, self.weight, self.bias)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1172, in __getattr__
+    def __getattr__(self, name: str) -> Union[Tensor, 'Module']:
+KeyboardInterrupt
+when_all_processes_are_updated
+Process Process-3:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 629, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 603, in <lambda>
+    f = lambda : train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 153, in train_loop
+    obs, r, done, info = env.step(a)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/gym/core.py", line 327, in step
+    observation, reward, done, info = self.env.step(action)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/gym/wrappers/time_limit.py", line 17, in step
+    observation, reward, done, info = self.env.step(action)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/gym/wrappers/order_enforcing.py", line 13, in step
+    observation, reward, done, info = self.env.step(action)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/gym/envs/mujoco/half_cheetah.py", line 13, in step
+    self.do_simulation(action, self.frame_skip)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/gym/envs/mujoco/mujoco_env.py", line 140, in do_simulation
+    self.sim.step()
+KeyboardInterrupt
+when_all_processes_are_updated
+Process Process-10:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 629, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 603, in <lambda>
+    f = lambda : train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 151, in train_loop
+    a = agent.act(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 284, in act
+    return self._act_train(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 311, in _act_train
+    pout, vout = self.model(statevar)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/nn/branched.py", line 30, in forward
+    return tuple(mod(*args, **kwargs) for mod in self.child_modules)
+  File "/home/jeffhykin/repos/bizav2/pfrl/nn/branched.py", line 30, in <genexpr>
+    return tuple(mod(*args, **kwargs) for mod in self.child_modules)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+KeyboardInterrupt
+when_all_processes_are_updated
+when_all_processes_are_updated
+Process Process-6:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 629, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 603, in <lambda>
+    f = lambda : train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 151, in train_loop
+    a = agent.act(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 284, in act
+    return self._act_train(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 316, in _act_train
+    action = self.get_a3c_act(pout)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 329, in get_a3c_act
+    action = pout.sample()
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/distributions/independent.py", line 85, in sample
+    return self.base_dist.sample(sample_shape)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/distributions/normal.py", line 64, in sample
+    return torch.normal(self.loc.expand(shape), self.scale.expand(shape))
+KeyboardInterrupt
+Process Process-9:
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 629, in run_func
+    f()
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 603, in <lambda>
+    f = lambda : train_loop(
+  File "/home/jeffhykin/repos/bizav2/pfrl/experiments/train_agent_async.py", line 151, in train_loop
+    a = agent.act(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 284, in act
+    return self._act_train(obs)
+  File "/home/jeffhykin/repos/bizav2/pfrl/agents/a3c.py", line 311, in _act_train
+    pout, vout = self.model(statevar)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/torch/nn/modules/linear.py", line 103, in forward
+    return F.linear(input, self.weight, self.bias)
+KeyboardInterrupt
