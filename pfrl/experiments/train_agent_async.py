@@ -160,6 +160,7 @@ def train_loop(
 
             if agent.updated:
                 try:
+                    print(f"{process_idx} waiting for barrier")
                     all_updated_barrier.wait()  # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
                 except Exception as error:
                     print(f"exited at all_updated_barrier.wait(): {process_idx}, error = {error}")
@@ -476,6 +477,7 @@ def train_agent_async(
     
     global choose_ucb_action
     def choose_ucb_action():
+        print(f'''choose_ucb_action''')
         global central_agent_process_index, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  process_index_to_temp_filter,  filtered_count,  act_val,  visits,  filtered_agents, episode_reward_trend, median_episode_rewards, episode_reward_trend
         all_malicious_actors_found = filtered_count.value == config.expected_number_of_malicious_processes
         if all_malicious_actors_found:
@@ -519,7 +521,7 @@ def train_agent_async(
     
     global when_all_processes_are_updated        
     def when_all_processes_are_updated():
-        # print("[starting when_all_processes_are_updated()]")
+        print("[starting when_all_processes_are_updated()]")
         all_malicious_actors_found = filtered_count.value == config.expected_number_of_malicious_processes
         if not all_malicious_actors_found and number_of_updates.value != 0:
             # FIXME: fow some reason this is (and needs to be) called #-of-processes time per update (rather than once) when in theory it should only need to be called once
