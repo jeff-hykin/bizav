@@ -77,7 +77,6 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
         self.mal_type = mal_type
         self.byz_classifier = byz_classifier
         self.total_loss = None
-        self.agent_rewards = None
 
         # Globally shared model
         self.shared_model = model
@@ -238,9 +237,11 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
         self.total_loss = torch.squeeze(pi_loss) + torch.squeeze(v_loss)
 
         self.model.zero_grad()
+        print(f'''(({self.process_idx}))self.total_loss = {self.total_loss}''')
         self.total_loss.backward()
         if self.max_grad_norm is not None:
             clip_l2_grad_norm_(self.model.parameters(), self.max_grad_norm)
+        print(f'''updated (process {self.process_idx}): grads = {({ index: round(sum([ each_parameter_layer.sum().item() for each_parameter_layer in each_model.parameters() ]), 2) for index, each_model in enumerate(self.local_models) })}''', end=" ")
 
         if self.malicious and self.mal_type == 'sign':
             for param in self.model.parameters():

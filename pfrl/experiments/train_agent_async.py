@@ -158,14 +158,14 @@ def train_loop(
                 try:
                     all_updated_barrier.wait()  # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
                 except Exception as error:
-                    print(f"exited at all_updated_barrier.wait(): {process_idx}")
+                    print(f"exited at all_updated_barrier.wait(): {process_idx}, error={error}")
                     exit()
                 # only one process runs this
                 if process_idx == central_agent_process_index:
                     try:
                         when_all_processes_are_updated()
                     except Exception as error:
-                        print(f"exited at when_all_processes_are_updated(): {process_idx}")
+                        print(f"exited at when_all_processes_are_updated(): {process_idx}, error={error}")
                         stop_event.set()
                     
                 if config.expected_number_of_malicious_processes > 0:
@@ -176,7 +176,7 @@ def train_loop(
                 try:
                     update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
                 except Exception as error:
-                    print(f"exited at update_barrier.wait(): {process_idx}")
+                    print(f"exited at update_barrier.wait(): {process_idx}, error={error}")
                     exit()
                 agent.after_update()    # Each agent will download the global model after the optimizer max_number_of_episodes
 
@@ -358,6 +358,7 @@ def train_agent_async(
             average_variance = euclidean_dist(agent_gradients, agent_gradients).mean()
             flipped_value = -average_variance
             ucb_reward = config.env_config.variance_scaling_factor * flipped_value
+            print(f'''ucb_reward = {ucb_reward}''', end=" ")
             return ucb_reward
         
         def update_step(self, ucb_reward):
@@ -365,7 +366,9 @@ def train_agent_async(
             old_q_value      = ucb.value_per_process[process_index]
             number_of_visits = visits[process_index]
             change_in_value  = (ucb_reward - old_q_value) / number_of_visits
+            print(f'''change_in_value = (ucb_reward - old_q_value) / number_of_visits = ({ucb_reward} - {old_q_value}) / {number_of_visits} = {((ucb_reward - old_q_value) / number_of_visits)}''', end=" ")
             # apply the new value
+            print(f'''ucb.value_per_process = {ucb.value_per_process}''', end=" ")
             ucb.value_per_process[process_index] += change_in_value
         
         def choose_action(self):
@@ -373,17 +376,19 @@ def train_agent_async(
             for process_index, process_is_filtered in enumerate(filtered_agents):
                 if process_is_filtered:
                     import math
-                    ucb.value_per_process[process_index] = -math.inf
+                    ucb.value_per_process[process_index] = 0
             
             np_visits = mp_to_numpy(visits)
             np_value_per_processs = mp_to_numpy(ucb.value_per_process)
             
-            config.verbose and print('Step', number_of_updates.value, process_index_to_temp_filter.value, "visits", list(np.round(np_visits, 2)), " episode_count:", number_of_episodes.value, "q_vals:", list(np.round(np_value_per_processs, 3)), end="\r")
             
             # Get the true UCB t value
             ucb_timesteps = np.sum(np_visits) - (env_config.permaban_threshold+1) * filtered_count.value
             # Compute UCB policy values (Q-value + uncertainty)
             values = np_value_per_processs + np.sqrt((np.log(ucb_timesteps)) / np_visits)
+            
+            config.verbose and print(f', values={values}', end="\r")
+            config.verbose and print('Step', number_of_updates.value, process_index_to_temp_filter.value, "visits", list(np.round(np_visits, 2)), " episode_count:", number_of_episodes.value, "q_vals:", list(np.round(np_value_per_processs, 3)), end="\r")
             
             # Initial selection (visits 0) #TODO properly select at random
             if np.min(np_visits) < 1:
@@ -401,14 +406,25 @@ def train_agent_async(
                 # If filtered, don't include in gradient mean
                 if agent_is_temp_filtered or agent_is_permantly_filtered:
                     continue
-                for param in agent.local_models[process_index].parameters():
+                parameters = list(agent.local_models[process_index].parameters())
+                for param in parameters:
                     if param.grad is not None:
                         grad_np = param.grad.detach().clone().numpy().flatten()
                     else:
                         grad_np = np.zeros(param.size(), dtype=np.float).flatten()
                     for j in range(len(grad_np)):
                         my_grad.append(grad_np[j])
-                all_grads.append(np.asarray(my_grad))
+                grad_array = np.asarray(my_grad)
+                the_sum = 0
+                try:
+                    for each in parameters:
+                        if type(each.grad) != type(None):
+                            local_sum = each.grad.sum()
+                            the_sum += local_sum
+                except Exception as error:
+                    print(f'''1error = {error}''')
+                print(f'''parameter_sum = {the_sum}''', f''' {process_index}:grad_array.sum() = {grad_array.sum()}''', end="\n")
+                all_grads.append(grad_array)
             return np.vstack(all_grads)
         
     global when_all_processes_are_updated
@@ -475,6 +491,7 @@ def train_agent_async(
 
         # Update values
         if number_of_updates.value != 0:
+            print(f'''|ucb.smart_gradient_of_agents = {ucb.smart_gradient_of_agents}'''.replace("\n", " "), end=" ")
             # Compute gradient mean
             ucb_reward = ucb.reward_func(ucb.smart_gradient_of_agents)
             
