@@ -11,9 +11,13 @@ from main.config import config, env_config, info, args as cli_args
 from train_a3c import args_from_config
 import train_a3c
 
-runs_for_comparison = 2
+runs_for_comparison = 10
 aspects_to_compare = {
-    "profile": [ "CARTPOLE", "LUNAR_LANDER", "CHEETAH", ],
+    "profile": [
+        "CARTPOLE",
+        "LUNAR_LANDER",
+        "CHEETAH",
+    ],
     "attack_method": [
         'sign',
         'act',
