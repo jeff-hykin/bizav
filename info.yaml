@@ -74,6 +74,9 @@
             use_frozen_random_seed: False
             random_seeds: [ 0 ]
             value_trend_lookback_size: 10
+            env_config:
+                permaban_threshold: 1000
+                
             early_stopping:
                 lowerbound_for_max_recent_change: 0 # any change is acceptable
                 min_number_of_episodes: 30
@@ -115,7 +118,6 @@
                 t_max: 5
                 activation: 1
                 hidden_size: 64
-                permaban_threshold: 500
                 variance_scaling_factor: 1
             
             tuning:
@@ -149,7 +151,6 @@
                 activation: 1
                 hidden_size: 2
                 variance_scaling_factor: 1 #FIXME: not optimized at all
-                permaban_threshold: 500    #FIXME: not optimized at all
             
             tuning:
                 phase_1:
@@ -204,7 +205,6 @@
                 t_max: 5
                 hidden_size: 128
                 variance_scaling_factor: 100
-                permaban_threshold: 1000
                 beta: 0.00002
                 activation: 1
         

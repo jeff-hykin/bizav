@@ -126,15 +126,13 @@ def train_loop(
     def save_model():
         if process_idx == 0:
             # Save the current model before being killed
-            dirname = os.path.join(outdir, "{}_except".format(global_episode_count))
+            dirname = os.path.join(outdir, "{}_except".format(number_of_episodes.value))
             agent.save(dirname)
             logger.info("Saved the current model to %s", dirname)
 
     try:
         episode_r                   = 0
-        global_episode_count        = 0
         local_t                     = 0
-        global_episodes             = 0
         obs                         = env.reset()
         episode_len                 = 0
         successful                  = False
@@ -176,16 +174,14 @@ def train_loop(
                     median_episode_rewards[process_idx] = agent.median_reward_per_episode
                     number_of_episodes.value += 1
                     number_of_timesteps.value += number_of_timesteps_for_this_episode
-                    global_episodes = number_of_episodes.value
-                    global_episode_count = number_of_episodes.value
                 
                 # reset
                 number_of_timesteps_for_this_episode = 0
                 
                 for hook in global_step_hooks:
-                    hook(env, agent, global_episode_count)
+                    hook(env, agent, number_of_episodes.value)
 
-                metric_line = str(global_episode_count)+'; '+str(process_idx)+'; '+str(episode_r)+'; '
+                metric_line = str(number_of_episodes.value)+'; '+str(process_idx)+'; '+str(episode_r)+'; '
                 stats = agent.get_statistics()
                 for item in stats:
                     metric_line += str(item) + '; '
@@ -195,22 +191,16 @@ def train_loop(
                 # Evaluate the current agent
                 if evaluator is not None:
                     eval_score = evaluator.evaluate_if_necessary(
-                        t=global_episode_count, episodes=global_episodes, env=eval_env, agent=agent
+                        # eval is triggered based on t (timesteps), but its flexible, so we trigger it based on episodes instead
+                        t=number_of_episodes.value,
+                        episodes=number_of_episodes.value,
+                        env=eval_env,
+                        agent=agent,
                     )
-
-                    if (
-                        eval_score is not None
-                        and successful_score is not None
-                        and eval_score >= successful_score
-                    ):
-                        stop_event.set()
-                        successful = True
-                        # Break immediately in order to avoid an additional
-                        # call of agent.act_and_train
-                        break
+                    print(json.dumps(dict(eval_score=eval_score, number_of_episodes=number_of_episodes.value,)))
                 
                 proportional_number_of_timesteps = number_of_timesteps.value / config.number_of_processes
-                if global_episode_count >= max_number_of_episodes or stop_event.is_set():
+                if number_of_episodes.value >= max_number_of_episodes or stop_event.is_set():
                     break
 
                 # Start a new episode
@@ -230,7 +220,7 @@ def train_loop(
         save_model()
         raise
 
-    if global_episode_count == max_number_of_episodes:
+    if number_of_episodes.value == max_number_of_episodes:
         # Save the final model
         dirname = os.path.join(outdir, "{}_finish".format(max_number_of_episodes))
         agent.save(dirname)
