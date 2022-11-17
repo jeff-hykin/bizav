@@ -13,7 +13,11 @@ import train_a3c
 
 runs_for_comparison = 2
 aspects_to_compare = {
-    "profile": [ "CARTPOLE", "LUNAR_LANDER", "CHEETAH", ],
+    "profile": [
+        "CARTPOLE",
+        "LUNAR_LANDER",
+        "CHEETAH",
+    ],
     "attack_method": [
         'sign',
         'act',
