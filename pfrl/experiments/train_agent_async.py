@@ -41,16 +41,10 @@ filtered_agents                = None
 episode_reward_trend           = None
 median_episode_rewards         = None
 
-# global functions
-when_all_processes_are_updated = None
-early_stopping_check = None
-choose_ucb_action = None
-
 def reset_globals():
-    global central_agent_process_index, when_all_processes_are_updated, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  process_index_to_temp_filter,  filtered_count,  act_val,  visits,  filtered_agents, episode_reward_trend, median_episode_rewards
+    global central_agent_process_index, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  process_index_to_temp_filter,  filtered_count,  act_val,  visits,  filtered_agents, episode_reward_trend, median_episode_rewards
     episode_reward_trend = []
     central_agent_process_index = sample(list(range(config.number_of_processes)), k=1)[0]
-    when_all_processes_are_updated = None
     prev_total_number_of_episodes = -1
     
     # 
@@ -132,15 +126,13 @@ def train_loop(
     def save_model():
         if process_idx == 0:
             # Save the current model before being killed
-            dirname = os.path.join(outdir, "{}_except".format(global_episode_count))
+            dirname = os.path.join(outdir, "{}_except".format(number_of_episodes.value))
             agent.save(dirname)
             logger.info("Saved the current model to %s", dirname)
 
     try:
         episode_r                   = 0
-        global_episode_count        = 0
         local_t                     = 0
-        global_episodes             = 0
         obs                         = env.reset()
         episode_len                 = 0
         successful                  = False
@@ -160,17 +152,10 @@ def train_loop(
 
             if agent.updated:
                 try:
-                    all_updated_barrier.wait()  # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
+                    all_updated_barrier.wait() # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
                 except Exception as error:
                     print(f"exited at all_updated_barrier.wait(): {process_idx}, error = {error}")
                     exit()
-                if process_idx == central_agent_process_index:
-                    try:
-                        early_stopping_check()
-                        choose_ucb_action()
-                    except Exception as error:
-                        print(f"exited at early_stopping_check(): {process_idx}, error = {error}")
-                        stop_event.set()
                     
                 if config.expected_number_of_malicious_processes > 0:
                     # If not current UCB action and not permanently filtered, include agent's gradient in global model
@@ -189,16 +174,14 @@ def train_loop(
                     median_episode_rewards[process_idx] = agent.median_reward_per_episode
                     number_of_episodes.value += 1
                     number_of_timesteps.value += number_of_timesteps_for_this_episode
-                    global_episodes = number_of_episodes.value
-                    global_episode_count = number_of_episodes.value
                 
                 # reset
                 number_of_timesteps_for_this_episode = 0
                 
                 for hook in global_step_hooks:
-                    hook(env, agent, global_episode_count)
+                    hook(env, agent, number_of_episodes.value)
 
-                metric_line = str(global_episode_count)+'; '+str(process_idx)+'; '+str(episode_r)+'; '
+                metric_line = str(number_of_episodes.value)+'; '+str(process_idx)+'; '+str(episode_r)+'; '
                 stats = agent.get_statistics()
                 for item in stats:
                     metric_line += str(item) + '; '
@@ -208,22 +191,16 @@ def train_loop(
                 # Evaluate the current agent
                 if evaluator is not None:
                     eval_score = evaluator.evaluate_if_necessary(
-                        t=global_episode_count, episodes=global_episodes, env=eval_env, agent=agent
+                        # eval is triggered based on t (timesteps), but its flexible, so we trigger it based on episodes instead
+                        t=number_of_episodes.value,
+                        episodes=number_of_episodes.value,
+                        env=eval_env,
+                        agent=agent,
                     )
-
-                    if (
-                        eval_score is not None
-                        and successful_score is not None
-                        and eval_score >= successful_score
-                    ):
-                        stop_event.set()
-                        successful = True
-                        # Break immediately in order to avoid an additional
-                        # call of agent.act_and_train
-                        break
+                    print(json.dumps(dict(eval_score=eval_score, number_of_episodes=number_of_episodes.value,)))
                 
                 proportional_number_of_timesteps = number_of_timesteps.value / config.number_of_processes
-                if global_episode_count >= max_number_of_episodes or stop_event.is_set():
+                if number_of_episodes.value >= max_number_of_episodes or stop_event.is_set():
                     break
 
                 # Start a new episode
@@ -243,7 +220,7 @@ def train_loop(
         save_model()
         raise
 
-    if global_episode_count == max_number_of_episodes:
+    if number_of_episodes.value == max_number_of_episodes:
         # Save the final model
         dirname = os.path.join(outdir, "{}_finish".format(max_number_of_episodes))
         agent.save(dirname)
@@ -328,7 +305,7 @@ def train_agent_async(
     Returns:
         Trained agent.
     """
-    global central_agent_process_index, when_all_processes_are_updated, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  process_index_to_temp_filter,  filtered_count,  act_val,  visits,  filtered_agents, episode_reward_trend, median_episode_rewards, episode_reward_trend
+    global central_agent_process_index, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  process_index_to_temp_filter,  filtered_count,  act_val,  visits,  filtered_agents, episode_reward_trend, median_episode_rewards, episode_reward_trend
     
     config.verbose and print("[starting train_agent_async()]")
     logger = logger or logging.getLogger(__name__)
@@ -415,7 +392,6 @@ def train_agent_async(
                 all_grads.append(np.asarray(my_grad))
             return np.vstack(all_grads)
         
-    global early_stopping_check
     def early_stopping_check():
         global central_agent_process_index, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  process_index_to_temp_filter,  filtered_count,  act_val,  visits,  filtered_agents, episode_reward_trend, median_episode_rewards, episode_reward_trend
         # 
@@ -474,21 +450,22 @@ def train_agent_async(
                                 stop_event.set()
                                 raise optuna.TrialPruned()
     
-    global choose_ucb_action
-    def choose_ucb_action():
-        print(f'''choose_ucb_action''')
+    def when_all_processes_are_updated():
         global central_agent_process_index, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  process_index_to_temp_filter,  filtered_count,  act_val,  visits,  filtered_agents, episode_reward_trend, median_episode_rewards, episode_reward_trend
+        print(f"[starting when_all_processes_are_updated() {number_of_updates.value}]")
+        early_stopping_check()
+        
         all_malicious_actors_found = filtered_count.value == config.expected_number_of_malicious_processes
         if all_malicious_actors_found:
             return
         
         # Update values
         if number_of_updates.value != 0:
-            # # Compute gradient mean
-            # ucb_reward = ucb.reward_func(ucb.smart_gradient_of_agents)
+            # Compute gradient mean
+            ucb_reward = ucb.reward_func(ucb.smart_gradient_of_agents)
             
-            # # Update Q-values
-            # ucb.update_step(ucb_reward)
+            # Update Q-values
+            ucb.update_step(ucb_reward)
             
             # 
             # Permanently disable an agent
@@ -517,19 +494,6 @@ def train_agent_async(
         process_index_to_temp_filter.value = process_index
         
         number_of_updates.value += 1
-    
-    global when_all_processes_are_updated        
-    def when_all_processes_are_updated():
-        print("[starting when_all_processes_are_updated()]")
-        all_malicious_actors_found = filtered_count.value == config.expected_number_of_malicious_processes
-        if not all_malicious_actors_found and number_of_updates.value != 0:
-            # FIXME: fow some reason this is (and needs to be) called #-of-processes time per update (rather than once) when in theory it should only need to be called once
-            # ucb.smart_gradient_of_agents already iterates through all the processes, but for some reason it needs to be called process-times on top of that
-            
-            # Compute gradient mean
-            ucb_reward = ucb.reward_func(ucb.smart_gradient_of_agents) # gradients 
-            # Update Q-values
-            ucb.update_step(ucb_reward)
             
     all_updated_barrier = mp.Barrier(processes, when_all_processes_are_updated)
 
