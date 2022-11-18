@@ -320,13 +320,16 @@ def train_a3c(args, trial=None):
             n_steps=config.evaluation.final_eval.number_of_steps,
             n_episodes=config.evaluation.final_eval.number_of_episodes,
         )
-        print(f'''final_eval: {(dict(
+        import json
+        print(json.dumps(dict(
+            final_eval=True,
             number_of_steps=config.evaluation.final_eval.number_of_steps,
             number_of_episodes=config.evaluation.final_eval.number_of_episodes,
             mean=eval_stats["mean"],
             median=eval_stats["median"],
             stdev=eval_stats["stdev"],
-        ))}''')
+        )))
+        return eval_stats["mean"]
     
     return mean_reward
 
