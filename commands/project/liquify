@@ -1,0 +1,28 @@
+#!/usr/bin/env -S deno run --allow-all
+
+import { FileSystem } from "https://deno.land/x/quickr@0.5.0/main/file_system.js"
+
+function hyperparamConvert(string) {
+    return string.replace(/.+and parameters: (\{(.+)\})\. Best is trial/, (each)=>each[1].replace("None", "null").replace("True", 'true').replace("False", 'false').replace("'", '"'))
+}
+
+function banditLogs(string) {
+    return string.replace(/.*Step (\d) *(\d) *visits (.+) episode_count: ([^ ]+) *q_vals: ([^ ]+)/, `{ "step": $1, "visits": $3, "episode_count": $4, "q_vals": $5 }`)
+}
+
+function finalEval(string) {
+    return string.replace(/final_eval: (.+)/, (each)=>each[1].replace("None", "null").replace("True", 'true').replace("False", 'false').replace("'", '"'))
+}
+
+let promises = []
+await Promise.all(
+    Deno.args.map(
+        eachPath=>FileSystem.read(eachPath).then(string=>{
+            const [folders, name, ext] = FileSystem.pathPieces(eachPath)
+            FileSystem.write({
+                data: finalEval(hyperparamConvert(banditLogs(string))),
+                path: `${FileSystem.join(...folders)}/${name}.liquid.log`,
+            })
+        })
+    )
+)

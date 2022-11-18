@@ -1,12 +1,13 @@
 import sys
-from blissful_basics import FS
-from main.utils import HogLog
+from blissful_basics import FS, print
+from main.utils import LogReader, LiquidLog, plot_line
+from informative_iterator import ProgressBar
 
-log_reader = HogLog()
+log_reader = LogReader()
 @log_reader.add_preprocessor()
 def hyperparam_logs(string):
     lines = []
-    for line in string.splitlines():
+    for _, line in ProgressBar(string.splitlines(), title="parsing hyperparams"):
         if "}. Best is trial" in line and "and parameters: {" in line:
             start = line.index("and parameters: {") + len("and parameters: {") - 1
             end = line.index("}. Best is trial") + 1
@@ -17,7 +18,7 @@ def hyperparam_logs(string):
 @log_reader.add_preprocessor()
 def bandit_logs(string):
     lines = []
-    for line in string.splitlines():
+    for _, line in ProgressBar(string.splitlines(), title="parsing ucb output"):
         # Step 50 3 visits [1.0, 3.0, 1.0, 34.0, 6.0, 1.0, 4.0]  episode_count: 31 q_vals: [-11.111, -9.362, -11.111, -8.611, -9.259, -11.111, -9.539]
         if line.startswith("Step ") and "episode_count:" in lines and "q_vals:" in line:
             step          = line[len("Step"):line.index("visits")].split()[0]
@@ -29,37 +30,70 @@ def bandit_logs(string):
     return '\n'.join(lines)
 
 @log_reader.add_preprocessor()
-def bandit_logs(string):
+def final_evals(string):
     lines = [
         '{"final_eval":false}'
     ]
-    for line in string.splitlines():
+    for _, line in ProgressBar(string.splitlines(), title="parsing final_evals"):
         # Step 50 3 visits [1.0, 3.0, 1.0, 34.0, 6.0, 1.0, 4.0]  episode_count: 31 q_vals: [-11.111, -9.362, -11.111, -8.611, -9.259, -11.111, -9.539]
         if line.startswith("final_eval: "):
             line = line[len("final_eval: "):].replace("None", "null").replace("True", 'true').replace("False", 'false').replace("'", '"').replace("}", ', "final_eval": true }')
         lines.append(line)
     return '\n'.join(lines)
 
-for each in sys.argv[1:]:
-    log_reader.read(each)
+# 
+# read all the files, compile them into one big frame
+# 
+print("reading files")
+ProgressBar.seconds_per_print = 0.08
+with print.indent:
+    liquid_log = LiquidLog()
+    for progress, each in ProgressBar(sys.argv[1:]):
+        liquid_log = liquid_log.concat(
+            LiquidLog(log_reader.read(each, disable_logging=False))
+        )
+        progress.pretext = "Finished "+FS.basename(each)
 
+# 
+# add data
+# 
+liquid_log = liquid_log.map(
+    lambda row: ({
+        **row,
+        "env": FS.basename(row["__source__"]).split('__')[0],
+        "atk": FS.basename(row["__source__"]).split('__')[1].split('=')[1],
+        "def": FS.basename(row["__source__"]).split('__')[2].split('=')[1].replace(".log", ""),
+    })
+)
 
-# each = "logs/comparisons1/cartpole__atk=act__def=none.log"
-# log_reader.read("logs/comparisons1/cartpole__atk=act__def=none.log")
+from super_hash import super_hash
+def not_a_duplicate():
+    values = set()
+    def checker(row):
+        hash_value = super_hash(row)
+        if hash_value in values:
+            return False
+        else:
+            values.add(hash_value)
+            return True
+    return checker
 
-import pandas 
-df = pandas.DataFrame(log_reader.frame)
-
-from main.utils import plot_line
-
-for each in sys.argv[1:]:
-    this_df = df.copy()
-    this_df = this_df[this_df["__source__"] == each]
-    this_df = this_df[this_df["total_number_of_episodes"] == this_df["total_number_of_episodes"]]
-    plot_line(
-        plot_name="default",
-        line_name=FS.basename(each),
-        new_x_values=this_df['total_number_of_episodes'].tolist(),
-        new_y_values=this_df['per_episode_reward'].tolist()
-    )
-    print(f'''this_df[df["final_eval"] != None] = {df[df["final_eval"] == df["final_eval"]][df["final_eval"] == True]}''')
+with print.indent:
+    for env_name, each_env_frame in liquid_log.grouped_by('env').items():
+        for (attack_name, defence_name), each_scenario_frame in each_env_frame.grouped_by('atk', 'def').items():
+            print(f'''(attack_name, defence_name) = {(attack_name, defence_name)}''')
+            
+            # 
+            # plot training curve
+            # 
+            training_logs = each_scenario_frame.only_keep_if(
+                lambda row: row["total_number_of_episodes"] and row['per_episode_reward'] != None
+            ).only_keep_if(not_a_duplicate()).sort_by('total_number_of_episodes')
+            first_element = next(iter(training_logs))
+            folder = FS.basename(FS.dirname(first_element['__source__']))
+            plot_line(
+                plot_name=f"{folder}/train/{env_name}",
+                line_name=f"{attack_name}_{defence_name}",
+                new_x_values=training_logs['total_number_of_episodes'],
+                new_y_values=training_logs['per_episode_reward'],
+            )
