@@ -2,25 +2,48 @@
 
 import { FileSystem } from "https://deno.land/x/quickr@0.5.0/main/file_system.js"
 
-function hyperparamConvert(string) {
-    return string.replace(/.+and parameters: (\{(.+)\})\. Best is trial/, (each)=>each[1].replace("None", "null").replace("True", 'true').replace("False", 'false').replace("'", '"'))
+function pythonDictToJson(string) {
+    return string.replace(/None/g, "null").replace(/True/g, 'true').replace(/False/g, 'false').replace(/'/g, '"')
 }
 
-function banditLogs(string) {
-    return string.replace(/.*Step (\d) *(\d) *visits (.+) episode_count: ([^ ]+) *q_vals: ([^ ]+)/, `{ "step": $1, "visits": $3, "episode_count": $4, "q_vals": $5 }`)
-}
-
-function finalEval(string) {
-    return string.replace(/final_eval: (.+)/, (each)=>each[1].replace("None", "null").replace("True", 'true').replace("False", 'false').replace("'", '"'))
-}
+const converters = [
+    // hyperparamConvert
+    (string) => string.replace(/.+and parameters: (\{(.+)\})\. Best is trial.+/g, (each)=>pythonDictToJson(each.replace(/^.+and parameters: /,"").replace(/\. Best is trial.+/))),
+    // banditLogs
+    (string) => string.replace(/.*Step (\d+) *(\d+) *visits (.+) episode_count: ([^ ]+) *q_vals: (.+)/g, `{ "step": $1, "visits": $3, "episode_count": $4, "q_vals": $5 }`),
+    // finalEval
+    (string) => string.replace(/final_eval: (.+)/g, (each)=>pythonDictToJson(each.replace(/^final_eval: /,"")).replace(/\}$/, ', "final_eval": true}')),
+    // dangling commas
+    // (string) => string.replace(/\},(\n|$)/g, "}"),
+    // fitness_value
+    (string) => string.replace(/(.+) fitness_value = (.+)/g, (each)=>{
+        const fitness = each.match(/fitness_value = *([^ ]+)/)[1]
+        let filename
+        try {
+            filename = FileSystem.basename(each.match(/.+(?= fitness_value =)/)[0])
+        } catch (error) {
+            return `{"fitness":${fitness}}`
+        }
+        const match = filename.match(/(.+)__atk=(.+)__def=(.+)\.log/)
+        if (match) {
+            const [ _, env, attack, defense ] = match
+            return JSON.stringify({fitness, env, attack, defense})
+        } else {
+            return `{"fitness":${fitness}}`
+        }
+    }),
+]
 
 let promises = []
 await Promise.all(
     Deno.args.map(
         eachPath=>FileSystem.read(eachPath).then(string=>{
             const [folders, name, ext] = FileSystem.pathPieces(eachPath)
+            for (const eachConverter of converters) {
+                string = eachConverter(string)
+            }
             FileSystem.write({
-                data: finalEval(hyperparamConvert(banditLogs(string))),
+                data: string,
                 path: `${FileSystem.join(...folders)}/${name}.liquid.log`,
             })
         })

@@ -186,7 +186,6 @@ class LogReader:
         output = {"__source__":[]}
         with open(filepath,'r') as f:
             output_string = f.read()
-            not disable_logging and print(f"preprocessing {filepath}")
             with print.indent:
                 for each in self.preprocessors:
                     output_string = each(output_string)
@@ -223,6 +222,8 @@ def _standardize_key(key, length):
         if key < 0:
             key = length + key
     return key
+
+from super_hash import super_hash
     
 class LiquidLog:
     def __init__(self, frame={}):
@@ -472,4 +473,56 @@ class LiquidLog:
             for each_slice, each_new_frame in slices_and_frames:
                 each_new_frame[each_column_name] = column[each_slice]
             
-        return frames
+        return tuple(LiquidLog(each) for each in frames)
+    
+    def without_duplicates(self):
+        values = set()
+        def checker(row):
+            hash_value = super_hash(row)
+            if hash_value in values:
+                return False
+            else:
+                values.add(hash_value)
+                return True
+        return self.only_keep_if(checker)
+
+
+
+
+log_reader = LogReader()
+@log_reader.add_preprocessor()
+def hyperparam_logs(string):
+    lines = []
+    for _, line in ProgressBar(string.splitlines(), title="parsing hyperparams"):
+        if "}. Best is trial" in line and "and parameters: {" in line:
+            start = line.index("and parameters: {") + len("and parameters: {") - 1
+            end = line.index("}. Best is trial") + 1
+            line = line[start:end].replace("None", "null").replace("True", 'true').replace("False", 'false').replace("'", '"')
+        lines.append(line)
+    return '\n'.join(lines)
+
+@log_reader.add_preprocessor()
+def bandit_logs(string):
+    lines = []
+    for _, line in ProgressBar(string.splitlines(), title="parsing ucb output"):
+        # Step 50 3 visits [1.0, 3.0, 1.0, 34.0, 6.0, 1.0, 4.0]  episode_count: 31 q_vals: [-11.111, -9.362, -11.111, -8.611, -9.259, -11.111, -9.539]
+        if line.startswith("Step ") and "episode_count:" in lines and "q_vals:" in line:
+            step          = line[len("Step"):line.index("visits")].split()[0]
+            visits        = line[line.index("visits"):line.index("episode_count:")]
+            episode_count = line[line.index("episode_count:"):line.index("q_vals:")]
+            q_vals        = line[line.index("q_vals:")+len("q_vals:"):]
+            line = f'{{"step":{step}, "visits": {visits}, "episode_count":{episode_count}, "q_vals": {q_vals}}}'
+        lines.append(line)
+    return '\n'.join(lines)
+
+@log_reader.add_preprocessor()
+def final_evals(string):
+    lines = [
+        '{"final_eval":false}'
+    ]
+    for _, line in ProgressBar(string.splitlines(), title="parsing final_evals"):
+        # Step 50 3 visits [1.0, 3.0, 1.0, 34.0, 6.0, 1.0, 4.0]  episode_count: 31 q_vals: [-11.111, -9.362, -11.111, -8.611, -9.259, -11.111, -9.539]
+        if line.startswith("final_eval: "):
+            line = line[len("final_eval: "):].replace("None", "null").replace("True", 'true').replace("False", 'false').replace("'", '"').replace("}", ', "final_eval": true }')
+        lines.append(line)
+    return '\n'.join(lines)
