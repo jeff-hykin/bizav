@@ -4,7 +4,6 @@ from setuptools import setup
 
 install_requires = [
     'gym==0.22.0',
-    'pillow',
     "torch>=1.11.0",
     "numpy>=1.23.4",
     "filelock>=3.8.0",
@@ -13,11 +12,11 @@ install_requires = [
     "pandas>=1.5.0",
     "matplotlib>=3.6.1",
     "pygame>=2.1.0",
-    "quik-config>=1.6.0",
+    "quik-config>=1.7.0",
     "box2d-py>=2.3.5",
-    "blissful-basics>=0.2.1",
+    "blissful-basics>=0.2.18",
     "super-map>=1.3.1",
-    "super-hash>=1.3.1",
+    "super-hash>=1.2.2",
     'mujoco-py<2.2,>=2.1',
     'plotly>=5.11.0',
 ]

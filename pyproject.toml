@@ -2,7 +2,7 @@
 name = "pfrl"
 version = "0.1.0"
 description = ""
-authors = [""]
+authors = ["_"]
 
 [tool.poetry.dependencies]
 python = ">=3.8,<3.11"
@@ -17,7 +17,7 @@ matplotlib = "^3.6.1"
 pygame = "2.1.0"
 quik-config = "^1.6.0"
 box2d-py = "2.3.5"
-blissful-basics = "0.2.1"
+blissful-basics = "0.2.18"
 super-map = "1.3.1"
 
 [tool.poetry.dev-dependencies]

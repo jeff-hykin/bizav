@@ -2,8 +2,7 @@ import silver_spectacle as ss
 import sys
 import json
 import math
-import file_system_py as FS
-from blissful_basics import bundle
+from blissful_basics import bundle, FS
 
 for path in sys.argv[1:]:
     data = json.loads(FS.read(path))
@@ -56,8 +55,8 @@ for path in sys.argv[1:]:
     lines = lines[-only_show_top:]
     from main.utils import plot_line
     for index, each in enumerate(lines):
-        plot_line(path+".charts.html", each["label"], each["x_values"], each["y_values"])
-        plot_line(FS.dirname(path)+".group.charts.html", each["label"], each["x_values"], each["y_values"])
+        plot_line(FS.without_any_ext(path), each["label"], each["x_values"], each["y_values"])
+        plot_line(FS.dirname(path)+".group", each["label"], each["x_values"], each["y_values"])
         
     print(*[ each["label"]+"\n" for each in lines ])
     for line_index, line in enumerate(lines):
