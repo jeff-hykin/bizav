@@ -76,9 +76,10 @@ def main():
             args = args_from_config() # put them into the format that train_a3c expects
             # record multiple runs
             fitness_values = [ float(train_a3c.train_a3c(args)) for each in range(runs_for_comparison) ]
-            print(f'''{log_file_path} fitness_value = {average(fitness_values)}''')
+            import json
+            print(json.dumps({ **each, "log_file_path": log_file_path, "score": max(fitness_values), "fitness_values": fitness_values }))
         
-        print(f'''{log_file_path} fitness_value = {average(fitness_values)}''')
+        print(f'''{log_file_path} fitness_value = {max(fitness_values)}''')
 
 class RedirectOutput:
     def __init__(self, path_to_file=None):

@@ -6,6 +6,7 @@ import sys
 from random import random, sample, choices
 from statistics import mean
 import math
+import json
 
 import numpy as np
 import torch
@@ -197,7 +198,9 @@ def train_loop(
                         env=eval_env,
                         agent=agent,
                     )
-                    print(json.dumps(dict(eval_score=eval_score, number_of_episodes=number_of_episodes.value,)))
+                    if eval_score != None:
+                        import json
+                        print(json.dumps(dict(eval_score=eval_score, number_of_episodes=number_of_episodes.value,)))
                 
                 proportional_number_of_timesteps = number_of_timesteps.value / config.number_of_processes
                 if number_of_episodes.value >= max_number_of_episodes or stop_event.is_set():
@@ -432,7 +435,7 @@ def train_agent_async(
                 
                 import json
                 print(json.dumps({
-                    "total_number_of_episodes": total_number_of_episodes,
+                    "number_of_episodes": total_number_of_episodes,
                     "number_of_timesteps": number_of_timesteps.value,
                     "per_episode_reward": round(per_episode_reward, 2),
                     "episode_reward_trend_value": episode_reward_trend_value,
@@ -452,7 +455,6 @@ def train_agent_async(
     
     def when_all_processes_are_updated():
         global central_agent_process_index, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  process_index_to_temp_filter,  filtered_count,  act_val,  visits,  filtered_agents, episode_reward_trend, median_episode_rewards, episode_reward_trend
-        print(f"[starting when_all_processes_are_updated() {number_of_updates.value}]")
         early_stopping_check()
         
         all_malicious_actors_found = filtered_count.value == config.expected_number_of_malicious_processes
