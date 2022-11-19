@@ -164,6 +164,10 @@ import json
 from os.path import join
 from cool_cache import cache
 from blissful_basics import print
+from informative_iterator import ProgressBar
+
+ProgressBar.seconds_per_print = 0.08
+
 class LogReader:
     # for parsing messy logs and turning them into a CSV/dataframe structure
     def __init__(self, ):
@@ -179,7 +183,7 @@ class LogReader:
                 return function_being_wrapped
             return decorator_name
     
-    @cache(watch_filepaths=lambda *args, **kwargs: args[-1:])
+    @cache(watch_filepaths=lambda *args, **kwargs: args[-1:], watch_attributes=lambda self: [ self.preprocessors, ])
     def read(self, filepath, disable_logging=True):
         from informative_iterator import ProgressBar
         number_of_elements_so_far = 0
@@ -498,6 +502,7 @@ def hyperparam_logs(string):
             start = line.index("and parameters: {") + len("and parameters: {") - 1
             end = line.index("}. Best is trial") + 1
             line = line[start:end].replace("None", "null").replace("True", 'true').replace("False", 'false').replace("'", '"')
+            print(f'''line = {line}''')
         lines.append(line)
     return '\n'.join(lines)
 
