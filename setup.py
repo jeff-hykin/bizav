@@ -16,7 +16,9 @@ install_requires = [
     "box2d-py>=2.3.5",
     "blissful-basics>=0.2.18",
     "super-map>=1.3.1",
-    "super-hash>=1.2.2",
+    "super-hash>=1.2.5",
+    "super-hash>=1.2.5",
+    "informative-iterator>=1.1.0",
     'mujoco-py<2.2,>=2.1',
     'plotly>=5.11.0',
 ]

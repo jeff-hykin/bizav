@@ -268,7 +268,6 @@ def train_a3c(args, trial=None):
         experiments.train_agent_async(
             agent=agent,
             outdir=args.outdir,
-            processes=args.processes,
             make_env=make_env,
             profile=args.profile,
             steps=args.steps,

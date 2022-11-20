@@ -11,7 +11,7 @@ from main.config import config, env_config, info, args as cli_args
 from train_a3c import args_from_config
 import train_a3c
 
-runs_for_comparison = 10
+runs_for_comparison = 5
 aspects_to_compare = {
     "profile": [
         "CARTPOLE",
@@ -24,7 +24,7 @@ aspects_to_compare = {
         'noise',
         "none"
     ],
-    "defense_method": [ "none", "ucb" ],
+    "defense_method": [ "softmax", "none", "ucb" ],
 }
 
 if __name__ == '__main__':
@@ -67,6 +67,7 @@ def main():
         if each.defense_method == "none":
             config.expected_number_of_malicious_processes = 0
         else:
+            config.defense_method = each.defense_method
             config.expected_number_of_malicious_processes = 3
         
         from statistics import mean as average

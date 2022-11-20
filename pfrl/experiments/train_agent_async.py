@@ -13,7 +13,7 @@ import torch
 import torch.multiprocessing as mp
 from torch import nn
 from super_map import LazyDict
-from blissful_basics import singleton, max_indices
+from blissful_basics import singleton, max_indices, print, to_pure, shuffled
 
 from pfrl.experiments.evaluator import AsyncEvaluator
 from pfrl.utils import async_, random_seed
@@ -129,9 +129,9 @@ def reset_globals():
     for process_index in range(config.number_of_processes):
         process_q_value[process_index]            = 0
         process_permabanned[process_index]        = 0
-        process_temp_banned_count[process_index]  = 0
+        process_temp_banned_count[process_index]  = 1 # ASK: avoids a division by 0, but treats all processes equal
     
-    processes = tuple(Process(each_index) for each_index in range(number_of_processes))
+    processes = tuple(Process(each_index) for each_index in range(config.number_of_processes))
 
 def kill_all():
     if os.name == "nt":
@@ -176,14 +176,14 @@ def train_loop(
     eval_env=None,
     logger=None,
     global_step_hooks=[],
-    all_updated_barrier=None,
-    update_barrier=None,
+    individual_updates_ready_barrier=None,
+    individual_updates_contributed_barrier=None,
     process_permabanned=None,
     expected_number_of_malicious_processes=0
 ):
     global episode_reward_trend
     max_number_of_episodes = config.training.episode_count # override arg (could use cleaning up)
-    config.verbose and print("[starting train_loop()]")
+    config.verbose and print("[starting train_loop()]", flush=True)
     logger = logger or logging.getLogger(__name__)
     process = Process(process_idx)
 
@@ -213,16 +213,21 @@ def train_loop(
             episode_len += 1
             reset = episode_len == max_episode_len or info.get("needs_reset", False)
             agent.observe(observation, reward, done, reset)
-
+            
+            
             if agent.updated:
-                all_updated_barrier.wait()  # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
+                try:
+                    individual_updates_ready_barrier.wait()  # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
+                except Exception as error:
+                    print(f"exited at individual_updates_ready_barrier.wait(): {process.index}, error = {error}")
+                    exit()
                 if not process.is_banned:
                     # include agent's gradient in global model
                     agent.add_update()
                 try:
-                    update_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+                    individual_updates_contributed_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
                 except Exception as error:
-                    print(f"exited at update_barrier.wait(): {process.index}, error = {error}")
+                    print(f"exited at individual_updates_contributed_barrier.wait(): {process.index}, error = {error}")
                     exit()
                 agent.after_update()    # Each agent will download the global model after the optimizer steps
 
@@ -272,8 +277,8 @@ def train_loop(
                 save_model()
                 kill_all()
         
-        update_barrier.abort()
-        all_updated_barrier.abort()
+        individual_updates_contributed_barrier.abort()
+        individual_updates_ready_barrier.abort()
 
     except (Exception, KeyboardInterrupt):
         save_model()
@@ -287,7 +292,6 @@ def train_loop(
 
 def train_agent_async(
     outdir,
-    processes,
     make_env,
     profile=False,
     steps=8 * 10**7,
@@ -318,7 +322,6 @@ def train_agent_async(
 
     Args:
         outdir (str): Path to the directory to output things.
-        processes (int): Number of processes.
         make_env (callable): (process_idx, test) -> Environment.
         profile (bool): Profile if set True.
         steps (int): Number of global time steps for training.
@@ -431,7 +434,7 @@ def train_agent_async(
                 
         def value_of_each_process(self):
             np_process_temp_banned_count = mp_to_numpy(process_temp_banned_count)
-                np_value_per_processs        = mp_to_numpy(ucb.value_per_process)
+            np_value_per_processs        = mp_to_numpy(ucb.value_per_process)
             config.verbose and print(json.dumps(dict(
                 step=number_of_updates.value,
                 filter_choice=process_temp_ban,
@@ -446,14 +449,12 @@ def train_agent_async(
                 return np_value_per_processs + np.sqrt((np.log(ucb_timesteps)) / np_process_temp_banned_count)
             
             if use_softmax_defense:
-                number_of_updates             = number_of_updates.value
-                previously_chosen_indices     = max_indices(process_temp_ban)
-                np_process_temp_banned_count  = mp_to_numpy(process_temp_banned_count)
-                np_value_per_processs         = mp_to_numpy(ucb.value_per_process)
+                if sum(process_temp_ban) == 0:
+                    previously_chosen_indices = tuple()
+                else:
+                    previously_chosen_indices = max_indices(process_temp_ban)
                 
-                config.verbose and print('Step', number_of_updates, previously_chosen_indices, "process_temp_banned_count", list(np.round(np_process_temp_banned_count, 2)), "q_vals:", list(np.round(np_value_per_processs, 3)), end="\r")
-                
-                number_of_banned_items = (config.number_of_malicious_processes * number_of_updates)
+                number_of_banned_items = (config.expected_number_of_malicious_processes * number_of_updates.value)
                 ucb_timesteps = np.sum(np_process_temp_banned_count) - number_of_banned_items
                 # Compute UCB policy values (Q-value + uncertainty)
                 return np_value_per_processs + np.sqrt((np.log(ucb_timesteps)) / np_process_temp_banned_count)
@@ -470,21 +471,27 @@ def train_agent_async(
             if use_softmax_defense:
                 values = torch.tensor(ucb.value_of_each_process())
                 weights = -values
-                positive_weights = list(weights - weights.min())
+                positive_weights = to_pure(weights - weights.min())
                 process_indices = list(range(config.number_of_processes))
                 
-                choices = set()
-                while len(choices) < config.expected_number_of_malicious_processes:
+                # dumb python edgecase/error: sampling with all-zero weights causes non-random choice (while loop runs forever)
+                # the expected behavior would've been uniform-random sampling
+                if all([ each == 0 for each in positive_weights ]):
+                    random_processes = shuffled(list(range(config.number_of_processes)))
+                    return random_processes[0:config.expected_number_of_malicious_processes]
+                else:
+                    choices = set()
                     import random
-                    choices.add(
-                        random.choices(
+                    while len(choices) < config.expected_number_of_malicious_processes:
+                        random_index = random.choices(
                             process_indices,
                             weights=positive_weights,
                             k=1,
                         )[0]
-                    )
-                # who to ban this round
-                return list(choices)
+                        choices.add(random_index)
+                    
+                    # who to ban this round
+                    return list(choices)
                 
         @property
         def influence_vector(self):
@@ -506,14 +513,12 @@ def train_agent_async(
         @property
         def smart_gradient_of_agents(self):
             all_grads = []
-            for process_index in range(config.number_of_processes):
+            for process in processes:
                 my_grad = []
-                agent_is_temp_filtered      = process_index_to_temp_filter.value == process_index
-                agent_is_permantly_filtered = filtered_agents[process_index] == 1
                 # If filtered, don't include in gradient mean
-                if agent_is_temp_filtered or agent_is_permantly_filtered:
+                if process.is_banned:
                     continue
-                for param in agent.local_models[process_index].parameters():
+                for param in agent.local_models[process.index].parameters():
                     if param.grad is not None:
                         grad_np = param.grad.detach().clone().numpy().flatten()
                     else:
@@ -524,7 +529,7 @@ def train_agent_async(
             return np.vstack(all_grads)
         
     def early_stopping_check():
-        global process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  filtered_count,  process_q_value,  process_temp_banned_count,  process_permabanned, episode_reward_trend, process_median_episode_rewards, episode_reward_trend
+        global process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates, filtered_count, process_q_value, process_temp_banned_count, process_permabanned, episode_reward_trend, process_median_episode_rewards, episode_reward_trend
         # 
         # early stopping check
         # 
@@ -584,64 +589,68 @@ def train_agent_async(
                                 stop_event.set()
                                 raise optuna.TrialPruned()
     
-            return all_grads
-        
     def when_all_processes_are_updated():
         global process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  filtered_count,  process_q_value,  process_temp_banned_count,  process_permabanned, episode_reward_trend, process_median_episode_rewards, episode_reward_trend
-        early_stopping_check()
-        
-        all_malicious_actors_found = filtered_count.value == config.expected_number_of_malicious_processes
-        if all_malicious_actors_found:
-            return
-        
-        # Update values
-        if number_of_updates.value != 0:
-            # Compute gradient mean
-            ucb_reward = ucb.reward_func(ucb.smart_gradient_of_agents)
+        try:
+            early_stopping_check()
             
-            # Update Q-values
-            ucb.update_step(ucb_reward)
+            all_malicious_actors_found = filtered_count.value == config.expected_number_of_malicious_processes
+            if all_malicious_actors_found:
+                return
             
-            if use_permaban_defense:
-                # 
-                # Permanently disable an agent
-                # 
-                prev_amount_filtered = filtered_count.value
-                for process_index, ban_count in enumerate(process_temp_banned_count):
-                    if ban_count >= env_config.permaban_threshold:
-                        process_permabanned[process_index] = 1
-                filtered_count.value = sum(process_permabanned)
+            # Update values
+            if number_of_updates.value != 0:
+                # Compute gradient mean
+                ucb_reward = ucb.reward_func(ucb.smart_gradient_of_agents)
                 
-                # 
-                # if someone was just recently permabaned
-                # 
-                if prev_amount_filtered < filtered_count.value:
-                    # Reset non-disabled process_temp_banned_count/Q-values
+                # Update Q-values
+                ucb.update_step(ucb_reward)
+                
+                if use_permaban_defense:
+                    # 
+                    # Permanently disable an agent
+                    # 
+                    prev_amount_filtered = filtered_count.value
                     for process_index, ban_count in enumerate(process_temp_banned_count):
-                        if ban_count < env_config.permaban_threshold:
-                            process_temp_banned_count[process_index] = 0
-                            ucb.value_per_process[process_index] = 0
+                        if ban_count >= env_config.permaban_threshold:
+                            process_permabanned[process_index] = 1
+                    filtered_count.value = sum(process_permabanned)
+                    
+                    # 
+                    # if someone was just recently permabaned
+                    # 
+                    if prev_amount_filtered < filtered_count.value:
+                        # Reset non-disabled process_temp_banned_count/Q-values
+                        for process_index, ban_count in enumerate(process_temp_banned_count):
+                            if ban_count < env_config.permaban_threshold:
+                                process_temp_banned_count[process_index] = 0
+                                ucb.value_per_process[process_index] = 0
+            
+            # Select next action
+            who_to_ban = ucb.choose_action()
+            if who_to_ban:
+                for each_process in processes:
+                    if each_process.index in who_to_ban:
+                        each_process.temp_ban_count += 1
+                        process_temp_ban[each_process.index] = 1 # aka True
+                    else:
+                        process_temp_ban[each_process.index] = 0
+            number_of_updates.value += 1
         
-        # Select next action
-        who_to_ban = ucb.choose_action()
-        for each_process in processes:
-            if each_process.index in who_to_ban:
-                each_process.temp_ban_count += 1
-                process_temp_ban[each_process.index] = 1 # aka True
-            else:
-                process_temp_ban[each_process.index] = 0
-        number_of_updates.value += 1
+        except Exception as error:
+            print(f'''error = {error}''')
+            raise error
         
-    all_updated_barrier = mp.Barrier(processes, when_all_processes_are_updated)
+    individual_updates_ready_barrier = mp.Barrier(config.number_of_processes, when_all_processes_are_updated)
 
     def sync_updates():
         if filtered_count.value != config.expected_number_of_malicious_processes:
-            num_updates = processes - (filtered_count.value + 1)
+            num_updates = config.number_of_processes - (filtered_count.value + 1)
         else:
-            num_updates = processes - filtered_count.value
+            num_updates = config.number_of_processes - filtered_count.value
         agent.average_updates(num_updates)
         agent.optimizer.step()
-    update_barrier = mp.Barrier(processes, sync_updates)
+    individual_updates_contributed_barrier = mp.Barrier(config.number_of_processes, sync_updates)
 
     if stop_event is None:
         stop_event = mp.Event()
@@ -690,7 +699,7 @@ def train_agent_async(
             evaluator.start_tensorboard_writer(outdir, stop_event)
 
     if random_seeds is None:
-        random_seeds = np.arange(processes)
+        random_seeds = np.arange(config.number_of_processes)
 
     def run_func(process_idx):
         config.verbose and print("[starting run_func()]")
@@ -724,8 +733,8 @@ def train_agent_async(
                 eval_env=eval_env,
                 global_step_hooks=global_step_hooks,
                 logger=logger,
-                all_updated_barrier=all_updated_barrier,
-                update_barrier=update_barrier,
+                individual_updates_ready_barrier=individual_updates_ready_barrier,
+                individual_updates_contributed_barrier=individual_updates_contributed_barrier,
                 process_permabanned=process_permabanned,
                 process_median_episode_rewards=process_median_episode_rewards,
             )
@@ -743,7 +752,7 @@ def train_agent_async(
                 eval_env.close()
     
     config.verbose and print("[about to call async_.run_async()]")
-    async_.run_async(processes, run_func)
+    async_.run_async(config.number_of_processes, run_func)
     config.verbose and print("[done calling async_.run_async()]")
     
     # make sure the process_median_episode_rewards is valid before stopping
