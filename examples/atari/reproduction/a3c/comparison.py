@@ -24,7 +24,7 @@ aspects_to_compare = {
         'noise',
         "none"
     ],
-    "defense_method": [ "none", "ucb" ],
+    "defense_method": [ "none", "ucb", "softmax" ],
 }
 
 if __name__ == '__main__':
