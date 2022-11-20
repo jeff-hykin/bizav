@@ -7,7 +7,7 @@ authors = ["_"]
 [tool.poetry.dependencies]
 python = ">=3.8,<3.11"
 torch = "^1.12.1"
-# gym = "0.22.0"
+gym = "0.22.0"
 numpy = "^1.23.4"
 filelock = "^3.8.0"
 Pillow = "^9.2.0"
@@ -19,6 +19,7 @@ quik-config = "^1.6.0"
 box2d-py = "2.3.5"
 blissful-basics = "0.2.18"
 super-map = "1.3.1"
+blissful-basics = "^0.2.13"
 
 [tool.poetry.dev-dependencies]
 

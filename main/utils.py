@@ -216,7 +216,7 @@ class LogReader:
 
 from super_map import LazyDict
 def _standardize_key(key, length):
-    # floats with no decimal place are treated as valid indicies
+    # floats with no decimal place are treated as valid indices
     if isinstance(key, float):
         if int(key) == key:
             key = int(key)
@@ -366,17 +366,17 @@ class LiquidLog:
         return LazyDict(groups)
     
     def only_keep_if(self, function):
-        indicies_to_keep = []
+        indices_to_keep = []
         for index, each in enumerate(self):
             # weird syntax is so that 
             # function(each_row)
             # function(each_row, index)
             # are chosen based on the lambda input
             if function(*(each, index)[0:function.__code__.co_argcount]):
-                indicies_to_keep.append(index)
+                indices_to_keep.append(index)
         
-        new = LiquidLog({ each_column_name: [None]*len(indicies_to_keep) for each_column_name in self.column_names })
-        mapping = tuple(enumerate(indicies_to_keep))
+        new = LiquidLog({ each_column_name: [None]*len(indices_to_keep) for each_column_name in self.column_names })
+        mapping = tuple(enumerate(indices_to_keep))
         for each_column in new.column_names:
             original = self.frame[each_column]
             new_list = new.frame[each_column]
@@ -427,7 +427,7 @@ class LiquidLog:
         return new
     
     def split(self, *, is_starter=None, is_ender=None, is_divider=None):
-        indicies_to_split_before = []
+        indices_to_split_before = []
         function = is_starter or is_ender or is_divider
         slices = []
         prev_end = None
