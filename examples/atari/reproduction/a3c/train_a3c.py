@@ -155,8 +155,8 @@ def args_from_config():
 
 
 one_above_max_seed = 2**31
-def train_a3c(args, trial=None):
-    config.verbose and print("[starting train_a3c()]")
+def outer_training_function(args, trial=None):
+    config.verbose and print("[starting outer_training_function()]")
     # Set a random seed used in PFRL.
     # If you use more than one processes, the results will be no longer
     # deterministic even with the same random seed.
@@ -265,7 +265,7 @@ def train_a3c(args, trial=None):
         output = LazyDict(
             median_episode_rewards=[],
         )
-        experiments.train_agent_async(
+        experiments.middle_training_function(
             agent=agent,
             outdir=args.outdir,
             make_env=make_env,
@@ -399,4 +399,4 @@ def make_continous_model(obs_size, action_size, hidden_size, activation):
 
 if __name__ == "__main__":
     # args = parse_args()
-    train_a3c(args_from_config())
+    outer_training_function(args_from_config())

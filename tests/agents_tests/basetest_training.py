@@ -8,7 +8,7 @@ import pytest
 
 import pfrl
 from pfrl.experiments import (
-    train_agent_async,
+    middle_training_function,
     train_agent_batch_with_evaluation,
     train_agent_with_evaluation,
 )
@@ -214,7 +214,7 @@ class _TestActorLearnerTrainingMixin(object):
 
             poller.start()
             learner.start()
-            train_agent_async(
+            middle_training_function(
                 processes=2,
                 steps=steps,
                 outdir=self.tmpdir,

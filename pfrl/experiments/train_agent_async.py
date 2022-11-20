@@ -45,6 +45,7 @@ process_median_episode_rewards = None
 episode_reward_trend           = None
 process_temp_ban               = None
 process_is_central_agent       = None
+process_is_malicious           = None
 processes                      = None
 
 class Process:
@@ -73,6 +74,16 @@ class Process:
     @property
     def is_temp_banned(self):
         if process_temp_ban[self.index]:
+            return True
+        
+        return False
+    
+    # 
+    # temp ban
+    # 
+    @property
+    def is_malicious(self):
+        if process_is_malicious[self.index]:
             return True
         
         return False
@@ -108,7 +119,7 @@ class Process:
     def is_central_agent(self): return process_is_central_agent == self.index
 
 def reset_globals():
-    global process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  filtered_count,  process_q_value,  process_permabanned, episode_reward_trend, process_median_episode_rewards, process_temp_ban, process_temp_banned_count, processes
+    global process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  filtered_count,  process_q_value,  process_permabanned, episode_reward_trend, process_median_episode_rewards, process_temp_ban, process_temp_banned_count, processes, process_is_malicious
     episode_reward_trend = []
     process_is_central_agent = sample(list(range(config.number_of_processes)), k=1)[0]
     prev_total_number_of_episodes = -1
@@ -126,10 +137,16 @@ def reset_globals():
     process_permabanned              = mp.Array("l", config.number_of_processes) # Permanently filtered agent memory
     process_median_episode_rewards   = mp.Array("d", config.number_of_processes)
     process_temp_ban                 = mp.Array("l", config.number_of_processes) 
+    process_is_malicious             = mp.Array("l", config.number_of_processes) 
     for process_index in range(config.number_of_processes):
         process_q_value[process_index]            = 0
         process_permabanned[process_index]        = 0
+        process_is_malicious[process_index]       = 0
         process_temp_banned_count[process_index]  = 1 # ASK: avoids a division by 0, but treats all processes equal
+    
+    malicious_indices = shuffled(list(range(config.number_of_processes)))[0:config.number_of_malicious_processes]
+    for each_index in malicious_indices:
+        process_is_malicious[each_index] = 1
     
     processes = tuple(Process(each_index) for each_index in range(config.number_of_processes))
 
@@ -161,7 +178,7 @@ def euclidean_dist(x, y):
     dist = dist.sqrt()
     return dist
 
-def train_loop(
+def inner_training_loop(
     process_idx,
     env,
     agent,
@@ -183,7 +200,7 @@ def train_loop(
 ):
     global episode_reward_trend
     max_number_of_episodes = config.training.episode_count # override arg (could use cleaning up)
-    config.verbose and print("[starting train_loop()]", flush=True)
+    config.verbose and print("[starting inner_training_loop()]", flush=True)
     logger = logger or logging.getLogger(__name__)
     process = Process(process_idx)
 
@@ -290,7 +307,7 @@ def train_loop(
         agent.save(dirname)
         logger.info("Saved the final agent to %s", dirname)
 
-def train_agent_async(
+def middle_training_function(
     outdir,
     make_env,
     profile=False,
@@ -360,12 +377,12 @@ def train_agent_async(
     """
     global process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  filtered_count,  process_q_value,  process_temp_banned_count,  process_permabanned, episode_reward_trend, process_median_episode_rewards, episode_reward_trend
     
-    config.verbose and print("[starting train_agent_async()]")
+    config.verbose and print("[starting middle_training_function()]")
     logger = logger or logging.getLogger(__name__)
 
     for hook in evaluation_hooks:
-        if not hook.support_train_agent_async:
-            raise ValueError("{} does not support train_agent_async().".format(hook))
+        if not hook.support_middle_training_function:
+            raise ValueError("{} does not support middle_training_function().".format(hook))
     
     # Prevent numpy from using multiple threads
     os.environ["OMP_NUM_THREADS"] = "1"
@@ -433,10 +450,14 @@ def train_agent_async(
                     each_process.q_value = -math.inf
                 
         def value_of_each_process(self):
+            np_process_is_malicious      = mp_to_numpy(process_is_malicious)
+            np_process_temp_ban          = mp_to_numpy(process_temp_ban)
             np_process_temp_banned_count = mp_to_numpy(process_temp_banned_count)
             np_value_per_processs        = mp_to_numpy(ucb.value_per_process)
+            successful = sum(np_process_is_malicious * process_temp_ban)
             config.verbose and print(json.dumps(dict(
                 step=number_of_updates.value,
+                successfully_filtered=successful,
                 filter_choice=process_temp_ban,
                 process_temp_banned_count=list(np.round(np_process_temp_banned_count, 2)),
                 q_vals=list(np.round(np_value_per_processs, 3)),
@@ -717,9 +738,11 @@ def train_agent_async(
                     setattr(local_agent, attr, getattr(agent, attr))
         else:
             local_agent = agent
+        
         local_agent.process_idx = process_idx
+        local_agent.is_malicious = process_is_malicious[process_idx]
 
-        f = lambda : train_loop(
+        f = lambda : inner_training_loop(
                 process_idx=process_idx,
                 number_of_episodes=number_of_episodes,
                 agent=local_agent,
@@ -768,6 +791,3 @@ def train_agent_async(
 
 def mp_to_numpy(mp_arr):
     return np.asarray(list(mp_arr))
-
-def singleton(a_class):
-    return a_class()

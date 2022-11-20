@@ -76,7 +76,7 @@ def main():
         with RedirectOutput(log_file_path):
             args = args_from_config() # put them into the format that train_a3c expects
             # record multiple runs
-            fitness_values = [ float(train_a3c.train_a3c(args)) for each in range(runs_for_comparison) ]
+            fitness_values = [ float(train_a3c.outer_training_function(args)) for each in range(runs_for_comparison) ]
             import json
             print(json.dumps({ **each, "log_file_path": log_file_path, "score": max(fitness_values), "fitness_values": fitness_values }))
         

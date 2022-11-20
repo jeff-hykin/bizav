@@ -196,7 +196,7 @@ def main():
             args.steps, args.lr, 0, lr_setter
         )
 
-        experiments.train_agent_async(
+        experiments.middle_training_function(
             agent=agent,
             outdir=args.outdir,
             processes=args.processes,

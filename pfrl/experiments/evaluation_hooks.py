@@ -21,14 +21,14 @@ class EvaluationHook(object, metaclass=ABCMeta):
         support_train_agent_batch (bool):
             Set to ``True`` if the hook can be used in
             pfrl.experiments.train_agent_batch.train_agent_batch_with_evaluation.
-        support_train_agent_async (bool):
+        support_middle_training_function (bool):
             Set to ``True`` if the hook can be used in
-            pfrl.experiments.train_agent_async.train_agent_async.
+            pfrl.experiments.middle_training_function.middle_training_function.
     """
 
     support_train_agent = False
     support_train_agent_batch = False
-    support_train_agent_async = False
+    support_middle_training_function = False
 
     @abstractmethod
     def __call__(self, env, agent, evaluator, step, eval_stats, agent_stats, env_stats):
@@ -56,7 +56,7 @@ class OptunaPrunerHook(EvaluationHook):
     prune them at the early stages of the training.
 
     Note that this hook does not support
-    pfrl.experiments.train_agent_async.train_agent_async.
+    pfrl.experiments.middle_training_function.middle_training_function.
     Optuna detects pruning signal by `optuna.TrialPruned` exception, but async training
     mode doesn't re-raise subprocess' exceptions. (See: pfrl.utils.async_.py)
 
@@ -66,7 +66,7 @@ class OptunaPrunerHook(EvaluationHook):
 
     support_train_agent = True
     support_train_agent_batch = True
-    support_train_agent_async = False  # unsupported
+    support_middle_training_function = False  # unsupported
 
     def __init__(self, trial):
         if not _optuna_available:

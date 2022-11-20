@@ -67,13 +67,12 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
         batch_states=batch_states,
         # Byzantine parameters
         malicious=0.0,
-        mal_type='sign',
+        mal_type=None,
         byz_classifier=None,
         local_models=None
     ):
+        self.is_malicious = False
         # Byzantine initialization
-        self.malicious_rt = malicious
-        self.malicious = False
         self.mal_type = mal_type
         self.byz_classifier = byz_classifier
         self.total_loss = None
@@ -242,7 +241,7 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
         if self.max_grad_norm is not None:
             clip_l2_grad_norm_(self.model.parameters(), self.max_grad_norm)
 
-        if self.malicious and self.mal_type == 'sign':
+        if self.is_malicious and self.mal_type == 'sign':
             for param in self.model.parameters():
                 param.grad = param.grad.clone() * -2.5
 
@@ -310,7 +309,7 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
             else:
                 pout, vout = self.model(statevar)
             # Do not backprop through sampled actions
-            if self.malicious and self.mal_type == 'act':
+            if self.is_malicious and self.mal_type == 'act':
                 action = self.get_byz_act(pout)
             else:
                 action = self.get_a3c_act(pout)
@@ -352,15 +351,6 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
             self.update(statevar)
         if done or reset:
             self.train_recurrent_states = None
-            self.set_malicious()
-
-    def set_malicious(self):
-        if self.malicious_rt >= 1.0 and self.process_idx in range(int(self.malicious_rt)):
-            self.malicious = True
-        elif self.malicious_rt < 1.0 and random.rand() < self.malicious_rt:
-            self.malicious = True
-        else:
-            self.malicious = False
 
     def _act_eval(self, obs):
         # Use the process-local model for acting

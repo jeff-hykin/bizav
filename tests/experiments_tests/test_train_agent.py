@@ -99,7 +99,7 @@ class TestTrainAgent(unittest.TestCase):
         ):
             support_train_agent = False
             support_train_agent_batch = True
-            support_train_agent_async = True
+            support_middle_training_function = True
 
             def __call__(
                 self,

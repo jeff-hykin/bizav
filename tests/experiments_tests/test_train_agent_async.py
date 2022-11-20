@@ -7,12 +7,12 @@ import pytest
 import torch.multiprocessing as mp
 
 import pfrl
-from pfrl.experiments.train_agent_async import train_loop
+from pfrl.experiments.middle_training_function import train_loop
 
 
 @pytest.mark.parametrize("num_envs", [1, 2])
 @pytest.mark.parametrize("max_episode_len", [None, 2])
-def test_train_agent_async(num_envs, max_episode_len):
+def test_middle_training_function(num_envs, max_episode_len):
 
     steps = 50
 
@@ -67,7 +67,7 @@ def test_train_agent_async(num_envs, max_episode_len):
     with mock.patch(
         "torch.multiprocessing.Process", threading.Thread
     ), mock.patch.object(threading.Thread, "exitcode", create=True, new=0):
-        pfrl.experiments.train_agent_async(
+        pfrl.experiments.middle_training_function(
             processes=num_envs,
             agent=agent,
             make_env=make_env,
@@ -116,7 +116,7 @@ def test_unsupported_evaluation_hook():
     class UnsupportedEvaluationHook(pfrl.experiments.evaluation_hooks.EvaluationHook):
         support_train_agent = True
         support_train_agent_batch = True
-        support_train_agent_async = False
+        support_middle_training_function = False
 
         def __call__(
             self,
@@ -133,14 +133,14 @@ def test_unsupported_evaluation_hook():
     unsupported_evaluation_hook = UnsupportedEvaluationHook()
 
     with pytest.raises(ValueError) as exception:
-        pfrl.experiments.train_agent_async(
+        pfrl.experiments.middle_training_function(
             outdir=mock.Mock(),
             processes=mock.Mock(),
             make_env=mock.Mock(),
             evaluation_hooks=[unsupported_evaluation_hook],
         )
 
-    assert str(exception.value) == "{} does not support train_agent_async().".format(
+    assert str(exception.value) == "{} does not support middle_training_function().".format(
         unsupported_evaluation_hook
     )
 

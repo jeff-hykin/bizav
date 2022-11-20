@@ -249,7 +249,7 @@ def main():
         poller.start()
         learner.start()
 
-        experiments.train_agent_async(
+        experiments.middle_training_function(
             processes=args.num_envs,
             make_agent=make_actor,
             make_env=make_env,

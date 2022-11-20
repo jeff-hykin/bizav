@@ -28,7 +28,7 @@ def phase1_tuning(trial):
     # run
     # 
     args = args_from_config() 
-    fitness_value = float(train_a3c.train_a3c(args, trial))
+    fitness_value = float(train_a3c.outer_training_function(args, trial))
     return fitness_value
 
 def phase2_tuning(trial):
@@ -46,7 +46,7 @@ def phase2_tuning(trial):
     # run
     # 
     args = args_from_config()
-    fitness_value = float(train_a3c.train_a3c(args, trial))
+    fitness_value = float(train_a3c.outer_training_function(args, trial))
     return fitness_value
 
 def hyper_modify_config(trial, hyper_options, env_config):

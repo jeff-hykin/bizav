@@ -13,7 +13,7 @@ import pfrl
 from pfrl.agents import acer
 from pfrl.envs.abc import ABC
 from pfrl.experiments.evaluator import run_evaluation_episodes
-from pfrl.experiments.train_agent_async import train_agent_async
+from pfrl.experiments.middle_training_function import middle_training_function
 from pfrl.nn import ConcatObsAndAction
 from pfrl.policies import GaussianHeadWithDiagonalCovariance, SoftmaxCategoricalHead
 from pfrl.q_functions import DiscreteActionValueHead
@@ -438,7 +438,7 @@ class _TestACER:
         max_episode_len = None if episodic else 2
 
         with warnings.catch_warnings(record=True) as warns:
-            train_agent_async(
+            middle_training_function(
                 outdir=self.outdir,
                 processes=nproc,
                 make_env=make_env,
@@ -452,7 +452,7 @@ class _TestACER:
             )
             assert len(warns) == 0, warns[0]
 
-        # The agent returned by train_agent_async is not guaranteed to be
+        # The agent returned by middle_training_function is not guaranteed to be
         # successful because parameters could be modified by other processes
         # after success. Thus here the successful model is loaded explicitly.
         if require_success:

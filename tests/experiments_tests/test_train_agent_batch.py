@@ -143,7 +143,7 @@ def test_unsupported_evaluation_hook():
     class UnsupportedEvaluationHook(pfrl.experiments.evaluation_hooks.EvaluationHook):
         support_train_agent = True
         support_train_agent_batch = False
-        support_train_agent_async = True
+        support_middle_training_function = True
 
         def __call__(
             self,
