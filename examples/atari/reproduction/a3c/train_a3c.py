@@ -156,7 +156,7 @@ def args_from_config():
 
 one_above_max_seed = 2**31
 def outer_training_function(args, trial=None):
-    config.verbose and print("[starting outer_training_function()]")
+    config.verbose and print("[starting train_a3c()]")
     # Set a random seed used in PFRL.
     # If you use more than one processes, the results will be no longer
     # deterministic even with the same random seed.
@@ -399,4 +399,4 @@ def make_continous_model(obs_size, action_size, hidden_size, activation):
 
 if __name__ == "__main__":
     # args = parse_args()
-    outer_training_function(args_from_config())
+    train_a3c(args_from_config())

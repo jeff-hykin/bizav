@@ -242,6 +242,7 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
             clip_l2_grad_norm_(self.model.parameters(), self.max_grad_norm)
 
         if self.is_malicious and self.mal_type == 'sign':
+            # print(f'''self.process_idx = {self.process_idx}''')
             for param in self.model.parameters():
                 param.grad = param.grad.clone() * -2.5
 

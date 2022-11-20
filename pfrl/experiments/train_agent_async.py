@@ -25,6 +25,7 @@ from main.utils import trend_calculate
 # 
 # constants
 # 
+debug = False
 check_rate = config.number_of_processes
 use_softmax_defense  = config.defense_method == 'softmax'
 use_permaban_defense = config.defense_method == 'permaban'
@@ -46,6 +47,7 @@ episode_reward_trend           = None
 process_temp_ban               = None
 process_is_central_agent       = None
 process_is_malicious           = None
+process_accumulated_distance   = None
 processes                      = None
 
 class Process:
@@ -58,6 +60,14 @@ class Process:
             return False
         else:
             return self.is_permabanned or self.is_temp_banned
+    
+    # 
+    # permaban
+    # 
+    @property
+    def accumulated_distance(self): return process_accumulated_distance[self.index]
+    @accumulated_distance.setter
+    def accumulated_distance(self, value): process_accumulated_distance[self.index] = value
     
     # 
     # permaban
@@ -119,7 +129,7 @@ class Process:
     def is_central_agent(self): return process_is_central_agent == self.index
 
 def reset_globals():
-    global process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  filtered_count,  process_q_value,  process_permabanned, episode_reward_trend, process_median_episode_rewards, process_temp_ban, process_temp_banned_count, processes, process_is_malicious
+    global process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  filtered_count,  process_q_value,  process_permabanned, episode_reward_trend, process_median_episode_rewards, process_temp_ban, process_temp_banned_count, processes, process_is_malicious, process_accumulated_distance
     episode_reward_trend = []
     process_is_central_agent = sample(list(range(config.number_of_processes)), k=1)[0]
     prev_total_number_of_episodes = -1
@@ -138,11 +148,13 @@ def reset_globals():
     process_median_episode_rewards   = mp.Array("d", config.number_of_processes)
     process_temp_ban                 = mp.Array("l", config.number_of_processes) 
     process_is_malicious             = mp.Array("l", config.number_of_processes) 
+    process_accumulated_distance     = mp.Array("d", config.number_of_processes) 
     for process_index in range(config.number_of_processes):
-        process_q_value[process_index]            = 0
-        process_permabanned[process_index]        = 0
-        process_is_malicious[process_index]       = 0
-        process_temp_banned_count[process_index]  = 1 # ASK: avoids a division by 0, but treats all processes equal
+        process_q_value[process_index]              = 0
+        process_permabanned[process_index]          = 0
+        process_is_malicious[process_index]         = 0
+        process_accumulated_distance[process_index] = 0
+        process_temp_banned_count[process_index]    = 1 # ASK: avoids a division by 0, but treats all processes equal
     
     malicious_indices = shuffled(list(range(config.number_of_processes)))[0:config.number_of_malicious_processes]
     for each_index in malicious_indices:
@@ -232,6 +244,7 @@ def inner_training_loop(
             agent.observe(observation, reward, done, reset)
             
             
+            debug and print(f'''agent.updated = {agent.updated}''')
             if agent.updated:
                 try:
                     individual_updates_ready_barrier.wait()  # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
@@ -401,7 +414,7 @@ def middle_training_function(
     # 
     @singleton
     class ucb:
-        value_per_process = process_q_value
+        raw_value_per_process = process_q_value
         
         def reward_func(self, all_grads):
             if use_permaban_defense:
@@ -414,60 +427,63 @@ def middle_training_function(
                 average_distance = euclidean_dist(agent_gradients, agent_gradients).mean()
                 flipped_value = -average_distance
                 ucb_reward = config.env_config.variance_scaling_factor * flipped_value
-                return ucb_reward
+                return [ucb_reward]
             
             if use_softmax_defense:
                 reward_for_each_temp_banned_index = []
                 for each_process_being_reviewed in processes:
-                    if each_process_being_reviewed.is_temp_banned:
-                        all_other_gradients = []
-                        for process_index, each_gradient in enumerate(all_grads):
-                            # TODO: consider this alternative (could eliminate one for loop)
-                            # if process_index in previously_temp_banned_indices:
-                            #     continue
-                            if process_index != each_process_being_reviewed.index:
-                                all_other_gradients.append(each_gradient)
-                        
-                        all_other_gradients = torch.tensor(np.vstack(all_other_gradients))
-                        average_distance = euclidean_dist(all_other_gradients, all_other_gradients).mean()
-                        flipped_value = -average_distance
-                        ucb_reward = config.env_config.variance_scaling_factor * flipped_value
-                        reward_for_each_temp_banned_index.append(ucb_reward)
+                    all_other_gradients = []
+                    for process_index, each_gradient in enumerate(all_grads):
+                        # TODO: consider this alternative (could eliminate one for loop)
+                        # if process_index in previously_temp_banned_indices:
+                        #     continue
+                        if process_index != each_process_being_reviewed.index:
+                            all_other_gradients.append(each_gradient)
+                    
+                    all_other_gradients = torch.tensor(np.vstack(all_other_gradients))
+                    average_distance = euclidean_dist(all_other_gradients, all_other_gradients).mean()
+                    each_process_being_reviewed.accumulated_distance += average_distance
+                    flipped_value = -average_distance
+                    ucb_reward = config.env_config.variance_scaling_factor * flipped_value
+                    reward_for_each_temp_banned_index.append(ucb_reward)
                         
                 return reward_for_each_temp_banned_index
                 
         def update_step(self, ucb_reward):
-            for each_process in processes:
-                # update temp_banned processes
-                if each_process.is_temp_banned:
-                    old_q_value      = each_process.q_value
-                    number_of_visits = each_process.temp_ban_count
-                    change_in_value  = (ucb_reward.pop(0) - old_q_value) / number_of_visits
-                    # apply the new value
-                    each_process.q_value += change_in_value
-                
-                if each_process.is_permabanned:
-                    each_process.q_value = -math.inf
+            if use_softmax_defense:
+                pass
+            else:
+                for each_process in processes:
+                    # update temp_banned processes
+                    if each_process.is_temp_banned:
+                        old_q_value      = each_process.q_value
+                        number_of_visits = each_process.temp_ban_count
+                        change_in_value  = (ucb_reward.pop(0) - old_q_value) / number_of_visits
+                        # apply the new value
+                        each_process.q_value += change_in_value
+                    
+                    if each_process.is_permabanned:
+                        each_process.q_value = -math.inf
                 
         def value_of_each_process(self):
             np_process_is_malicious      = mp_to_numpy(process_is_malicious)
             np_process_temp_ban          = mp_to_numpy(process_temp_ban)
             np_process_temp_banned_count = mp_to_numpy(process_temp_banned_count)
-            np_value_per_processs        = mp_to_numpy(ucb.value_per_process)
-            successful = sum(np_process_is_malicious * process_temp_ban)
-            config.verbose and print(json.dumps(dict(
-                step=number_of_updates.value,
-                successfully_filtered=successful,
-                filter_choice=process_temp_ban,
-                process_temp_banned_count=list(np.round(np_process_temp_banned_count, 2)),
-                q_vals=list(np.round(np_value_per_processs, 3)),
-            )))
+            np_value_per_process         = mp_to_numpy(ucb.raw_value_per_process)
+            # successful = sum(np_process_is_malicious * process_temp_ban)
+            # config.verbose and print(json.dumps(dict(
+            #     step=number_of_updates.value,
+            #     successfully_filtered=successful,
+            #     filter_choice=process_temp_ban,
+            #     process_temp_banned_count=list(np.round(np_process_temp_banned_count, 2)),
+            #     q_vals=list(np.round(np_value_per_process, 3)),
+            # )))
             
             if use_permaban_defense:
                 # Get the true UCB t value
                 ucb_timesteps = np.sum(np_process_temp_banned_count) - (env_config.permaban_threshold+1) * filtered_count.value
                 # Compute UCB policy values (Q-value + uncertainty)
-                return np_value_per_processs + np.sqrt((np.log(ucb_timesteps)) / np_process_temp_banned_count)
+                return np_value_per_process + np.sqrt((np.log(ucb_timesteps)) / np_process_temp_banned_count)
             
             if use_softmax_defense:
                 if sum(process_temp_ban) == 0:
@@ -478,41 +494,59 @@ def middle_training_function(
                 number_of_banned_items = (config.expected_number_of_malicious_processes * number_of_updates.value)
                 ucb_timesteps = np.sum(np_process_temp_banned_count) - number_of_banned_items
                 # Compute UCB policy values (Q-value + uncertainty)
-                return np_value_per_processs + np.sqrt((np.log(ucb_timesteps)) / np_process_temp_banned_count)
+                return np_value_per_process + np.sqrt((np.log(ucb_timesteps)) / np_process_temp_banned_count)
                 
         def choose_action(self):
+            output = None
             if use_permaban_defense:
                 # Initial selection (process_temp_banned_count 0) #TODO properly select at random
                 np_process_temp_banned_count = mp_to_numpy(process_temp_banned_count)
                 if np.min(np_process_temp_banned_count) < 1:
-                    return [ np.argmin(np_process_temp_banned_count) ]
+                    output = [ np.argmin(np_process_temp_banned_count) ]
                 else:
-                    return [ np.argmax(ucb.value_of_each_process()) ]
+                    output = [ np.argmax(ucb.value_of_each_process()) ]
             
-            if use_softmax_defense:
-                values = torch.tensor(ucb.value_of_each_process())
-                weights = -values
-                positive_weights = to_pure(weights - weights.min())
+            elif use_softmax_defense:
+                debug and print(f'''process_accumulated_distance = {process_accumulated_distance}''')
+                positive_weights = list(to_pure(process_accumulated_distance))
+                debug and print(f'''positive_weights = {positive_weights}''')
                 process_indices = list(range(config.number_of_processes))
                 
-                # dumb python edgecase/error: sampling with all-zero weights causes non-random choice (while loop runs forever)
-                # the expected behavior would've been uniform-random sampling
-                if all([ each == 0 for each in positive_weights ]):
-                    random_processes = shuffled(list(range(config.number_of_processes)))
-                    return random_processes[0:config.expected_number_of_malicious_processes]
-                else:
-                    choices = set()
-                    import random
-                    while len(choices) < config.expected_number_of_malicious_processes:
-                        random_index = random.choices(
-                            process_indices,
-                            weights=positive_weights,
-                            k=1,
-                        )[0]
-                        choices.add(random_index)
-                    
-                    # who to ban this round
-                    return list(choices)
+                # issue when all weights are 0
+                if any(each == 0 for each in positive_weights):
+                    return shuffled(process_indices)[0:config.number_of_malicious_processes]
+                
+                choices = set()
+                import random
+                while len(choices) < config.expected_number_of_malicious_processes:
+                    random_index = random.choices(
+                        process_indices,
+                        weights=positive_weights,
+                        k=1,
+                    )[0]
+                    choices.add(random_index)
+                
+                # who to ban this round
+                output = list(choices)
+                debug and print(f'''output = {output}''')
+            
+                np_process_is_malicious      = mp_to_numpy(process_is_malicious)
+                np_process_temp_ban          = mp_to_numpy(process_temp_ban)
+                np_process_temp_banned_count = mp_to_numpy(process_temp_banned_count)
+                np_value_per_process         = mp_to_numpy(ucb.raw_value_per_process)
+                successful = sum(np_process_is_malicious * process_temp_ban)
+                
+                config.verbose and print(json.dumps(dict(
+                    step=number_of_updates.value,
+                    successfully_filtered=successful,
+                    malicious=list(process_is_malicious),
+                    weights=[ round(each, 3) for each in positive_weights ],
+                    filter_choice=process_temp_ban,
+                    process_temp_banned_count=list(np.round(np_process_temp_banned_count, 2)),
+                    q_vals=list(np.round(np_value_per_process, 3)),
+                )))
+            
+            return output
                 
         @property
         def influence_vector(self):
@@ -613,7 +647,9 @@ def middle_training_function(
     def when_all_processes_are_updated():
         global process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  filtered_count,  process_q_value,  process_temp_banned_count,  process_permabanned, episode_reward_trend, process_median_episode_rewards, episode_reward_trend
         try:
+            debug and print("starting early_stopping_check()")
             early_stopping_check()
+            debug and print("finished early_stopping_check()")
             
             all_malicious_actors_found = filtered_count.value == config.expected_number_of_malicious_processes
             if all_malicious_actors_found:
@@ -622,9 +658,11 @@ def middle_training_function(
             # Update values
             if number_of_updates.value != 0:
                 # Compute gradient mean
+                debug and print("starting reward_func()")
                 ucb_reward = ucb.reward_func(ucb.smart_gradient_of_agents)
                 
                 # Update Q-values
+                debug and print("starting update_step()")
                 ucb.update_step(ucb_reward)
                 
                 if use_permaban_defense:
@@ -645,10 +683,12 @@ def middle_training_function(
                         for process_index, ban_count in enumerate(process_temp_banned_count):
                             if ban_count < env_config.permaban_threshold:
                                 process_temp_banned_count[process_index] = 0
-                                ucb.value_per_process[process_index] = 0
+                                ucb.raw_value_per_process[process_index] = 0
             
             # Select next action
+            debug and print("starting choose_action()")
             who_to_ban = ucb.choose_action()
+            debug and print(f"finished choose_action(), who_to_ban={who_to_ban}")
             if who_to_ban:
                 for each_process in processes:
                     if each_process.index in who_to_ban:
@@ -777,6 +817,7 @@ def middle_training_function(
     config.verbose and print("[about to call async_.run_async()]")
     async_.run_async(config.number_of_processes, run_func)
     config.verbose and print("[done calling async_.run_async()]")
+    print(f'''process_median_episode_rewards = {process_median_episode_rewards}''')
     
     # make sure the process_median_episode_rewards is valid before stopping
     for process_index in range(config.number_of_processes):
