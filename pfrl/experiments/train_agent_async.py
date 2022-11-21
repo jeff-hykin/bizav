@@ -432,20 +432,33 @@ def middle_training_function(
             if use_softmax_defense:
                 reward_for_each_temp_banned_index = []
                 for each_process_being_reviewed in processes:
+                    # DEBUGGING
+                    if True:
+                        pass
+                        all_non_malicious_gradients = []
+                        for process, each_gradient in zip(processes, all_grads):
+                            if not process.is_malicious:
+                                all_non_malicious_gradients.append(each_gradient)
+                        all_non_malicious_gradients = torch.tensor(np.vstack(all_non_malicious_gradients))
+                        all_non_malicious_gradients.mean(axis=0)
+                    
                     all_other_gradients = []
                     for process, each_gradient in zip(processes, all_grads):
                         # TODO: consider this alternative (could eliminate one for loop)
                         # if process_index in previously_temp_banned_indices:
                         #     continue
                         if process.index != each_process_being_reviewed.index:
-                            # DEBUGGING ONLY
-                            if not process.is_malicious:
-                                all_other_gradients.append(each_gradient)
+                            # FIXME: this if statement is for DEBUGGING ONLY
+                            # if not process.is_malicious:
+                            all_other_gradients.append(each_gradient)
                     
+                    # FIXME: for some reason the grads are mostly 0 
                     all_other_gradients = torch.tensor(np.vstack(all_other_gradients))
                     average_distance = euclidean_dist(all_other_gradients, all_other_gradients).mean()
-                    each_process_being_reviewed.accumulated_distance += average_distance
-                    flipped_value = -average_distance
+                    process_distance = euclidean_dist(all_other_gradients, torch.vstack([ torch.tensor(all_grads[each_process_being_reviewed.index])])).mean() - average_distance
+                    process_distance = average_distance
+                    each_process_being_reviewed.accumulated_distance += process_distance
+                    flipped_value = -process_distance
                     ucb_reward = config.env_config.variance_scaling_factor * flipped_value
                     reward_for_each_temp_banned_index.append(ucb_reward)
                         
@@ -568,13 +581,10 @@ def middle_training_function(
             return [ index for index in influences.argsort() if each < config.number_of_malicious_processes ]
         
         @property
-        def smart_gradient_of_agents(self):
+        def gradient_of_agents(self):
             all_grads = []
             for process in processes:
                 my_grad = []
-                # If filtered, don't include in gradient mean
-                if process.is_banned:
-                    continue
                 for param in agent.local_models[process.index].parameters():
                     if param.grad is not None:
                         grad_np = param.grad.detach().clone().numpy().flatten()
@@ -661,7 +671,7 @@ def middle_training_function(
             if number_of_updates.value != 0:
                 # Compute gradient mean
                 debug and print("starting reward_func()")
-                ucb_reward = ucb.reward_func(ucb.smart_gradient_of_agents)
+                ucb_reward = ucb.reward_func(ucb.gradient_of_agents)
                 
                 # Update Q-values
                 debug and print("starting update_step()")
