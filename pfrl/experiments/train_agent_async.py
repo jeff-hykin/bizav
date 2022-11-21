@@ -433,12 +433,14 @@ def middle_training_function(
                 reward_for_each_temp_banned_index = []
                 for each_process_being_reviewed in processes:
                     all_other_gradients = []
-                    for process_index, each_gradient in enumerate(all_grads):
+                    for process, each_gradient in zip(processes, all_grads):
                         # TODO: consider this alternative (could eliminate one for loop)
                         # if process_index in previously_temp_banned_indices:
                         #     continue
-                        if process_index != each_process_being_reviewed.index:
-                            all_other_gradients.append(each_gradient)
+                        if process.index != each_process_being_reviewed.index:
+                            # DEBUGGING ONLY
+                            if not process.is_malicious:
+                                all_other_gradients.append(each_gradient)
                     
                     all_other_gradients = torch.tensor(np.vstack(all_other_gradients))
                     average_distance = euclidean_dist(all_other_gradients, all_other_gradients).mean()
