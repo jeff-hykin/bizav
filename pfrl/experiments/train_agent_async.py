@@ -50,7 +50,8 @@ process_is_central_agent       = None
 process_is_malicious           = None
 process_accumulated_distance   = None
 processes                      = None
-process_gradients             = None
+process_gradients              = None
+successfully_filtered_history  = None
 
 class Process:
     def __init__(self, process_index):
@@ -131,10 +132,12 @@ class Process:
     def is_central_agent(self): return process_is_central_agent == self.index
 
 def reset_globals():
-    global process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  filtered_count,  process_q_value,  process_permabanned, episode_reward_trend, process_median_episode_rewards, process_temp_ban, process_temp_banned_count, processes, process_is_malicious, process_accumulated_distance, process_gradient_sum, process_gradients
+    global process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  filtered_count,  process_q_value,  process_permabanned, episode_reward_trend, process_median_episode_rewards, process_temp_ban, process_temp_banned_count, processes, process_is_malicious, process_accumulated_distance, process_gradient_sum, process_gradients, successfully_filtered_history
     episode_reward_trend = []
     process_is_central_agent = sample(list(range(config.number_of_processes)), k=1)[0]
     prev_total_number_of_episodes = -1
+    
+    successfully_filtered_history = []
     
     # 
     # init shared values
@@ -255,8 +258,6 @@ def inner_training_loop(
                 process_gradient_sum[process.index] = agent.gradient_sum
                 start = process.index * config.env_config.gradient_size 
                 end   = (process.index+1) * config.env_config.gradient_size 
-                debug and print(f'''start = {start}''')
-                debug and print(f'''end = {end}''')
                 process_gradients[start:end] = agent.gradient
                 number_of_non_zero = sum(1 for each in process_gradients if each != 0)
                 debug and print(f'''non zero process_gradients = {number_of_non_zero/config.env_config.gradient_size}''')
@@ -461,13 +462,14 @@ def middle_training_function(
                             indices_of_others.append(process.index)
                     
                     all_other_gradients = torch.tensor(np.vstack(all_other_gradients))
-                    debug and print(f'''all_other_gradients.shape = {all_other_gradients.shape}''')
-                    for process_index, each_gradient in zip(indices_of_others, all_other_gradients):
-                        debug and print(f'''    agent{process_index} gradient sum = {each_gradient.sum()}''')
+                    # debug and print(f'''all_other_gradients.shape = {all_other_gradients.shape}''')
+                    # for process_index, each_gradient in zip(indices_of_others, all_other_gradients):
+                        # debug and print(f'''    agent{process_index} gradient sum = {each_gradient.sum()}''')
                     process_distances = euclidean_dist(all_other_gradients, torch.vstack([ torch.tensor(all_grads[each_process_being_reviewed.index])]))
-                    debug and print(f'''process_distances = {process_distances}''')
+                    # debug and print(f'''process_distances = {process_distances}''')
                     mean_process_distance = process_distances.mean()
-                    debug and print(f'''mean_process_distance = {mean_process_distance}''')
+                    # debug and print(f'''mean_process_distance = {mean_process_distance}''')
+                    debug and print(f'''math.log(mean_process_distance) = {math.log(mean_process_distance)}, is_malicious: {each_process_being_reviewed.is_malicious}''')
                     each_process_being_reviewed.accumulated_distance += mean_process_distance
                     flipped_value = -mean_process_distance
                     ucb_reward = config.env_config.variance_scaling_factor * flipped_value
@@ -535,22 +537,27 @@ def middle_training_function(
             elif use_softmax_defense:
                 debug and print(f'''process_accumulated_distance = {list(process_accumulated_distance)}''')
                 weights = list(to_pure(process_accumulated_distance))
-                debug and print(f'''weights = {weights}''')
+                debug and print(f'''raw weights = {weights}''')
                 process_indices = list(range(config.number_of_processes))
                 
                 minimum = min(weights)
                 weights = [ (each-minimum+1)**5 for each in weights ]
+                debug and print(f'''exaggerated weights = {weights}''')
                 
                 # issue when all weights are 0
                 if any(each == 0 for each in weights):
+                    debug and print("picking random indicies")
                     return shuffled(process_indices)[0:config.number_of_malicious_processes]
                 
                 choices = set()
                 import random
                 while len(choices) < config.expected_number_of_malicious_processes:
+                    remaining_indices_and_weights = [ (index, weight) for index, weight in zip(process_indices, weights) if index not in choices ]
+                    remaining_indicies = [ index for index, weight in remaining_indices_and_weights ]
+                    remaining_weights  = [ weight for index, weight in remaining_indices_and_weights ]
                     random_index = random.choices(
-                        process_indices,
-                        weights=weights,
+                        remaining_indicies,
+                        weights=remaining_weights,
                         k=1,
                     )[0]
                     choices.add(random_index)
@@ -565,8 +572,11 @@ def middle_training_function(
                 np_value_per_process         = mp_to_numpy(ucb.raw_value_per_process)
                 successful = sum(np_process_is_malicious * process_temp_ban)
                 
+                successfully_filtered_history.append(float(successful))
+                from statistics import mean
                 config.verbose and print(json.dumps(dict(
                     step=number_of_updates.value,
+                    successfully_filtered_avg=round(mean(successfully_filtered_history[-100:]), 2),
                     successfully_filtered=successful,
                     malicious=list(process_is_malicious),
                     weights=[ round(each, 3) for each in weights ],
@@ -700,7 +710,7 @@ def middle_training_function(
             if number_of_updates.value != 0:
                 # Compute gradient mean
                 debug and print("starting reward_func()")
-                ucb_reward = ucb.reward_func(all_grads)
+                ucb_reward = ucb.reward_func(ucb.gradient_of_agents) # FIXME: ucb.reward_func(all_grads) is more accurate... but doesnt work as well for some reason
                 
                 # Update Q-values
                 debug and print("starting update_step()")
