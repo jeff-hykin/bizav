@@ -12,29 +12,11 @@
     (local_data): ./local_data.ignore.yaml
     
     todo:
+        - FIXME: why is train_loop() getting called within 1-of-10 runs when doing comparison (resetting the step count)
+        - get breakout running/solved by A3C with 10 processes (maybe adapt hyperparams from stable baselines)
         - get hyperparams:
             Cheetah: no biz, by 20,000 episodes expect to have an episode score of 1,500, by 40,000 episodes expect be at 2,000
         - pin down the variance_scaling_factor, permaban_threshold
-        - bad news about variance
-            # "generic_distance": {
-            #     "step": 1427,
-            #     "successfully_filtered": 1, 
-            #     "malicious": [0        , 0       , 0       , 1       , 0       , 0       , 1        , 1       , 0       , 0       ], 
-            #     "weights":   [10001.652, 9689.375, 9540.957, 9428.482, 8895.245, 9246.297, 10024.591, 9819.418, 9819.418, 9819.418],
-            #     "filter_choice": [1, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-            #     "process_temp_banned_count": [441.0, 413.0, 410.0, 419.0, 380.0, 436.0, 462.0, 434.0, 446.0, 450.0],
-            #     "q_vals": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-            # }
-            
-            # distance_from_known_non_malicious (e.g. oracle) {
-            #     "step": 273,
-            #     "successfully_filtered": 1,
-            #     "malicious": [0,       1,       0,       0,       0,       0,       1,       0,       0,       1      ],
-            #     "weights":   [719.999, 828.363, 823.969, 772.463, 764.903, 801.621, 828.363, 828.363, 828.363, 828.363],
-            #     "filter_choice": [0, 1, 1, 0, 0, 0, 0, 1, 0, 0],
-            #     "process_temp_banned_count": [71.0, 87.0, 93.0, 75.0, 67.0, 99.0, 84.0, 72.0, 86.0, 95.0],
-            #     "q_vals": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-            # }
         - add back the evalutation metrics:
             - run using the 7 processes when evaluating
             - record wall time
