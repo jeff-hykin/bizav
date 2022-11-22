@@ -39,16 +39,18 @@ number_of_timesteps            = None
 number_of_episodes             = None
 number_of_updates              = None
 filtered_count                 = None
+episode_reward_trend           = None
+process_gradient_sum           = None
 process_q_value                = None
 process_temp_banned_count      = None
 process_permabanned            = None
 process_median_episode_rewards = None
-episode_reward_trend           = None
 process_temp_ban               = None
 process_is_central_agent       = None
 process_is_malicious           = None
 process_accumulated_distance   = None
 processes                      = None
+process_gradients             = None
 
 class Process:
     def __init__(self, process_index):
@@ -129,7 +131,7 @@ class Process:
     def is_central_agent(self): return process_is_central_agent == self.index
 
 def reset_globals():
-    global process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  filtered_count,  process_q_value,  process_permabanned, episode_reward_trend, process_median_episode_rewards, process_temp_ban, process_temp_banned_count, processes, process_is_malicious, process_accumulated_distance
+    global process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  filtered_count,  process_q_value,  process_permabanned, episode_reward_trend, process_median_episode_rewards, process_temp_ban, process_temp_banned_count, processes, process_is_malicious, process_accumulated_distance, process_gradient_sum, process_gradients
     episode_reward_trend = []
     process_is_central_agent = sample(list(range(config.number_of_processes)), k=1)[0]
     prev_total_number_of_episodes = -1
@@ -149,11 +151,14 @@ def reset_globals():
     process_temp_ban                 = mp.Array("l", config.number_of_processes) 
     process_is_malicious             = mp.Array("l", config.number_of_processes) 
     process_accumulated_distance     = mp.Array("d", config.number_of_processes) 
+    process_gradient_sum             = mp.Array("d", config.number_of_processes) 
+    process_gradients                = mp.Array("d", config.number_of_processes * config.env_config.gradient_size)
     for process_index in range(config.number_of_processes):
         process_q_value[process_index]              = 0
         process_permabanned[process_index]          = 0
         process_is_malicious[process_index]         = 0
         process_accumulated_distance[process_index] = 0
+        process_gradient_sum[process_index]         = 0
         process_temp_banned_count[process_index]    = 1 # ASK: avoids a division by 0, but treats all processes equal
     
     malicious_indices = shuffled(list(range(config.number_of_processes)))[0:config.number_of_malicious_processes]
@@ -244,19 +249,30 @@ def inner_training_loop(
             agent.observe(observation, reward, done, reset)
             
             
-            debug and print(f'''agent.updated = {agent.updated}''')
+            debug and print(f'''agent{process.index}.updated = {agent.updated}''')
             if agent.updated:
+                debug and print(f'''agent.gradient.shape = {agent.gradient.shape}''')
+                process_gradient_sum[process.index] = agent.gradient_sum
+                start = process.index * config.env_config.gradient_size 
+                end   = (process.index+1) * config.env_config.gradient_size 
+                debug and print(f'''start = {start}''')
+                debug and print(f'''end = {end}''')
+                process_gradients[start:end] = agent.gradient
+                number_of_non_zero = sum(1 for each in process_gradients if each != 0)
+                debug and print(f'''non zero process_gradients = {number_of_non_zero/config.env_config.gradient_size}''')
                 try:
                     individual_updates_ready_barrier.wait()  # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
                 except Exception as error:
                     print(f"exited at individual_updates_ready_barrier.wait(): {process.index}, error = {error}")
                     exit()
                 if not process.is_banned:
+                    debug and print(f'''agent{process.index}.add_update()''')
                     # include agent's gradient in global model
                     agent.add_update()
                 try:
                     individual_updates_contributed_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
                 except Exception as error:
+                    raise error
                     print(f"exited at individual_updates_contributed_barrier.wait(): {process.index}, error = {error}")
                     exit()
                 agent.after_update()    # Each agent will download the global model after the optimizer steps
@@ -307,6 +323,7 @@ def inner_training_loop(
                 save_model()
                 kill_all()
         
+        debug and print("aborting since agent exited while loop")
         individual_updates_contributed_barrier.abort()
         individual_updates_ready_barrier.abort()
 
@@ -416,6 +433,7 @@ def middle_training_function(
     class ucb:
         raw_value_per_process = process_q_value
         
+        @print.indent.function
         def reward_func(self, all_grads):
             if use_permaban_defense:
                 probably_good_gradients = []
@@ -432,33 +450,26 @@ def middle_training_function(
             if use_softmax_defense:
                 reward_for_each_temp_banned_index = []
                 for each_process_being_reviewed in processes:
-                    # DEBUGGING
-                    if True:
-                        pass
-                        all_non_malicious_gradients = []
-                        for process, each_gradient in zip(processes, all_grads):
-                            if not process.is_malicious:
-                                all_non_malicious_gradients.append(each_gradient)
-                        all_non_malicious_gradients = torch.tensor(np.vstack(all_non_malicious_gradients))
-                        all_non_malicious_gradients.mean(axis=0)
-                    
                     all_other_gradients = []
+                    indices_of_others = []
                     for process, each_gradient in zip(processes, all_grads):
                         # TODO: consider this alternative (could eliminate one for loop)
                         # if process_index in previously_temp_banned_indices:
                         #     continue
                         if process.index != each_process_being_reviewed.index:
-                            # FIXME: this if statement is for DEBUGGING ONLY
-                            # if not process.is_malicious:
                             all_other_gradients.append(each_gradient)
+                            indices_of_others.append(process.index)
                     
-                    # FIXME: for some reason the grads are mostly 0 
                     all_other_gradients = torch.tensor(np.vstack(all_other_gradients))
-                    average_distance = euclidean_dist(all_other_gradients, all_other_gradients).mean()
-                    process_distance = euclidean_dist(all_other_gradients, torch.vstack([ torch.tensor(all_grads[each_process_being_reviewed.index])])).mean() - average_distance
-                    process_distance = average_distance
-                    each_process_being_reviewed.accumulated_distance += process_distance
-                    flipped_value = -process_distance
+                    debug and print(f'''all_other_gradients.shape = {all_other_gradients.shape}''')
+                    for process_index, each_gradient in zip(indices_of_others, all_other_gradients):
+                        debug and print(f'''    agent{process_index} gradient sum = {each_gradient.sum()}''')
+                    process_distances = euclidean_dist(all_other_gradients, torch.vstack([ torch.tensor(all_grads[each_process_being_reviewed.index])]))
+                    debug and print(f'''process_distances = {process_distances}''')
+                    mean_process_distance = process_distances.mean()
+                    debug and print(f'''mean_process_distance = {mean_process_distance}''')
+                    each_process_being_reviewed.accumulated_distance += mean_process_distance
+                    flipped_value = -mean_process_distance
                     ucb_reward = config.env_config.variance_scaling_factor * flipped_value
                     reward_for_each_temp_banned_index.append(ucb_reward)
                         
@@ -522,13 +533,16 @@ def middle_training_function(
                     output = [ np.argmax(ucb.value_of_each_process()) ]
             
             elif use_softmax_defense:
-                debug and print(f'''process_accumulated_distance = {process_accumulated_distance}''')
-                positive_weights = list(to_pure(process_accumulated_distance))
-                debug and print(f'''positive_weights = {positive_weights}''')
+                debug and print(f'''process_accumulated_distance = {list(process_accumulated_distance)}''')
+                weights = list(to_pure(process_accumulated_distance))
+                debug and print(f'''weights = {weights}''')
                 process_indices = list(range(config.number_of_processes))
                 
+                minimum = min(weights)
+                weights = [ (each-minimum+1)**5 for each in weights ]
+                
                 # issue when all weights are 0
-                if any(each == 0 for each in positive_weights):
+                if any(each == 0 for each in weights):
                     return shuffled(process_indices)[0:config.number_of_malicious_processes]
                 
                 choices = set()
@@ -536,7 +550,7 @@ def middle_training_function(
                 while len(choices) < config.expected_number_of_malicious_processes:
                     random_index = random.choices(
                         process_indices,
-                        weights=positive_weights,
+                        weights=weights,
                         k=1,
                     )[0]
                     choices.add(random_index)
@@ -555,7 +569,7 @@ def middle_training_function(
                     step=number_of_updates.value,
                     successfully_filtered=successful,
                     malicious=list(process_is_malicious),
-                    weights=[ round(each, 3) for each in positive_weights ],
+                    weights=[ round(each, 3) for each in weights ],
                     filter_choice=process_temp_ban,
                     process_temp_banned_count=list(np.round(np_process_temp_banned_count, 2)),
                     q_vals=list(np.round(np_value_per_process, 3)),
@@ -593,6 +607,11 @@ def middle_training_function(
                     for j in range(len(grad_np)):
                         my_grad.append(grad_np[j])
                 all_grads.append(np.asarray(my_grad))
+            
+            debug and print("all_grads")
+            with print.indent:
+                for each in all_grads:
+                    debug and print(f'''each.sum() = {each.sum()}''')
             return np.vstack(all_grads)
         
     def early_stopping_check():
@@ -656,22 +675,32 @@ def middle_training_function(
                                 stop_event.set()
                                 raise optuna.TrialPruned()
     
+    @print.indent.function
     def when_all_processes_are_updated():
-        global process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  filtered_count,  process_q_value,  process_temp_banned_count,  process_permabanned, episode_reward_trend, process_median_episode_rewards, episode_reward_trend
+        global process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  filtered_count,  process_q_value,  process_temp_banned_count,  process_permabanned, episode_reward_trend, process_median_episode_rewards, episode_reward_trend, process_gradients
         try:
+            import numpy
+            debug and print("started individual_updates_ready_barrier()")
+            debug and print(f'''process_gradient_sum = {list(process_gradient_sum)}''')
+            gradients_np = numpy.asarray(list(process_gradients))
+            debug and print(f'''gradients_np = {gradients_np}''')
+            all_grads = gradients_np.reshape((config.number_of_processes, config.env_config.gradient_size))
+            debug and print(f'''all_grads.sum(axis=1) = {all_grads.sum(axis=1).tolist()}''')
             debug and print("starting early_stopping_check()")
             early_stopping_check()
             debug and print("finished early_stopping_check()")
             
             all_malicious_actors_found = filtered_count.value == config.expected_number_of_malicious_processes
             if all_malicious_actors_found:
+                debug and print("finished individual_updates_ready_barrier()")
                 return
             
             # Update values
+            debug and print("number_of_updates.value", number_of_updates.value)
             if number_of_updates.value != 0:
                 # Compute gradient mean
                 debug and print("starting reward_func()")
-                ucb_reward = ucb.reward_func(ucb.gradient_of_agents)
+                ucb_reward = ucb.reward_func(all_grads)
                 
                 # Update Q-values
                 debug and print("starting update_step()")
@@ -709,6 +738,8 @@ def middle_training_function(
                     else:
                         process_temp_ban[each_process.index] = 0
             number_of_updates.value += 1
+            
+            debug and print("finished individual_updates_ready_barrier()")
         
         except Exception as error:
             print(f'''error = {error}''')
@@ -717,12 +748,15 @@ def middle_training_function(
     individual_updates_ready_barrier = mp.Barrier(config.number_of_processes, when_all_processes_are_updated)
 
     def sync_updates():
-        if filtered_count.value != config.expected_number_of_malicious_processes:
-            num_updates = config.number_of_processes - (filtered_count.value + 1)
-        else:
-            num_updates = config.number_of_processes - filtered_count.value
-        agent.average_updates(num_updates)
-        agent.optimizer.step()
+        try:
+            if filtered_count.value != config.expected_number_of_malicious_processes:
+                num_updates = config.number_of_processes - (filtered_count.value + 1)
+            else:
+                num_updates = config.number_of_processes - filtered_count.value
+            agent.average_updates(num_updates)
+            agent.optimizer.step()
+        except Exception as error:
+            print(f'''sync_updates: error = {error}''')
     individual_updates_contributed_barrier = mp.Barrier(config.number_of_processes, sync_updates)
 
     if stop_event is None:
@@ -829,7 +863,7 @@ def middle_training_function(
     config.verbose and print("[about to call async_.run_async()]")
     async_.run_async(config.number_of_processes, run_func)
     config.verbose and print("[done calling async_.run_async()]")
-    print(f'''process_median_episode_rewards = {process_median_episode_rewards}''')
+    print(f'''process_median_episode_rewards = {list(process_median_episode_rewards)}''')
     
     # make sure the process_median_episode_rewards is valid before stopping
     for process_index in range(config.number_of_processes):

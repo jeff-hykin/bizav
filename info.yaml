@@ -133,6 +133,7 @@
                 episode_count: 21_000
             
             env_config:
+                gradient_size: 8835
                 env_name: CartPole-v1
                 learning_rate: 0.001
                 beta: 0.00002
