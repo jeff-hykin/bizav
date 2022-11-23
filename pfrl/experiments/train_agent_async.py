@@ -31,7 +31,7 @@ use_old_gradient = False
 distance_kind = 'mean_all'
 check_rate = config.number_of_processes
 use_softmax_defense  = config.defense_method == 'softmax'
-use_permaban_defense = config.defense_method == 'permaban'
+use_permaban_defense = config.defense_method == 'ucb'
 use_no_defense       = not (use_softmax_defense or use_permaban_defense)
 
 # 
@@ -192,6 +192,11 @@ class Process:
 
 def reset_globals():
     global process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  filtered_count,  process_q_value,  process_permabanned, episode_reward_trend, process_median_episode_rewards, process_temp_ban, process_temp_banned_count, processes, process_is_malicious, process_accumulated_distance, process_gradient_sum, process_gradients, process_latest_episode_reward, successfully_filtered_sum, successfully_filtered_increment, latest_eval_score
+    global use_softmax_defense, use_permaban_defense, use_no_defense
+    use_softmax_defense  = config.defense_method == 'softmax'
+    use_permaban_defense = config.defense_method == 'ucb'
+    use_no_defense       = not (use_softmax_defense or use_permaban_defense)
+    
     episode_reward_trend = []
     process_is_central_agent = sample(list(range(config.number_of_processes)), k=1)[0]
     prev_total_number_of_episodes = -1
@@ -566,20 +571,19 @@ def middle_training_function(
             np_process_temp_ban          = mp_to_numpy(process_temp_ban)
             np_process_temp_banned_count = mp_to_numpy(process_temp_banned_count)
             np_value_per_process         = mp_to_numpy(ucb.raw_value_per_process)
-            # TODO: clean this up
-            # successful = sum(np_process_is_malicious * process_temp_ban)
-            # config.verbose and print(json.dumps(dict(
-            #     step=number_of_updates.value,
-            #     successfully_filtered=successful,
-            #     filter_choice=process_temp_ban,
-            #     process_temp_banned_count=list(np.round(np_process_temp_banned_count, 2)),
-            #     q_vals=list(np.round(np_value_per_process, 3)),
-            # )))
             
             if use_permaban_defense:
                 # Get the true UCB t value
                 ucb_timesteps = np.sum(np_process_temp_banned_count) - (env_config.permaban_threshold+1) * filtered_count.value
                 # Compute UCB policy values (Q-value + uncertainty)
+                successful = sum(np_process_is_malicious * process_temp_ban)
+                config.verbose and print(json.dumps(dict(
+                    step=number_of_updates.value,
+                    successfully_filtered=successful,
+                    filter_choice=process_temp_ban,
+                    process_temp_banned_count=list(np.round(np_process_temp_banned_count, 2)),
+                    q_vals=list(np.round(np_value_per_process, 3)),
+                )))
                 return np_value_per_process + np.sqrt((np.log(ucb_timesteps)) / np_process_temp_banned_count)
             
             if use_softmax_defense:

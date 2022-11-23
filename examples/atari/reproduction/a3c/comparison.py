@@ -16,15 +16,15 @@ aspects_to_compare = {
     "profile": [
         "LUNAR_LANDER",
         "CARTPOLE",
-        "CHEETAH",
+        # "CHEETAH",
     ],
     "attack_method": [
         'sign',
         'act',
-        'noise',
+        # 'noise',
         "none"
     ],
-    "defense_method": [ "softmax", "none", "ucb" ],
+    "defense_method": [ "softmax", "ucb", "none", ],
 }
 
 if __name__ == '__main__':
