@@ -244,9 +244,7 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
         
         self.gradient = self.get_gradient()
         if self.is_malicious and self.mal_type == 'sign':
-            # print(f'''self.process_idx = {self.process_idx}''')
-            for param in self.model.parameters():
-                param.grad = param.grad.clone() * -2.5
+            self.gradient *= -2.5
         
         self.updated = True
         total_rew = 0

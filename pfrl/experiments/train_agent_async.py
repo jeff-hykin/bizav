@@ -27,6 +27,8 @@ from main.utils import trend_calculate
 # constants
 # 
 debug = False
+use_old_gradient = False
+distance_kind = 'mean_all'
 check_rate = config.number_of_processes
 use_softmax_defense  = config.defense_method == 'softmax'
 use_permaban_defense = config.defense_method == 'permaban'
@@ -143,6 +145,50 @@ class Process:
     # 
     @property
     def is_central_agent(self): return process_is_central_agent == self.index
+
+
+    def distance_metric(self, all_grads, kind):
+        this_gradient = torch.tensor(all_grads[self.index])
+        all_other_gradients = []
+        indices_of_others = []
+        for process, each_gradient in zip(processes, all_grads):
+            if process.index != self.index:
+                all_other_gradients.append(each_gradient)
+                indices_of_others.append(process.index)
+        all_other_gradients = torch.tensor(np.vstack(all_other_gradients))
+            
+        if kind == 'mean_all':
+            process_distances = euclidean_dist(
+                torch.vstack([ this_gradient ]),
+                all_other_gradients,
+            )
+            return float(process_distances[0].mean())
+        
+        elif kind == 'sum_all':
+            process_distances = euclidean_dist(
+                torch.vstack([ this_gradient ]),
+                all_other_gradients,
+            )
+            return float(process_distances[0].sum())
+            
+        elif kind == 'median_point':
+            median = all_other_gradients.median(axis=0).values
+            
+            process_distances = euclidean_dist(
+                torch.vstack([ this_gradient ]),
+                torch.vstack([ torch.tensor(median) ])
+            )
+            return float(process_distances[0][0])
+            
+        elif kind == 'mean_point':
+            mean = all_other_gradients.mean(axis=0).values
+            
+            process_distances = euclidean_dist(
+                torch.vstack([ this_gradient ]),
+                torch.vstack([ torch.tensor(mean) ])
+            )
+                
+            return float(process_distances[0][0])
 
 def reset_globals():
     global process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  filtered_count,  process_q_value,  process_permabanned, episode_reward_trend, process_median_episode_rewards, process_temp_ban, process_temp_banned_count, processes, process_is_malicious, process_accumulated_distance, process_gradient_sum, process_gradients, process_latest_episode_reward, successfully_filtered_sum, successfully_filtered_increment, latest_eval_score
@@ -464,35 +510,39 @@ def middle_training_function(
             
             if use_softmax_defense:
                 reward_for_each_temp_banned_index = []
-                accumulated_distances = []
+                distances = []
                 for each_process_being_reviewed in processes:
-                    all_other_gradients = []
-                    indices_of_others = []
-                    for process, each_gradient in zip(processes, all_grads):
-                        # TODO: consider this alternative (could eliminate one for loop)
-                        # if process_index in previously_temp_banned_indices:
-                        #     continue
-                        if process.index != each_process_being_reviewed.index:
-                            all_other_gradients.append(each_gradient)
-                            indices_of_others.append(process.index)
-                    
-                    all_other_gradients = torch.tensor(np.vstack(all_other_gradients))
-                    # debug and print(f'''all_other_gradients.shape = {all_other_gradients.shape}''')
-                    # for process_index, each_gradient in zip(indices_of_others, all_other_gradients):
-                        # debug and print(f'''    agent{process_index} gradient sum = {each_gradient.sum()}''')
-                    process_distances = euclidean_dist(all_other_gradients, torch.vstack([ torch.tensor(all_grads[each_process_being_reviewed.index])]))
-                    # debug and print(f'''process_distances = {process_distances}''')
-                    mean_process_distance = process_distances.mean()
-                    # debug and print(f'''mean_process_distance = {mean_process_distance}''')
-                    debug and print(f'''math.log(mean_process_distance) = {math.log(mean_process_distance)}, is_malicious: {each_process_being_reviewed.is_malicious}''')
-                    accumulated_distances.append(float(mean_process_distance))
-                    flipped_value = -mean_process_distance
+                    distance = each_process_being_reviewed.distance_metric(all_grads, kind=distance_kind)
+                    # debug and print(f'''distance = {distance}''')
+                    debug and print(f'''math.log(distance) = {math.log(distance)}, is_malicious: {each_process_being_reviewed.is_malicious}''')
+                    distances.append(distance)
+                    flipped_value = -distance
                     ucb_reward = config.env_config.variance_scaling_factor * flipped_value
                     reward_for_each_temp_banned_index.append(ucb_reward)
                 
-                accumulated_distances = force_sum_to_one(accumulated_distances, minimum=0)
-                for each_process_being_reviewed, normalized_distance in zip(processes, accumulated_distances):
-                    each_process_being_reviewed.accumulated_distance += normalized_distance
+                
+                if debug:
+                    debugging_distances = []
+                    for index, each_distance in enumerate(distances):
+                        process = processes[index]
+                        debugging_distances.append((index, each_distance, process.is_malicious, False))
+                        grads_copy = torch.tensor(all_grads.tolist())
+                        grads_copy[index] *= -2.5
+                        debugging_distances.append((index, process.distance_metric(grads_copy, kind=distance_kind), process.is_malicious, True))
+                    
+                    for index, distance, is_malicious, is_malicious_flipped in sorted(debugging_distances, key=lambda each: each[1]):
+                        if is_malicious_flipped and is_malicious:
+                            print(f'''process{index} distance is {round(float(distance), 1)}, is_malicious_flipped={is_malicious_flipped}''')
+                        elif is_malicious:
+                            print(f'''process{index} distance is {round(float(distance), 1)}, is_malicious={is_malicious}''')
+                        elif is_malicious_flipped:
+                            print(f'''process{index} distance is {round(float(distance), 1)}, is_flipped={is_malicious_flipped}''')
+                        else:
+                            print(f'''process{index} distance is {round(float(distance), 1)}''')
+                distances = force_sum_to_one(distances, minimum=0)
+                for each_process_being_reviewed, normalized_distance in zip(processes, distances):
+                    each_process_being_reviewed.accumulated_distance += normalized_distance * config.number_of_processes
+                
                 return reward_for_each_temp_banned_index
                 
         def update_step(self, ucb_reward):
@@ -560,7 +610,7 @@ def middle_training_function(
                 process_indices = list(range(config.number_of_processes))
                 
                 minimum = min(weights)
-                weights = [ (each-minimum+1)**5 for each in weights ]
+                weights = [ (each+1)**10 for each in weights ]
                 debug and print(f'''exaggerated weights = {weights}''')
                 
                 # issue when all weights are 0
@@ -598,8 +648,9 @@ def middle_training_function(
                 weights = [ round(each, 3) for each in weights ]
                 log_weights = [ round(math.log(each), 3) for each in weights ]
                 
-                malicious_log_weight     = [ log_weight for each_process, log_weight in zip(processes, log_weights) if     each_process.is_malicious ]
-                non_malicious_log_weight = [ log_weight for each_process, log_weight in zip(processes, log_weights) if not each_process.is_malicious ]
+                normalized_log_weights = force_sum_to_one(log_weights)
+                malicious_log_weight     = sorted([ round(log_weight*config.number_of_processes, 1)/2 for each_process, log_weight in zip(processes, normalized_log_weights) if     each_process.is_malicious ])
+                non_malicious_log_weight = sorted([ round(log_weight*config.number_of_processes, 1)/2 for each_process, log_weight in zip(processes, normalized_log_weights) if not each_process.is_malicious ])
                     
                 
                 config.verbose and print(json.dumps(dict(
@@ -728,7 +779,10 @@ def middle_training_function(
             if number_of_updates.value != 0:
                 # Compute gradient mean
                 debug and print("starting reward_func()")
-                ucb_reward = ucb.reward_func(ucb.gradient_of_agents) # FIXME: ucb.reward_func(all_grads) is more accurate... but doesnt work as well for some reason
+                if use_old_gradient:
+                    ucb_reward = ucb.reward_func(ucb.gradient_of_agents) # FIXME: ucb.reward_func(all_grads) is more accurate... but doesnt work as well for some reason
+                else:
+                    ucb_reward = ucb.reward_func(all_grads)
                 
                 # Update Q-values
                 debug and print("starting update_step()")
