@@ -21,6 +21,9 @@ install_requires = [
     "informative-iterator>=1.1.0",
     'mujoco-py<2.2,>=2.1',
     'plotly>=5.11.0',
+    'typing-extensions>=4.1.1',
+    'ale_py>=0.8.0',
+    # "atari-py@git+https://github.com/Kojoley/atari-py.git@1.2.2#egg=atari-py",
 ]
 
 test_requires = [

@@ -48,6 +48,8 @@ process_median_episode_rewards = None
 process_temp_ban               = None
 process_is_central_agent       = None
 process_is_malicious           = None
+process_latest_episode_reward  = None
+process_latest_eval_score      = None
 process_accumulated_distance   = None
 processes                      = None
 process_gradients              = None
@@ -118,12 +120,28 @@ class Process:
     def temp_ban_count(self, value): process_temp_banned_count[self.index] = value
     
     # 
-    # rewards (training, probably should be switched to evaluation rewards)
+    # median rewards (training)
     # 
     @property
     def median_episode_reward(self): return process_median_episode_rewards[self.index]
     @median_episode_reward.setter
     def median_episode_reward(self, value): process_median_episode_rewards[self.index] = value
+    
+    # 
+    # rewards training
+    # 
+    @property
+    def latest_episode_reward(self): return process_latest_episode_reward[self.index]
+    @latest_episode_reward.setter
+    def latest_episode_reward(self, value): process_latest_episode_reward[self.index] = value
+    
+    # 
+    # rewards training
+    # 
+    @property
+    def latest_eval_score(self): return process_latest_eval_score[self.index]
+    @latest_eval_score.setter
+    def latest_eval_score(self, value): process_latest_eval_score[self.index] = value
     
     # 
     # is_central_agent
@@ -132,7 +150,7 @@ class Process:
     def is_central_agent(self): return process_is_central_agent == self.index
 
 def reset_globals():
-    global process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  filtered_count,  process_q_value,  process_permabanned, episode_reward_trend, process_median_episode_rewards, process_temp_ban, process_temp_banned_count, processes, process_is_malicious, process_accumulated_distance, process_gradient_sum, process_gradients, successfully_filtered_history
+    global process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  filtered_count,  process_q_value,  process_permabanned, episode_reward_trend, process_median_episode_rewards, process_temp_ban, process_temp_banned_count, processes, process_is_malicious, process_accumulated_distance, process_gradient_sum, process_gradients, successfully_filtered_history, process_latest_episode_reward, process_latest_eval_score
     episode_reward_trend = []
     process_is_central_agent = sample(list(range(config.number_of_processes)), k=1)[0]
     prev_total_number_of_episodes = -1
@@ -155,14 +173,18 @@ def reset_globals():
     process_is_malicious             = mp.Array("l", config.number_of_processes) 
     process_accumulated_distance     = mp.Array("d", config.number_of_processes) 
     process_gradient_sum             = mp.Array("d", config.number_of_processes) 
+    process_latest_episode_reward    = mp.Array("d", config.number_of_processes) 
+    process_latest_eval_score        = mp.Array("d", config.number_of_processes) 
     process_gradients                = mp.Array("d", config.number_of_processes * config.env_config.gradient_size)
     for process_index in range(config.number_of_processes):
-        process_q_value[process_index]              = 0
-        process_permabanned[process_index]          = 0
-        process_is_malicious[process_index]         = 0
-        process_accumulated_distance[process_index] = 0
-        process_gradient_sum[process_index]         = 0
-        process_temp_banned_count[process_index]    = 1 # ASK: avoids a division by 0, but treats all processes equal
+        process_q_value[process_index]               = 0
+        process_permabanned[process_index]           = 0
+        process_is_malicious[process_index]          = 0
+        process_accumulated_distance[process_index]  = 0
+        process_gradient_sum[process_index]          = 0
+        process_latest_episode_reward[process_index] = 0
+        process_latest_eval_score[process_index]     = 0
+        process_temp_banned_count[process_index]     = 1 # ASK: avoids a division by 0, but treats all processes equal
     
     malicious_indices = shuffled(list(range(config.number_of_processes)))[0:config.number_of_malicious_processes]
     for each_index in malicious_indices:
@@ -198,6 +220,7 @@ def euclidean_dist(x, y):
     dist = dist.sqrt()
     return dist
 
+@print.indent.function
 def inner_training_loop(
     process_idx,
     env,
@@ -280,6 +303,7 @@ def inner_training_loop(
 
             if done or reset:# Get and increment the global number_of_episodes
                 with number_of_episodes.get_lock():
+                    process.latest_episode_reward = episode_reward
                     process.median_episode_reward = agent.median_reward_per_episode
                     number_of_episodes.value += 1
                     number_of_timesteps.value += number_of_timesteps_for_this_episode
@@ -307,6 +331,7 @@ def inner_training_loop(
                         agent=agent,
                     )
                     if eval_score != None:
+                        process.latest_eval_score = eval_score
                         import json
                         print(json.dumps(dict(eval_score=eval_score, number_of_episodes=number_of_episodes.value,)))
                 
@@ -408,7 +433,7 @@ def middle_training_function(
     """
     global process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  filtered_count,  process_q_value,  process_temp_banned_count,  process_permabanned, episode_reward_trend, process_median_episode_rewards, episode_reward_trend
     
-    config.verbose and print("[starting middle_training_function()]")
+    config.verbose and print("[starting middle_training_function()]\n")
     logger = logger or logging.getLogger(__name__)
 
     for hook in evaluation_hooks:
@@ -421,7 +446,7 @@ def middle_training_function(
     reset_globals()
     
     output.update(dict(
-        process_median_episode_rewards=process_median_episode_rewards,
+        median_episode_rewards=process_median_episode_rewards,
         episode_reward_trend=episode_reward_trend,
         check_rate=check_rate,
         number_of_episodes=0,
@@ -636,14 +661,21 @@ def middle_training_function(
             # limiter
             if total_number_of_episodes >= prev_total_number_of_episodes + check_rate:
                 prev_total_number_of_episodes = total_number_of_episodes
-                relevent_rewards = []
+                relevent_training_rewards = []
+                relevent_eval_scores = []
                 # reset the rewards of filtered-out agents
                 for each_process in processes:
                     if each_process.is_permabanned:
                         each_process.median_episode_reward = 0
+                    elif each_process.is_banned:
+                        continue
                     else:
-                        relevent_rewards.append(each_process.median_episode_reward)
-                per_episode_reward = sum(relevent_rewards)/len(relevent_rewards)
+                        relevent_training_rewards.append(each_process.latest_episode_reward)
+                        relevent_eval_scores.append(each_process.latest_eval_score)
+                from statistics import mean as average
+                per_episode_reward = average(relevent_training_rewards)
+                output.training_rewards.append(average(relevent_eval_scores))
+                output.evaluation_rewards.append(per_episode_reward)
                 episode_reward_trend.append(per_episode_reward)
                 episode_reward_trend = output.episode_reward_trend = episode_reward_trend[-config.value_trend_lookback_size:]
                 episode_reward_trend_value = trend_calculate(episode_reward_trend) / check_rate
@@ -819,7 +851,7 @@ def middle_training_function(
         random_seeds = np.arange(config.number_of_processes)
 
     def run_func(process_idx):
-        config.verbose and print("[starting run_func()]")
+        config.verbose and print(f"[starting process{process_idx} (run_func())]")
         random_seed.set_random_seed(random_seeds[process_idx])
 
         env = make_env(process_idx, test=False)
