@@ -25,7 +25,7 @@ from main.utils import trend_calculate
 # 
 # constants
 # 
-debug = False
+debug = True
 check_rate = config.number_of_processes
 use_softmax_defense  = config.defense_method == 'softmax'
 use_permaban_defense = config.defense_method == 'permaban'

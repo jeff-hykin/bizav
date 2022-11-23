@@ -176,12 +176,13 @@ def outer_training_function(args, trial=None):
         # Use different random seeds for train and test envs
         process_seed = process_seeds[process_idx]
         env_seed = one_above_max_seed - 1 - process_seed if test else process_seed
-        # env = atari_wrappers.wrap_deepmind(
-        #     atari_wrappers.make_atari(args.env, max_frames=args.max_frames),
-        #     episode_life=not test,
-        #     clip_rewards=not test,
-        # )
-        env = gym.make(args.env)
+        
+        env = gym.make(args.env)   if not config.env_config.is_atari      else atari_wrappers.wrap_deepmind(
+            atari_wrappers.make_atari(args.env, max_frames=args.max_frames),
+            episode_life=not test,
+            clip_rewards=not test,
+        )
+            
         env = pfrl.wrappers.ScaleReward(env, args.rew_scale)
         if args.monitor:
             env = pfrl.wrappers.Monitor(
