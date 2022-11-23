@@ -14,8 +14,8 @@ import train_a3c
 runs_for_comparison = 5
 aspects_to_compare = {
     "profile": [
-        "CARTPOLE",
         "LUNAR_LANDER",
+        "CARTPOLE",
         "CHEETAH",
     ],
     "attack_method": [
@@ -49,7 +49,7 @@ def main():
         )
         merge(
             old_value=config,
-            new_value=info.as_dict["(project)"]["(profiles)"][each.profile]
+            new_value=info.as_dict["(project)"]["(profiles)"][each.profile],
         )
         
         # 

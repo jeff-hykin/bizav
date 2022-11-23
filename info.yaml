@@ -12,7 +12,7 @@
     (local_data): ./local_data.ignore.yaml
     
     todo:
-        - FIXME: why is train_loop() getting called within 1-of-10 runs when doing comparison (resetting the step count)
+        - FIXME: why is the eval score of cartpole going down 
         - get breakout running/solved by A3C with 10 processes (maybe adapt hyperparams from stable baselines)
         - get hyperparams:
             Cheetah: no biz, by 20,000 episodes expect to have an episode score of 1,500, by 40,000 episodes expect be at 2,000
@@ -104,6 +104,25 @@
                             base: [ 1, 3, 5, 7, 9 ]
                             exponent: [ -1, -2, -3, -4, -5, -6, -7, -8, ]
             
+        LUNAR_LANDER:
+            env_config: # best hyperparams from Lunar_sync.json #TODO: check if they are with or without malicious actors
+                gradient_size: 34821
+                env_name: "LunarLander-v2"
+                activation: 1
+                learning_rate: 0.0009
+                beta: 0.00002
+                t_max: 10
+                hidden_size: 128
+            training:
+                episode_count: 40_000
+            evaluation:
+                # number_of_episodes_before_eval: 130
+                number_of_episodes_before_eval: 10 # debugging 
+                number_of_epsiodes_during_eval: 10 # this value matches the prev paper
+                final_eval:
+                    number_of_episodes: null
+                    number_of_steps: 125_000 # TODO: not sure if this is a good number
+        
         CARTPOLE:
             evaluation:
                 number_of_epsiodes_during_eval: 10 # this value matches the prev paper
@@ -212,24 +231,7 @@
                 beta: 0.00002
                 activation: 1
         
-        LUNAR_LANDER:
-            env_config: # best hyperparams from Lunar_sync.json #TODO: check if they are with or without malicious actors
-                env_name: "LunarLander-v2"
-                activation: 1
-                learning_rate: 0.0009
-                beta: 0.00002
-                t_max: 10
-                hidden_size: 128
-            training:
-                episode_count: 40_000
-            evaluation:
-                number_of_episodes_before_eval: 130
-                number_of_epsiodes_during_eval: 10 # this value matches the prev paper
-                final_eval:
-                    number_of_episodes: null
-                    number_of_steps: 125_000 # TODO: not sure if this is a good number
-        
         BREAKOUT:
             env_config:
                 is_atari: True
-                env_name: Breakout-v1
+                env_name: Breakout-v5
