@@ -97,6 +97,7 @@
             value_trend_lookback_size: 10
             env_config:
                 permaban_threshold: 1000
+                is_atari: False
                 
             early_stopping:
                 lowerbound_for_max_recent_change: 0 # any change is acceptable
@@ -244,3 +245,8 @@
                 final_eval:
                     number_of_episodes: null
                     number_of_steps: 125_000 # TODO: not sure if this is a good number
+        
+        BREAKOUT:
+            env_config:
+                is_atari: True
+                env_name: Breakout-v1
