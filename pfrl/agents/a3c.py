@@ -71,6 +71,7 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
         byz_classifier=None,
         local_models=None
     ):
+        self.gradient = 0
         self.is_malicious = False
         # Byzantine initialization
         self.mal_type = mal_type
@@ -241,20 +242,18 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
         if self.max_grad_norm is not None:
             clip_l2_grad_norm_(self.model.parameters(), self.max_grad_norm)
         
+        self.gradient = self.get_gradient()
         if self.is_malicious and self.mal_type == 'sign':
             # print(f'''self.process_idx = {self.process_idx}''')
             for param in self.model.parameters():
                 param.grad = param.grad.clone() * -2.5
-        
-        print(f'''agent{self.process_idx}.gradient_sum = {self.gradient_sum}''')
         
         self.updated = True
         total_rew = 0
         for i in reversed(range(self.t_start, self.t)):
             total_rew += self.past_rewards[i]
 
-    @property
-    def gradient_sum(self):
+    def get_gradient(self):
         import numpy as np
         my_grad = []
         for param in self.model.parameters():
@@ -264,7 +263,11 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
                 grad_np = np.zeros(param.size(), dtype=np.float).flatten()
             for j in range(len(grad_np)):
                 my_grad.append(grad_np[j])
-        return np.asarray(my_grad).sum()
+        return np.asarray(my_grad)
+    
+    @property
+    def gradient_sum(self):
+        return self.gradient.sum()
     
     def add_update(self):
         # Copy the gradients to the globally shared model
