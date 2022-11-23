@@ -7,6 +7,7 @@ from random import random, sample, choices
 from statistics import mean
 import math
 import json
+import threading
 
 import numpy as np
 import torch
@@ -25,7 +26,7 @@ from main.utils import trend_calculate
 # 
 # constants
 # 
-debug = True
+debug = False
 check_rate = config.number_of_processes
 use_softmax_defense  = config.defense_method == 'softmax'
 use_permaban_defense = config.defense_method == 'permaban'
@@ -34,26 +35,27 @@ use_no_defense       = not (use_softmax_defense or use_permaban_defense)
 # 
 # globals
 # 
-prev_total_number_of_episodes  = None
-number_of_timesteps            = None
-number_of_episodes             = None
-number_of_updates              = None
-filtered_count                 = None
-episode_reward_trend           = None
-process_gradient_sum           = None
-process_q_value                = None
-process_temp_banned_count      = None
-process_permabanned            = None
-process_median_episode_rewards = None
-process_temp_ban               = None
-process_is_central_agent       = None
-process_is_malicious           = None
-process_latest_episode_reward  = None
-process_latest_eval_score      = None
-process_accumulated_distance   = None
-processes                      = None
-process_gradients              = None
-successfully_filtered_history  = None
+successfully_filtered_sum       = None
+successfully_filtered_increment = None
+prev_total_number_of_episodes   = None
+number_of_timesteps             = None
+number_of_episodes              = None
+number_of_updates               = None
+filtered_count                  = None
+episode_reward_trend            = None
+process_gradient_sum            = None
+process_q_value                 = None
+process_temp_banned_count       = None
+process_permabanned             = None
+process_median_episode_rewards  = None
+process_temp_ban                = None
+process_is_central_agent        = None
+process_is_malicious            = None
+process_latest_episode_reward   = None
+process_latest_eval_score       = None
+process_accumulated_distance    = None
+processes                       = None
+process_gradients               = None
 
 class Process:
     def __init__(self, process_index):
@@ -150,20 +152,21 @@ class Process:
     def is_central_agent(self): return process_is_central_agent == self.index
 
 def reset_globals():
-    global process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  filtered_count,  process_q_value,  process_permabanned, episode_reward_trend, process_median_episode_rewards, process_temp_ban, process_temp_banned_count, processes, process_is_malicious, process_accumulated_distance, process_gradient_sum, process_gradients, successfully_filtered_history, process_latest_episode_reward, process_latest_eval_score
+    global process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  filtered_count,  process_q_value,  process_permabanned, episode_reward_trend, process_median_episode_rewards, process_temp_ban, process_temp_banned_count, processes, process_is_malicious, process_accumulated_distance, process_gradient_sum, process_gradients, process_latest_episode_reward, process_latest_eval_score, successfully_filtered_sum, successfully_filtered_increment
     episode_reward_trend = []
     process_is_central_agent = sample(list(range(config.number_of_processes)), k=1)[0]
     prev_total_number_of_episodes = -1
     
-    successfully_filtered_history = []
     
     # 
     # init shared values
     # 
-    number_of_timesteps          = mp.Value("l", 0)
-    number_of_episodes           = mp.Value("l", 0)
-    number_of_updates            = mp.Value("l", 0) # Number of total rollouts completed
-    filtered_count               = mp.Value("l", 0) # Number of permanently filtered agents
+    number_of_timesteps             = mp.Value("l", 0)
+    number_of_episodes              = mp.Value("l", 0)
+    number_of_updates               = mp.Value("l", 0) # Number of total rollouts completed
+    filtered_count                  = mp.Value("l", 0) # Number of permanently filtered agents
+    successfully_filtered_sum       = mp.Value("d", 0)
+    successfully_filtered_increment = mp.Value("l", 0)
 
     process_q_value                  = mp.Array("d", config.number_of_processes) # Q-values
     process_temp_banned_count        = mp.Array("d", config.number_of_processes) # number of process_temp_banned_count
@@ -295,10 +298,11 @@ def inner_training_loop(
                     agent.add_update()
                 try:
                     individual_updates_contributed_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+                except threading.BrokenBarrierError as error:
+                    print(f"Barrier broken at individual_updates_contributed_barrier.wait(): {process.index}, error = {error}")
                 except Exception as error:
-                    raise error
                     print(f"exited at individual_updates_contributed_barrier.wait(): {process.index}, error = {error}")
-                    exit()
+                    raise error
                 agent.after_update()    # Each agent will download the global model after the optimizer steps
 
             if done or reset:# Get and increment the global number_of_episodes
@@ -325,7 +329,7 @@ def inner_training_loop(
                 if evaluator is not None:
                     eval_score = evaluator.evaluate_if_necessary(
                         # eval is triggered based on t (timesteps), but its flexible, so we trigger it based on episodes instead
-                        t=number_of_episodes.value,
+                        t=number_of_episodes.value, # ASK
                         episodes=number_of_episodes.value,
                         env=eval_env,
                         agent=agent,
@@ -333,7 +337,8 @@ def inner_training_loop(
                     if eval_score != None:
                         process.latest_eval_score = eval_score
                         import json
-                        print(json.dumps(dict(eval_score=eval_score, number_of_episodes=number_of_episodes.value,)))
+                        # ASK: does the agent malicious/non-malicious matter since the global update was just done
+                        print(json.dumps(dict(eval_score=eval_score, number_of_episodes=number_of_episodes.value, is_malicious=process.is_malicious, agent=process.index)))
                 
                 proportional_number_of_timesteps = number_of_timesteps.value / config.number_of_processes
                 if number_of_episodes.value >= max_number_of_episodes or stop_event.is_set():
@@ -386,7 +391,6 @@ def middle_training_function(
     exception_event=None,
     use_shared_memory=True,
     permaban_threshold=1,
-    output=LazyDict(),
     trial=None,
 ):
     """Train agent asynchronously using multiprocessing.
@@ -444,13 +448,6 @@ def middle_training_function(
     os.environ["OMP_NUM_THREADS"] = "1"
     
     reset_globals()
-    
-    output.update(dict(
-        median_episode_rewards=process_median_episode_rewards,
-        episode_reward_trend=episode_reward_trend,
-        check_rate=check_rate,
-        number_of_episodes=0,
-    ))
     
     # 
     # create UCB manager
@@ -523,6 +520,7 @@ def middle_training_function(
             np_process_temp_ban          = mp_to_numpy(process_temp_ban)
             np_process_temp_banned_count = mp_to_numpy(process_temp_banned_count)
             np_value_per_process         = mp_to_numpy(ucb.raw_value_per_process)
+            # TODO: clean this up
             # successful = sum(np_process_is_malicious * process_temp_ban)
             # config.verbose and print(json.dumps(dict(
             #     step=number_of_updates.value,
@@ -597,11 +595,13 @@ def middle_training_function(
                 np_value_per_process         = mp_to_numpy(ucb.raw_value_per_process)
                 successful = sum(np_process_is_malicious * process_temp_ban)
                 
-                successfully_filtered_history.append(float(successful))
+                successfully_filtered_sum.value += successful
+                successfully_filtered_increment.value += 1
+                
                 from statistics import mean
                 config.verbose and print(json.dumps(dict(
                     step=number_of_updates.value,
-                    successfully_filtered_avg=round(mean(successfully_filtered_history[-100:]), 2),
+                    successfully_filtered_avg=round(successfully_filtered_sum.value/successfully_filtered_increment.value, 2),
                     successfully_filtered=successful,
                     malicious=list(process_is_malicious),
                     weights=[ round(each, 3) for each in weights ],
@@ -612,23 +612,6 @@ def middle_training_function(
             
             return output
                 
-        @property
-        def influence_vector(self):
-            temp_ban_counters_tensor = torch.tensor(process_temp_banned_count)
-            banned_the_most  = temp_ban_counters_tensor.max()
-            banned_the_least = temp_ban_counters_tensor.min()
-            normalized_bans  = (process_temp_banned_count - banned_the_least) / banned_the_most
-            influence_vector = 1 - normalized_bans 
-            # banned the least ~=> 1
-            # banned the most ~=> 0
-            return influence_vector
-        
-        @property
-        def indices_of_most_suspicious_processes(self):
-            # NOTE: len(output) == number_of_malicious_processes (always)
-            influences = torch.tensor(usb.influence_vector)
-            return [ index for index in influences.argsort() if each < config.number_of_malicious_processes ]
-        
         @property
         def gradient_of_agents(self):
             all_grads = []
@@ -651,12 +634,12 @@ def middle_training_function(
         
     def early_stopping_check():
         global process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates, filtered_count, process_q_value, process_temp_banned_count, process_permabanned, episode_reward_trend, process_median_episode_rewards, episode_reward_trend
+        
         # 
         # early stopping check
         # 
         total_number_of_episodes = number_of_episodes.value
         if total_number_of_episodes > config.early_stopping.min_number_of_episodes:
-            output.number_of_episodes = total_number_of_episodes # keep the output value up to date
             
             # limiter
             if total_number_of_episodes >= prev_total_number_of_episodes + check_rate:
@@ -673,18 +656,17 @@ def middle_training_function(
                         relevent_training_rewards.append(each_process.latest_episode_reward)
                         relevent_eval_scores.append(each_process.latest_eval_score)
                 from statistics import mean as average
-                per_episode_reward = average(relevent_training_rewards)
-                output.training_rewards.append(average(relevent_eval_scores))
-                output.evaluation_rewards.append(per_episode_reward)
-                episode_reward_trend.append(per_episode_reward)
-                episode_reward_trend = output.episode_reward_trend = episode_reward_trend[-config.value_trend_lookback_size:]
+                latest_episode_reward = average(relevent_training_rewards)
+                latest_eval_score = average(relevent_eval_scores)
+                episode_reward_trend.append(latest_episode_reward)
+                episode_reward_trend = episode_reward_trend[-config.value_trend_lookback_size:]
                 episode_reward_trend_value = trend_calculate(episode_reward_trend) / check_rate
                 biggest_recent_change = math.nan
                 
                 # check optuna stopper
                 if trial:
                     import optuna
-                    trial.report(per_episode_reward, total_number_of_episodes)
+                    trial.report(latest_episode_reward, total_number_of_episodes)
                     if trial.should_prune():
                         stop_event.set()
                         raise optuna.TrialPruned()
@@ -697,14 +679,14 @@ def middle_training_function(
                         stop_event.set()
                         raise optuna.TrialPruned()
                 
-                import json
-                print(json.dumps({
-                    "number_of_episodes": total_number_of_episodes,
-                    "number_of_timesteps": number_of_timesteps.value,
-                    "per_episode_reward": round(per_episode_reward, 2),
-                    "episode_reward_trend_value": episode_reward_trend_value,
-                    "biggest_recent_change": biggest_recent_change,
-                })+",")
+                print(json.dumps(dict(
+                    number_of_episodes=total_number_of_episodes,
+                    number_of_timesteps=number_of_timesteps.value,
+                    latest_eval_score=latest_eval_score,
+                    latest_episode_reward=round(latest_episode_reward, 2),
+                    episode_reward_trend_value=episode_reward_trend_value,
+                    biggest_recent_change=biggest_recent_change,
+                )))
                 
                 # only do early stopping if tuning hyperparameters
                 if trial:
@@ -712,8 +694,8 @@ def middle_training_function(
                         # if meets the increment-based threshold
                         if total_number_of_episodes > each_step:
                             # enforce that it return the minimum 
-                            if per_episode_reward < each_min_value:
-                                print(f"Hit early stopping because per_episode_reward: {per_episode_reward} < {each_min_value}")
+                            if latest_episode_reward < each_min_value:
+                                print(f"Hit early stopping because latest_episode_reward: {latest_episode_reward} < {each_min_value}")
                                 stop_event.set()
                                 raise optuna.TrialPruned()
     
@@ -850,6 +832,7 @@ def middle_training_function(
     if random_seeds is None:
         random_seeds = np.arange(config.number_of_processes)
 
+    @print.indent.function
     def run_func(process_idx):
         config.verbose and print(f"[starting process{process_idx} (run_func())]")
         random_seed.set_random_seed(random_seeds[process_idx])
@@ -899,13 +882,12 @@ def middle_training_function(
             raise error
         finally:
             env.close()
-            if eval_env is not env:
+            if eval_env and eval_env is not env:
                 eval_env.close()
     
     config.verbose and print("[about to call async_.run_async()]")
     async_.run_async(config.number_of_processes, run_func)
     config.verbose and print("[done calling async_.run_async()]")
-    print(f'''process_median_episode_rewards = {list(process_median_episode_rewards)}''')
     
     # make sure the process_median_episode_rewards is valid before stopping
     for process_index in range(config.number_of_processes):
@@ -915,8 +897,6 @@ def middle_training_function(
 
     if evaluator is not None and use_tensorboard:
         evaluator.join_tensorboard_writer()
-
-    return agent
 
 def mp_to_numpy(mp_arr):
     return np.asarray(list(mp_arr))

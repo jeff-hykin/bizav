@@ -263,10 +263,6 @@ def outer_training_function(args, trial=None):
     if True:
         # shared reward data
         import torch.multiprocessing as mp
-        output = LazyDict(
-            training_rewards=[],
-            evaluation_rewards=[],
-        )
         experiments.middle_training_function(
             agent=agent,
             outdir=args.outdir,
@@ -278,39 +274,27 @@ def outer_training_function(args, trial=None):
             global_step_hooks=[],
             save_best_so_far_agent=True,
             permaban_threshold=args.permaban_threshold,
-            output=output,
             trial=trial,
         )
-        # output.training_rewards
-        # output.episode_reward_trend
-        # output.check_rate
-        # output.number_of_episodes
-        
-        # mean_reward = get_results(os.path.join(args.outdir, str(args.seed) + '.log'), gym.spec(args.env).reward_threshold)
-        mean_reward = sum(output.training_rewards)/len(output.training_rewards)
-        
     
-    if config.evaluation.enabled:
-        env = make_env(0, True)
-        eval_stats = experiments.eval_performance(
-            env=env,
-            agent=agent,
-            n_steps=config.evaluation.final_eval.number_of_steps,
-            n_episodes=config.evaluation.final_eval.number_of_episodes,
-        )
-        import json
-        print(json.dumps(dict(
-            final_eval=True,
-            number_of_steps=config.evaluation.final_eval.number_of_steps,
-            number_of_episodes=config.evaluation.final_eval.number_of_episodes,
-            mean=eval_stats["mean"],
-            median=eval_stats["median"],
-            stdev=eval_stats["stdev"],
-        )))
-        return eval_stats["mean"]
+    env = make_env(0, True)
+    eval_stats = experiments.eval_performance(
+        env=env,
+        agent=agent,
+        n_steps=config.evaluation.final_eval.number_of_steps,
+        n_episodes=config.evaluation.final_eval.number_of_episodes,
+    )
+    import json
+    print(json.dumps(dict(
+        final_eval=True,
+        number_of_steps=config.evaluation.final_eval.number_of_steps,
+        number_of_episodes=config.evaluation.final_eval.number_of_episodes,
+        mean=eval_stats["mean"],
+        median=eval_stats["median"],
+        stdev=eval_stats["stdev"],
+    )))
+    return eval_stats["mean"]
     
-    return mean_reward
-
 result_lookback_size = 50
 def get_results(log_file, thresh):
     rewards = []
