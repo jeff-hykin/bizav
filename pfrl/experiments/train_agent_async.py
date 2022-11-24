@@ -59,6 +59,10 @@ process_accumulated_distance    = None
 processes                       = None
 process_gradients               = None
 
+# global functions
+when_all_processes_are_updated  = None
+sync_updates                    = None
+
 class Process:
     def __init__(self, process_index):
         self.index = process_index
@@ -331,7 +335,9 @@ def inner_training_loop(
                 number_of_non_zero = sum(1 for each in process_gradients if each != 0)
                 debug and print(f'''non zero process_gradients = {number_of_non_zero/config.env_config.gradient_size}''')
                 try:
-                    individual_updates_ready_barrier.wait()  # Wait for all agents to complete rollout, then run when_all_processes_are_updated()
+                    yield 1
+                    if process.is_central_agent:
+                        when_all_processes_are_updated()
                 except Exception as error:
                     print(f"exited at individual_updates_ready_barrier.wait(): {process.index}, error = {error}")
                     exit()
@@ -341,7 +347,9 @@ def inner_training_loop(
                     # include agent's gradient in global model
                     agent.add_update()
                 try:
-                    individual_updates_contributed_barrier.wait()   # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
+                    yield 2
+                    if process.is_central_agent:
+                        sync_updates() # Wait for all agents to contribute their gradients to global model, the sync_updates() to step it's optimizer
                 except threading.BrokenBarrierError as error:
                     print(f"Barrier broken at individual_updates_contributed_barrier.wait(): {process.index}, error = {error}")
                 except Exception as error:
@@ -398,8 +406,6 @@ def inner_training_loop(
                 kill_all()
         
         debug and print("aborting since agent exited while loop")
-        individual_updates_contributed_barrier.abort()
-        individual_updates_ready_barrier.abort()
 
     except (Exception, KeyboardInterrupt):
         save_model()
@@ -758,6 +764,8 @@ def middle_training_function(
                                 stop_event.set()
                                 raise optuna.TrialPruned()
     
+    global when_all_processes_are_updated, sync_updates
+    
     @print.indent.function
     def when_all_processes_are_updated():
         global process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  filtered_count,  process_q_value,  process_temp_banned_count,  process_permabanned, episode_reward_trend, process_median_episode_rewards, episode_reward_trend, process_gradients
@@ -917,7 +925,8 @@ def middle_training_function(
         local_agent.process_idx = process_idx
         local_agent.is_malicious = process_is_malicious[process_idx]
 
-        f = lambda : inner_training_loop(
+        try:
+            iterator = inner_training_loop(
                 process_idx=process_idx,
                 number_of_episodes=number_of_episodes,
                 agent=local_agent,
@@ -936,12 +945,8 @@ def middle_training_function(
                 process_permabanned=process_permabanned,
                 process_median_episode_rewards=process_median_episode_rewards,
             )
-        try:
-            if profile:
-                import cProfile
-                cProfile.runctx("f()", globals(), locals(), f"profile-{os.getpid()}.out")
-            else:
-                f()
+            for each in iterator:
+                yield each
         except Exception as error:
             raise error
         finally:
@@ -950,6 +955,10 @@ def middle_training_function(
                 eval_env.close()
     
     config.verbose and print("[about to call async_.run_async()]")
+    process_iterators = zip(*[ run_func(index) for index in range(config.number_of_processes)])
+    for each in process_iterators:
+        # perform one update in each 
+        pass
     async_.run_async(config.number_of_processes, run_func)
     config.verbose and print("[done calling async_.run_async()]")
     

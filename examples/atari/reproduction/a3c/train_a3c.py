@@ -362,4 +362,4 @@ def make_continous_model(obs_size, action_size, hidden_size, activation):
 
 if __name__ == "__main__":
     # args = parse_args()
-    train_a3c(args_from_config())
+    outer_training_function(args_from_config())
