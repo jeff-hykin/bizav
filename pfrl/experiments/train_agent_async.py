@@ -108,7 +108,6 @@ def middle_training_function(
         if not hook.support_middle_training_function:
             raise ValueError("{} does not support middle_training_function().".format(hook))
     
-    os.environ["OMP_NUM_THREADS"] = "1" # Prevent numpy from using multiple threads
     evaluator = None if eval_interval is None else AsyncEvaluator(
         n_steps=eval_n_steps,
         n_episodes=eval_n_episodes,  # eval_n_episodes = config.evaluation.number_of_epsiodes_during_eval,
@@ -152,7 +151,7 @@ def middle_training_function(
         process_median_episode_rewards   = mp.Array("d", config.number_of_processes)
         process_temp_ban                 = mp.Array("l", config.number_of_processes) 
         process_is_malicious             = mp.Array("l", config.number_of_processes) 
-        process_accumulated_distance     = mp.Array("d", config.number_of_processes) 
+        process_accumulated_normalized_distance     = mp.Array("d", config.number_of_processes) 
         process_gradient_sum             = mp.Array("d", config.number_of_processes) 
         process_latest_episode_reward    = mp.Array("d", config.number_of_processes) 
         process_gradients                = mp.Array("d", config.number_of_processes * config.env_config.gradient_size)
@@ -160,7 +159,7 @@ def middle_training_function(
             process_q_value[process_index]               = 0
             process_permabanned[process_index]           = 0
             process_is_malicious[process_index]          = 0
-            process_accumulated_distance[process_index]  = 0
+            process_accumulated_normalized_distance[process_index]  = 0
             process_gradient_sum[process_index]          = 0
             process_latest_episode_reward[process_index] = 0
             process_temp_banned_count[process_index]     = 1 # ASK: avoids a division by 0, but treats all processes equal
@@ -187,9 +186,9 @@ def middle_training_function(
         # permaban
         # 
         @property
-        def accumulated_distance(self): return process_accumulated_distance[self.index]
+        def accumulated_distance(self): return process_accumulated_normalized_distance[self.index]
         @accumulated_distance.setter
-        def accumulated_distance(self, value): process_accumulated_distance[self.index] = value
+        def accumulated_distance(self, value): process_accumulated_normalized_distance[self.index] = value
         
         # 
         # permaban
@@ -357,12 +356,23 @@ def middle_training_function(
                             print(f'''process{index} distance is {round(float(distance), 1)}, is_flipped={is_malicious_flipped}''')
                         else:
                             print(f'''process{index} distance is {round(float(distance), 1)}''')
+                
                 distances = force_sum_to_one(distances, minimum=0)
                 for each_process_being_reviewed, normalized_distance in zip(processes, distances):
                     each_process_being_reviewed.accumulated_distance += normalized_distance * config.number_of_processes
                 
                 return reward_for_each_temp_banned_index
-                
+        
+        def normalize_with_uncertainity(self, values):
+            minimum = min(values)
+            values = force_sum_to_one(each/minimum for each in values)
+            perfectly_certain_threshold = 1 / config.expected_number_of_malicious_processes
+            uncertainty = abs(perfectly_certain_threshold - max(values) )
+            # the line below is to avoid having the min-value always becoming a 0-weight (and therefore never be picked)
+            weights = [ each + uncertainty for each in values ]
+            # NOTE: because of the line above the values won't quite sum to one
+            return weights
+        
         def update_step(self, ucb_reward):
             if use_softmax_defense:
                 pass
@@ -421,17 +431,16 @@ def middle_training_function(
                     output = [ np.argmax(ucb.value_of_each_process()) ]
             
             elif use_softmax_defense:
-                debug and print(f'''process_accumulated_distance = {list(process_accumulated_distance)}''')
-                weights = list(to_pure(process_accumulated_distance))
-                debug and print(f'''raw weights = {weights}''')
+                debug and print(f'''process_accumulated_normalized_distance = {list(process_accumulated_normalized_distance)}''')
+                distances = list(to_pure(process_accumulated_normalized_distance))
+                debug and print(f'''raw distances = {distances}''')
                 process_indices = list(range(config.number_of_processes))
                 
-                minimum = min(weights)
-                weights = [ (each-minimum+1)**10 for each in weights ]
-                debug and print(f'''exaggerated weights = {weights}''')
+                weights = ucb.normalize_with_uncertainity(distances)
+                debug and print(f'''normalized weights = {weights}''')
                 
-                # issue when all weights are 0
-                if any(each == 0 for each in weights):
+                # issue when all weights are equal
+                if any(each == weights[0] for each in weights):
                     debug and print("picking random indicies")
                     return shuffled(process_indices)[0:config.number_of_malicious_processes]
                 
