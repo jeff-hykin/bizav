@@ -15,7 +15,7 @@ import torch
 import torch.multiprocessing as mp
 from torch import nn
 from super_map import LazyDict
-from blissful_basics import singleton, max_indices, print, to_pure, shuffled, normalize
+from blissful_basics import singleton, max_indices, print, to_pure, shuffled, normalize, countdown
 
 from pfrl.experiments.evaluator import AsyncEvaluator
 from pfrl.utils import async_, random_seed
@@ -27,8 +27,7 @@ from main.utils import trend_calculate
 # 
 # constants
 # 
-debug = False
-use_old_gradient = False
+debug = config.debug
 distance_kind = 'mean_all'
 check_rate = config.number_of_processes
 
@@ -151,15 +150,16 @@ def middle_training_function(
         process_median_episode_rewards   = mp.Array("d", config.number_of_processes)
         process_temp_ban                 = mp.Array("l", config.number_of_processes) 
         process_is_malicious             = mp.Array("l", config.number_of_processes) 
-        process_accumulated_normalized_distance     = mp.Array("d", config.number_of_processes) 
+        process_accumulated_weights      = mp.Array("d", config.number_of_processes) 
         process_gradient_sum             = mp.Array("d", config.number_of_processes) 
         process_latest_episode_reward    = mp.Array("d", config.number_of_processes) 
         process_gradients                = mp.Array("d", config.number_of_processes * config.env_config.gradient_size)
+        process_accumulated_suspicion    = [1]*config.number_of_processes
         for process_index in range(config.number_of_processes):
             process_q_value[process_index]               = 0
             process_permabanned[process_index]           = 0
             process_is_malicious[process_index]          = 0
-            process_accumulated_normalized_distance[process_index]  = 0
+            process_accumulated_weights[process_index]   = 0
             process_gradient_sum[process_index]          = 0
             process_latest_episode_reward[process_index] = 0
             process_temp_banned_count[process_index]     = 1 # ASK: avoids a division by 0, but treats all processes equal
@@ -186,9 +186,9 @@ def middle_training_function(
         # permaban
         # 
         @property
-        def accumulated_distance(self): return process_accumulated_normalized_distance[self.index]
+        def accumulated_distance(self): return process_accumulated_weights[self.index]
         @accumulated_distance.setter
-        def accumulated_distance(self, value): process_accumulated_normalized_distance[self.index] = value
+        def accumulated_distance(self, value): process_accumulated_weights[self.index] = value
         
         # 
         # permaban
@@ -357,22 +357,26 @@ def middle_training_function(
                         else:
                             print(f'''process{index} distance is {round(float(distance), 1)}''')
                 
-                distances = force_sum_to_one(distances, minimum=0)
-                for each_process_being_reviewed, normalized_distance in zip(processes, distances):
+                # 
+                # accumulate distance
+                # 
+                weights = force_sum_to_one(distances, minimum=0)
+                for each_process_being_reviewed, normalized_distance in zip(processes, weights):
                     each_process_being_reviewed.accumulated_distance += normalized_distance * config.number_of_processes
+                
+                # 
+                # accumulate suspicion
+                # 
+                current_suspicion_for = [ each * config.number_of_malicious_processes for each in force_sum_to_one(list(to_pure(process_accumulated_weights))) ]
+                for process_index,_ in enumerate(processes):
+                    process_accumulated_suspicion[process_index] *= 1 + current_suspicion_for[process_index]
                 
                 return reward_for_each_temp_banned_index
         
-        def normalize_with_uncertainity(self, values):
-            minimum = min(values)
-            values = force_sum_to_one(each/minimum for each in values)
-            perfectly_certain_threshold = 1 / config.expected_number_of_malicious_processes
-            uncertainty = abs(perfectly_certain_threshold - max(values) )
-            # the line below is to avoid having the min-value always becoming a 0-weight (and therefore never be picked)
-            weights = [ each + uncertainty for each in values ]
-            # NOTE: because of the line above the values won't quite sum to one
-            return weights
-        
+        def get_uncertainty(self, values):
+            values = force_sum_to_one(values)
+            return sum(sorted(values)[:-config.expected_number_of_malicious_processes])/len(values)
+            
         def update_step(self, ucb_reward):
             if use_softmax_defense:
                 pass
@@ -431,34 +435,22 @@ def middle_training_function(
                     output = [ np.argmax(ucb.value_of_each_process()) ]
             
             elif use_softmax_defense:
-                debug and print(f'''process_accumulated_normalized_distance = {list(process_accumulated_normalized_distance)}''')
-                distances = list(to_pure(process_accumulated_normalized_distance))
-                debug and print(f'''raw distances = {distances}''')
+                debug and print(f'''process_accumulated_weights = {list(process_accumulated_weights)}''')
+                suspicions = list(process_accumulated_suspicion)
+                debug and print(f'''raw suspicions = {sorted(suspicions,reverse=True)}''')
                 process_indices = list(range(config.number_of_processes))
                 
-                weights = ucb.normalize_with_uncertainity(distances)
-                debug and print(f'''normalized weights = {weights}''')
+                uncertainty = ucb.get_uncertainty(suspicions)
+                config.verbose and print(f'''{{ "uncertainty": {uncertainty} }}''')
+                weights = force_sum_to_one(suspicions)
+                debug and print(f'''normalized weights = {sorted(weights, reverse=True)}''')
+                weights = [ each + uncertainty for each in weights ] # this operation is done so that the min isn't always a 0-weight
+                debug and print(f'''normalized weights with uncertainty = {sorted(weights, reverse=True)}''')
                 
-                # issue when all weights are equal
-                if any(each == weights[0] for each in weights):
-                    debug and print("picking random indicies")
-                    return shuffled(process_indices)[0:config.number_of_malicious_processes]
-                
-                choices = set()
-                import random
-                while len(choices) < config.expected_number_of_malicious_processes:
-                    remaining_indices_and_weights = [ (index, weight) for index, weight in zip(process_indices, weights) if index not in choices ]
-                    remaining_indicies = [ index for index, weight in remaining_indices_and_weights ]
-                    remaining_weights  = [ weight for index, weight in remaining_indices_and_weights ]
-                    random_index = random.choices(
-                        remaining_indicies,
-                        weights=remaining_weights,
-                        k=1,
-                    )[0]
-                    choices.add(random_index)
+                picked_processes = random_choose_k(items=processes, weights=weights, k=config.expected_number_of_malicious_processes)
                 
                 # who to ban this round
-                output = list(choices)
+                output = list(each.index for each in picked_processes)
                 debug and print(f'''output = {output}''')
             
                 np_process_is_malicious      = mp_to_numpy(process_is_malicious)
@@ -472,13 +464,12 @@ def middle_training_function(
                 
                 malicious = list(process_is_malicious) 
                 weights = [ round(each, 3) for each in weights ]
-                log_weights = [ round(math.log(each), 3) for each in weights ]
+                log_weights = [ round(math.log(each+1), 3) for each in suspicions ]
                 
                 normalized_log_weights = force_sum_to_one(log_weights)
                 malicious_log_weight     = sorted([ round(log_weight*config.number_of_processes, 1)/2 for each_process, log_weight in zip(processes, normalized_log_weights) if     each_process.is_malicious ])
                 non_malicious_log_weight = sorted([ round(log_weight*config.number_of_processes, 1)/2 for each_process, log_weight in zip(processes, normalized_log_weights) if not each_process.is_malicious ])
                     
-                
                 config.verbose and print(json.dumps(dict(
                     step=number_of_updates.value,
                     successfully_filtered_avg=round(successfully_filtered_sum.value/successfully_filtered_increment.value, 2),
@@ -566,7 +557,7 @@ def middle_training_function(
                         # 
                         # update step
                         # 
-                        with print.indent.block("update step"):
+                        with print.indent.block(f"update step"):
                             debug and print("started individual_updates_ready_barrier()")
                             debug and print(f'''process_gradient_sum = {list(process_gradient_sum)}''')
                             gradients_np = np.asarray(list(process_gradients))
@@ -645,7 +636,7 @@ def middle_training_function(
                             if number_of_updates.value != 0:
                                 # Compute gradient mean
                                 debug and print("starting reward_func()")
-                                if use_old_gradient:
+                                if config.use_broken_gradient:
                                     ucb_reward = ucb.reward_func(ucb.gradient_of_agents) # FIXME: ucb.reward_func(all_grads) is more accurate... but doesnt work as well for some reason
                                 else:
                                     ucb_reward = ucb.reward_func(all_grads)
@@ -798,3 +789,25 @@ def euclidean_dist(x, y):
     dist[dist < 0] = 0
     dist = dist.sqrt()
     return dist
+
+def random_choose_k(items, weights, k):
+    # NOTE: a statistician probably wouldnt be very happy with this function. And it could probably be improved
+    choices = set()
+    remaining_indices_and_weights = list(enumerate(weights))
+    import random
+    while len(choices) < k:
+        remaining_indices_and_weights = [ (index, weight) for index, weight in remaining_indices_and_weights if index not in choices ]
+        remaining_indicies = [ index for index, weight in remaining_indices_and_weights ]
+        remaining_weights  = [ weight for index, weight in remaining_indices_and_weights ]
+        if sum(remaining_weights) == 0:
+            for each in shuffled(remaining_indicies)[:(k - len(choices))]:
+                choices.add(each)
+            break
+        random_index = random.choices(
+            remaining_indicies,
+            weights=remaining_weights,
+            k=1,
+        )[0]
+        choices.add(random_index)
+    
+    return [ items[index] for index in choices ]
