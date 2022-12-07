@@ -1,13 +1,10 @@
 import logging
 import os
-import signal
-import subprocess
 import sys
 from random import random, sample, choices
 from statistics import mean
 import math
 import json
-import threading
 
 import optuna
 import numpy as np
@@ -28,8 +25,8 @@ from main.utils import trend_calculate
 # constants
 # 
 debug = config.debug
-distance_kind = 'mean_all'
 check_rate = config.number_of_processes
+should_log = countdown(config.log_rate)
 
 def middle_training_function(
     outdir,
@@ -268,7 +265,7 @@ def middle_training_function(
                     all_other_gradients.append(each_gradient)
                     indices_of_others.append(process.index)
             all_other_gradients = torch.tensor(np.vstack(all_other_gradients))
-                
+            
             if kind == 'mean_all':
                 process_distances = euclidean_dist(
                     torch.vstack([ this_gradient ]),
@@ -284,23 +281,22 @@ def middle_training_function(
                 return float(process_distances[0].sum())
                 
             elif kind == 'median_point':
-                median = all_other_gradients.median(axis=0).values
+                median = all_other_gradients.median(axis=0)
                 
                 process_distances = euclidean_dist(
                     torch.vstack([ this_gradient ]),
                     torch.vstack([ torch.tensor(median) ])
                 )
-                return float(process_distances[0][0])
+                return float(process_distances[0].sum())
                 
             elif kind == 'mean_point':
-                mean = all_other_gradients.mean(axis=0).values
-                
+                mean = all_other_gradients.mean(axis=0)
                 process_distances = euclidean_dist(
                     torch.vstack([ this_gradient ]),
-                    torch.vstack([ torch.tensor(mean) ])
+                    torch.vstack([ torch.tensor(mean) ]),
                 )
                     
-                return float(process_distances[0][0])
+                return float(process_distances[0].sum())
 
     processes = tuple(Process(each_index) for each_index in range(config.number_of_processes))
     
@@ -329,7 +325,7 @@ def middle_training_function(
                 reward_for_each_temp_banned_index = []
                 distances = []
                 for each_process_being_reviewed in processes:
-                    distance = each_process_being_reviewed.distance_metric(all_grads, kind=distance_kind)
+                    distance = each_process_being_reviewed.distance_metric(all_grads, kind=config.distance_kind)
                     # debug and print(f'''distance = {distance}''')
                     debug and print(f'''math.log(distance) = {math.log(distance)}, is_malicious: {each_process_being_reviewed.is_malicious}''')
                     distances.append(distance)
@@ -345,7 +341,7 @@ def middle_training_function(
                         debugging_distances.append((index, each_distance, process.is_malicious, False))
                         grads_copy = torch.tensor(all_grads.tolist())
                         grads_copy[index] *= -2.5
-                        debugging_distances.append((index, process.distance_metric(grads_copy, kind=distance_kind), process.is_malicious, True))
+                        debugging_distances.append((index, process.distance_metric(grads_copy, kind=config.distance_kind), process.is_malicious, True))
                     
                     for index, distance, is_malicious, is_malicious_flipped in sorted(debugging_distances, key=lambda each: each[1]):
                         if is_malicious_flipped and is_malicious:
@@ -378,6 +374,7 @@ def middle_training_function(
             return sum(sorted(values)[:-config.expected_number_of_malicious_processes])/len(values)
             
         def update_step(self, ucb_reward):
+            
             if use_softmax_defense:
                 pass
             else:
@@ -554,6 +551,7 @@ def middle_training_function(
                     yield 1
                     # once all the updates are ready
                     if process.is_central_agent:
+                        print.disable.always = not should_log()
                         # 
                         # update step
                         # 
