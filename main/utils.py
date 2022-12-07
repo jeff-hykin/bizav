@@ -164,9 +164,6 @@ import json
 from os.path import join
 from cool_cache import cache
 from blissful_basics import print
-from informative_iterator import ProgressBar
-
-ProgressBar.seconds_per_print = 0.08
 
 class LogReader:
     # for parsing messy logs and turning them into a CSV/dataframe structure
@@ -496,6 +493,8 @@ class LiquidLog:
 log_reader = LogReader()
 @log_reader.add_preprocessor()
 def hyperparam_logs(string):
+    from informative_iterator import ProgressBar
+    ProgressBar.seconds_per_print = 0.08
     lines = []
     for _, line in ProgressBar(string.splitlines(), title="parsing hyperparams"):
         if "}. Best is trial" in line and "and parameters: {" in line:
@@ -508,6 +507,8 @@ def hyperparam_logs(string):
 
 @log_reader.add_preprocessor()
 def bandit_logs(string):
+    from informative_iterator import ProgressBar
+    ProgressBar.seconds_per_print = 0.08
     lines = []
     for _, line in ProgressBar(string.splitlines(), title="parsing ucb output"):
         # Step 50 3 visits [1.0, 3.0, 1.0, 34.0, 6.0, 1.0, 4.0]  episode_count: 31 q_vals: [-11.111, -9.362, -11.111, -8.611, -9.259, -11.111, -9.539]
@@ -522,6 +523,8 @@ def bandit_logs(string):
 
 @log_reader.add_preprocessor()
 def final_evals(string):
+    from informative_iterator import ProgressBar
+    ProgressBar.seconds_per_print = 0.08
     lines = [
         '{"final_eval":false}'
     ]
