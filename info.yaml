@@ -91,6 +91,9 @@
                 min_number_of_episodes: 30
                 thresholds: {}
             
+            training:
+                episode_count: 0
+            
             tuning:
                 number_of_trials: 300
                 phase_1:

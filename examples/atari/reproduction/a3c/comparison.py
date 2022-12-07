@@ -14,8 +14,8 @@ import train_a3c
 runs_for_comparison = 5
 aspects_to_compare = {
     "profile": [
-        "LUNAR_LANDER",
         "CARTPOLE",
+        "LUNAR_LANDER",
         # "CHEETAH",
     ],
     "attack_method": [

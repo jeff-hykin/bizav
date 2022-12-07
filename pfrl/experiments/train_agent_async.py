@@ -96,6 +96,8 @@ def middle_training_function(
         Returns:
             Trained agent.
     """
+    # from informative_iterator import ProgressBar
+    # progress_iter = iter(ProgressBar(config.training.episode_count, title="trial run"))
     
     config.verbose and print("[starting middle_training_function()]\n")
     random_seeds = np.arange(config.number_of_processes) if random_seeds is None else random_seeds
@@ -555,7 +557,7 @@ def middle_training_function(
                         # 
                         # update step
                         # 
-                        with print.indent.block(f"update step"):
+                        with print.indent.block(f"update step {number_of_episodes.value}/{config.training.episode_count}"):
                             debug and print("started individual_updates_ready_barrier()")
                             debug and print(f'''process_gradient_sum = {list(process_gradient_sum)}''')
                             gradients_np = np.asarray(list(process_gradients))
@@ -602,6 +604,7 @@ def middle_training_function(
                                         if trial and biggest_recent_change < config.early_stopping.lowerbound_for_max_recent_change:
                                             print(f"Hit early stopping because biggest_recent_change: {biggest_recent_change} < {config.early_stopping.lowerbound_for_max_recent_change}")
                                             raise optuna.TrialPruned()
+                                    
                                     
                                     print(json.dumps(dict(
                                         number_of_episodes=total_number_of_episodes,
@@ -702,11 +705,11 @@ def middle_training_function(
                     agent.after_update()
 
                 if done or reset:# Get and increment the global number_of_episodes
-                    with number_of_episodes.get_lock():
-                        process.latest_episode_reward = episode_reward
-                        process.median_episode_reward = agent.median_reward_per_episode
-                        number_of_episodes.value += 1
-                        number_of_timesteps.value += number_of_timesteps_for_this_episode
+                    process.latest_episode_reward = episode_reward
+                    process.median_episode_reward = agent.median_reward_per_episode
+                    number_of_episodes.value += 1
+                    number_of_timesteps.value += number_of_timesteps_for_this_episode
+                    # next(progress_iter)
                     
                     # reset
                     number_of_timesteps_for_this_episode = 0
@@ -724,8 +727,12 @@ def middle_training_function(
                             agent=agent,
                         )
                         if eval_score != None:
+                            print_value = print.disable.always
+                            print.disable.always = False
                             latest_eval_score.value = eval_score
+                            print("")
                             print(json.dumps(dict(eval_score=eval_score, number_of_episodes=number_of_episodes.value)))
+                            print.disable.always = print_value
                     
                     proportional_number_of_timesteps = number_of_timesteps.value / config.number_of_processes
                     if number_of_episodes.value >= config.training.episode_count:
