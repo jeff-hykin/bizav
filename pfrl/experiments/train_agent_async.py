@@ -149,7 +149,7 @@ def middle_training_function(
         process_median_episode_rewards   = mp.Array("d", config.number_of_processes)
         process_temp_ban                 = mp.Array("l", config.number_of_processes) 
         process_is_malicious             = mp.Array("l", config.number_of_processes) 
-        process_accumulated_weights      = mp.Array("d", config.number_of_processes) 
+        process_accumulated_normalized_distance      = mp.Array("d", config.number_of_processes) 
         process_gradient_sum             = mp.Array("d", config.number_of_processes) 
         process_latest_episode_reward    = mp.Array("d", config.number_of_processes) 
         process_gradients                = mp.Array("d", config.number_of_processes * config.env_config.gradient_size)
@@ -158,7 +158,7 @@ def middle_training_function(
             process_q_value[process_index]               = 0
             process_permabanned[process_index]           = 0
             process_is_malicious[process_index]          = 0
-            process_accumulated_weights[process_index]   = 0
+            process_accumulated_normalized_distance[process_index]   = 0
             process_gradient_sum[process_index]          = 0
             process_latest_episode_reward[process_index] = 0
             process_temp_banned_count[process_index]     = 1 # ASK: avoids a division by 0, but treats all processes equal
@@ -185,9 +185,9 @@ def middle_training_function(
         # permaban
         # 
         @property
-        def accumulated_distance(self): return process_accumulated_weights[self.index]
+        def accumulated_distance(self): return process_accumulated_normalized_distance[self.index]
         @accumulated_distance.setter
-        def accumulated_distance(self, value): process_accumulated_weights[self.index] = value
+        def accumulated_distance(self, value): process_accumulated_normalized_distance[self.index] = value
         
         # 
         # permaban
@@ -283,8 +283,7 @@ def middle_training_function(
                 return float(process_distances[0].sum())
                 
             elif kind == 'median_point':
-                median = all_other_gradients.median(axis=0)
-                
+                median = all_other_gradients.median(axis=0).values
                 process_distances = euclidean_dist(
                     torch.vstack([ this_gradient ]),
                     torch.vstack([ torch.tensor(median) ])
@@ -365,7 +364,7 @@ def middle_training_function(
                 # 
                 # accumulate suspicion
                 # 
-                current_suspicion_for = [ each * config.number_of_malicious_processes for each in force_sum_to_one(list(to_pure(process_accumulated_weights))) ]
+                current_suspicion_for = [ each * config.number_of_malicious_processes for each in force_sum_to_one(list(to_pure(process_accumulated_normalized_distance))) ]
                 for process_index,_ in enumerate(processes):
                     process_accumulated_suspicion[process_index] *= 1 + current_suspicion_for[process_index]
                 
@@ -434,7 +433,7 @@ def middle_training_function(
                     output = [ np.argmax(ucb.value_of_each_process()) ]
             
             elif use_softmax_defense:
-                debug and print(f'''process_accumulated_weights = {list(process_accumulated_weights)}''')
+                debug and print(f'''process_accumulated_normalized_distance = {list(process_accumulated_normalized_distance)}''')
                 suspicions = list(process_accumulated_suspicion)
                 debug and print(f'''raw suspicions = {sorted(suspicions,reverse=True)}''')
                 process_indices = list(range(config.number_of_processes))
@@ -462,8 +461,7 @@ def middle_training_function(
                 successfully_filtered_increment.value += 1
                 
                 malicious = list(process_is_malicious) 
-                weights = [ round(each, 3) for each in weights ]
-                log_weights = [ round(math.log(each+1), 3) for each in suspicions ]
+                log_weights = [ round(math.log(each+1), 3) for each in list(process_accumulated_normalized_distance) ]
                 
                 normalized_log_weights = force_sum_to_one(log_weights)
                 malicious_log_weight     = sorted([ round(log_weight*config.number_of_processes, 1)/2 for each_process, log_weight in zip(processes, normalized_log_weights) if     each_process.is_malicious ])
@@ -477,7 +475,7 @@ def middle_training_function(
                     non_malicious_log_weight=non_malicious_log_weight,
                     processes={
                         f"{each_index}": dict(is_malicious=is_malicious+0, filtered=filtered, log_weight=round(each_log_weight, 2), weight=round(each_weight))
-                            for each_index, (is_malicious, each_weight, each_log_weight, filtered) in enumerate(zip(malicious, weights, log_weights, process_temp_ban))
+                            for each_index, (is_malicious, each_weight, each_log_weight, filtered) in enumerate(zip(malicious, process_accumulated_normalized_distance, log_weights, process_temp_ban))
                     },
                     process_temp_banned_count=list(np.round(np_process_temp_banned_count, 2)),
                     q_vals=list(np.round(np_value_per_process, 3)),

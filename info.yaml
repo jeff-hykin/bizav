@@ -66,10 +66,10 @@
                 
             verbose: True
             debug: False
-            log_rate: 100 # updates
+            log_rate: 10 # updates
             
             use_broken_gradient: False
-            distance_kind: mean_all # one of [mean_all, sum_all, median_point, mean_point ], see def distance_metric()
+            distance_kind: sum_all # one of [mean_all, sum_all, median_point, mean_point ], see def distance_metric()
             number_of_processes: 10
             number_of_malicious_processes: 3
             expected_number_of_malicious_processes: 3 # set this to 0 to disable UCB
