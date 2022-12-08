@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 url="https://mujoco.org/download/mujoco210-linux-x86_64.tar.gz"
-download_target="$HOME/.mujoco/mujoco.zip"
+download_target="$HOME/.mujoco/mujoco.tar.gz"
 extraction_target="$(dirname "$download_target")/extraction"
 final_target="$(dirname "$download_target")/mujoco210"
 mkdir -p "$(dirname "$download_target")"
