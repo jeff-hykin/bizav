@@ -198,7 +198,8 @@ def middle_training_function(
                         yield 1
                         # once all the updates are ready
                         if self.is_central_agent:
-                            print.disable.always = not should_log()
+                            # print.disable.always = not should_log()
+                            
                             # 
                             # update step
                             # 
@@ -668,13 +669,14 @@ def middle_training_function(
                 
                 # 
                 # logging
-                # 
-                for index, _ in sorted_indicies_and_distances:
-                    process = processes[index]
-                    print(f'Process({index}):')
-                    print(f'''    accumulated_distance:{process.accumulated_distance}''')
-                    print(f'''    is_malicious:{process.is_malicious}''')
-                    print(f'''    is_central_agent:{process.is_central_agent}''')
+                #
+                if debug: 
+                    for index, _ in sorted_indicies_and_distances:
+                        process = processes[index]
+                        print(f'Process({index}):')
+                        print(f'''    accumulated_distance:{process.accumulated_distance}''')
+                        print(f'''    is_malicious:{process.is_malicious}''')
+                        print(f'''    is_central_agent:{process.is_central_agent}''')
                 np_process_is_malicious      = np.asarray(Process.malicious)
                 np_process_temp_ban          = np.asarray(Process.temp_ban)
                 np_process_temp_banned_count = np.asarray(Process.temp_banned_count)
