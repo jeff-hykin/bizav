@@ -14,7 +14,7 @@ from super_map import LazyDict
 from blissful_basics import singleton, max_indices, print, to_pure, shuffled, normalize, countdown
 
 from pfrl.experiments.evaluator import AsyncEvaluator
-from pfrl.utils import async_, random_seed
+from pfrl.utils import async_, random_seed, copy_param
 
 from main import utils
 from main.config import config, env_config, info
@@ -38,7 +38,8 @@ def middle_training_function(
     eval_success_threshold=0.0,
     max_episode_len=None,
     step_offset=0,
-    agent=None,
+    main_agent=None,
+    agents=None,
     make_agent=None,
     global_step_hooks=[],
     evaluation_hooks=(),
@@ -141,14 +142,15 @@ def middle_training_function(
     # 
     # wrapper for processes
     # 
+    malicious_indices = shuffled(list(range(config.number_of_processes)))[0:config.number_of_malicious_processes]
     class Process:
-        indices_of_malicious            = shuffled(list(range(config.number_of_processes)))[0:config.number_of_malicious_processes]
+        indices_of_malicious            = malicious_indices
         index_of_central_process        = sample(list(range(config.number_of_processes)), k=1)[0]
         q_value                         = [0]*config.number_of_processes
         temp_banned_count               = [1]*config.number_of_processes # ASK: setting to 1 avoids a division by 0, but treats all processes equal
         temp_ban                        = [0]*config.number_of_processes
         accumulated_normalized_distance = [0]*config.number_of_processes
-        is_malicious                    = [ (1 if index in indices_of_malicious else 0) for index in range(config.number_of_processes) ]
+        malicious                       = [ (1 if index in malicious_indices else 0) for index in range(config.number_of_processes) ]
         
         def __init__(self, process_index, agent, evaluator):
             config.verbose and print(f"[creating Process({process_index})]")
@@ -160,7 +162,7 @@ def middle_training_function(
             self.eval_env           = self.env if evaluator is None else make_env(process_index, test=True)
             self.agent              = agent
             self.agent.process_idx  = process_index
-            self.agent.is_malicious = Process.is_malicious[process_index]
+            self.agent.is_malicious = Process.malicious[process_index]
             
             self.is_permabanned        = 0
             self.accumulated_suspicion = 0
@@ -324,7 +326,7 @@ def middle_training_function(
                             debug and print(f'''self.agent{self.index}.add_update()''')
                             debug and print(f'''adding update, self.is_malicious = {self.is_malicious}''')
                             # include self.agent's gradient in global model
-                            self.agent.add_update()
+                            copy_param.add_grad(target_link=main_agent.model, source_link=self.agent.model)
                         
                         # 
                         # sync_updates()
@@ -335,10 +337,18 @@ def middle_training_function(
                                 num_updates = config.number_of_processes - (shared.filtered_count + 1)
                             else:
                                 num_updates = config.number_of_processes - shared.filtered_count
-                            self.agent.average_updates(num_updates)
-                            self.agent.optimizer.step()
+                            
+                            for param in self.agent.model.parameters():
+                                if param.grad is not None:
+                                    param.grad = param.grad / num_updates
+                            
+                            main_agent.optimizer.step()
+                            
+                            # deliver the gradient change to all the agents
+                            for process in processes:
+                                copy_param.copy_param(target_link=process.agent.model, source_link=main_agent.model)
+                                process.agent.after_update()
                         
-                        self.agent.after_update()
 
                     if done or reset:# Get and increment the global number_of_episodes
                         self.latest_episode_reward = episode_reward
@@ -358,8 +368,8 @@ def middle_training_function(
                                 # eval is triggered based on t (timesteps), but its flexible, so we trigger it based on episodes instead
                                 t=shared.number_of_episodes, # ASK
                                 episodes=shared.number_of_episodes,
-                                self.env=self.eval_env,
-                                self.agent=self.agent,
+                                env=self.eval_env,
+                                agent=self.agent,
                             )
                             if eval_score != None:
                                 print_value = print.disable.always
@@ -385,7 +395,7 @@ def middle_training_function(
         @property
         def gradient(self):
             my_grad = []
-            for param in agent.local_models[process.index].parameters():
+            for param in self.agent.model.parameters():
                 if param.grad is not None:
                     grad_np = param.grad.detach().clone().numpy().flatten()
                 else:
@@ -425,7 +435,7 @@ def middle_training_function(
         # 
         @property
         def is_malicious(self):
-            if Process.is_malicious[self.index]:
+            if Process.malicious[self.index]:
                 return True
             
             return False
@@ -495,10 +505,9 @@ def middle_training_function(
     # 
     # create all processes
     # 
-    from copy import deepcopy
     processes = tuple(
-        Process(index, agent=deepcopy(agent), evaluator=evaluator)
-            for each_index in range(config.number_of_processes)
+        Process(each_index, agent=agent, evaluator=evaluator)
+            for each_index, agent in enumerate(agents)
     )
     
     # 
@@ -610,7 +619,7 @@ def middle_training_function(
                         each_process.q_value = -math.inf
                 
         def value_of_each_process(self):
-            np_process_is_malicious      = np.asarray(Process.is_malicious)
+            np_process_is_malicious      = np.asarray(Process.malicious)
             np_process_temp_ban          = np.asarray(process.temp_ban)
             np_process_temp_banned_count = np.asarray(Process.temp_banned_count)
             np_value_per_process         = np.asarray(Process.q_value)
@@ -660,7 +669,13 @@ def middle_training_function(
                 # 
                 # logging
                 # 
-                np_process_is_malicious      = np.asarray(Process.is_malicious)
+                for index, _ in sorted_indicies_and_distances:
+                    process = processes[index]
+                    print(f'Process({index}):')
+                    print(f'''    accumulated_distance:{process.accumulated_distance}''')
+                    print(f'''    is_malicious:{process.is_malicious}''')
+                    print(f'''    is_central_agent:{process.is_central_agent}''')
+                np_process_is_malicious      = np.asarray(Process.malicious)
                 np_process_temp_ban          = np.asarray(Process.temp_ban)
                 np_process_temp_banned_count = np.asarray(Process.temp_banned_count)
                 successful = sum(np_process_is_malicious * Process.temp_ban)
@@ -668,7 +683,7 @@ def middle_training_function(
                 shared.successfully_filtered_sum += successful
                 shared.successfully_filtered_increment += 1
                 
-                malicious = list(Process.is_malicious) 
+                malicious = list(Process.malicious) 
                 log_weights = [ round(math.log(each+1), 3) for each in weights ]
                 
                 normalized_log_weights = force_sum_to_one(log_weights)
@@ -677,13 +692,15 @@ def middle_training_function(
                 
                 config.verbose and print(json.dumps(dict(
                     step=shared.number_of_updates,
+                    number_of_episodes=shared.number_of_episodes,
+                    number_of_timesteps=shared.number_of_timesteps,
                     successfully_filtered_avg=round(shared.successfully_filtered_sum/shared.successfully_filtered_increment, 2),
                     successfully_filtered=successful,
                     processes={
                         f"{each_index}": dict(is_malicious=is_malicious+0, filtered=filtered, log_weight=round(each_log_weight, 2), weight=round(each_weight))
                             for each_index, (is_malicious, each_weight, each_log_weight, filtered) in enumerate(zip(malicious, weights, log_weights, Process.temp_ban))
                     },
-                    Process.temp_banned_count=list(np.round(np_process_temp_banned_count, 2)),
+                    temp_banned_count=list(np.round(np_process_temp_banned_count, 2)),
                 )))
             elif use_softmax_defense:
                 debug and print(f'''Process.accumulated_normalized_distance = {list(Process.accumulated_normalized_distance)}''')
@@ -704,7 +721,7 @@ def middle_training_function(
                 output = [ each.index for each in picked_processes ]
                 debug and print(f'''output = {output}''')
             
-                np_process_is_malicious      = np.asarray(Process.is_malicious)
+                np_process_is_malicious      = np.asarray(Process.malicious)
                 np_process_temp_ban          = np.asarray(Process.temp_ban)
                 np_process_temp_banned_count = np.asarray(Process.temp_banned_count)
                 np_value_per_process         = np.asarray(Process.q_value)
@@ -713,7 +730,7 @@ def middle_training_function(
                 shared.successfully_filtered_sum += successful
                 shared.successfully_filtered_increment += 1
                 
-                malicious = list(Process.is_malicious) 
+                malicious = list(Process.malicious) 
                 log_weights = [ round(math.log(each+1), 3) for each in list(Process.accumulated_normalized_distance) ]
                 
                 normalized_log_weights = force_sum_to_one(log_weights)
@@ -722,6 +739,8 @@ def middle_training_function(
                     
                 config.verbose and print(json.dumps(dict(
                     step=shared.number_of_updates,
+                    number_of_episodes=shared.number_of_episodes,
+                    number_of_timesteps=shared.number_of_timesteps,
                     successfully_filtered_avg=round(shared.successfully_filtered_sum/shared.successfully_filtered_increment, 2),
                     successfully_filtered=successful,
                     malicious_log_weight=malicious_log_weight,
@@ -730,7 +749,7 @@ def middle_training_function(
                         f"{each_index}": dict(is_malicious=is_malicious+0, filtered=filtered, log_weight=round(each_log_weight, 2), weight=round(each_weight))
                             for each_index, (is_malicious, each_weight, each_log_weight, filtered) in enumerate(zip(malicious, Process.accumulated_normalized_distance, log_weights, process.temp_ban))
                     },
-                    Process.temp_banned_count=list(np.round(np_process_temp_banned_count, 2)),
+                    temp_banned_count=list(np.round(np_process_temp_banned_count, 2)),
                     q_vals=list(np.round(np_value_per_process, 3)),
                 )))
             
@@ -756,11 +775,11 @@ def middle_training_function(
     # 
     # 
     config.verbose and print("[starting all processes]")
-    process_iterators = [ process.update_sequence() for process in processes ]
+    update_steps = zip(*[ process.update_sequence() for process in processes ])
     with print.indent:
-        for each_iterator in process_iterators:
-            # update each process one step
-            next(each_iterator)
+        for each_step in update_steps:
+            # just need to iterate through all the steps
+            pass
     config.verbose and print("[all processes finished]")
 
 def force_sum_to_one(values, minimum=None):

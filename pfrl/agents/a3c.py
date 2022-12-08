@@ -69,7 +69,6 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
         malicious=0.0,
         mal_type=None,
         byz_classifier=None,
-        local_models=None
     ):
         self.gradient = 0
         self.is_malicious = False
@@ -79,12 +78,8 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
         self.total_loss = None
         self.agent_rewards = None
 
-        # Globally shared model
-        self.shared_model = model
-
         # Thread specific model
-        self.local_models = local_models
-        self.model = None
+        self.model = model
 
         self.optimizer = optimizer
 
@@ -135,13 +130,10 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
         else:
             return 0
     
-    def sync_parameters(self):
-        copy_param.copy_param(target_link=self.model, source_link=self.shared_model)
-
     def assert_shared_memory(self):
         pass
         # # Shared model must have tensors in shared memory
-        # for k, v in self.shared_model.state_dict().items():
+        # for k, v in self.model.state_dict().items():
         #     assert v.is_shared(), "{} is not in shared memory".format(k)
         #
         # # Local model must not have tensors in shared memory
@@ -156,7 +148,7 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
 
     @property
     def shared_attributes(self):
-        return ("shared_model", "optimizer", "local_models")
+        return ("model", "optimizer")
 
     def update(self, statevar):
         assert self.t_start < self.t
@@ -266,25 +258,8 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
     @property
     def gradient_sum(self):
         return self.gradient.sum()
-    
-    def add_update(self):
-        # Copy the gradients to the globally shared model
-        copy_param.add_grad(target_link=self.shared_model, source_link=self.model)
-
-        # Stepped in async
-        # Update the globally shared model
-        # self.optimizer.step()
-        # if self.process_idx == 0:
-        #     logger.debug("update")
-
-    def average_updates(self, processes):
-        for param in self.shared_model.parameters():
-            if param.grad is not None:
-                param.grad = param.grad / processes
 
     def after_update(self):
-        self.sync_parameters()
-
         self.past_obs = {}
         self.past_action = {}
         self.past_rewards = {}
@@ -293,8 +268,6 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
         self.t_start = self.t
 
     def act(self, obs):
-        if self.model is None:
-            self.model = self.local_models[self.process_idx]
         self.updated = False
         if self.training:
             return self._act_train(obs)
@@ -390,7 +363,6 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
 
     def load(self, dirname):
         super().load(dirname)
-        copy_param.copy_param(target_link=self.shared_model, source_link=self.model)
 
     def get_statistics(self):
         return [

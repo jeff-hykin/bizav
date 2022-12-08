@@ -216,30 +216,40 @@ def outer_training_function(args, trial=None):
         " initialized before training."
     )
 
-    local_models = []
-    for i in range(args.processes):
-        local_models.append(make_model())
-
-    agent = a3c.A3C(
+    main_agent = a3c.A3C(
         model,
         opt,
         t_max=args.t_max,
-        gamma=0.99,
+        gamma=config.agent.gamma,
         beta=args.beta,
         phi=phi,
-        max_grad_norm=40.0,
+        max_grad_norm=config.agent.max_grad_norm,
         malicious=args.malicious,
         mal_type=args.mal_type,
-        local_models=local_models
     )
-
+    
+    agents = [
+        a3c.A3C(
+            make_model(), # different model
+            opt, # same optimizer
+            t_max=args.t_max,
+            gamma=config.agent.gamma,
+            beta=args.beta,
+            phi=phi,
+            max_grad_norm=config.agent.max_grad_norm,
+            malicious=args.malicious,
+            mal_type=args.mal_type,
+        )
+            for index in range(config.number_of_processes)
+    ]
+    
     if args.load or args.load_pretrained:
         # either load or load_pretrained must be false
         assert not args.load or not args.load_pretrained
         if args.load:
-            agent.load(args.load)
+            main_agent.load(args.load)
         else:
-            agent.load(
+            main_agent.load(
                 utils.download_model("A3C", args.env, model_type=args.pretrained_type)[
                     0
                 ]
@@ -264,7 +274,8 @@ def outer_training_function(args, trial=None):
         # shared reward data
         import torch.multiprocessing as mp
         experiments.middle_training_function(
-            agent=agent,
+            main_agent=main_agent,
+            agents=agents,
             outdir=args.outdir,
             make_env=make_env,
             profile=args.profile,
@@ -280,7 +291,7 @@ def outer_training_function(args, trial=None):
     env = make_env(0, True)
     eval_stats = experiments.eval_performance(
         env=env,
-        agent=agent,
+        agent=main_agent,
         n_steps=config.evaluation.final_eval.number_of_steps,
         n_episodes=config.evaluation.final_eval.number_of_episodes,
     )

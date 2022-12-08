@@ -12,7 +12,7 @@
     (local_data): ./local_data.ignore.yaml
     
     todo:
-        - FIXME: with act attack and max defense, why does there seem to be one agent with consistenly further gradients
+        - FIXME: with act attack figure out why the central agent is getting a consistently larger gradient
         - get breakout running/solved by A3C with 10 processes (maybe adapt hyperparams from stable baselines)
         - get hyperparams:
             Cheetah: no biz, by 20,000 episodes expect to have an episode score of 1,500, by 40,000 episodes expect be at 2,000
@@ -67,6 +67,9 @@
             verbose: True
             debug: False
             log_rate: 10 # updates
+            agent:
+                gamma: 0.99
+                max_grad_norm: 40.0
             
             distance_kind: mean_all # one of [mean_all, sum_all, median_point, mean_point ], see def distance_metric()
             number_of_processes: 10
