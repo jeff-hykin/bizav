@@ -153,7 +153,6 @@ def middle_training_function(
         process_accumulated_normalized_distance      = mp.Array("d", config.number_of_processes) 
         process_gradient_sum             = mp.Array("d", config.number_of_processes) 
         process_latest_episode_reward    = mp.Array("d", config.number_of_processes) 
-        process_gradients                = mp.Array("d", config.number_of_processes * config.env_config.gradient_size)
         process_accumulated_suspicion    = [1]*config.number_of_processes
         for process_index in range(config.number_of_processes):
             process_q_value[process_index]               = 0
@@ -561,7 +560,7 @@ def middle_training_function(
     
     @print.indent.function
     def create_process(process_index):
-        nonlocal process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  filtered_count,  process_q_value,  process_temp_banned_count,  process_permabanned, episode_reward_trend, process_median_episode_rewards, episode_reward_trend, process_gradients
+        nonlocal process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  filtered_count,  process_q_value,  process_temp_banned_count,  process_permabanned, episode_reward_trend, process_median_episode_rewards, episode_reward_trend
         config.verbose and print(f"[starting process{process_index} (create_process())]")
         random_seed.set_random_seed(random_seeds[process_index])
 
@@ -600,9 +599,6 @@ def middle_training_function(
                     process_gradient_sum[process.index] = agent.gradient_sum
                     start = process.index * config.env_config.gradient_size 
                     end   = (process.index+1) * config.env_config.gradient_size 
-                    process_gradients[start:end] = agent.gradient
-                    number_of_non_zero = sum(1 for each in process_gradients if each != 0)
-                    debug and print(f'''non zero process_gradients = {number_of_non_zero/config.env_config.gradient_size}''')
                     # yield to let other processes get their update ready
                     yield 1
                     # once all the updates are ready
@@ -613,10 +609,6 @@ def middle_training_function(
                         # 
                         with print.indent.block(f"update step {number_of_episodes.value}/{config.training.episode_count}"):
                             debug and print("started individual_updates_ready_barrier()")
-                            debug and print(f'''process_gradient_sum = {list(process_gradient_sum)}''')
-                            gradients_np = np.asarray(list(process_gradients))
-                            debug and print(f'''gradients_np = {gradients_np}''')
-                            all_grads = gradients_np.reshape((config.number_of_processes, config.env_config.gradient_size))
                             debug and print(f'''all_grads.sum(axis=1) = {all_grads.sum(axis=1).tolist()}''')
                             debug and print("starting early_stopping_check()")
                             
@@ -691,10 +683,7 @@ def middle_training_function(
                             if number_of_updates.value != 0:
                                 # Compute gradient mean
                                 debug and print("starting reward_func()")
-                                if config.use_broken_gradient:
-                                    ucb_reward = ucb.reward_func(ucb.gradient_of_agents) # FIXME: ucb.reward_func(all_grads) is more accurate... but doesnt work as well for some reason
-                                else:
-                                    ucb_reward = ucb.reward_func(all_grads)
+                                ucb_reward = ucb.reward_func(ucb.gradient_of_agents)
                                 
                                 # Update Q-values
                                 debug and print("starting update_step()")
