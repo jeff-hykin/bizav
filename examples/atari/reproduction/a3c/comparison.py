@@ -19,8 +19,8 @@ aspects_to_compare = {
         # "CHEETAH",
     ],
     "attack_method": [
-        'sign',
         'act',
+        'sign',
         # 'noise',
         "none"
     ],
