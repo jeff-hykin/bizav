@@ -9,7 +9,6 @@ import json
 import optuna
 import numpy as np
 import torch
-import torch.multiprocessing as mp
 from torch import nn
 from super_map import LazyDict
 from blissful_basics import singleton, max_indices, print, to_pure, shuffled, normalize, countdown
@@ -128,51 +127,39 @@ def middle_training_function(
         use_permaban_defense = config.defense_method == 'ucb'
         use_no_defense       = not (use_softmax_defense or use_max_defence or use_permaban_defense)
         
-        episode_reward_trend = []
-        process_is_central_agent = sample(list(range(config.number_of_processes)), k=1)[0]
-        prev_total_number_of_episodes = -1
-        
-        
         # 
         # init shared values
         # 
-        number_of_timesteps             = mp.Value("l", 0)
-        number_of_episodes              = mp.Value("l", 0)
-        number_of_updates               = mp.Value("l", 0) # Number of total rollouts completed
-        filtered_count                  = mp.Value("l", 0) # Number of permanently filtered agents
-        successfully_filtered_sum       = mp.Value("d", 0)
-        successfully_filtered_increment = mp.Value("l", 0)
-        latest_eval_score               = mp.Value("d", 0)
+        shared = LazyDict(
+            prev_total_number_of_episodes   = -1,
+            number_of_timesteps             = 0,
+            number_of_episodes              = 0,
+            number_of_updates               = 0, # Number of total rollouts completed
+            filtered_count                  = 0, # Number of permanently filtered agents
+            successfully_filtered_sum       = 0,
+            successfully_filtered_increment = 0,
+            latest_eval_score               = 0,
+            episode_reward_trend            = [],
+        )
 
-        process_q_value                  = mp.Array("d", config.number_of_processes) # Q-values
-        process_temp_banned_count        = mp.Array("d", config.number_of_processes) # number of process_temp_banned_count
-        process_permabanned              = mp.Array("l", config.number_of_processes) # Permanently filtered agent memory
-        process_median_episode_rewards   = mp.Array("d", config.number_of_processes)
-        process_temp_ban                 = mp.Array("l", config.number_of_processes) 
-        process_is_malicious             = mp.Array("l", config.number_of_processes) 
-        process_accumulated_normalized_distance      = mp.Array("d", config.number_of_processes) 
-        process_gradient_sum             = mp.Array("d", config.number_of_processes) 
-        process_latest_episode_reward    = mp.Array("d", config.number_of_processes) 
-        process_accumulated_suspicion    = [1]*config.number_of_processes
-        for process_index in range(config.number_of_processes):
-            process_q_value[process_index]               = 0
-            process_permabanned[process_index]           = 0
-            process_is_malicious[process_index]          = 0
-            process_accumulated_normalized_distance[process_index]   = 0
-            process_gradient_sum[process_index]          = 0
-            process_latest_episode_reward[process_index] = 0
-            process_temp_banned_count[process_index]     = 1 # ASK: avoids a division by 0, but treats all processes equal
-        
-        malicious_indices = shuffled(list(range(config.number_of_processes)))[0:config.number_of_malicious_processes]
-        for each_index in malicious_indices:
-            process_is_malicious[each_index] = 1
-    
     # 
     # wrapper for processes
     # 
     class Process:
+        indices_of_malicious            = shuffled(list(range(config.number_of_processes)))[0:config.number_of_malicious_processes]
+        index_of_central_process        = sample(list(range(config.number_of_processes)), k=1)[0]
+        q_value                         = [0]*config.number_of_processes
+        temp_banned_count               = [1]*config.number_of_processes # ASK: setting to 1 avoids a division by 0, but treats all processes equal
+        permabanned                     = [0]*config.number_of_processes
+        median_episode_rewards          = [0]*config.number_of_processes
+        temp_ban                        = [0]*config.number_of_processes
+        is_malicious                    = [ (1 if index in indices_of_malicious else 0) for index in range(config.number_of_processes) ]
+        accumulated_normalized_distance = [0]*config.number_of_processes
+        
         def __init__(self, process_index):
             self.index = process_index
+            self.accumulated_suspicion = 0
+            self.latest_episode_reward = 0
         
         @property
         def is_banned(self):
@@ -185,17 +172,17 @@ def middle_training_function(
         # permaban
         # 
         @property
-        def accumulated_distance(self): return process_accumulated_normalized_distance[self.index]
+        def accumulated_distance(self): return Process.accumulated_normalized_distance[self.index]
         @accumulated_distance.setter
-        def accumulated_distance(self, value): process_accumulated_normalized_distance[self.index] = value
+        def accumulated_distance(self, value): Process.accumulated_normalized_distance[self.index] = value
         
         # 
         # permaban
         # 
         @property
-        def is_permabanned(self): return process_permabanned[self.index]
+        def is_permabanned(self): return Process.permabanned[self.index]
         @is_permabanned.setter
-        def is_permabanned(self, value): process_permabanned[self.index] = value
+        def is_permabanned(self, value): Process.permabanned[self.index] = value
         
         
         # 
@@ -203,18 +190,18 @@ def middle_training_function(
         # 
         @property
         def is_temp_banned(self):
-            if process_temp_ban[self.index]:
+            Pf process.temp_ban[self.index]:
                 return True
             return False
         @is_temp_banned.setter
-        def is_temp_banned(self, value): process_temp_ban[self.index] = value+0
+        Pef is_temp_banned(self, value): process.temp_ban[self.index] = value+0
         
         # 
         # temp ban
         # 
         @property
         def is_malicious(self):
-            if process_is_malicious[self.index]:
+            if Process.is_malicious[self.index]:
                 return True
             
             return False
@@ -223,41 +210,32 @@ def middle_training_function(
         # q value
         # 
         @property
-        def q_value(self): return process_q_value[self.index]
+        def q_value(self): return Process.q_value[self.index]
         @q_value.setter
-        def q_value(self, value): process_q_value[self.index] = value
+        def q_value(self, value): Process.q_value[self.index] = value
         
         # 
         # visits
         # 
         @property
-        def temp_ban_count(self): return process_temp_banned_count[self.index]
+        def temp_ban_count(self): return Process.temp_banned_count[self.index]
         @temp_ban_count.setter
-        def temp_ban_count(self, value): process_temp_banned_count[self.index] = value
+        def temp_ban_count(self, value): Process.temp_banned_count[self.index] = value
         
         # 
         # median rewards (training)
         # 
         @property
-        def median_episode_reward(self): return process_median_episode_rewards[self.index]
+        def median_episode_reward(self): return Process.median_episode_rewards[self.index]
         @median_episode_reward.setter
-        def median_episode_reward(self, value): process_median_episode_rewards[self.index] = value
-        
-        # 
-        # rewards training
-        # 
-        @property
-        def latest_episode_reward(self): return process_latest_episode_reward[self.index]
-        @latest_episode_reward.setter
-        def latest_episode_reward(self, value): process_latest_episode_reward[self.index] = value
+        def median_episode_reward(self, value): Process.median_episode_rewards[self.index] = value
         
         # 
         # is_central_agent
         # 
         @property
-        def is_central_agent(self): return process_is_central_agent == self.index
-
-
+        def is_central_agent(self): return Process.index_of_central_process == self.index
+        
         def distance_metric(self, all_grads, kind):
             this_gradient = torch.tensor(all_grads[self.index])
             all_other_gradients = []
@@ -306,7 +284,7 @@ def middle_training_function(
     # 
     @singleton
     class ucb:
-        raw_value_per_process = process_q_value
+        raw_value_per_process = Process.q_value
         
         @print.indent.function
         def reward_func(self, all_grads):
@@ -378,9 +356,9 @@ def middle_training_function(
                 # 
                 # accumulate suspicion
                 # 
-                current_suspicion_for = [ each * config.number_of_malicious_processes for each in force_sum_to_one(list(to_pure(process_accumulated_normalized_distance))) ]
-                for process_index,_ in enumerate(processes):
-                    process_accumulated_suspicion[process_index] *= 1 + current_suspicion_for[process_index]
+                current_suspicion_for = [ each * config.number_of_malicious_processes for each in force_sum_to_one(list(to_pure(Process.accumulated_normalized_distance))) ]
+                for process in processes:
+                    process.accumulated_suspicion *= 1 + current_suspicion_for[process.index]
                 
                 return reward_for_each_temp_banned_index
         
@@ -412,32 +390,32 @@ def middle_training_function(
                         each_process.q_value = -math.inf
                 
         def value_of_each_process(self):
-            np_process_is_malicious      = mp_to_numpy(process_is_malicious)
-            np_process_temp_ban          = mp_to_numpy(process_temp_ban)
-            np_process_temp_banned_count = mp_to_numpy(process_temp_banned_count)
+            np_process_is_malicious      = mp_to_numpy(Process.is_malicious)
+            np_process_temp_ban          = mp_to_numpy(process.temp_ban)
+            np_process_temp_banned_count = mp_to_numpy(Process.temp_banned_count)
             np_value_per_process         = mp_to_numpy(ucb.raw_value_per_process)
             
             if use_permaban_defense:
                 # Get the true UCB t value
-                ucb_timesteps = np.sum(np_process_temp_banned_count) - (env_config.permaban_threshold+1) * filtered_count.value
+                ucb_timesteps = np.sum(np_process_temp_banned_count) - (env_config.permaban_threshold+1) * shared.filtered_count
                 # Compute UCB policy values (Q-value + uncertainty)
-                successful = sum(np_process_is_malicious * process_temp_ban)
+                Puccessful = sum(np_process_is_malicious * process.temp_ban)
                 config.verbose and print(json.dumps(dict(
-                    step=number_of_updates.value,
+                    step=shared.number_of_updates,
                     successfully_filtered=successful,
-                    filter_choice=process_temp_ban,
-                    process_temp_banned_count=list(np.round(np_process_temp_banned_count, 2)),
+                    Pilter_choice=process.temp_ban,
+                    Process.temp_banned_count=list(np.round(np_process_temp_banned_count, 2)),
                     q_vals=list(np.round(np_value_per_process, 3)),
                 )))
                 return np_value_per_process + np.sqrt((np.log(ucb_timesteps)) / np_process_temp_banned_count)
             
             if use_softmax_defense or use_max_defence:
-                if sum(process_temp_ban) == 0:
+                Pf sum(process.temp_ban) == 0:
                     previously_chosen_indices = tuple()
                 else:
-                    previously_chosen_indices = max_indices(process_temp_ban)
+                    Previously_chosen_indices = max_indices(process.temp_ban)
                 
-                number_of_banned_items = (config.expected_number_of_malicious_processes * number_of_updates.value)
+                number_of_banned_items = (config.expected_number_of_malicious_processes * shared.number_of_updates)
                 ucb_timesteps = np.sum(np_process_temp_banned_count) - number_of_banned_items
                 # Compute UCB policy values (Q-value + uncertainty)
                 return np_value_per_process + np.sqrt((np.log(ucb_timesteps)) / np_process_temp_banned_count)
@@ -445,15 +423,15 @@ def middle_training_function(
         def choose_action(self):
             output = None
             if use_permaban_defense:
-                # Initial selection (process_temp_banned_count 0) #TODO properly select at random
-                np_process_temp_banned_count = mp_to_numpy(process_temp_banned_count)
+                # Initial selection (Process.temp_banned_count 0) #TODO properly select at random
+                np_process_temp_banned_count = mp_to_numpy(Process.temp_banned_count)
                 if np.min(np_process_temp_banned_count) < 1:
                     output = [ np.argmin(np_process_temp_banned_count) ]
                 else:
                     output = [ np.argmax(ucb.value_of_each_process()) ]
             
             elif use_max_defence:
-                weights = list(process_accumulated_normalized_distance)
+                weights = list(Process.accumulated_normalized_distance)
                 sorted_indicies_and_distances = sorted(list(enumerate(weights)), reverse=True, key=lambda each: each[1])
                 config.verbose and print(f'''sorted_indicies_and_distances = {sorted_indicies_and_distances}''')
                 indicies_with_biggest_distance = [ index for index, distance in sorted_indicies_and_distances ]
@@ -462,15 +440,15 @@ def middle_training_function(
                 # 
                 # logging
                 # 
-                np_process_is_malicious      = mp_to_numpy(process_is_malicious)
-                np_process_temp_ban          = mp_to_numpy(process_temp_ban)
-                np_process_temp_banned_count = mp_to_numpy(process_temp_banned_count)
-                successful = sum(np_process_is_malicious * process_temp_ban)
+                np_process_is_malicious      = mp_to_numpy(Process.is_malicious)
+                np_process_temp_ban          = mp_to_numpy(process.temp_ban)
+                np_process_temp_banned_count = mp_to_numpy(Process.temp_banned_count)
+                Puccessful = sum(np_process_is_malicious * process.temp_ban)
                 
-                successfully_filtered_sum.value += successful
-                successfully_filtered_increment.value += 1
+                shared.successfully_filtered_sum += successful
+                shared.successfully_filtered_increment += 1
                 
-                malicious = list(process_is_malicious) 
+                malicious = list(Process.is_malicious) 
                 log_weights = [ round(math.log(each+1), 3) for each in weights ]
                 
                 normalized_log_weights = force_sum_to_one(log_weights)
@@ -478,18 +456,18 @@ def middle_training_function(
                 non_malicious_log_weight = sorted([ round(log_weight*config.number_of_processes, 1)/2 for each_process, log_weight in zip(processes, normalized_log_weights) if not each_process.is_malicious ])
                 
                 config.verbose and print(json.dumps(dict(
-                    step=number_of_updates.value,
-                    successfully_filtered_avg=round(successfully_filtered_sum.value/successfully_filtered_increment.value, 2),
+                    step=shared.number_of_updates,
+                    successfully_filtered_avg=round(shared.successfully_filtered_sum/shared.successfully_filtered_increment, 2),
                     successfully_filtered=successful,
                     processes={
                         f"{each_index}": dict(is_malicious=is_malicious+0, filtered=filtered, log_weight=round(each_log_weight, 2), weight=round(each_weight))
-                            for each_index, (is_malicious, each_weight, each_log_weight, filtered) in enumerate(zip(malicious, weights, log_weights, process_temp_ban))
+                            Por each_index, (is_malicious, each_weight, each_log_weight, filtered) in enumerate(zip(malicious, weights, log_weights, process.temp_ban))
                     },
-                    process_temp_banned_count=list(np.round(np_process_temp_banned_count, 2)),
+                    Process.temp_banned_count=list(np.round(np_process_temp_banned_count, 2)),
                 )))
             elif use_softmax_defense:
-                debug and print(f'''process_accumulated_normalized_distance = {list(process_accumulated_normalized_distance)}''')
-                suspicions = list(process_accumulated_suspicion)
+                debug and print(f'''Process.accumulated_normalized_distance = {list(Process.accumulated_normalized_distance)}''')
+                suspicions = [ each.accumulated_suspicion for each in processes ]
                 debug and print(f'''raw suspicions = {sorted(suspicions,reverse=True)}''')
                 process_indices = list(range(config.number_of_processes))
                 
@@ -506,33 +484,33 @@ def middle_training_function(
                 output = [ each.index for each in picked_processes ]
                 debug and print(f'''output = {output}''')
             
-                np_process_is_malicious      = mp_to_numpy(process_is_malicious)
-                np_process_temp_ban          = mp_to_numpy(process_temp_ban)
-                np_process_temp_banned_count = mp_to_numpy(process_temp_banned_count)
+                np_process_is_malicious      = mp_to_numpy(Process.is_malicious)
+                np_process_temp_ban          = mp_to_numpy(process.temp_ban)
+                np_process_temp_banned_count = mp_to_numpy(Process.temp_banned_count)
                 np_value_per_process         = mp_to_numpy(ucb.raw_value_per_process)
-                successful = sum(np_process_is_malicious * process_temp_ban)
+                Puccessful = sum(np_process_is_malicious * process.temp_ban)
                 
-                successfully_filtered_sum.value += successful
-                successfully_filtered_increment.value += 1
+                shared.successfully_filtered_sum += successful
+                shared.successfully_filtered_increment += 1
                 
-                malicious = list(process_is_malicious) 
-                log_weights = [ round(math.log(each+1), 3) for each in list(process_accumulated_normalized_distance) ]
+                malicious = list(Process.is_malicious) 
+                log_weights = [ round(math.log(each+1), 3) for each in list(Process.accumulated_normalized_distance) ]
                 
                 normalized_log_weights = force_sum_to_one(log_weights)
                 malicious_log_weight     = sorted([ round(log_weight*config.number_of_processes, 1)/2 for each_process, log_weight in zip(processes, normalized_log_weights) if     each_process.is_malicious ])
                 non_malicious_log_weight = sorted([ round(log_weight*config.number_of_processes, 1)/2 for each_process, log_weight in zip(processes, normalized_log_weights) if not each_process.is_malicious ])
                     
                 config.verbose and print(json.dumps(dict(
-                    step=number_of_updates.value,
-                    successfully_filtered_avg=round(successfully_filtered_sum.value/successfully_filtered_increment.value, 2),
+                    step=shared.number_of_updates,
+                    successfully_filtered_avg=round(shared.successfully_filtered_sum/shared.successfully_filtered_increment, 2),
                     successfully_filtered=successful,
                     malicious_log_weight=malicious_log_weight,
                     non_malicious_log_weight=non_malicious_log_weight,
                     processes={
                         f"{each_index}": dict(is_malicious=is_malicious+0, filtered=filtered, log_weight=round(each_log_weight, 2), weight=round(each_weight))
-                            for each_index, (is_malicious, each_weight, each_log_weight, filtered) in enumerate(zip(malicious, process_accumulated_normalized_distance, log_weights, process_temp_ban))
+                            Por each_index, (is_malicious, each_weight, each_log_weight, filtered) in enumerate(zip(malicious, Process.accumulated_normalized_distance, log_weights, process.temp_ban))
                     },
-                    process_temp_banned_count=list(np.round(np_process_temp_banned_count, 2)),
+                    Process.temp_banned_count=list(np.round(np_process_temp_banned_count, 2)),
                     q_vals=list(np.round(np_value_per_process, 3)),
                 )))
             
@@ -560,7 +538,6 @@ def middle_training_function(
     
     @print.indent.function
     def create_process(process_index):
-        nonlocal process_is_central_agent, prev_total_number_of_episodes, number_of_timesteps, number_of_episodes, number_of_updates,  filtered_count,  process_q_value,  process_temp_banned_count,  process_permabanned, episode_reward_trend, process_median_episode_rewards, episode_reward_trend
         config.verbose and print(f"[starting process{process_index} (create_process())]")
         random_seed.set_random_seed(random_seeds[process_index])
 
@@ -570,7 +547,7 @@ def middle_training_function(
         agent = deepcopy(main_agent)
         
         agent.process_idx = process_index
-        agent.is_malicious = process_is_malicious[process_index]
+        agent.is_malicious = Process.is_malicious[process_index]
         process = Process(process_index)
         
         try:
@@ -596,7 +573,6 @@ def middle_training_function(
                 debug and print(f'''agent{process.index}.updated = {agent.updated}''')
                 if agent.updated:
                     debug and print(f'''agent.gradient.shape = {agent.gradient.shape}''')
-                    process_gradient_sum[process.index] = agent.gradient_sum
                     start = process.index * config.env_config.gradient_size 
                     end   = (process.index+1) * config.env_config.gradient_size 
                     # yield to let other processes get their update ready
@@ -607,7 +583,7 @@ def middle_training_function(
                         # 
                         # update step
                         # 
-                        with print.indent.block(f"update step {number_of_episodes.value}/{config.training.episode_count}"):
+                        with print.indent.block(f"update step {shared.number_of_episodes}/{config.training.episode_count}"):
                             debug and print("started individual_updates_ready_barrier()")
                             debug and print(f'''all_grads.sum(axis=1) = {all_grads.sum(axis=1).tolist()}''')
                             debug and print("starting early_stopping_check()")
@@ -615,12 +591,12 @@ def middle_training_function(
                             # 
                             # early stopping check
                             # 
-                            total_number_of_episodes = number_of_episodes.value
+                            total_number_of_episodes = shared.number_of_episodes
                             if total_number_of_episodes > config.early_stopping.min_number_of_episodes:
                                 
                                 # limiter
-                                if total_number_of_episodes >= prev_total_number_of_episodes + check_rate:
-                                    prev_total_number_of_episodes = total_number_of_episodes
+                                if total_number_of_episodes >= shared.prev_total_number_of_episodes + check_rate:
+                                    shared.prev_total_number_of_episodes = total_number_of_episodes
                                     relevent_training_rewards = []
                                     relevent_eval_scores = []
                                     # reset the rewards of filtered-out agents
@@ -633,9 +609,9 @@ def middle_training_function(
                                             relevent_training_rewards.append(each_process.latest_episode_reward)
                                     from statistics import mean as average
                                     latest_episode_reward = average(relevent_training_rewards)
-                                    episode_reward_trend.append(latest_episode_reward)
-                                    episode_reward_trend = episode_reward_trend[-config.value_trend_lookback_size:]
-                                    episode_reward_trend_value = trend_calculate(episode_reward_trend) / check_rate
+                                    shared.episode_reward_trend.append(latest_episode_reward)
+                                    shared.episode_reward_trend = shared.episode_reward_trend[-config.value_trend_lookback_size:]
+                                    shared.episode_reward_trend_value = trend_calculate(shared.episode_reward_trend) / check_rate
                                     biggest_recent_change = math.nan
                                     
                                     # check optuna stopper
@@ -644,8 +620,8 @@ def middle_training_function(
                                         if trial.should_prune():
                                             raise optuna.TrialPruned()
                                     
-                                    if len(episode_reward_trend) >= config.value_trend_lookback_size:
-                                        absolute_changes = [ abs(each) for each in utils.sequential_value_changes(episode_reward_trend)  ]
+                                    if len(shared.episode_reward_trend) >= config.value_trend_lookback_size:
+                                        absolute_changes = [ abs(each) for each in utils.sequential_value_changes(shared.episode_reward_trend)  ]
                                         biggest_recent_change = max(absolute_changes)
                                         if trial and biggest_recent_change < config.early_stopping.lowerbound_for_max_recent_change:
                                             print(f"Hit early stopping because biggest_recent_change: {biggest_recent_change} < {config.early_stopping.lowerbound_for_max_recent_change}")
@@ -654,10 +630,10 @@ def middle_training_function(
                                     
                                     print(json.dumps(dict(
                                         number_of_episodes=total_number_of_episodes,
-                                        number_of_timesteps=number_of_timesteps.value,
-                                        latest_eval_score=latest_eval_score.value,
+                                        number_of_timesteps=shared.number_of_timesteps,
+                                        latest_eval_score=shared.latest_eval_score,
                                         latest_episode_reward=round(latest_episode_reward, 2),
-                                        episode_reward_trend_value=episode_reward_trend_value,
+                                        shared.episode_reward_trend_value=shared.episode_reward_trend_value,
                                         biggest_recent_change=biggest_recent_change,
                                     )))
                                     
@@ -673,14 +649,14 @@ def middle_training_function(
                             
                             debug and print("finished early_stopping_check()")
                             
-                            all_malicious_actors_found = filtered_count.value == config.expected_number_of_malicious_processes
+                            all_malicious_actors_found = shared.filtered_count == config.expected_number_of_malicious_processes
                             if all_malicious_actors_found:
                                 debug and print("finished individual_updates_ready_barrier()")
                                 return
                             
                             # Update values
-                            debug and print("number_of_updates.value", number_of_updates.value)
-                            if number_of_updates.value != 0:
+                            debug and print("shared.number_of_updates", shared.number_of_updates)
+                            if shared.number_of_updates != 0:
                                 # Compute gradient mean
                                 debug and print("starting reward_func()")
                                 ucb_reward = ucb.reward_func(ucb.gradient_of_agents)
@@ -693,20 +669,20 @@ def middle_training_function(
                                     # 
                                     # Permanently disable an agent
                                     # 
-                                    prev_amount_filtered = filtered_count.value
-                                    for process_index, ban_count in enumerate(process_temp_banned_count):
+                                    prev_amount_filtered = shared.filtered_count
+                                    for process_index, ban_count in enumerate(Process.temp_banned_count):
                                         if ban_count >= env_config.permaban_threshold:
-                                            process_permabanned[process_index] = 1
-                                    filtered_count.value = sum(process_permabanned)
+                                            Process.permabanned[process_index] = 1
+                                    shared.filtered_count = sum(Process.permabanned)
                                     
                                     # 
                                     # if someone was just recently permabaned
                                     # 
-                                    if prev_amount_filtered < filtered_count.value:
-                                        # Reset non-disabled process_temp_banned_count/Q-values
-                                        for process_index, ban_count in enumerate(process_temp_banned_count):
+                                    if prev_amount_filtered < shared.filtered_count:
+                                        # Reset non-disabled Process.temp_banned_count/Q-values
+                                        for process_index, ban_count in enumerate(Process.temp_banned_count):
                                             if ban_count < env_config.permaban_threshold:
-                                                process_temp_banned_count[process_index] = 0
+                                                Process.temp_banned_count[process_index] = 0
                                                 ucb.raw_value_per_process[process_index] = 0
                             
                             # Select next ucb action
@@ -717,10 +693,10 @@ def middle_training_function(
                                 for each_process in processes:
                                     if each_process.index in who_to_ban:
                                         each_process.temp_ban_count += 1
-                                        process_temp_ban[each_process.index] = 1 # aka True
+                                        Process.temp_ban[each_process.index] = 1 # aka True
                                     else:
-                                        process_temp_ban[each_process.index] = 0
-                            number_of_updates.value += 1
+                                        Process.temp_ban[each_process.index] = 0
+                            shared.number_of_updates += 1
                             
                             debug and print("finished individual_updates_ready_barrier()")
                     
@@ -738,10 +714,10 @@ def middle_training_function(
                     # 
                     yield 2
                     if process.is_central_agent:
-                        if filtered_count.value != config.expected_number_of_malicious_processes:
-                            num_updates = config.number_of_processes - (filtered_count.value + 1)
+                        if shared.filtered_count != config.expected_number_of_malicious_processes:
+                            num_updates = config.number_of_processes - (shared.filtered_count + 1)
                         else:
-                            num_updates = config.number_of_processes - filtered_count.value
+                            num_updates = config.number_of_processes - shared.filtered_count
                         agent.average_updates(num_updates)
                         agent.optimizer.step()
                     
@@ -750,35 +726,35 @@ def middle_training_function(
                 if done or reset:# Get and increment the global number_of_episodes
                     process.latest_episode_reward = episode_reward
                     process.median_episode_reward = agent.median_reward_per_episode
-                    number_of_episodes.value += 1
-                    number_of_timesteps.value += number_of_timesteps_for_this_episode
+                    shared.number_of_episodes += 1
+                    shared.number_of_timesteps += number_of_timesteps_for_this_episode
                     # next(progress_iter)
                     
                     # reset
                     number_of_timesteps_for_this_episode = 0
                     
                     for hook in global_step_hooks:
-                        hook(env, agent, number_of_episodes.value)
+                        hook(env, agent, shared.number_of_episodes)
 
                     # Evaluate the current agent
                     if evaluator is not None:
                         eval_score = evaluator.evaluate_if_necessary(
                             # eval is triggered based on t (timesteps), but its flexible, so we trigger it based on episodes instead
-                            t=number_of_episodes.value, # ASK
-                            episodes=number_of_episodes.value,
+                            t=shared.number_of_episodes, # ASK
+                            episodes=shared.number_of_episodes,
                             env=eval_env,
                             agent=agent,
                         )
                         if eval_score != None:
                             print_value = print.disable.always
                             print.disable.always = False
-                            latest_eval_score.value = eval_score
+                            shared.latest_eval_score = eval_score
                             print("")
-                            print(json.dumps(dict(eval_score=eval_score, number_of_episodes=number_of_episodes.value)))
+                            print(json.dumps(dict(eval_score=eval_score, number_of_episodes=shared.number_of_episodes)))
                             print.disable.always = print_value
                     
-                    proportional_number_of_timesteps = number_of_timesteps.value / config.number_of_processes
-                    if number_of_episodes.value >= config.training.episode_count:
+                    proportional_number_of_timesteps = shared.number_of_timesteps / config.number_of_processes
+                    if shared.number_of_episodes >= config.training.episode_count:
                         break
 
                     # Start a new episode
