@@ -123,9 +123,10 @@ def middle_training_function(
     # reset globals
     # 
     if True:
+        use_max_defence      = config.defense_method == 'max'
         use_softmax_defense  = config.defense_method == 'softmax'
         use_permaban_defense = config.defense_method == 'ucb'
-        use_no_defense       = not (use_softmax_defense or use_permaban_defense)
+        use_no_defense       = not (use_softmax_defense or use_max_defence or use_permaban_defense)
         
         episode_reward_trend = []
         process_is_central_agent = sample(list(range(config.number_of_processes)), k=1)[0]
@@ -322,6 +323,20 @@ def middle_training_function(
                 ucb_reward = config.env_config.variance_scaling_factor * flipped_value
                 return [ucb_reward]
             
+            if use_max_defence:
+                distances = []
+                for each_process_being_reviewed in processes:
+                    distance = each_process_being_reviewed.distance_metric(all_grads, kind=config.distance_kind)
+                    debug and print(f'''math.log(distance) = {math.log(distance)}, is_malicious: {each_process_being_reviewed.is_malicious}''')
+                    distances.append(distance)
+                
+                # 
+                # accumulate distance
+                # 
+                weights = force_sum_to_one(distances, minimum=0)
+                for each_process_being_reviewed, normalized_distance in zip(processes, weights):
+                    each_process_being_reviewed.accumulated_distance += normalized_distance * config.number_of_processes
+            
             if use_softmax_defense:
                 reward_for_each_temp_banned_index = []
                 distances = []
@@ -372,11 +387,17 @@ def middle_training_function(
         
         def get_uncertainty(self, values):
             values = force_sum_to_one(values)
-            return sum(sorted(values)[:-config.expected_number_of_malicious_processes])/len(values)
+            output = sum(sorted(values)[:-config.expected_number_of_malicious_processes])/len(values)
+            if output != output: # Nan error
+                return 0
+            else:
+                return output
             
         def update_step(self, ucb_reward):
             
             if use_softmax_defense:
+                pass
+            elif use_max_defence:
                 pass
             else:
                 for each_process in processes:
@@ -411,7 +432,7 @@ def middle_training_function(
                 )))
                 return np_value_per_process + np.sqrt((np.log(ucb_timesteps)) / np_process_temp_banned_count)
             
-            if use_softmax_defense:
+            if use_softmax_defense or use_max_defence:
                 if sum(process_temp_ban) == 0:
                     previously_chosen_indices = tuple()
                 else:
@@ -432,6 +453,41 @@ def middle_training_function(
                 else:
                     output = [ np.argmax(ucb.value_of_each_process()) ]
             
+            elif use_max_defence:
+                weights = list(process_accumulated_normalized_distance)
+                sorted_indicies_and_distances = sorted(list(enumerate(weights)), reverse=True, key=lambda each: each[1])
+                config.verbose and print(f'''sorted_indicies_and_distances = {sorted_indicies_and_distances}''')
+                indicies_with_biggest_distance = [ index for index, distance in sorted_indicies_and_distances ]
+                output = indicies_with_biggest_distance[:config.expected_number_of_malicious_processes]
+                
+                # 
+                # logging
+                # 
+                np_process_is_malicious      = mp_to_numpy(process_is_malicious)
+                np_process_temp_ban          = mp_to_numpy(process_temp_ban)
+                np_process_temp_banned_count = mp_to_numpy(process_temp_banned_count)
+                successful = sum(np_process_is_malicious * process_temp_ban)
+                
+                successfully_filtered_sum.value += successful
+                successfully_filtered_increment.value += 1
+                
+                malicious = list(process_is_malicious) 
+                log_weights = [ round(math.log(each+1), 3) for each in weights ]
+                
+                normalized_log_weights = force_sum_to_one(log_weights)
+                malicious_log_weight     = sorted([ round(log_weight*config.number_of_processes, 1)/2 for each_process, log_weight in zip(processes, normalized_log_weights) if     each_process.is_malicious ])
+                non_malicious_log_weight = sorted([ round(log_weight*config.number_of_processes, 1)/2 for each_process, log_weight in zip(processes, normalized_log_weights) if not each_process.is_malicious ])
+                
+                config.verbose and print(json.dumps(dict(
+                    step=number_of_updates.value,
+                    successfully_filtered_avg=round(successfully_filtered_sum.value/successfully_filtered_increment.value, 2),
+                    successfully_filtered=successful,
+                    processes={
+                        f"{each_index}": dict(is_malicious=is_malicious+0, filtered=filtered, log_weight=round(each_log_weight, 2), weight=round(each_weight))
+                            for each_index, (is_malicious, each_weight, each_log_weight, filtered) in enumerate(zip(malicious, weights, log_weights, process_temp_ban))
+                    },
+                    process_temp_banned_count=list(np.round(np_process_temp_banned_count, 2)),
+                )))
             elif use_softmax_defense:
                 debug and print(f'''process_accumulated_normalized_distance = {list(process_accumulated_normalized_distance)}''')
                 suspicions = list(process_accumulated_suspicion)
@@ -448,7 +504,7 @@ def middle_training_function(
                 picked_processes = random_choose_k(items=processes, weights=weights, k=config.expected_number_of_malicious_processes)
                 
                 # who to ban this round
-                output = list(each.index for each in picked_processes)
+                output = [ each.index for each in picked_processes ]
                 debug and print(f'''output = {output}''')
             
                 np_process_is_malicious      = mp_to_numpy(process_is_malicious)

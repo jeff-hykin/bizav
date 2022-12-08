@@ -24,7 +24,7 @@ aspects_to_compare = {
         # 'noise',
         "none"
     ],
-    "defense_method": [ "softmax", "ucb", "none", ],
+    "defense_method": [ "max", "softmax", "ucb", "none", ],
 }
 
 if __name__ == '__main__':
@@ -55,20 +55,14 @@ def main():
         # 
         # set attack_method
         # 
+        config.attack_method = each.attack_method
         if each.attack_method == "none":
-            config.number_of_processes = 7
             config.number_of_malicious_processes = 0
-        else:
-            config.attack_method = each.attack_method
         
         # 
         # set defense_method
         # 
-        if each.defense_method == "none":
-            config.expected_number_of_malicious_processes = 0
-        else:
-            config.defense_method = each.defense_method
-            config.expected_number_of_malicious_processes = 3
+        config.defense_method = each.defense_method
         
         from statistics import mean as average
         fitness_values = []

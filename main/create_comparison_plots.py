@@ -25,7 +25,7 @@ liquid_log = liquid_log.map(
         "env": FS.basename(row["__source__"]).split('__')[0],
         "atk": FS.basename(row["__source__"]).split('__')[1].split('=')[1],
         "def": FS.basename(row["__source__"]).split('__')[2].split('=')[1].replace(".liquid.log", "").replace(".log", ""),
-        "total_number_of_episodes": row.get("total_number_of_episodes", row.get("number_of_episodes", None)),
+        "number_of_episodes": row.get("number_of_episodes", row.get("number_of_episodes", None)),
     })
 )
 
@@ -43,15 +43,17 @@ with print.indent:
                     # plot training curve
                     # 
                     training_logs = each_run_frame.only_keep_if(
-                        lambda row: row["total_number_of_episodes"] and row['per_episode_reward'] != None
-                    ).sort_by('total_number_of_episodes')
-                    if len(training_logs) > 0:
+                        lambda row: row["number_of_episodes"] and row['latest_episode_reward'] != None
+                    ).sort_by('number_of_episodes')
+                    if len(training_logs) == 0 and len(each_run_frame) > 1:
+                        print("log size was 0")
+                    elif len(training_logs) > 0:
                         print(f'''(attack_name, defence_name, index) = {(attack_name, defence_name, index)}''')
                         first_element = next(iter(training_logs))
                         folder = FS.basename(FS.dirname(first_element['__source__']))
                         plot_line(
-                            plot_name=f"{folder}/train/{env_name}",
+                            plot_name=f"{folder}/train3/{env_name}",
                             line_name=f"{attack_name}_{defence_name}_{index}",
-                            new_x_values=training_logs['total_number_of_episodes'],
-                            new_y_values=training_logs['per_episode_reward'],
+                            new_x_values=training_logs['number_of_episodes'],
+                            new_y_values=training_logs['latest_episode_reward'],
                         )

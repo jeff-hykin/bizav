@@ -43,8 +43,8 @@ commands/project/convert_hyper_opt_log hyp_opt/EXPERIMENT_NAME.log
 Comparisions
 
 ```sh
-# will create a lot of files under logs/comparisions
+# will create a lot of files under logs/comparisons
 python ./main/0_comparison.py 
-# this will create a few html files under figures/comparisions/
-python ./main/create_comparison_plots.py logs/comparisions/*.log
+# this will create a few html files under figures/comparisons/
+python ./main/create_comparison_plots.py logs/comparisons/*.log
 ```
