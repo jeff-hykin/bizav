@@ -203,7 +203,7 @@ def middle_training_function(
                             # 
                             # update step
                             # 
-                            with print.indent.block(f"update step {shared.number_of_episodes}/{config.training.episode_count}"):
+                            with print.indent: # .block(f"update step {shared.number_of_episodes}/{config.training.episode_count}")
                                 debug and print("started individual_updates_ready_barrier()")
                                 debug and print(f'''all_grads.sum(axis=1) = {all_grads.sum(axis=1).tolist()}''')
                                 debug and print("starting early_stopping_check()")
@@ -339,7 +339,7 @@ def middle_training_function(
                             else:
                                 num_updates = config.number_of_processes - shared.filtered_count
                             
-                            for param in self.agent.model.parameters():
+                            for param in main_agent.model.parameters():
                                 if param.grad is not None:
                                     param.grad = param.grad / num_updates
                             
@@ -663,7 +663,7 @@ def middle_training_function(
             elif use_max_defence:
                 weights = list(Process.accumulated_normalized_distance)
                 sorted_indicies_and_distances = sorted(list(enumerate(weights)), reverse=True, key=lambda each: each[1])
-                config.verbose and print(f'''sorted_indicies_and_distances = {sorted_indicies_and_distances}''')
+                debug and print(f'''sorted_indicies_and_distances = {sorted_indicies_and_distances}''')
                 indicies_with_biggest_distance = [ index for index, distance in sorted_indicies_and_distances ]
                 output = indicies_with_biggest_distance[:config.expected_number_of_malicious_processes]
                 
