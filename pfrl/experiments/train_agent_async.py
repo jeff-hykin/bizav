@@ -97,10 +97,9 @@ def middle_training_function(
     """
     # from informative_iterator import ProgressBar
     # progress_iter = iter(ProgressBar(config.training.episode_count, title="trial run"))
-    
+    main_agent = agent
     config.verbose and print("[starting middle_training_function()]\n")
     random_seeds = np.arange(config.number_of_processes) if random_seeds is None else random_seeds
-    logger       = logger or logging.getLogger(__name__)
     for hook in evaluation_hooks:
         if not hook.support_middle_training_function:
             raise ValueError("{} does not support middle_training_function().".format(hook))
@@ -114,9 +113,8 @@ def middle_training_function(
         step_offset=step_offset,
         evaluation_hooks=evaluation_hooks,
         save_best_so_far_agent=save_best_so_far_agent,
-        logger=logger,
+        logger=logger or logging.getLogger(__name__),
     )
-    main_agent = agent
     
     # 
     # reset globals
@@ -190,11 +188,11 @@ def middle_training_function(
         # 
         @property
         def is_temp_banned(self):
-            Pf process.temp_ban[self.index]:
+            if Process.temp_ban[self.index]:
                 return True
             return False
         @is_temp_banned.setter
-        Pef is_temp_banned(self, value): process.temp_ban[self.index] = value+0
+        Pef is_temp_banned(self, value): Process.temp_ban[self.index] = value+0
         
         # 
         # temp ban
@@ -403,17 +401,17 @@ def middle_training_function(
                 config.verbose and print(json.dumps(dict(
                     step=shared.number_of_updates,
                     successfully_filtered=successful,
-                    Pilter_choice=process.temp_ban,
-                    Process.temp_banned_count=list(np.round(np_process_temp_banned_count, 2)),
+                    filter_choice=Process.temp_ban,
+                    temp_banned_count=list(np.round(np_process_temp_banned_count, 2)),
                     q_vals=list(np.round(np_value_per_process, 3)),
                 )))
                 return np_value_per_process + np.sqrt((np.log(ucb_timesteps)) / np_process_temp_banned_count)
             
             if use_softmax_defense or use_max_defence:
-                Pf sum(process.temp_ban) == 0:
+                if sum(Process.temp_ban) == 0:
                     previously_chosen_indices = tuple()
                 else:
-                    Previously_chosen_indices = max_indices(process.temp_ban)
+                    previously_chosen_indices = max_indices(Process.temp_ban)
                 
                 number_of_banned_items = (config.expected_number_of_malicious_processes * shared.number_of_updates)
                 ucb_timesteps = np.sum(np_process_temp_banned_count) - number_of_banned_items
@@ -441,9 +439,9 @@ def middle_training_function(
                 # logging
                 # 
                 np_process_is_malicious      = mp_to_numpy(Process.is_malicious)
-                np_process_temp_ban          = mp_to_numpy(process.temp_ban)
+                np_process_temp_ban          = mp_to_numpy(Process.temp_ban)
                 np_process_temp_banned_count = mp_to_numpy(Process.temp_banned_count)
-                Puccessful = sum(np_process_is_malicious * process.temp_ban)
+                successful = sum(np_process_is_malicious * Process.temp_ban)
                 
                 shared.successfully_filtered_sum += successful
                 shared.successfully_filtered_increment += 1
@@ -461,7 +459,7 @@ def middle_training_function(
                     successfully_filtered=successful,
                     processes={
                         f"{each_index}": dict(is_malicious=is_malicious+0, filtered=filtered, log_weight=round(each_log_weight, 2), weight=round(each_weight))
-                            Por each_index, (is_malicious, each_weight, each_log_weight, filtered) in enumerate(zip(malicious, weights, log_weights, process.temp_ban))
+                            for each_index, (is_malicious, each_weight, each_log_weight, filtered) in enumerate(zip(malicious, weights, log_weights, Process.temp_ban))
                     },
                     Process.temp_banned_count=list(np.round(np_process_temp_banned_count, 2)),
                 )))
@@ -485,10 +483,10 @@ def middle_training_function(
                 debug and print(f'''output = {output}''')
             
                 np_process_is_malicious      = mp_to_numpy(Process.is_malicious)
-                np_process_temp_ban          = mp_to_numpy(process.temp_ban)
+                np_process_temp_ban          = mp_to_numpy(Process.temp_ban)
                 np_process_temp_banned_count = mp_to_numpy(Process.temp_banned_count)
                 np_value_per_process         = mp_to_numpy(ucb.raw_value_per_process)
-                Puccessful = sum(np_process_is_malicious * process.temp_ban)
+                successful = sum(np_process_is_malicious * Process.temp_ban)
                 
                 shared.successfully_filtered_sum += successful
                 shared.successfully_filtered_increment += 1
@@ -508,7 +506,7 @@ def middle_training_function(
                     non_malicious_log_weight=non_malicious_log_weight,
                     processes={
                         f"{each_index}": dict(is_malicious=is_malicious+0, filtered=filtered, log_weight=round(each_log_weight, 2), weight=round(each_weight))
-                            Por each_index, (is_malicious, each_weight, each_log_weight, filtered) in enumerate(zip(malicious, Process.accumulated_normalized_distance, log_weights, process.temp_ban))
+                            for each_index, (is_malicious, each_weight, each_log_weight, filtered) in enumerate(zip(malicious, Process.accumulated_normalized_distance, log_weights, process.temp_ban))
                     },
                     Process.temp_banned_count=list(np.round(np_process_temp_banned_count, 2)),
                     q_vals=list(np.round(np_value_per_process, 3)),
