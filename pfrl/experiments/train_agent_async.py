@@ -11,7 +11,7 @@ import numpy as np
 import torch
 from torch import nn
 from super_map import LazyDict
-from blissful_basics import singleton, max_indices, print, to_pure, shuffled, normalize, countdown
+from blissful_basics import singleton, max_indices, print, to_pure, shuffled, normalize, countdown, randomly_pick_from
 
 from pfrl.experiments.evaluator import AsyncEvaluator
 from pfrl.utils import async_, random_seed, copy_param
@@ -146,7 +146,7 @@ def middle_training_function(
     class Process:
         indices_of_malicious            = malicious_indices
         index_of_central_process        = sample(list(range(config.number_of_processes)), k=1)[0]
-        q_value                         = [0]*config.number_of_processes
+        q_values                        = [0]*config.number_of_processes
         temp_banned_count               = [1]*config.number_of_processes # ASK: setting to 1 avoids a division by 0, but treats all processes equal
         temp_ban                        = [0]*config.number_of_processes
         accumulated_normalized_distance = [0]*config.number_of_processes
@@ -303,7 +303,7 @@ def middle_training_function(
                                             for process_index, ban_count in enumerate(Process.temp_banned_count):
                                                 if ban_count < env_config.permaban_threshold:
                                                     Process.temp_banned_count[process_index] = 0
-                                                    Process.q_value[process_index] = 0
+                                                    Process.q_values[process_index] = 0
                                 
                                 # Select next ucb action
                                 debug and print("starting choose_action()")
@@ -445,9 +445,9 @@ def middle_training_function(
         # q value
         # 
         @property
-        def q_value(self): return Process.q_value[self.index]
+        def q_value(self): return Process.q_values[self.index]
         @q_value.setter
-        def q_value(self, value): Process.q_value[self.index] = value
+        def q_value(self, value): Process.q_values[self.index] = value
         
         # 
         # visits
@@ -621,15 +621,15 @@ def middle_training_function(
                 
         def value_of_each_process(self):
             np_process_is_malicious      = np.asarray(Process.malicious)
-            np_process_temp_ban          = np.asarray(process.temp_ban)
+            np_process_temp_ban          = np.asarray(Process.temp_ban)
             np_process_temp_banned_count = np.asarray(Process.temp_banned_count)
-            np_value_per_process         = np.asarray(Process.q_value)
+            np_value_per_process         = np.asarray(Process.q_values)
             
             if use_permaban_defense:
                 # Get the true UCB t value
                 ucb_timesteps = np.sum(np_process_temp_banned_count) - (env_config.permaban_threshold+1) * shared.filtered_count
                 # Compute UCB policy values (Q-value + uncertainty)
-                Puccessful = sum(np_process_is_malicious * process.temp_ban)
+                successful = sum(np_process_is_malicious * Process.temp_ban)
                 config.verbose and print(json.dumps(dict(
                     step=shared.number_of_updates,
                     successfully_filtered=successful,
@@ -658,7 +658,9 @@ def middle_training_function(
                 if np.min(np_process_temp_banned_count) < 1:
                     output = [ np.argmin(np_process_temp_banned_count) ]
                 else:
-                    output = [ np.argmax(ucb.value_of_each_process()) ]
+                    # multiple can have highest score, so choose randomly between them
+                    random_first_place = randomly_pick_from(max_indices(values))
+                    output = [ random_first_place ]
             
             elif use_max_defence:
                 weights = list(Process.accumulated_normalized_distance)
@@ -726,7 +728,7 @@ def middle_training_function(
                 np_process_is_malicious      = np.asarray(Process.malicious)
                 np_process_temp_ban          = np.asarray(Process.temp_ban)
                 np_process_temp_banned_count = np.asarray(Process.temp_banned_count)
-                np_value_per_process         = np.asarray(Process.q_value)
+                np_value_per_process         = np.asarray(Process.q_values)
                 successful = sum(np_process_is_malicious * Process.temp_ban)
                 
                 shared.successfully_filtered_sum += successful
@@ -749,7 +751,7 @@ def middle_training_function(
                     non_malicious_log_weight=non_malicious_log_weight,
                     processes={
                         f"{each_index}": dict(is_malicious=is_malicious+0, filtered=filtered, log_weight=round(each_log_weight, 2), weight=round(each_weight))
-                            for each_index, (is_malicious, each_weight, each_log_weight, filtered) in enumerate(zip(malicious, Process.accumulated_normalized_distance, log_weights, process.temp_ban))
+                            for each_index, (is_malicious, each_weight, each_log_weight, filtered) in enumerate(zip(malicious, Process.accumulated_normalized_distance, log_weights, Process.temp_ban))
                     },
                     temp_banned_count=list(np.round(np_process_temp_banned_count, 2)),
                     q_vals=list(np.round(np_value_per_process, 3)),
