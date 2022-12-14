@@ -197,7 +197,7 @@ def middle_training_function(
                         # yield to let other processes get their update ready
                         yield 1
                         # once all the updates are ready
-                        if self.is_central_agent:
+                        if self.is_central_agent and all(agent.updated for agent in processes):
                             # print.disable.always = not should_log()
                             
                             # 
