@@ -152,7 +152,6 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
 
     def update(self, statevar):
         assert self.t_start < self.t
-
         n = self.t - self.t_start
 
         self.assert_shared_memory()
@@ -224,8 +223,6 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
         if v_loss_factor != 1.0:
             v_loss *= v_loss_factor
 
-        if self.process_idx == 0:
-            logger.debug("pi_loss:%s v_loss:%s", pi_loss, v_loss)
 
         self.total_loss = torch.squeeze(pi_loss) + torch.squeeze(v_loss)
 
@@ -268,7 +265,6 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
         self.t_start = self.t
 
     def act(self, obs):
-        self.updated = False
         if self.training:
             return self._act_train(obs)
         else:
@@ -329,10 +325,6 @@ class A3C(agent.AttributeSavingMixin, agent.AsyncAgent):
     def _observe_train(self, obs, reward, done, reset):
         self.t += 1
         self.past_rewards[self.t - 1] = reward
-        if self.process_idx == 0:
-            logger.debug(
-                "t:%s action:%s reward:%s", self.t, self.past_action[self.t - 1], reward
-            )
         if self.t - self.t_start == self.t_max or done or reset:
             if done:
                 statevar = None

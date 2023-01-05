@@ -6,6 +6,7 @@ from statistics import mean
 import math
 import json
 
+import gym
 import optuna
 import numpy as np
 import torch
@@ -26,6 +27,7 @@ from main.utils import trend_calculate
 debug = config.debug
 check_rate = config.number_of_processes
 should_log = countdown(config.log_rate)
+show_iterations = True
 
 def middle_training_function(
     outdir,
@@ -53,51 +55,9 @@ def middle_training_function(
     permaban_threshold=1,
     trial=None,
 ):
-    """
-        Train agent asynchronously using multiprocessing.
-
-        Either `agent` or `make_agent` must be specified.
-
-        Args:
-            outdir (str): Path to the directory to output things.
-            make_env (callable): (process_index, test) -> Environment.
-            profile (bool): Profile if set True.
-            steps (int): Number of global time steps for training.
-            eval_interval (int): Interval of evaluation. If set to None, the agent
-                will not be evaluated at all.
-            eval_n_steps (int): Number of eval timesteps at each eval phase
-            eval_n_episodes (int): Number of eval episodes at each eval phase
-            eval_success_threshold (float): r-threshold above which grasp succeeds
-            max_episode_len (int): Maximum episode length.
-            step_offset (int): Time step from which training starts.
-            agent (Agent): Agent to train.
-            make_agent (callable): (process_index) -> Agent
-            global_step_hooks (list): List of callable objects that accepts
-                (env, agent, step) as arguments. They are called every global
-                step. See pfrl.experiments.hooks.
-            evaluation_hooks (Sequence): Sequence of
-                pfrl.experiments.evaluation_hooks.EvaluationHook objects. They are
-                called after each evaluation.
-            save_best_so_far_agent (bool): If set to True, after each evaluation,
-                if the score (= mean return of evaluation episodes) exceeds
-                the best-so-far score, the current agent is saved.
-            use_tensorboard (bool): Additionally log eval stats to tensorboard
-            logger (logging.Logger): Logger used in this function.
-            random_seeds (array-like of ints or None): Random seeds for processes.
-                If set to None, [0, 1, ..., processes-1] are used.
-            stop_event (multiprocessing.Event or None): Event to stop training.
-                If set to None, a new Event object is created and used internally.
-            exception_event (multiprocessing.Event or None): Event that indicates
-                other thread raised an excpetion. The train will be terminated and
-                the current agent will be saved.
-                If set to None, a new Event object is created and used internally.
-            use_shared_memory (bool): Share memory amongst asynchronous agents.
-
-        Returns:
-            Trained agent.
-    """
-    # from informative_iterator import ProgressBar
-    # progress_iter = iter(ProgressBar(config.training.episode_count, title="trial run"))
+    if show_iterations:
+        from informative_iterator import ProgressBar
+        progress_iter = iter(ProgressBar(config.training.episode_count, title="trial run"))
     config.verbose and print("[starting middle_training_function()]\n")
     for hook in evaluation_hooks:
         if not hook.support_middle_training_function:
@@ -142,24 +102,29 @@ def middle_training_function(
     # 
     # wrapper for processes
     # 
+    envs, group = unvectorize(
+        gym.vector.make(
+            config.env_config.env_name,
+            asynchronous=False,
+            num_envs=config.number_of_processes
+        )
+    )
     malicious_indices = shuffled(list(range(config.number_of_processes)))[0:config.number_of_malicious_processes]
     class Process:
         indices_of_malicious            = malicious_indices
-        index_of_central_process        = sample(list(range(config.number_of_processes)), k=1)[0]
         q_values                        = [0]*config.number_of_processes
         temp_banned_count               = [1]*config.number_of_processes # ASK: setting to 1 avoids a division by 0, but treats all processes equal
         temp_ban                        = [0]*config.number_of_processes
         accumulated_normalized_distance = [0]*config.number_of_processes
         malicious                       = [ (1 if index in malicious_indices else 0) for index in range(config.number_of_processes) ]
         
-        def __init__(self, process_index, agent, evaluator):
+        def __init__(self, process_index, agent, evaluator, env):
             config.verbose and print(f"[creating Process({process_index})]")
             
             self.index = process_index
             
-            self.env                = make_env(process_index, test=False)
+            self.env                = env
             self.evaluator          = evaluator
-            self.eval_env           = self.env if evaluator is None else make_env(process_index, test=True)
             self.agent              = agent
             self.agent.process_idx  = process_index
             self.agent.is_malicious = Process.malicious[process_index]
@@ -169,229 +134,32 @@ def middle_training_function(
             self.latest_episode_reward = 0
             self.median_episode_reward = 0
         
-        @print.indent.function
-        def update_sequence(self):
-            config.verbose and print(f"[starting update_sequence of Process({self.index})]")
-            try:
-                observation     = self.env.reset()
-                episode_reward  = 0
-                episode_len     = 0
-                number_of_timesteps_for_this_episode = 0
-                
-                while True:
-                    # a_t
-                    action = self.agent.act(observation)
-                    # o_{t+1}, r_{t+1}
-                    observation, reward, done, info = self.env.step(action)
-                    number_of_timesteps_for_this_episode += 1
-                    episode_reward += reward
-                    episode_len += 1
-                    reset = episode_len == max_episode_len or info.get("needs_reset", False)
-                    self.agent.observe(observation, reward, done, reset)
-                    
-                    debug and print(f'''self.agent{self.index}.updated = {self.agent.updated}''')
-                    if self.agent.updated:
-                        debug and print(f'''self.agent.gradient.shape = {self.agent.gradient.shape}''')
-                        start = self.index * config.env_config.gradient_size 
-                        end   = (self.index+1) * config.env_config.gradient_size 
-                        # yield to let other processes get their update ready
-                        yield 1
-                        # once all the updates are ready
-                        if self.is_central_agent and all(agent.updated for agent in processes):
-                            # print.disable.always = not should_log()
-                            
-                            # 
-                            # update step
-                            # 
-                            with print.indent: # .block(f"update step {shared.number_of_episodes}/{config.training.episode_count}")
-                                debug and print("started individual_updates_ready_barrier()")
-                                debug and print(f'''all_grads.sum(axis=1) = {all_grads.sum(axis=1).tolist()}''')
-                                debug and print("starting early_stopping_check()")
-                                
-                                # 
-                                # early stopping check
-                                # 
-                                total_number_of_episodes = shared.number_of_episodes
-                                if total_number_of_episodes > config.early_stopping.min_number_of_episodes:
-                                    
-                                    # limiter
-                                    if total_number_of_episodes >= shared.prev_total_number_of_episodes + check_rate:
-                                        shared.prev_total_number_of_episodes = total_number_of_episodes
-                                        relevent_training_rewards = []
-                                        relevent_eval_scores = []
-                                        # reset the rewards of filtered-out agents
-                                        for each_process in processes:
-                                            if each_process.is_permabanned:
-                                                each_process.median_episode_reward = 0
-                                            elif each_process.is_banned:
-                                                continue
-                                            else:
-                                                relevent_training_rewards.append(each_process.latest_episode_reward)
-                                        from statistics import mean as average
-                                        latest_episode_reward = average(relevent_training_rewards)
-                                        shared.episode_reward_trend.append(latest_episode_reward)
-                                        shared.episode_reward_trend = shared.episode_reward_trend[-config.value_trend_lookback_size:]
-                                        shared.episode_reward_trend_value = trend_calculate(shared.episode_reward_trend) / check_rate
-                                        biggest_recent_change = math.nan
-                                        
-                                        # check optuna stopper
-                                        if trial:
-                                            trial.report(latest_episode_reward, total_number_of_episodes)
-                                            if trial.should_prune():
-                                                raise optuna.TrialPruned()
-                                        
-                                        if len(shared.episode_reward_trend) >= config.value_trend_lookback_size:
-                                            absolute_changes = [ abs(each) for each in utils.sequential_value_changes(shared.episode_reward_trend)  ]
-                                            biggest_recent_change = max(absolute_changes)
-                                            if trial and biggest_recent_change < config.early_stopping.lowerbound_for_max_recent_change:
-                                                print(f"Hit early stopping because biggest_recent_change: {biggest_recent_change} < {config.early_stopping.lowerbound_for_max_recent_change}")
-                                                raise optuna.TrialPruned()
-                                        
-                                        
-                                        print(json.dumps(dict(
-                                            number_of_episodes=total_number_of_episodes,
-                                            number_of_timesteps=shared.number_of_timesteps,
-                                            latest_eval_score=shared.latest_eval_score,
-                                            latest_episode_reward=round(latest_episode_reward, 2),
-                                            episode_reward_trend_value=shared.episode_reward_trend_value,
-                                            biggest_recent_change=biggest_recent_change,
-                                        )))
-                                        
-                                        # only do early stopping if tuning hyperparameters
-                                        if trial:
-                                            for each_step, each_min_value in config.early_stopping.thresholds.items():
-                                                # if meets the increment-based threshold
-                                                if total_number_of_episodes > each_step:
-                                                    # enforce that it return the minimum 
-                                                    if latest_episode_reward < each_min_value:
-                                                        print(f"Hit early stopping because latest_episode_reward: {latest_episode_reward} < {each_min_value}")
-                                                        raise optuna.TrialPruned()
-                                
-                                debug and print("finished early_stopping_check()")
-                                
-                                all_malicious_actors_found = shared.filtered_count == config.expected_number_of_malicious_processes
-                                if all_malicious_actors_found:
-                                    debug and print("finished individual_updates_ready_barrier()")
-                                    return
-                                
-                                # Update values
-                                debug and print("shared.number_of_updates", shared.number_of_updates)
-                                if shared.number_of_updates != 0:
-                                    # Compute gradient mean
-                                    debug and print("starting reward_func()")
-                                    ucb_reward = ucb.reward_func(ucb.gradient_of_agents)
-                                    
-                                    # Update Q-values
-                                    debug and print("starting update_step()")
-                                    ucb.update_step(ucb_reward)
-                                    
-                                    if use_permaban_defense:
-                                        # 
-                                        # Permanently disable an self.agent
-                                        # 
-                                        prev_amount_filtered = shared.filtered_count
-                                        for process_index, ban_count in enumerate(Process.temp_banned_count):
-                                            if ban_count >= env_config.permaban_threshold:
-                                                processes[process_index].is_permabanned = 1
-                                        shared.filtered_count = sum(1 for process in processes if process.is_permabanned)
-                                        
-                                        # 
-                                        # if someone was just recently permabaned
-                                        # 
-                                        if prev_amount_filtered < shared.filtered_count:
-                                            # Reset non-disabled Process.temp_banned_count/Q-values
-                                            for process_index, ban_count in enumerate(Process.temp_banned_count):
-                                                if ban_count < env_config.permaban_threshold:
-                                                    Process.temp_banned_count[process_index] = 0
-                                                    Process.q_values[process_index] = 0
-                                
-                                # Select next ucb action
-                                debug and print("starting choose_action()")
-                                who_to_ban = ucb.choose_action()
-                                debug and print(f"finished choose_action(), who_to_ban={who_to_ban}")
-                                if who_to_ban:
-                                    for each_process in processes:
-                                        if each_process.index in who_to_ban:
-                                            each_process.temp_ban_count += 1
-                                            Process.temp_ban[each_process.index] = 1 # aka True
-                                        else:
-                                            Process.temp_ban[each_process.index] = 0
-                                shared.number_of_updates += 1
-                                
-                                debug and print("finished individual_updates_ready_barrier()")
-                        
-                        # 
-                        # contribute update
-                        # 
-                        if not self.is_banned:
-                            debug and print(f'''self.agent{self.index}.add_update()''')
-                            debug and print(f'''adding update, self.is_malicious = {self.is_malicious}''')
-                            # include self.agent's gradient in global model
-                            copy_param.add_grad(target_link=main_agent.model, source_link=self.agent.model)
-                        
-                        # 
-                        # sync_updates()
-                        # 
-                        yield 2
-                        if self.is_central_agent:
-                            if shared.filtered_count != config.expected_number_of_malicious_processes:
-                                num_updates = config.number_of_processes - (shared.filtered_count + 1)
-                            else:
-                                num_updates = config.number_of_processes - shared.filtered_count
-                            
-                            for param in main_agent.model.parameters():
-                                if param.grad is not None:
-                                    param.grad = param.grad / num_updates
-                            
-                            main_agent.optimizer.step()
-                            
-                            # deliver the gradient change to all the agents
-                            for process in processes:
-                                copy_param.copy_param(target_link=process.agent.model, source_link=main_agent.model)
-                                process.agent.after_update()
-                        
-
-                    if done or reset:# Get and increment the global number_of_episodes
-                        self.latest_episode_reward = episode_reward
-                        self.median_episode_reward = self.agent.median_reward_per_episode
-                        shared.number_of_episodes += 1
-                        shared.number_of_timesteps += number_of_timesteps_for_this_episode
-                        
-                        # reset
-                        number_of_timesteps_for_this_episode = 0
-                        
-                        for hook in global_step_hooks:
-                            hook(self.env, self.agent, shared.number_of_episodes)
-
-                        # Evaluate the current self.agent
-                        if self.evaluator is not None:
-                            eval_score = self.evaluator.evaluate_if_necessary(
-                                # eval is triggered based on t (timesteps), but its flexible, so we trigger it based on episodes instead
-                                t=shared.number_of_episodes, # ASK
-                                episodes=shared.number_of_episodes,
-                                env=self.eval_env,
-                                agent=self.agent,
-                            )
-                            if eval_score != None:
-                                print_value = print.disable.always
-                                print.disable.always = False
-                                shared.latest_eval_score = eval_score
-                                print("")
-                                print(json.dumps(dict(eval_score=eval_score, number_of_episodes=shared.number_of_episodes)))
-                                print.disable.always = print_value
-                        
-                        proportional_number_of_timesteps = shared.number_of_timesteps / config.number_of_processes
-                        if shared.number_of_episodes >= config.training.episode_count:
-                            break
-
-                        # Start a new episode
-                        episode_reward = 0
-                        episode_len = 0
-                        observation = self.env.reset()
-            finally:
-                self.env.close()
-                if self.eval_env and self.eval_env is not self.env:
-                    self.eval_env.close()
+            self.on_new_episode()
+        
+        def on_new_episode(self):
+            self.episode_reward  = 0
+            self.episode_len     = 0
+            self.number_of_timesteps_for_this_episode = 0
+            shared.number_of_episodes += 1
+        
+        def choose_action(self, observation, reward, done, info):
+            action = self.agent.act(observation)
+            # first observation
+            if type(reward) == type(None):
+                self.episode_reward  = 0
+                self.episode_len     = 0
+                self.number_of_timesteps_for_this_episode = 0
+            else:
+                self.number_of_timesteps_for_this_episode += 1
+                self.episode_reward += reward
+                self.episode_len += 1
+                reset = self.episode_len == max_episode_len or info.get("needs_reset", False)
+                self.agent.observe(observation, reward, done, reset)
+                if done:
+                    self.on_new_episode()
+            
+            self.env.choose_action(action)
+            return action
         
         @property
         def gradient(self):
@@ -457,12 +225,6 @@ def middle_training_function(
         @temp_ban_count.setter
         def temp_ban_count(self, value): Process.temp_banned_count[self.index] = value
         
-        # 
-        # is_central_agent
-        # 
-        @property
-        def is_central_agent(self): return Process.index_of_central_process == self.index
-        
         def distance_metric(self, all_grads, kind):
             this_gradient = torch.tensor(all_grads[self.index])
             all_other_gradients = []
@@ -507,8 +269,8 @@ def middle_training_function(
     # create all processes
     # 
     processes = tuple(
-        Process(each_index, agent=agent, evaluator=evaluator)
-            for each_index, agent in enumerate(agents)
+        Process(each_index, agent=agent, evaluator=evaluator, env=env)
+            for each_index, (agent, env) in enumerate(zip(agents, envs))
     )
     
     # 
@@ -628,11 +390,26 @@ def middle_training_function(
             if use_permaban_defense:
                 # Get the true UCB t value
                 ucb_timesteps = np.sum(np_process_temp_banned_count) - (env_config.permaban_threshold+1) * shared.filtered_count
+                successful_bans = 0
+                ban_summary = []
+                for process in processes:
+                    if process.is_malicious:
+                        if process.is_temp_banned or process.is_permabanned:
+                            successful_bans += 1
+                            ban_summary.append('y-m') # yes-malicious (good)
+                        else:
+                            ban_summary.append('n-m') # no-malicious
+                    else:
+                        if process.is_temp_banned or process.is_permabanned:
+                            ban_summary.append('y-b') # yes-bengin
+                        else:
+                            ban_summary.append('n-b') # no-bengin (good)
+                        
                 # Compute UCB policy values (Q-value + uncertainty)
-                successful = sum(np_process_is_malicious * Process.temp_ban)
                 config.verbose and print(json.dumps(dict(
                     step=shared.number_of_updates,
-                    successfully_filtered=successful,
+                    successfully_filtered=successful_bans,
+                    ban_summary=ban_summary,
                     filter_choice=Process.temp_ban,
                     temp_banned_count=list(np.round(np_process_temp_banned_count, 2)),
                     q_vals=list(np.round(np_value_per_process, 3)),
@@ -653,14 +430,19 @@ def middle_training_function(
         def choose_action(self):
             output = None
             if use_permaban_defense:
-                # Initial selection (Process.temp_banned_count 0) #TODO properly select at random
-                np_process_temp_banned_count = np.asarray(Process.temp_banned_count)
-                if np.min(np_process_temp_banned_count) < 1:
-                    output = [ np.argmin(np_process_temp_banned_count) ]
+                number_permabanned = sum(1 for each in processes if each.is_permabanned)
+                # already banned everyone
+                if number_permabanned >= expected_number_of_malicious_processes:
+                    output = []
                 else:
-                    # multiple can have highest score, so choose randomly between them
-                    random_first_place = randomly_pick_from(max_indices(values))
-                    output = [ random_first_place ]
+                    # Initial selection (Process.temp_banned_count 0) #TODO properly select at random
+                    np_process_temp_banned_count = np.asarray(Process.temp_banned_count)
+                    if np.min(np_process_temp_banned_count) < 1:
+                        output = [ np.argmin(np_process_temp_banned_count) ]
+                    else:
+                        # multiple can have highest score, so choose randomly between them
+                        random_first_place = randomly_pick_from(max_indices(ucb.value_of_each_process()))
+                        output = [ random_first_place ]
             
             elif use_max_defence:
                 weights = list(Process.accumulated_normalized_distance)
@@ -778,12 +560,111 @@ def middle_training_function(
     # Run all processes
     # 
     # 
-    config.verbose and print("[starting all processes]")
-    update_steps = zip(*[ process.update_sequence() for process in processes ])
-    with print.indent:
-        for each_step in update_steps:
-            # just need to iterate through all the steps
-            pass
+    while True:
+        # get actions, which auto-triggers the next step of the env
+        for each in processes:
+            each.choose_action(*each.env.step_data)
+        
+        shared.number_of_timesteps += len(processes)
+        if all(each.agent.updated for each in processes):
+            shared.number_of_updates += 1
+            for each in processes:
+                each.agent.updated = False
+            
+            # 
+            # update step
+            # 
+            with print.indent: # .block(f"update step {shared.number_of_episodes}/{config.training.episode_count}")
+                all_grads = np.vstack([ each.gradient for each in processes ])
+                debug and print("started individual_updates_ready_barrier()")
+                debug and print("starting early_stopping_check()")
+                
+                all_malicious_actors_found = shared.filtered_count == config.expected_number_of_malicious_processes
+                if all_malicious_actors_found:
+                    debug and print("finished individual_updates_ready_barrier()")
+                    return
+                
+                # Update values
+                debug and print("shared.number_of_updates", shared.number_of_updates)
+                if shared.number_of_updates != 0:
+                    # Compute gradient mean
+                    debug and print("starting reward_func()")
+                    ucb_reward = ucb.reward_func(ucb.gradient_of_agents)
+                    
+                    # Update Q-values
+                    debug and print("starting update_step()")
+                    ucb.update_step(ucb_reward)
+                    
+                    if use_permaban_defense:
+                        # 
+                        # Permanently disable an self.agent
+                        # 
+                        prev_amount_filtered = shared.filtered_count
+                        for process_index, ban_count in enumerate(Process.temp_banned_count):
+                            if ban_count >= env_config.permaban_threshold:
+                                processes[process_index].is_permabanned = 1
+                        shared.filtered_count = sum(1 for process in processes if process.is_permabanned)
+                        
+                        # 
+                        # if someone was just recently permabaned
+                        # 
+                        if prev_amount_filtered < shared.filtered_count:
+                            # Reset non-disabled Process.temp_banned_count/Q-values
+                            for process_index, ban_count in enumerate(Process.temp_banned_count):
+                                if ban_count < env_config.permaban_threshold:
+                                    Process.temp_banned_count[process_index] = 0
+                                    Process.q_values[process_index] = 0
+                
+                # Select next ucb action
+                debug and print("starting choose_action()")
+                who_to_ban = ucb.choose_action()
+                debug and print(f"finished choose_action(), who_to_ban={who_to_ban}")
+                if who_to_ban:
+                    for each_process in processes:
+                        if each_process.index in who_to_ban:
+                            each_process.temp_ban_count += 1
+                            Process.temp_ban[each_process.index] = 1 # aka True
+                        else:
+                            Process.temp_ban[each_process.index] = 0
+                
+                debug and print("finished individual_updates_ready_barrier()")
+        
+            # 
+            # contribute update
+            # 
+            for each in processes:
+                if not each.is_banned:
+                    debug and print(f'''self.agent{each.index}.add_update()''')
+                    debug and print(f'''adding update, each.is_malicious = {each.is_malicious}''')
+                    # include each.agent's gradient in global model
+                    copy_param.add_grad(target_link=main_agent.model, source_link=each.agent.model)
+        
+        # 
+        # sync_updates()
+        # 
+        if True:
+            if shared.filtered_count != config.expected_number_of_malicious_processes:
+                num_updates = config.number_of_processes - (shared.filtered_count + 1)
+            else:
+                num_updates = config.number_of_processes - shared.filtered_count
+            
+            for param in main_agent.model.parameters():
+                if param.grad is not None:
+                    param.grad = param.grad / num_updates
+            
+            main_agent.optimizer.step()
+            
+            # deliver the gradient change to all the agents
+            for process in processes:
+                copy_param.copy_param(target_link=process.agent.model, source_link=main_agent.model)
+                process.agent.after_update()
+        
+        # 
+        # stop condition
+        # 
+        if shared.number_of_episodes >= config.training.episode_count:
+            break
+    
     config.verbose and print("[all processes finished]")
 
 def force_sum_to_one(values, minimum=None):
@@ -841,3 +722,76 @@ def random_choose_k(items, weights, k):
         choices.add(random_index)
     
     return [ items[index] for index in choices ]
+
+
+def unvectorize(env):
+    vectorized_env = env
+    action_ready = 0
+    all_components = []
+    @singleton
+    class group:
+        observations = tuple(iter(vectorized_env.reset()))
+        rewards = [None]*len(observations)
+        dones = [None]*len(observations)
+        infos = [None]*len(observations)
+        
+        @property
+        def actions(self):
+            return tuple(each._qued_action for each in all_components)
+            
+        @property
+        def collective_step_ready(self):
+            return all(type(action) != type(None) for action in self.actions)
+        
+        def reset(self):
+            self.observations = tuple(iter(vectorized_env.reset()))
+            return self.observations
+        
+        def step(self):
+            group.observations, group.rewards, group.dones, group.infos = vectorized_env.step(actions=self.actions)
+            group.observations = tuple(iter(group.observations))
+            group.rewards      = tuple(iter(group.rewards))
+            group.dones        = tuple(iter(group.dones))
+            group.infos        = tuple(iter(group.infos))
+            # clear actions
+            for each in all_components:
+                each._qued_action = None
+            
+            return group.observations, group.rewards, group.dones, group.infos
+    
+    class UnvectorizedEnv(gym.Env):
+        action_space      = env.single_action_space
+        observation_space = env.single_observation_space
+        
+        def __init__(self, index):
+            self._index = index
+            self._source = vectorized_env
+            self._qued_action = None
+            all_components.append(self)
+        
+        @property
+        def step_data(self):
+            return group.observations[self._index], group.rewards[self._index], group.dones[self._index], group.infos[self._index]
+        
+        def choose_action(self, action):
+            self._qued_action = action
+            actions = tuple(each._qued_action for each in all_components)
+            if all(type(action) != type(None) for action in actions):
+                group.observations, group.rewards, group.dones, group.infos = vectorized_env.step(actions=actions)
+                group.observations = tuple(iter(group.observations))
+                group.rewards      = tuple(iter(group.rewards))
+                group.dones        = tuple(iter(group.dones))
+                group.infos        = tuple(iter(group.infos))
+                # clear actions
+                for each in all_components:
+                    each._qued_action = None
+        
+        def step(self, action):
+            self.choose_action(action)
+            return self.step_data
+            
+        def reset(self):
+            return group.observations[self._index]
+    
+    envs = tuple(UnvectorizedEnv(index) for index in range(len(group.observations)))
+    return envs, group
