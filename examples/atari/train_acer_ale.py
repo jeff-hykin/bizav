@@ -2,7 +2,7 @@ import argparse
 import os
 
 # Prevent numpy from using multiple threads
-os.environ["OMP_NUM_THREADS"] = "1"
+# os.environ["OMP_NUM_THREADS"] = "1"
 
 import gym  # NOQA:E402
 import gym.wrappers  # NOQA:E402

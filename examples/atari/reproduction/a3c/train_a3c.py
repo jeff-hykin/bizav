@@ -3,7 +3,7 @@ import os
 from random import random, sample, choices, randint
 
 # Prevent numpy from using multiple threads
-os.environ["OMP_NUM_THREADS"] = "1"
+# os.environ["OMP_NUM_THREADS"] = "1"
 
 import numpy as np  # NOQA:E402
 from torch import nn  # NOQA:E402

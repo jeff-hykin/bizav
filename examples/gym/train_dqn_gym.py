@@ -237,7 +237,7 @@ def main():
         # Therefore, we need to prevent potential CPU over-provision caused by
         # multi-threading in Openmp and Numpy.
         # Disable the multi-threading on Openmp and Numpy.
-        os.environ["OMP_NUM_THREADS"] = "1"  # NOQA
+        # os.environ["OMP_NUM_THREADS"] = "1"  # NOQA
 
         (
             make_actor,
