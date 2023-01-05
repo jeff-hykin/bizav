@@ -19,9 +19,9 @@ aspects_to_compare = {
         # "CHEETAH",
     ],
     "attack_method": [
-        'none',
         'act',
         'sign',
+        'none',
         # 'noise',
     ],
     "defense_method": [ "max", "ucb", "none", ],

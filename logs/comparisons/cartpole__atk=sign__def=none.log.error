@@ -1,0 +1,543 @@
+config = {
+    "evaluation": {
+        "enabled": True, 
+        "number_of_episodes_before_eval": 130, 
+        "number_of_epsiodes_during_eval": 10, 
+        "final_eval": {
+            "number_of_steps": 125000, 
+            "number_of_episodes": None, 
+        }, 
+    }, 
+    "verbose": True, 
+    "debug": False, 
+    "log_rate": 10, 
+    "agent": {"gamma": 0.99, "max_grad_norm": 40.0, }, 
+    "distance_kind": "mean_all", 
+    "number_of_processes": 10, 
+    "number_of_malicious_processes": 3, 
+    "expected_number_of_malicious_processes": 3, 
+    "logarithmic_scale_reference": {
+        0: 0.1, 
+        1: 0.08, 
+        2: 0.063, 
+        3: 0.05, 
+        4: 0.04, 
+        5: 0.032, 
+        6: 0.025, 
+        7: 0.02, 
+        8: 0.016, 
+        9: 0.012, 
+        10: 0.01, 
+        11: 0.008, 
+        12: 0.0063, 
+        13: 0.005, 
+        14: 0.004, 
+        15: 0.0032, 
+        16: 0.0025, 
+        17: 0.002, 
+        18: 0.0016, 
+        19: 0.0012, 
+        20: 0.001, 
+        21: 0.0008, 
+        22: 0.00063, 
+        23: 0.0005, 
+        24: 0.0004, 
+        25: 0.00032, 
+        26: 0.00025, 
+        27: 0.0002, 
+        28: 0.00016, 
+        29: 0.00012, 
+        30: 1e-05, 
+        31: 8e-06, 
+        32: 6.3e-06, 
+        33: 5e-06, 
+        34: 4e-06, 
+        35: 3.2e-06, 
+        36: 2.5e-06, 
+        37: 2e-06, 
+        38: 1.6e-06, 
+        39: 1.2e-06, 
+    }, 
+    "defense_method": "none", 
+    "attack_method": "sign", 
+    "use_frozen_random_seed": False, 
+    "random_seeds": {0: 0, }, 
+    "value_trend_lookback_size": 10, 
+    "env_config": {
+        "permaban_threshold": 1000, 
+        "is_atari": False, 
+        "gradient_size": 8835, 
+        "env_name": "CartPole-v1", 
+        "learning_rate": 0.001, 
+        "beta": 2e-05, 
+        "t_max": 5, 
+        "activation": 1, 
+        "hidden_size": 64, 
+        "variance_scaling_factor": 1, 
+    }, 
+    "early_stopping": {
+        "lowerbound_for_max_recent_change": 0, 
+        "min_number_of_episodes": 30, 
+        "thresholds": {}, 
+    }, 
+    "training": {"episode_count": 21000, }, 
+    "tuning": {
+        "number_of_trials": 300, 
+        "phase_1": {
+            "categorical_options": {"activation": {0: 0, 1: 1, 2: 2, }, }, 
+            "sequential_options": {
+                "t_max": {0: 3, 1: 5, 2: 10, 3: 20, 4: 30, 5: 50, }, 
+                "hidden_size": {0: 16, 1: 32, 2: 64, 3: 128, }, 
+                "learning_rate": {
+                    0: 0.1, 
+                    1: 0.08, 
+                    2: 0.063, 
+                    3: 0.05, 
+                    4: 0.04, 
+                    5: 0.032, 
+                    6: 0.025, 
+                    7: 0.02, 
+                    8: 0.016, 
+                    9: 0.012, 
+                    10: 0.01, 
+                    11: 0.008, 
+                    12: 0.0063, 
+                    13: 0.005, 
+                    14: 0.004, 
+                    15: 0.0032, 
+                    16: 0.0025, 
+                    17: 0.002, 
+                    18: 0.0016, 
+                    19: 0.0012, 
+                    20: 0.001, 
+                    21: 0.0008, 
+                    22: 0.00063, 
+                    23: 0.0005, 
+                    24: 0.0004, 
+                    25: 0.00032, 
+                    26: 0.00025, 
+                    27: 0.0002, 
+                    28: 0.00016, 
+                    29: 0.00012, 
+                    30: 1e-05, 
+                    31: 8e-06, 
+                    32: 6.3e-06, 
+                    33: 5e-06, 
+                    34: 4e-06, 
+                    35: 3.2e-06, 
+                    36: 2.5e-06, 
+                    37: 2e-06, 
+                    38: 1.6e-06, 
+                    39: 1.2e-06, 
+                }, 
+                "beta": {
+                    0: 0.1, 
+                    1: 0.08, 
+                    2: 0.063, 
+                    3: 0.05, 
+                    4: 0.04, 
+                    5: 0.032, 
+                    6: 0.025, 
+                    7: 0.02, 
+                    8: 0.016, 
+                    9: 0.012, 
+                    10: 0.01, 
+                    11: 0.008, 
+                    12: 0.0063, 
+                    13: 0.005, 
+                    14: 0.004, 
+                    15: 0.0032, 
+                    16: 0.0025, 
+                    17: 0.002, 
+                    18: 0.0016, 
+                    19: 0.0012, 
+                    20: 0.001, 
+                    21: 0.0008, 
+                    22: 0.00063, 
+                    23: 0.0005, 
+                    24: 0.0004, 
+                    25: 0.00032, 
+                    26: 0.00025, 
+                    27: 0.0002, 
+                    28: 0.00016, 
+                    29: 0.00012, 
+                    30: 1e-05, 
+                    31: 8e-06, 
+                    32: 6.3e-06, 
+                    33: 5e-06, 
+                    34: 4e-06, 
+                    35: 3.2e-06, 
+                    36: 2.5e-06, 
+                    37: 2e-06, 
+                    38: 1.6e-06, 
+                    39: 1.2e-06, 
+                }, 
+            }, 
+            "sequential_exponential_options": {
+                "learning_rate": {
+                    "base": {0: 1, 1: 3, 2: 5, 3: 7, 4: 9, }, 
+                    "exponent": {
+                        0: -1, 
+                        1: -2, 
+                        2: -3, 
+                        3: -4, 
+                        4: -5, 
+                        5: -6, 
+                        6: -7, 
+                        7: -8, 
+                    }, 
+                }, 
+                "beta": {
+                    "base": {0: 1, 1: 3, 2: 5, 3: 7, 4: 9, }, 
+                    "exponent": {
+                        0: -1, 
+                        1: -2, 
+                        2: -3, 
+                        3: -4, 
+                        4: -5, 
+                        5: -6, 
+                        6: -7, 
+                        7: -8, 
+                    }, 
+                }, 
+            }, 
+        }, 
+    }, 
+}
+args = {
+    "processes": 10, 
+    "env": "CartPole-v1", 
+    "seed": 2110568548, 
+    "outdir": "results", 
+    "t_max": 5, 
+    "beta": 2e-05, 
+    "profile": False, 
+    "steps": 21000, 
+    "max_frames": (108000, ), 
+    "lr": 0.001, 
+    "demo": False, 
+    "load_pretrained": False, 
+    "pretrained_type": "best", 
+    "load": "", 
+    "log_level": 20, 
+    "render": False, 
+    "monitor": False, 
+    "permaban_threshold": 1000, 
+    "malicious": 3, 
+    "mal_type": "sign", 
+    "rew_scale": 1.0, 
+    "hidden_size": 64, 
+    "activation": 1, 
+}
+[starting train_a3c()]
+[starting middle_training_function()]
+
+[creating Process(0)]
+[creating Process(1)]
+[creating Process(2)]
+[creating Process(3)]
+[creating Process(4)]
+[creating Process(5)]
+[creating Process(6)]
+[creating Process(7)]
+[creating Process(8)]
+[creating Process(9)]
+[starting all processes]
+    [starting update_sequence of Process(0)]
+    [starting update_sequence of Process(1)]
+    [starting update_sequence of Process(2)]
+    [starting update_sequence of Process(3)]
+    [starting update_sequence of Process(4)]
+    [starting update_sequence of Process(5)]
+    [starting update_sequence of Process(6)]
+    [starting update_sequence of Process(7)]
+    [starting update_sequence of Process(8)]
+    [starting update_sequence of Process(9)]
+    trial run [>..................................]  0.00% |     0/21000 | started: 14:11:24 | eta: ___________ | remaining: ________ |         {"number_of_episodes": 31, "number_of_timesteps": 553, "latest_eval_score": 0, "latest_episode_reward": 18.5, "episode_reward_trend_value": 0.0, "biggest_recent_change": NaN}
+        {"number_of_episodes": 43, "number_of_timesteps": 850, "latest_eval_score": 0, "latest_episode_reward": 24.7, "episode_reward_trend_value": 0.6199999999999999, "biggest_recent_change": NaN}
+    trial run [>..................................]  0.22% |    47/21000 | started: 14:11:24 | eta: ___________ | remaining: ________ |         {"number_of_episodes": 55, "number_of_timesteps": 1076, "latest_eval_score": 0, "latest_episode_reward": 20.7, "episode_reward_trend_value": 0.10999999999999996, "biggest_recent_change": NaN}
+        {"number_of_episodes": 65, "number_of_timesteps": 1266, "latest_eval_score": 0, "latest_episode_reward": 20.6, "episode_reward_trend_value": 0.07000000000000005, "biggest_recent_change": NaN}
+        {"number_of_episodes": 75, "number_of_timesteps": 1420, "latest_eval_score": 0, "latest_episode_reward": 15.2, "episode_reward_trend_value": -0.08250000000000002, "biggest_recent_change": NaN}
+        {"number_of_episodes": 85, "number_of_timesteps": 1649, "latest_eval_score": 0, "latest_episode_reward": 22.9, "episode_reward_trend_value": 0.08799999999999997, "biggest_recent_change": NaN}
+        {"number_of_episodes": 97, "number_of_timesteps": 1848, "latest_eval_score": 0, "latest_episode_reward": 16.0, "episode_reward_trend_value": -0.04166666666666667, "biggest_recent_change": NaN}
+    trial run [>..................................]  0.48% |   101/21000 | started: 14:11:24 | eta: 14:16:30 | remaining: 5:04sec |         {"number_of_episodes": 109, "number_of_timesteps": 2031, "latest_eval_score": 0, "latest_episode_reward": 15.0, "episode_reward_trend_value": -0.05, "biggest_recent_change": NaN}
+        {"number_of_episodes": 123, "number_of_timesteps": 2229, "latest_eval_score": 0, "latest_episode_reward": 14.3, "episode_reward_trend_value": -0.05249999999999999, "biggest_recent_change": NaN}
+    
+    {"eval_score": 11.9, "number_of_episodes": 130}
+        {"number_of_episodes": 133, "number_of_timesteps": 2403, "latest_eval_score": 11.9, "latest_episode_reward": 17.4, "episode_reward_trend_value": -0.012222222222222238, "biggest_recent_change": 7.699999999999999}
+        {"number_of_episodes": 144, "number_of_timesteps": 2541, "latest_eval_score": 11.9, "latest_episode_reward": 12.6, "episode_reward_trend_value": -0.13444444444444442, "biggest_recent_change": 7.699999999999999}
+        {"number_of_episodes": 154, "number_of_timesteps": 2664, "latest_eval_score": 11.9, "latest_episode_reward": 12.3, "episode_reward_trend_value": -0.09333333333333331, "biggest_recent_change": 7.699999999999999}
+        {"number_of_episodes": 164, "number_of_timesteps": 2779, "latest_eval_score": 11.9, "latest_episode_reward": 11.4, "episode_reward_trend_value": -0.10222222222222224, "biggest_recent_change": 7.699999999999999}
+    trial run [>..................................]  0.80% |   168/21000 | started: 14:11:24 | eta: 14:16:44 | remaining: 5:16sec |         {"number_of_episodes": 175, "number_of_timesteps": 2914, "latest_eval_score": 11.9, "latest_episode_reward": 12.1, "episode_reward_trend_value": -0.03444444444444444, "biggest_recent_change": 7.699999999999999}
+        {"number_of_episodes": 185, "number_of_timesteps": 3049, "latest_eval_score": 11.9, "latest_episode_reward": 13.8, "episode_reward_trend_value": -0.10111111111111108, "biggest_recent_change": 6.899999999999999}
+        {"number_of_episodes": 195, "number_of_timesteps": 3185, "latest_eval_score": 11.9, "latest_episode_reward": 13.6, "episode_reward_trend_value": -0.026666666666666672, "biggest_recent_change": 4.799999999999999}
+        {"number_of_episodes": 205, "number_of_timesteps": 3300, "latest_eval_score": 11.9, "latest_episode_reward": 12.2, "episode_reward_trend_value": -0.031111111111111117, "biggest_recent_change": 4.799999999999999}
+        {"number_of_episodes": 217, "number_of_timesteps": 3488, "latest_eval_score": 11.9, "latest_episode_reward": 16.1, "episode_reward_trend_value": 0.020000000000000007, "biggest_recent_change": 4.799999999999999}
+        {"number_of_episodes": 227, "number_of_timesteps": 3643, "latest_eval_score": 11.9, "latest_episode_reward": 14.9, "episode_reward_trend_value": -0.027777777777777755, "biggest_recent_change": 4.799999999999999}
+    trial run [>..................................]  1.08% |   228/21000 | started: 14:11:24 | eta: 14:16:57 | remaining: 5:28sec |         {"number_of_episodes": 238, "number_of_timesteps": 3912, "latest_eval_score": 11.9, "latest_episode_reward": 22.3, "episode_reward_trend_value": 0.10777777777777779, "biggest_recent_change": 7.4}
+        {"number_of_episodes": 248, "number_of_timesteps": 4154, "latest_eval_score": 11.9, "latest_episode_reward": 22.8, "episode_reward_trend_value": 0.11666666666666667, "biggest_recent_change": 7.4}
+        {"number_of_episodes": 258, "number_of_timesteps": 4368, "latest_eval_score": 11.9, "latest_episode_reward": 21.5, "episode_reward_trend_value": 0.11222222222222222, "biggest_recent_change": 7.4}
+    
+    {"eval_score": 16.5, "number_of_episodes": 260}
+        {"number_of_episodes": 270, "number_of_timesteps": 4570, "latest_eval_score": 16.5, "latest_episode_reward": 15.6, "episode_reward_trend_value": 0.03888888888888889, "biggest_recent_change": 7.4}
+    trial run [>..................................]  1.30% |   275/21000 | started: 14:11:24 | eta: 14:17:23 | remaining: 5:53sec |         {"number_of_episodes": 280, "number_of_timesteps": 4738, "latest_eval_score": 16.5, "latest_episode_reward": 17.2, "episode_reward_trend_value": 0.03777777777777776, "biggest_recent_change": 7.4}
+        {"number_of_episodes": 291, "number_of_timesteps": 4927, "latest_eval_score": 16.5, "latest_episode_reward": 17.4, "episode_reward_trend_value": 0.04222222222222221, "biggest_recent_change": 7.4}
+        {"number_of_episodes": 302, "number_of_timesteps": 5162, "latest_eval_score": 16.5, "latest_episode_reward": 20.7, "episode_reward_trend_value": 0.09444444444444444, "biggest_recent_change": 7.4}
+        {"number_of_episodes": 314, "number_of_timesteps": 5405, "latest_eval_score": 16.5, "latest_episode_reward": 19.3, "episode_reward_trend_value": 0.03555555555555555, "biggest_recent_change": 7.4}
+    trial run [>..................................]  1.53% |   323/21000 | started: 14:11:24 | eta: 14:17:37 | remaining: 6:06sec |         {"number_of_episodes": 324, "number_of_timesteps": 5616, "latest_eval_score": 16.5, "latest_episode_reward": 19.8, "episode_reward_trend_value": 0.05444444444444445, "biggest_recent_change": 7.4}
+        {"number_of_episodes": 334, "number_of_timesteps": 5906, "latest_eval_score": 16.5, "latest_episode_reward": 29.3, "episode_reward_trend_value": 0.07777777777777778, "biggest_recent_change": 9.5}
+        {"number_of_episodes": 344, "number_of_timesteps": 6097, "latest_eval_score": 16.5, "latest_episode_reward": 19.1, "episode_reward_trend_value": -0.041111111111111105, "biggest_recent_change": 10.2}
+        {"number_of_episodes": 354, "number_of_timesteps": 6293, "latest_eval_score": 16.5, "latest_episode_reward": 20.2, "episode_reward_trend_value": -0.01444444444444445, "biggest_recent_change": 10.2}
+        {"number_of_episodes": 365, "number_of_timesteps": 6541, "latest_eval_score": 16.5, "latest_episode_reward": 20.6, "episode_reward_trend_value": 0.05555555555555558, "biggest_recent_change": 10.2}
+    trial run [>..................................]  1.75% |   368/21000 | started: 14:11:24 | eta: 14:17:55 | remaining: 6:24sec |         {"number_of_episodes": 377, "number_of_timesteps": 6750, "latest_eval_score": 16.5, "latest_episode_reward": 15.2, "episode_reward_trend_value": -0.02222222222222222, "biggest_recent_change": 10.2}
+        {"number_of_episodes": 387, "number_of_timesteps": 6872, "latest_eval_score": 16.5, "latest_episode_reward": 12.2, "episode_reward_trend_value": -0.057777777777777775, "biggest_recent_change": 10.2}
+    
+    {"eval_score": 15.4, "number_of_episodes": 390}
+        {"number_of_episodes": 397, "number_of_timesteps": 7012, "latest_eval_score": 15.4, "latest_episode_reward": 13.1, "episode_reward_trend_value": -0.08444444444444445, "biggest_recent_change": 10.2}
+        {"number_of_episodes": 410, "number_of_timesteps": 7193, "latest_eval_score": 15.4, "latest_episode_reward": 14.2, "episode_reward_trend_value": -0.056666666666666685, "biggest_recent_change": 10.2}
+        {"number_of_episodes": 422, "number_of_timesteps": 7372, "latest_eval_score": 15.4, "latest_episode_reward": 15.7, "episode_reward_trend_value": -0.04555555555555557, "biggest_recent_change": 10.2}
+    trial run [>..................................]  2.03% |   428/21000 | started: 14:11:24 | eta: 14:17:54 | remaining: 6:21sec |         {"number_of_episodes": 434, "number_of_timesteps": 7595, "latest_eval_score": 15.4, "latest_episode_reward": 20.8, "episode_reward_trend_value": -0.09444444444444447, "biggest_recent_change": 10.2}
+        {"number_of_episodes": 446, "number_of_timesteps": 7834, "latest_eval_score": 15.4, "latest_episode_reward": 21.6, "episode_reward_trend_value": 0.02777777777777778, "biggest_recent_change": 5.400000000000002}
+        {"number_of_episodes": 459, "number_of_timesteps": 8030, "latest_eval_score": 15.4, "latest_episode_reward": 15.6, "episode_reward_trend_value": -0.05111111111111111, "biggest_recent_change": 6.000000000000002}
+        {"number_of_episodes": 470, "number_of_timesteps": 8187, "latest_eval_score": 15.4, "latest_episode_reward": 14.1, "episode_reward_trend_value": -0.07222222222222224, "biggest_recent_change": 6.000000000000002}
+        {"number_of_episodes": 481, "number_of_timesteps": 8394, "latest_eval_score": 15.4, "latest_episode_reward": 18.3, "episode_reward_trend_value": 0.03444444444444446, "biggest_recent_change": 6.000000000000002}
+    trial run [>..................................]  2.30% |   485/21000 | started: 14:11:24 | eta: 14:17:53 | remaining: 6:19sec |         {"number_of_episodes": 495, "number_of_timesteps": 8653, "latest_eval_score": 15.4, "latest_episode_reward": 14.7, "episode_reward_trend_value": 0.02777777777777778, "biggest_recent_change": 6.000000000000002}
+        {"number_of_episodes": 506, "number_of_timesteps": 8811, "latest_eval_score": 15.4, "latest_episode_reward": 15.5, "episode_reward_trend_value": 0.026666666666666672, "biggest_recent_change": 6.000000000000002}
+    
+    {"eval_score": 15.2, "number_of_episodes": 520}
+        {"number_of_episodes": 521, "number_of_timesteps": 9081, "latest_eval_score": 15.2, "latest_episode_reward": 16.8, "episode_reward_trend_value": 0.0288888888888889, "biggest_recent_change": 6.000000000000002}
+        {"number_of_episodes": 532, "number_of_timesteps": 9266, "latest_eval_score": 15.2, "latest_episode_reward": 16.7, "episode_reward_trend_value": 0.01111111111111111, "biggest_recent_change": 6.000000000000002}
+    trial run [>..................................]  2.57% |   541/21000 | started: 14:11:24 | eta: 14:17:53 | remaining: 6:18sec |         {"number_of_episodes": 545, "number_of_timesteps": 9461, "latest_eval_score": 15.2, "latest_episode_reward": 14.7, "episode_reward_trend_value": -0.0677777777777778, "biggest_recent_change": 6.000000000000002}
+        {"number_of_episodes": 555, "number_of_timesteps": 9617, "latest_eval_score": 15.2, "latest_episode_reward": 15.3, "episode_reward_trend_value": -0.07, "biggest_recent_change": 6.000000000000002}
+        {"number_of_episodes": 566, "number_of_timesteps": 9802, "latest_eval_score": 15.2, "latest_episode_reward": 17.0, "episode_reward_trend_value": 0.015555555555555559, "biggest_recent_change": 4.200000000000001}
+        {"number_of_episodes": 576, "number_of_timesteps": 10043, "latest_eval_score": 15.2, "latest_episode_reward": 23.3, "episode_reward_trend_value": 0.10222222222222224, "biggest_recent_change": 6.300000000000001}
+        {"number_of_episodes": 587, "number_of_timesteps": 10274, "latest_eval_score": 15.2, "latest_episode_reward": 20.5, "episode_reward_trend_value": 0.024444444444444435, "biggest_recent_change": 6.300000000000001}
+    trial run [>..................................]  2.79% |   587/21000 | started: 14:11:24 | eta: 14:18:02 | remaining: 6:26sec |         {"number_of_episodes": 598, "number_of_timesteps": 10596, "latest_eval_score": 15.2, "latest_episode_reward": 21.9, "episode_reward_trend_value": 0.07999999999999999, "biggest_recent_change": 6.300000000000001}
+        {"number_of_episodes": 610, "number_of_timesteps": 10874, "latest_eval_score": 15.2, "latest_episode_reward": 21.7, "episode_reward_trend_value": 0.06888888888888887, "biggest_recent_change": 6.300000000000001}
+        {"number_of_episodes": 622, "number_of_timesteps": 11087, "latest_eval_score": 15.2, "latest_episode_reward": 15.2, "episode_reward_trend_value": -0.01777777777777779, "biggest_recent_change": 6.5}
+        {"number_of_episodes": 633, "number_of_timesteps": 11259, "latest_eval_score": 15.2, "latest_episode_reward": 18.6, "episode_reward_trend_value": 0.021111111111111136, "biggest_recent_change": 6.5}
+    trial run [=>.................................]  3.03% |   637/21000 | started: 14:11:24 | eta: 14:18:06 | remaining: 6:29sec |         {"number_of_episodes": 643, "number_of_timesteps": 11454, "latest_eval_score": 15.2, "latest_episode_reward": 19.6, "episode_reward_trend_value": 0.054444444444444476, "biggest_recent_change": 6.5}
+    
+    {"eval_score": 14.0, "number_of_episodes": 650}
+        {"number_of_episodes": 654, "number_of_timesteps": 11623, "latest_eval_score": 14.0, "latest_episode_reward": 15.4, "episode_reward_trend_value": 0.0011111111111111072, "biggest_recent_change": 6.5}
+        {"number_of_episodes": 666, "number_of_timesteps": 11781, "latest_eval_score": 14.0, "latest_episode_reward": 13.8, "episode_reward_trend_value": -0.03555555555555555, "biggest_recent_change": 6.5}
+        {"number_of_episodes": 677, "number_of_timesteps": 11973, "latest_eval_score": 14.0, "latest_episode_reward": 17.9, "episode_reward_trend_value": -0.06000000000000002, "biggest_recent_change": 6.5}
+        {"number_of_episodes": 687, "number_of_timesteps": 12113, "latest_eval_score": 14.0, "latest_episode_reward": 15.5, "episode_reward_trend_value": -0.05555555555555556, "biggest_recent_change": 6.5}
+        {"number_of_episodes": 697, "number_of_timesteps": 12291, "latest_eval_score": 14.0, "latest_episode_reward": 17.9, "episode_reward_trend_value": -0.04444444444444444, "biggest_recent_change": 6.5}
+    trial run [=>.................................]  3.31% |   697/21000 | started: 14:11:24 | eta: 14:18:03 | remaining: 6:26sec |         {"number_of_episodes": 708, "number_of_timesteps": 12487, "latest_eval_score": 14.0, "latest_episode_reward": 18.2, "episode_reward_trend_value": -0.03888888888888889, "biggest_recent_change": 6.5}
+        {"number_of_episodes": 718, "number_of_timesteps": 12645, "latest_eval_score": 14.0, "latest_episode_reward": 16.1, "episode_reward_trend_value": 0.010000000000000024, "biggest_recent_change": 4.200000000000001}
+        {"number_of_episodes": 728, "number_of_timesteps": 12836, "latest_eval_score": 14.0, "latest_episode_reward": 18.1, "episode_reward_trend_value": -0.005555555555555555, "biggest_recent_change": 4.200000000000001}
+        {"number_of_episodes": 739, "number_of_timesteps": 13072, "latest_eval_score": 14.0, "latest_episode_reward": 20.7, "episode_reward_trend_value": 0.012222222222222199, "biggest_recent_change": 4.200000000000001}
+    trial run [=>.................................]  3.55% |   746/21000 | started: 14:11:24 | eta: 14:18:07 | remaining: 6:28sec |         {"number_of_episodes": 751, "number_of_timesteps": 13323, "latest_eval_score": 14.0, "latest_episode_reward": 23.5, "episode_reward_trend_value": 0.09, "biggest_recent_change": 4.099999999999998}
+        {"number_of_episodes": 762, "number_of_timesteps": 13570, "latest_eval_score": 14.0, "latest_episode_reward": 23.0, "episode_reward_trend_value": 0.10222222222222221, "biggest_recent_change": 4.099999999999998}
+        {"number_of_episodes": 775, "number_of_timesteps": 13792, "latest_eval_score": 14.0, "latest_episode_reward": 17.7, "episode_reward_trend_value": -0.0022222222222222144, "biggest_recent_change": 5.300000000000001}
+    
+    {"eval_score": 19.2, "number_of_episodes": 780}
+        {"number_of_episodes": 787, "number_of_timesteps": 14052, "latest_eval_score": 19.2, "latest_episode_reward": 23.9, "episode_reward_trend_value": 0.09333333333333331, "biggest_recent_change": 6.199999999999999}
+    trial run [=>.................................]  3.77% |   792/21000 | started: 14:11:24 | eta: 14:18:12 | remaining: 6:32sec |         {"number_of_episodes": 797, "number_of_timesteps": 14271, "latest_eval_score": 19.2, "latest_episode_reward": 20.5, "episode_reward_trend_value": 0.0288888888888889, "biggest_recent_change": 6.199999999999999}
+        {"number_of_episodes": 808, "number_of_timesteps": 14484, "latest_eval_score": 19.2, "latest_episode_reward": 19.2, "episode_reward_trend_value": 0.01111111111111111, "biggest_recent_change": 6.199999999999999}
+        {"number_of_episodes": 820, "number_of_timesteps": 14646, "latest_eval_score": 19.2, "latest_episode_reward": 12.9, "episode_reward_trend_value": -0.03555555555555557, "biggest_recent_change": 6.299999999999999}
+        {"number_of_episodes": 830, "number_of_timesteps": 14933, "latest_eval_score": 19.2, "latest_episode_reward": 23.4, "episode_reward_trend_value": 0.05888888888888886, "biggest_recent_change": 10.499999999999998}
+    trial run [=>.................................]  3.99% |   838/21000 | started: 14:11:24 | eta: 14:18:17 | remaining: 6:36sec |         {"number_of_episodes": 842, "number_of_timesteps": 15163, "latest_eval_score": 19.2, "latest_episode_reward": 18.6, "episode_reward_trend_value": -0.02333333333333331, "biggest_recent_change": 10.499999999999998}
+        {"number_of_episodes": 852, "number_of_timesteps": 15328, "latest_eval_score": 19.2, "latest_episode_reward": 13.7, "episode_reward_trend_value": -0.1088888888888889, "biggest_recent_change": 10.499999999999998}
+        {"number_of_episodes": 862, "number_of_timesteps": 15518, "latest_eval_score": 19.2, "latest_episode_reward": 18.0, "episode_reward_trend_value": -0.05555555555555556, "biggest_recent_change": 10.499999999999998}
+        {"number_of_episodes": 873, "number_of_timesteps": 15713, "latest_eval_score": 19.2, "latest_episode_reward": 16.2, "episode_reward_trend_value": -0.016666666666666666, "biggest_recent_change": 10.499999999999998}
+        {"number_of_episodes": 883, "number_of_timesteps": 15889, "latest_eval_score": 19.2, "latest_episode_reward": 16.4, "episode_reward_trend_value": -0.08333333333333334, "biggest_recent_change": 10.499999999999998}
+    trial run [=>.................................]  4.22% |   888/21000 | started: 14:11:24 | eta: 14:18:18 | remaining: 6:36sec |         {"number_of_episodes": 893, "number_of_timesteps": 16173, "latest_eval_score": 19.2, "latest_episode_reward": 28.7, "episode_reward_trend_value": 0.0911111111111111, "biggest_recent_change": 12.3}
+        {"number_of_episodes": 903, "number_of_timesteps": 16358, "latest_eval_score": 19.2, "latest_episode_reward": 17.8, "episode_reward_trend_value": -0.01555555555555554, "biggest_recent_change": 12.3}
+    
+    {"eval_score": 19.3, "number_of_episodes": 910}
+        {"number_of_episodes": 913, "number_of_timesteps": 16568, "latest_eval_score": 19.3, "latest_episode_reward": 22.1, "episode_reward_trend_value": 0.10222222222222224, "biggest_recent_change": 12.3}
+        {"number_of_episodes": 924, "number_of_timesteps": 16784, "latest_eval_score": 19.3, "latest_episode_reward": 15.9, "episode_reward_trend_value": -0.08333333333333331, "biggest_recent_change": 12.3}
+        {"number_of_episodes": 934, "number_of_timesteps": 16932, "latest_eval_score": 19.3, "latest_episode_reward": 15.3, "episode_reward_trend_value": -0.036666666666666674, "biggest_recent_change": 12.3}
+    trial run [=>.................................]  4.48% |   941/21000 | started: 14:11:24 | eta: 14:18:18 | remaining: 6:35sec |         {"number_of_episodes": 946, "number_of_timesteps": 17115, "latest_eval_score": 19.3, "latest_episode_reward": 14.7, "episode_reward_trend_value": 0.01111111111111111, "biggest_recent_change": 12.3}
+        {"number_of_episodes": 958, "number_of_timesteps": 17314, "latest_eval_score": 19.3, "latest_episode_reward": 17.9, "episode_reward_trend_value": -0.001111111111111127, "biggest_recent_change": 12.3}
+        {"number_of_episodes": 969, "number_of_timesteps": 17524, "latest_eval_score": 19.3, "latest_episode_reward": 19.1, "episode_reward_trend_value": 0.03222222222222225, "biggest_recent_change": 12.3}
+        {"number_of_episodes": 980, "number_of_timesteps": 17777, "latest_eval_score": 19.3, "latest_episode_reward": 24.3, "episode_reward_trend_value": 0.0877777777777778, "biggest_recent_change": 12.3}
+        {"number_of_episodes": 990, "number_of_timesteps": 17999, "latest_eval_score": 19.3, "latest_episode_reward": 23.2, "episode_reward_trend_value": -0.061111111111111116, "biggest_recent_change": 10.899999999999999}
+    trial run [=>.................................]  4.71% |   990/21000 | started: 14:11:24 | eta: 14:18:20 | remaining: 6:36sec |         {"number_of_episodes": 1003, "number_of_timesteps": 18278, "latest_eval_score": 19.3, "latest_episode_reward": 19.6, "episode_reward_trend_value": 0.020000000000000007, "biggest_recent_change": 6.200000000000001}
+        {"number_of_episodes": 1014, "number_of_timesteps": 18456, "latest_eval_score": 19.3, "latest_episode_reward": 17.1, "episode_reward_trend_value": -0.05555555555555556, "biggest_recent_change": 6.200000000000001}
+        {"number_of_episodes": 1025, "number_of_timesteps": 18665, "latest_eval_score": 19.3, "latest_episode_reward": 18.5, "episode_reward_trend_value": 0.028888888888888888, "biggest_recent_change": 5.199999999999999}
+        {"number_of_episodes": 1036, "number_of_timesteps": 18858, "latest_eval_score": 19.3, "latest_episode_reward": 17.3, "episode_reward_trend_value": 0.02222222222222222, "biggest_recent_change": 5.199999999999999}
+    
+    {"eval_score": 22.4, "number_of_episodes": 1040}
+    trial run [=>.................................]  4.95% |  1041/21000 | started: 14:11:24 | eta: 14:18:20 | remaining: 6:35sec |         {"number_of_episodes": 1047, "number_of_timesteps": 19031, "latest_eval_score": 22.4, "latest_episode_reward": 14.7, "episode_reward_trend_value": 0.0, "biggest_recent_change": 5.199999999999999}
+        {"number_of_episodes": 1058, "number_of_timesteps": 19219, "latest_eval_score": 22.4, "latest_episode_reward": 16.7, "episode_reward_trend_value": -0.013333333333333326, "biggest_recent_change": 5.199999999999999}
+        {"number_of_episodes": 1070, "number_of_timesteps": 19470, "latest_eval_score": 22.4, "latest_episode_reward": 21.1, "episode_reward_trend_value": 0.02222222222222222, "biggest_recent_change": 5.199999999999999}
+        {"number_of_episodes": 1083, "number_of_timesteps": 19723, "latest_eval_score": 22.4, "latest_episode_reward": 16.0, "episode_reward_trend_value": -0.09222222222222223, "biggest_recent_change": 5.100000000000001}
+    trial run [=>.................................]  5.16% |  1085/21000 | started: 14:11:24 | eta: 14:18:24 | remaining: 6:39sec |         {"number_of_episodes": 1094, "number_of_timesteps": 19960, "latest_eval_score": 22.4, "latest_episode_reward": 17.3, "episode_reward_trend_value": -0.06555555555555555, "biggest_recent_change": 5.100000000000001}
+        {"number_of_episodes": 1105, "number_of_timesteps": 20132, "latest_eval_score": 22.4, "latest_episode_reward": 16.1, "episode_reward_trend_value": -0.03888888888888889, "biggest_recent_change": 5.100000000000001}
+        {"number_of_episodes": 1117, "number_of_timesteps": 20394, "latest_eval_score": 22.4, "latest_episode_reward": 19.8, "episode_reward_trend_value": 0.029999999999999992, "biggest_recent_change": 5.100000000000001}
+        {"number_of_episodes": 1129, "number_of_timesteps": 20584, "latest_eval_score": 22.4, "latest_episode_reward": 16.8, "episode_reward_trend_value": -0.01888888888888888, "biggest_recent_change": 5.100000000000001}
+        {"number_of_episodes": 1139, "number_of_timesteps": 20727, "latest_eval_score": 22.4, "latest_episode_reward": 14.1, "episode_reward_trend_value": -0.03555555555555557, "biggest_recent_change": 5.100000000000001}
+    trial run [=>.................................]  5.42% |  1140/21000 | started: 14:11:24 | eta: 14:18:24 | remaining: 6:37sec |         {"number_of_episodes": 1150, "number_of_timesteps": 20955, "latest_eval_score": 22.4, "latest_episode_reward": 20.3, "episode_reward_trend_value": 0.062222222222222234, "biggest_recent_change": 6.200000000000001}
+        {"number_of_episodes": 1160, "number_of_timesteps": 21192, "latest_eval_score": 22.4, "latest_episode_reward": 21.5, "episode_reward_trend_value": 0.053333333333333344, "biggest_recent_change": 6.200000000000001}
+    
+    {"eval_score": 25.1, "number_of_episodes": 1170}
+        {"number_of_episodes": 1170, "number_of_timesteps": 21423, "latest_eval_score": 25.1, "latest_episode_reward": 24.0, "episode_reward_trend_value": 0.03222222222222221, "biggest_recent_change": 6.200000000000001}
+        {"number_of_episodes": 1182, "number_of_timesteps": 21645, "latest_eval_score": 25.1, "latest_episode_reward": 17.9, "episode_reward_trend_value": 0.021111111111111094, "biggest_recent_change": 6.200000000000001}
+    trial run [=>.................................]  5.62% |  1182/21000 | started: 14:11:24 | eta: 14:18:29 | remaining: 6:41sec |         {"number_of_episodes": 1192, "number_of_timesteps": 21834, "latest_eval_score": 25.1, "latest_episode_reward": 19.4, "episode_reward_trend_value": 0.02333333333333331, "biggest_recent_change": 6.200000000000001}
+        {"number_of_episodes": 1205, "number_of_timesteps": 22224, "latest_eval_score": 25.1, "latest_episode_reward": 24.5, "episode_reward_trend_value": 0.09333333333333331, "biggest_recent_change": 6.200000000000001}
+        {"number_of_episodes": 1215, "number_of_timesteps": 22394, "latest_eval_score": 25.1, "latest_episode_reward": 17.5, "episode_reward_trend_value": -0.025555555555555564, "biggest_recent_change": 7.0}
+        {"number_of_episodes": 1227, "number_of_timesteps": 22599, "latest_eval_score": 25.1, "latest_episode_reward": 19.7, "episode_reward_trend_value": 0.03222222222222221, "biggest_recent_change": 7.0}
+    trial run [==>................................]  5.85% |  1229/21000 | started: 14:11:24 | eta: 14:18:31 | remaining: 6:42sec |         {"number_of_episodes": 1238, "number_of_timesteps": 22889, "latest_eval_score": 25.1, "latest_episode_reward": 26.6, "episode_reward_trend_value": 0.1388888888888889, "biggest_recent_change": 7.0}
+        {"number_of_episodes": 1248, "number_of_timesteps": 23055, "latest_eval_score": 25.1, "latest_episode_reward": 17.3, "episode_reward_trend_value": -0.03333333333333333, "biggest_recent_change": 9.3}
+        {"number_of_episodes": 1259, "number_of_timesteps": 23264, "latest_eval_score": 25.1, "latest_episode_reward": 19.1, "episode_reward_trend_value": -0.02666666666666665, "biggest_recent_change": 9.3}
+        {"number_of_episodes": 1271, "number_of_timesteps": 23526, "latest_eval_score": 25.1, "latest_episode_reward": 22.4, "episode_reward_trend_value": -0.01777777777777779, "biggest_recent_change": 9.3}
+        {"number_of_episodes": 1281, "number_of_timesteps": 23654, "latest_eval_score": 25.1, "latest_episode_reward": 12.8, "episode_reward_trend_value": -0.05666666666666664, "biggest_recent_change": 9.599999999999998}
+    trial run [==>................................]  6.13% |  1289/21000 | started: 14:11:24 | eta: 14:18:29 | remaining: 6:39sec |         {"number_of_episodes": 1291, "number_of_timesteps": 23779, "latest_eval_score": 25.1, "latest_episode_reward": 12.2, "episode_reward_trend_value": -0.07999999999999999, "biggest_recent_change": 9.599999999999998}
+    
+    {"eval_score": 16.4, "number_of_episodes": 1300}
+        {"number_of_episodes": 1301, "number_of_timesteps": 23916, "latest_eval_score": 16.4, "latest_episode_reward": 13.7, "episode_reward_trend_value": -0.12000000000000002, "biggest_recent_change": 9.599999999999998}
+        {"number_of_episodes": 1315, "number_of_timesteps": 24103, "latest_eval_score": 16.4, "latest_episode_reward": 13.2, "episode_reward_trend_value": -0.04777777777777779, "biggest_recent_change": 9.599999999999998}
+        {"number_of_episodes": 1325, "number_of_timesteps": 24216, "latest_eval_score": 16.4, "latest_episode_reward": 11.3, "episode_reward_trend_value": -0.09333333333333331, "biggest_recent_change": 9.599999999999998}
+        {"number_of_episodes": 1335, "number_of_timesteps": 24347, "latest_eval_score": 16.4, "latest_episode_reward": 13.1, "episode_reward_trend_value": -0.15000000000000002, "biggest_recent_change": 9.599999999999998}
+        {"number_of_episodes": 1348, "number_of_timesteps": 24545, "latest_eval_score": 16.4, "latest_episode_reward": 15.6, "episode_reward_trend_value": -0.0188888888888889, "biggest_recent_change": 9.599999999999998}
+    trial run [==>................................]  6.45% |  1356/21000 | started: 14:11:24 | eta: 14:18:26 | remaining: 6:35sec |         {"number_of_episodes": 1359, "number_of_timesteps": 24700, "latest_eval_score": 16.4, "latest_episode_reward": 14.8, "episode_reward_trend_value": -0.04777777777777779, "biggest_recent_change": 9.599999999999998}
+        {"number_of_episodes": 1372, "number_of_timesteps": 24967, "latest_eval_score": 16.4, "latest_episode_reward": 21.7, "episode_reward_trend_value": -0.00777777777777777, "biggest_recent_change": 9.599999999999998}
+        {"number_of_episodes": 1383, "number_of_timesteps": 25162, "latest_eval_score": 16.4, "latest_episode_reward": 20.5, "episode_reward_trend_value": 0.08555555555555555, "biggest_recent_change": 6.899999999999999}
+        {"number_of_episodes": 1393, "number_of_timesteps": 25340, "latest_eval_score": 16.4, "latest_episode_reward": 17.8, "episode_reward_trend_value": 0.062222222222222234, "biggest_recent_change": 6.899999999999999}
+        {"number_of_episodes": 1403, "number_of_timesteps": 25498, "latest_eval_score": 16.4, "latest_episode_reward": 16.3, "episode_reward_trend_value": 0.0288888888888889, "biggest_recent_change": 6.899999999999999}
+    trial run [==>................................]  6.70% |  1408/21000 | started: 14:11:24 | eta: 14:18:26 | remaining: 6:34sec |         {"number_of_episodes": 1416, "number_of_timesteps": 25740, "latest_eval_score": 16.4, "latest_episode_reward": 16.9, "episode_reward_trend_value": 0.041111111111111105, "biggest_recent_change": 6.899999999999999}
+        {"number_of_episodes": 1428, "number_of_timesteps": 25988, "latest_eval_score": 16.4, "latest_episode_reward": 20.1, "episode_reward_trend_value": 0.09777777777777778, "biggest_recent_change": 6.899999999999999}
+    
+    {"eval_score": 16.6, "number_of_episodes": 1430}
+        {"number_of_episodes": 1438, "number_of_timesteps": 26143, "latest_eval_score": 16.6, "latest_episode_reward": 16.1, "episode_reward_trend_value": 0.033333333333333354, "biggest_recent_change": 6.899999999999999}
+        {"number_of_episodes": 1448, "number_of_timesteps": 26358, "latest_eval_score": 16.6, "latest_episode_reward": 22.5, "episode_reward_trend_value": 0.07666666666666667, "biggest_recent_change": 6.899999999999999}
+    trial run [==>................................]  6.90% |  1450/21000 | started: 14:11:24 | eta: 14:18:30 | remaining: 6:37sec |         {"number_of_episodes": 1458, "number_of_timesteps": 26570, "latest_eval_score": 16.6, "latest_episode_reward": 21.2, "episode_reward_trend_value": 0.0711111111111111, "biggest_recent_change": 6.899999999999999}
+        {"number_of_episodes": 1469, "number_of_timesteps": 26751, "latest_eval_score": 16.6, "latest_episode_reward": 17.4, "episode_reward_trend_value": -0.04777777777777779, "biggest_recent_change": 6.399999999999999}
+        {"number_of_episodes": 1479, "number_of_timesteps": 27001, "latest_eval_score": 16.6, "latest_episode_reward": 26.6, "episode_reward_trend_value": 0.0677777777777778, "biggest_recent_change": 9.200000000000003}
+        {"number_of_episodes": 1489, "number_of_timesteps": 27199, "latest_eval_score": 16.6, "latest_episode_reward": 22.5, "episode_reward_trend_value": 0.05222222222222221, "biggest_recent_change": 9.200000000000003}
+    trial run [==>................................]  7.11% |  1495/21000 | started: 14:11:24 | eta: 14:18:32 | remaining: 6:38sec |         {"number_of_episodes": 1502, "number_of_timesteps": 27504, "latest_eval_score": 16.6, "latest_episode_reward": 23.3, "episode_reward_trend_value": 0.07777777777777778, "biggest_recent_change": 9.200000000000003}
+        {"number_of_episodes": 1514, "number_of_timesteps": 27748, "latest_eval_score": 16.6, "latest_episode_reward": 16.3, "episode_reward_trend_value": -0.006666666666666643, "biggest_recent_change": 9.200000000000003}
+        {"number_of_episodes": 1526, "number_of_timesteps": 27913, "latest_eval_score": 16.6, "latest_episode_reward": 14.6, "episode_reward_trend_value": -0.06111111111111113, "biggest_recent_change": 9.200000000000003}
+        {"number_of_episodes": 1536, "number_of_timesteps": 28024, "latest_eval_score": 16.6, "latest_episode_reward": 11.1, "episode_reward_trend_value": -0.05555555555555558, "biggest_recent_change": 9.200000000000003}
+        {"number_of_episodes": 1546, "number_of_timesteps": 28168, "latest_eval_score": 16.6, "latest_episode_reward": 14.0, "episode_reward_trend_value": -0.09444444444444444, "biggest_recent_change": 9.200000000000003}
+        {"number_of_episodes": 1557, "number_of_timesteps": 28362, "latest_eval_score": 16.6, "latest_episode_reward": 16.2, "episode_reward_trend_value": -0.05555555555555556, "biggest_recent_change": 9.200000000000003}
+    trial run [==>................................]  7.41% |  1557/21000 | started: 14:11:24 | eta: 14:18:30 | remaining: 6:35sec |     
+    {"eval_score": 19.2, "number_of_episodes": 1560}
+        {"number_of_episodes": 1570, "number_of_timesteps": 28596, "latest_eval_score": 19.2, "latest_episode_reward": 18.0, "episode_reward_trend_value": 0.006666666666666682, "biggest_recent_change": 9.200000000000003}
+        {"number_of_episodes": 1580, "number_of_timesteps": 28815, "latest_eval_score": 19.2, "latest_episode_reward": 22.3, "episode_reward_trend_value": -0.04777777777777779, "biggest_recent_change": 7.0}
+        {"number_of_episodes": 1590, "number_of_timesteps": 28981, "latest_eval_score": 19.2, "latest_episode_reward": 16.6, "episode_reward_trend_value": -0.06555555555555555, "biggest_recent_change": 7.0}
+        {"number_of_episodes": 1600, "number_of_timesteps": 29116, "latest_eval_score": 19.2, "latest_episode_reward": 13.5, "episode_reward_trend_value": -0.1088888888888889, "biggest_recent_change": 7.0}
+        {"number_of_episodes": 1612, "number_of_timesteps": 29273, "latest_eval_score": 19.2, "latest_episode_reward": 12.8, "episode_reward_trend_value": -0.03888888888888889, "biggest_recent_change": 5.699999999999999}
+    trial run [==>................................]  7.68% |  1613/21000 | started: 14:11:24 | eta: 14:18:29 | remaining: 6:33sec |         {"number_of_episodes": 1624, "number_of_timesteps": 29469, "latest_eval_score": 19.2, "latest_episode_reward": 16.9, "episode_reward_trend_value": 0.025555555555555543, "biggest_recent_change": 5.699999999999999}
+        {"number_of_episodes": 1635, "number_of_timesteps": 29633, "latest_eval_score": 19.2, "latest_episode_reward": 15.0, "episode_reward_trend_value": 0.043333333333333335, "biggest_recent_change": 5.699999999999999}
+        {"number_of_episodes": 1645, "number_of_timesteps": 29815, "latest_eval_score": 19.2, "latest_episode_reward": 20.5, "episode_reward_trend_value": 0.07222222222222222, "biggest_recent_change": 5.699999999999999}
+        {"number_of_episodes": 1655, "number_of_timesteps": 29986, "latest_eval_score": 19.2, "latest_episode_reward": 17.6, "episode_reward_trend_value": 0.015555555555555578, "biggest_recent_change": 5.699999999999999}
+    trial run [==>................................]  7.94% |  1668/21000 | started: 14:11:24 | eta: 14:18:28 | remaining: 6:30sec |         {"number_of_episodes": 1669, "number_of_timesteps": 30267, "latest_eval_score": 19.2, "latest_episode_reward": 17.4, "episode_reward_trend_value": -0.006666666666666682, "biggest_recent_change": 5.699999999999999}
+        {"number_of_episodes": 1679, "number_of_timesteps": 30454, "latest_eval_score": 19.2, "latest_episode_reward": 18.5, "episode_reward_trend_value": -0.04222222222222223, "biggest_recent_change": 5.699999999999999}
+        {"number_of_episodes": 1689, "number_of_timesteps": 30633, "latest_eval_score": 19.2, "latest_episode_reward": 18.0, "episode_reward_trend_value": 0.01555555555555554, "biggest_recent_change": 5.5}
+    
+    {"eval_score": 22.7, "number_of_episodes": 1690}
+        {"number_of_episodes": 1699, "number_of_timesteps": 30831, "latest_eval_score": 22.7, "latest_episode_reward": 20.6, "episode_reward_trend_value": 0.07888888888888891, "biggest_recent_change": 5.5}
+        {"number_of_episodes": 1709, "number_of_timesteps": 31089, "latest_eval_score": 22.7, "latest_episode_reward": 26.3, "episode_reward_trend_value": 0.15, "biggest_recent_change": 5.699999999999999}
+    trial run [==>................................]  8.15% |  1712/21000 | started: 14:11:24 | eta: 14:18:30 | remaining: 6:32sec |         {"number_of_episodes": 1719, "number_of_timesteps": 31290, "latest_eval_score": 22.7, "latest_episode_reward": 20.8, "episode_reward_trend_value": 0.043333333333333356, "biggest_recent_change": 5.699999999999999}
+        {"number_of_episodes": 1731, "number_of_timesteps": 31517, "latest_eval_score": 22.7, "latest_episode_reward": 18.2, "episode_reward_trend_value": 0.03555555555555555, "biggest_recent_change": 5.699999999999999}
+        {"number_of_episodes": 1743, "number_of_timesteps": 31729, "latest_eval_score": 22.7, "latest_episode_reward": 16.9, "episode_reward_trend_value": -0.040000000000000015, "biggest_recent_change": 5.699999999999999}
+        {"number_of_episodes": 1754, "number_of_timesteps": 31933, "latest_eval_score": 22.7, "latest_episode_reward": 18.3, "episode_reward_trend_value": 0.00777777777777777, "biggest_recent_change": 5.699999999999999}
+    trial run [==>................................]  8.39% |  1762/21000 | started: 14:11:24 | eta: 14:18:31 | remaining: 6:31sec |         {"number_of_episodes": 1766, "number_of_timesteps": 32198, "latest_eval_score": 22.7, "latest_episode_reward": 18.3, "episode_reward_trend_value": 0.010000000000000024, "biggest_recent_change": 5.699999999999999}
+        {"number_of_episodes": 1776, "number_of_timesteps": 32411, "latest_eval_score": 22.7, "latest_episode_reward": 19.9, "episode_reward_trend_value": 0.01555555555555554, "biggest_recent_change": 5.699999999999999}
+        {"number_of_episodes": 1786, "number_of_timesteps": 32590, "latest_eval_score": 22.7, "latest_episode_reward": 19.6, "episode_reward_trend_value": 0.01777777777777779, "biggest_recent_change": 5.699999999999999}
+        {"number_of_episodes": 1796, "number_of_timesteps": 32855, "latest_eval_score": 22.7, "latest_episode_reward": 23.9, "episode_reward_trend_value": 0.03666666666666664, "biggest_recent_change": 5.699999999999999}
+    trial run [===>...............................]  8.59% |  1804/21000 | started: 14:11:24 | eta: 14:18:33 | remaining: 6:33sec |         {"number_of_episodes": 1806, "number_of_timesteps": 33085, "latest_eval_score": 22.7, "latest_episode_reward": 21.4, "episode_reward_trend_value": -0.054444444444444476, "biggest_recent_change": 5.5}
+        {"number_of_episodes": 1816, "number_of_timesteps": 33356, "latest_eval_score": 22.7, "latest_episode_reward": 29.5, "episode_reward_trend_value": 0.09666666666666665, "biggest_recent_change": 8.100000000000001}
+    
+    {"eval_score": 22.3, "number_of_episodes": 1820}
+        {"number_of_episodes": 1827, "number_of_timesteps": 33518, "latest_eval_score": 22.3, "latest_episode_reward": 15.6, "episode_reward_trend_value": -0.028888888888888888, "biggest_recent_change": 13.9}
+        {"number_of_episodes": 1839, "number_of_timesteps": 33694, "latest_eval_score": 22.3, "latest_episode_reward": 15.8, "episode_reward_trend_value": -0.012222222222222199, "biggest_recent_change": 13.9}
+        {"number_of_episodes": 1849, "number_of_timesteps": 33849, "latest_eval_score": 22.3, "latest_episode_reward": 16.6, "episode_reward_trend_value": -0.01888888888888888, "biggest_recent_change": 13.9}
+        {"number_of_episodes": 1861, "number_of_timesteps": 34060, "latest_eval_score": 22.3, "latest_episode_reward": 18.8, "episode_reward_trend_value": 0.005555555555555555, "biggest_recent_change": 13.9}
+    trial run [===>...............................]  8.86% |  1862/21000 | started: 14:11:24 | eta: 14:18:32 | remaining: 6:31sec |         {"number_of_episodes": 1872, "number_of_timesteps": 34252, "latest_eval_score": 22.3, "latest_episode_reward": 17.0, "episode_reward_trend_value": -0.03222222222222221, "biggest_recent_change": 13.9}
+        {"number_of_episodes": 1882, "number_of_timesteps": 34407, "latest_eval_score": 22.3, "latest_episode_reward": 16.4, "episode_reward_trend_value": -0.03555555555555558, "biggest_recent_change": 13.9}
+        {"number_of_episodes": 1894, "number_of_timesteps": 34622, "latest_eval_score": 22.3, "latest_episode_reward": 19.2, "episode_reward_trend_value": -0.05222222222222221, "biggest_recent_change": 13.9}
+        {"number_of_episodes": 1906, "number_of_timesteps": 34850, "latest_eval_score": 22.3, "latest_episode_reward": 20.8, "episode_reward_trend_value": -0.006666666666666643, "biggest_recent_change": 13.9}
+        {"number_of_episodes": 1919, "number_of_timesteps": 35050, "latest_eval_score": 22.3, "latest_episode_reward": 14.6, "episode_reward_trend_value": -0.16555555555555557, "biggest_recent_change": 13.9}
+    trial run [===>...............................]  9.14% |  1920/21000 | started: 14:11:24 | eta: 14:18:31 | remaining: 6:28sec |         {"number_of_episodes": 1929, "number_of_timesteps": 35193, "latest_eval_score": 22.3, "latest_episode_reward": 14.1, "episode_reward_trend_value": -0.016666666666666666, "biggest_recent_change": 6.200000000000001}
+        {"number_of_episodes": 1943, "number_of_timesteps": 35422, "latest_eval_score": 22.3, "latest_episode_reward": 16.1, "episode_reward_trend_value": 0.003333333333333341, "biggest_recent_change": 6.200000000000001}
+    
+    {"eval_score": 16.7, "number_of_episodes": 1950}
+        {"number_of_episodes": 1953, "number_of_timesteps": 35576, "latest_eval_score": 16.7, "latest_episode_reward": 15.6, "episode_reward_trend_value": -0.01111111111111113, "biggest_recent_change": 6.200000000000001}
+        {"number_of_episodes": 1965, "number_of_timesteps": 35766, "latest_eval_score": 16.7, "latest_episode_reward": 15.1, "episode_reward_trend_value": -0.04111111111111112, "biggest_recent_change": 6.200000000000001}
+        {"number_of_episodes": 1978, "number_of_timesteps": 35984, "latest_eval_score": 16.7, "latest_episode_reward": 17.4, "episode_reward_trend_value": 0.004444444444444429, "biggest_recent_change": 6.200000000000001}
+    trial run [===>...............................]  9.41% |  1978/21000 | started: 14:11:24 | eta: 14:18:30 | remaining: 6:27sec |         {"number_of_episodes": 1988, "number_of_timesteps": 36138, "latest_eval_score": 16.7, "latest_episode_reward": 16.6, "episode_reward_trend_value": 0.002222222222222254, "biggest_recent_change": 6.200000000000001}
+        {"number_of_episodes": 2000, "number_of_timesteps": 36350, "latest_eval_score": 16.7, "latest_episode_reward": 17.4, "episode_reward_trend_value": -0.020000000000000007, "biggest_recent_change": 6.200000000000001}
+        {"number_of_episodes": 2011, "number_of_timesteps": 36542, "latest_eval_score": 16.7, "latest_episode_reward": 17.6, "episode_reward_trend_value": -0.03555555555555555, "biggest_recent_change": 6.200000000000001}
+        {"number_of_episodes": 2021, "number_of_timesteps": 36726, "latest_eval_score": 16.7, "latest_episode_reward": 17.7, "episode_reward_trend_value": 0.03444444444444444, "biggest_recent_change": 2.299999999999999}
+        {"number_of_episodes": 2031, "number_of_timesteps": 36888, "latest_eval_score": 16.7, "latest_episode_reward": 17.1, "episode_reward_trend_value": 0.033333333333333354, "biggest_recent_change": 2.299999999999999}
+    trial run [===>...............................]  9.67% |  2032/21000 | started: 14:11:24 | eta: 14:18:29 | remaining: 6:25sec |         {"number_of_episodes": 2041, "number_of_timesteps": 37116, "latest_eval_score": 16.7, "latest_episode_reward": 22.8, "episode_reward_trend_value": 0.07444444444444444, "biggest_recent_change": 5.699999999999999}
+        {"number_of_episodes": 2053, "number_of_timesteps": 37285, "latest_eval_score": 16.7, "latest_episode_reward": 13.8, "episode_reward_trend_value": -0.019999999999999987, "biggest_recent_change": 9.0}
+        {"number_of_episodes": 2064, "number_of_timesteps": 37491, "latest_eval_score": 16.7, "latest_episode_reward": 18.5, "episode_reward_trend_value": 0.037777777777777785, "biggest_recent_change": 9.0}
+        {"number_of_episodes": 2075, "number_of_timesteps": 37666, "latest_eval_score": 16.7, "latest_episode_reward": 16.2, "episode_reward_trend_value": -0.013333333333333326, "biggest_recent_change": 9.0}
+    
+    {"eval_score": 22.1, "number_of_episodes": 2080}
+    trial run [===>...............................]  9.92% |  2084/21000 | started: 14:11:24 | eta: 14:18:29 | remaining: 6:24sec |         {"number_of_episodes": 2087, "number_of_timesteps": 37878, "latest_eval_score": 22.1, "latest_episode_reward": 17.6, "episode_reward_trend_value": 0.01111111111111111, "biggest_recent_change": 9.0}
+        {"number_of_episodes": 2098, "number_of_timesteps": 38119, "latest_eval_score": 22.1, "latest_episode_reward": 20.6, "episode_reward_trend_value": 0.03555555555555558, "biggest_recent_change": 9.0}
+        {"number_of_episodes": 2108, "number_of_timesteps": 38288, "latest_eval_score": 22.1, "latest_episode_reward": 19.0, "episode_reward_trend_value": 0.01555555555555554, "biggest_recent_change": 9.0}
+        {"number_of_episodes": 2119, "number_of_timesteps": 38521, "latest_eval_score": 22.1, "latest_episode_reward": 22.3, "episode_reward_trend_value": 0.05111111111111113, "biggest_recent_change": 9.0}
+        {"number_of_episodes": 2129, "number_of_timesteps": 38754, "latest_eval_score": 22.1, "latest_episode_reward": 23.3, "episode_reward_trend_value": 0.06888888888888887, "biggest_recent_change": 9.0}
+    trial run [===>...............................] 10.17% |  2136/21000 | started: 14:11:24 | eta: 14:18:29 | remaining: 6:22sec |         {"number_of_episodes": 2139, "number_of_timesteps": 38922, "latest_eval_score": 22.1, "latest_episode_reward": 16.8, "episode_reward_trend_value": -0.06666666666666667, "biggest_recent_change": 9.0}
+        {"number_of_episodes": 2149, "number_of_timesteps": 39119, "latest_eval_score": 22.1, "latest_episode_reward": 20.1, "episode_reward_trend_value": 0.07, "biggest_recent_change": 6.5}
+        {"number_of_episodes": 2161, "number_of_timesteps": 39311, "latest_eval_score": 22.1, "latest_episode_reward": 17.1, "episode_reward_trend_value": -0.01555555555555554, "biggest_recent_change": 6.5}
+        {"number_of_episodes": 2172, "number_of_timesteps": 39548, "latest_eval_score": 22.1, "latest_episode_reward": 16.4, "episode_reward_trend_value": 0.0022222222222222144, "biggest_recent_change": 6.5}
+        {"number_of_episodes": 2184, "number_of_timesteps": 39780, "latest_eval_score": 22.1, "latest_episode_reward": 21.1, "episode_reward_trend_value": 0.03888888888888889, "biggest_recent_change": 6.5}
+    trial run [===>...............................] 10.40% |  2184/21000 | started: 14:11:24 | eta: 14:18:29 | remaining: 6:22sec |         {"number_of_episodes": 2196, "number_of_timesteps": 40054, "latest_eval_score": 22.1, "latest_episode_reward": 22.0, "episode_reward_trend_value": 0.01555555555555554, "biggest_recent_change": 6.5}
+        {"number_of_episodes": 2206, "number_of_timesteps": 40228, "latest_eval_score": 22.1, "latest_episode_reward": 19.7, "episode_reward_trend_value": 0.00777777777777777, "biggest_recent_change": 6.5}
+    
+    {"eval_score": 22.2, "number_of_episodes": 2210}
+        {"number_of_episodes": 2217, "number_of_timesteps": 40400, "latest_eval_score": 22.2, "latest_episode_reward": 13.6, "episode_reward_trend_value": -0.09666666666666668, "biggest_recent_change": 6.5}
+        {"number_of_episodes": 2227, "number_of_timesteps": 40642, "latest_eval_score": 22.2, "latest_episode_reward": 23.2, "episode_reward_trend_value": -0.001111111111111127, "biggest_recent_change": 9.6}
+    trial run [===>...............................] 10.62% |  2231/21000 | started: 14:11:24 | eta: 14:18:30 | remaining: 6:22sec |         {"number_of_episodes": 2237, "number_of_timesteps": 40858, "latest_eval_score": 22.2, "latest_episode_reward": 20.4, "episode_reward_trend_value": 0.03999999999999997, "biggest_recent_change": 9.6}
+        {"number_of_episodes": 2247, "number_of_timesteps": 41051, "latest_eval_score": 22.2, "latest_episode_reward": 19.5, "episode_reward_trend_value": -0.006666666666666682, "biggest_recent_change": 9.6}
+        {"number_of_episodes": 2259, "number_of_timesteps": 41296, "latest_eval_score": 22.2, "latest_episode_reward": 19.6, "episode_reward_trend_value": 0.02777777777777778, "biggest_recent_change": 9.6}
+        {"number_of_episodes": 2269, "number_of_timesteps": 41539, "latest_eval_score": 22.2, "latest_episode_reward": 23.6, "episode_reward_trend_value": 0.08000000000000003, "biggest_recent_change": 9.6}
+    trial run [===>...............................] 10.84% |  2278/21000 | started: 14:11:24 | eta: 14:18:31 | remaining: 6:22sec |         {"number_of_episodes": 2279, "number_of_timesteps": 41734, "latest_eval_score": 22.2, "latest_episode_reward": 19.7, "episode_reward_trend_value": -0.015555555555555578, "biggest_recent_change": 9.6}
+        {"number_of_episodes": 2291, "number_of_timesteps": 41928, "latest_eval_score": 22.2, "latest_episode_reward": 16.1, "episode_reward_trend_value": -0.06555555555555555, "biggest_recent_change": 9.6}
+        {"number_of_episodes": 2301, "number_of_timesteps": 42177, "latest_eval_score": 22.2, "latest_episode_reward": 24.5, "episode_reward_trend_value": 0.053333333333333344, "biggest_recent_change": 9.6}
+        {"number_of_episodes": 2311, "number_of_timesteps": 42361, "latest_eval_score": 22.2, "latest_episode_reward": 17.7, "episode_reward_trend_value": 0.04555555555555555, "biggest_recent_change": 9.6}
+        {"number_of_episodes": 2322, "number_of_timesteps": 42587, "latest_eval_score": 22.2, "latest_episode_reward": 21.5, "episode_reward_trend_value": -0.01888888888888888, "biggest_recent_change": 8.399999999999999}
+    trial run [===>...............................] 11.09% |  2329/21000 | started: 14:11:24 | eta: 14:18:31 | remaining: 6:21sec |         {"number_of_episodes": 2335, "number_of_timesteps": 42821, "latest_eval_score": 22.2, "latest_episode_reward": 16.1, "episode_reward_trend_value": -0.047777777777777745, "biggest_recent_change": 8.399999999999999}
+    
+    {"eval_score": 24.0, "number_of_episodes": 2340}
+        {"number_of_episodes": 2347, "number_of_timesteps": 43075, "latest_eval_score": 24.0, "latest_episode_reward": 21.0, "episode_reward_trend_value": 0.016666666666666666, "biggest_recent_change": 8.399999999999999}
+        {"number_of_episodes": 2357, "number_of_timesteps": 43237, "latest_eval_score": 24.0, "latest_episode_reward": 16.5, "episode_reward_trend_value": -0.03444444444444446, "biggest_recent_change": 8.399999999999999}
+        {"number_of_episodes": 2367, "number_of_timesteps": 43410, "latest_eval_score": 24.0, "latest_episode_reward": 16.9, "episode_reward_trend_value": -0.07444444444444448, "biggest_recent_change": 8.399999999999999}
+    trial run [===>...............................] 11.29% |  2372/21000 | started: 14:11:24 | eta: 14:18:33 | remaining: 6:22sec |         {"number_of_episodes": 2379, "number_of_timesteps": 43729, "latest_eval_score": 24.0, "latest_episode_reward": 24.1, "episode_reward_trend_value": 0.04888888888888891, "biggest_recent_change": 8.399999999999999}
+        {"number_of_episodes": 2390, "number_of_timesteps": 43932, "latest_eval_score": 24.0, "latest_episode_reward": 19.6, "episode_reward_trend_value": 0.03888888888888889, "biggest_recent_change": 8.399999999999999}
+        {"number_of_episodes": 2400, "number_of_timesteps": 44111, "latest_eval_score": 24.0, "latest_episode_reward": 17.4, "episode_reward_trend_value": -0.07888888888888891, "biggest_recent_change": 7.200000000000003}
+        {"number_of_episodes": 2411, "number_of_timesteps": 44335, "latest_eval_score": 24.0, "latest_episode_reward": 16.5, "episode_reward_trend_value": -0.013333333333333326, "biggest_recent_change": 7.200000000000003}
+        {"number_of_episodes": 2423, "number_of_timesteps": 44527, "latest_eval_score": 24.0, "latest_episode_reward": 16.1, "episode_reward_trend_value": -0.059999999999999984, "biggest_recent_change": 7.200000000000003}
+    trial run [====>..............................] 11.56% |  2428/21000 | started: 14:11:24 | eta: 14:18:32 | remaining: 6:20sec |         {"number_of_episodes": 2435, "number_of_timesteps": 44774, "latest_eval_score": 24.0, "latest_episode_reward": 21.9, "episode_reward_trend_value": 0.06444444444444442, "biggest_recent_change": 7.200000000000003}
+        {"number_of_episodes": 2446, "number_of_timesteps": 44974, "latest_eval_score": 24.0, "latest_episode_reward": 18.0, "episode_reward_trend_value": -0.03333333333333333, "biggest_recent_change": 7.200000000000003}
+        {"number_of_episodes": 2460, "number_of_timesteps": 45230, "latest_eval_score": 24.0, "latest_episode_reward": 16.0, "episode_reward_trend_value": -0.005555555555555555, "biggest_recent_change": 7.200000000000003}
+    
+    {"eval_score": 18.0, "number_of_episodes": 2470}
+        {"number_of_episodes": 2474, "number_of_timesteps": 45441, "latest_eval_score": 18.0, "latest_episode_reward": 15.5, "episode_reward_trend_value": -0.01555555555555554, "biggest_recent_change": 7.200000000000003}
+    trial run [====>..............................] 11.80% |  2480/21000 | started: 14:11:24 | eta: 14:18:32 | remaining: 6:18sec |         {"number_of_episodes": 2484, "number_of_timesteps": 45598, "latest_eval_score": 18.0, "latest_episode_reward": 16.1, "episode_reward_trend_value": -0.08888888888888888, "biggest_recent_change": 5.799999999999997}
+        {"number_of_episodes": 2496, "number_of_timesteps": 45837, "latest_eval_score": 18.0, "latest_episode_reward": 17.8, "episode_reward_trend_value": -0.020000000000000007, "biggest_recent_change": 5.799999999999997}
+        {"number_of_episodes": 2506, "number_of_timesteps": 46066, "latest_eval_score": 18.0, "latest_episode_reward": 22.9, "episode_reward_trend_value": 0.061111111111111116, "biggest_recent_change": 5.799999999999997}
+        {"number_of_episodes": 2517, "number_of_timesteps": 46285, "latest_eval_score": 18.0, "latest_episode_reward": 20.8, "episode_reward_trend_value": 0.04777777777777779, "biggest_recent_change": 5.799999999999997}
+Traceback (most recent call last):
+  File "/home/jeffhykin/repos/bizav/examples/atari/reproduction/a3c/comparison.py", line 73, in main
+    fitness_values = [ float(train_a3c.outer_training_function(args)) for each in range(runs_for_comparison) ]
+  File "/home/jeffhykin/repos/bizav/examples/atari/reproduction/a3c/comparison.py", line 73, in <listcomp>
+    fitness_values = [ float(train_a3c.outer_training_function(args)) for each in range(runs_for_comparison) ]
+  File "/home/jeffhykin/repos/bizav/examples/atari/reproduction/a3c/train_a3c.py", line 276, in outer_training_function
+    experiments.middle_training_function(
+  File "/home/jeffhykin/repos/bizav/pfrl/experiments/train_agent_async.py", line 792, in middle_training_function
+    pass
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/blissful_basics/__init__.py", line 989, in __exit__
+    raise error
+  File "/home/jeffhykin/repos/bizav/pfrl/experiments/train_agent_async.py", line 790, in middle_training_function
+    for each_step in update_steps:
+  File "/home/jeffhykin/repos/bizav/pfrl/experiments/train_agent_async.py", line 323, in update_sequence
+    debug and print("finished individual_updates_ready_barrier()")
+  File "/home/jeffhykin/.local/lib/python3.8/site-packages/blissful_basics/__init__.py", line 989, in __exit__
+    raise error
+  File "/home/jeffhykin/repos/bizav/pfrl/experiments/train_agent_async.py", line 284, in update_sequence
+    ucb_reward = ucb.reward_func(ucb.gradient_of_agents)
+  File "/home/jeffhykin/repos/bizav/pfrl/experiments/train_agent_async.py", line 772, in gradient_of_agents
+    all_grads.append(process.gradient)
+  File "/home/jeffhykin/repos/bizav/pfrl/experiments/train_agent_async.py", line 411, in gradient
+    my_grad.append(grad_np[j])
+KeyboardInterrupt

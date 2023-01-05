@@ -12,6 +12,7 @@
     (local_data): ./local_data.ignore.yaml
     
     todo:
+        - get a3c.py (no malicious) working better than old biz paper
         - FIXME: with act attack figure out why the central agent is getting a consistently larger gradient
         - get breakout running/solved by A3C with 10 processes (maybe adapt hyperparams from stable baselines)
         - get hyperparams:

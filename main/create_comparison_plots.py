@@ -11,6 +11,11 @@ ProgressBar.seconds_per_print = 0.08
 with print.indent:
     liquid_log = LiquidLog()
     for progress, each in ProgressBar(sys.argv[1:]):
+        # skip temp files
+        try:
+            FS.basename(each).split('__')[2].split('=')[1]
+        except Exception as error:
+            continue
         liquid_log = liquid_log.concat(
             LiquidLog(log_reader.read(each, disable_logging=False))
         )
